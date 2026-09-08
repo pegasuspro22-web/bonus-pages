@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulation Test 1 — ParaPro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#05134E; --navy-2:#0E205E; --navy-3:#162B71; --line:#2A3C82;
+  --gold:#FAD204; --gold-ink:#0B1440;
+  --paper:#F5F3EA; --muted:#9BA8D6; --muted-2:#6F7EB3;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --alert-soft:#3A2E12; --alert:#FAD204; --alert-muted:#D9CBA3;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Anton',Impact,sans-serif; font-weight:400; letter-spacing:.01em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(5,19,78,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:720px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600;}
+
+.page{max-width:720px; margin:0 auto; padding:0 1.25rem 5rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.75rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(1.9rem,6.5vw,2.7rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:480px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.75rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.5rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.step-list{counter-reset:step; margin:2rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.5rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{
+  font-family:'Anton',sans-serif; font-size:1.1rem; color:var(--gold-ink); background:var(--gold);
+  width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:.1rem;
+}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0; line-height:1.6;}
+.action-block{margin-top:.9rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none;
+  padding:.85rem 1.5rem; border-radius:999px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(250,210,4,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+
+.subject-chip{font-family:'Karla',sans-serif; font-weight:600; font-size:.92rem; letter-spacing:.01em; background:var(--navy); border:1.5px dashed var(--line); border-radius:8px; padding:.7rem 1rem; color:var(--paper); word-break:break-word;}
+.subject-chip b{color:var(--gold);}
+
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.6rem; box-shadow:var(--shadow); margin-top:1.75rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+
+.section-head{padding-top:2.25rem; margin-bottom:1.1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+
+.card-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); margin-top:1.25rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center;}
+.card h3{font-size:1rem; font-weight:700; font-family:'Karla',sans-serif;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{
+  font-family:'Oswald',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; text-decoration:none; flex-shrink:0;
+}
+.tag.ghost{background:var(--navy); color:var(--paper); border:1.5px solid var(--line);}
+
+.check-list{display:flex; flex-direction:column; gap:1rem; margin-top:1.25rem;}
+.check-row{display:flex; gap:.9rem; align-items:flex-start;}
+.check-row .mark{
+  flex-shrink:0; width:1.6rem; height:1.6rem; border-radius:50%; background:var(--gold); color:var(--gold-ink);
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; margin-top:.05rem;
+}
+.check-row h3{font-size:.98rem; font-weight:700; font-family:'Karla',sans-serif;}
+.check-row p{color:var(--muted); font-size:.9rem; margin:.2rem 0 0; line-height:1.5;}
+
+.how-box{margin-top:1.25rem; text-align:center;}
+.how-box p{color:var(--paper); font-size:.95rem; line-height:1.65; max-width:440px; margin:0 auto;}
+.how-box .fine{color:var(--alert-muted); font-size:.83rem; margin-top:.9rem;}
+
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+
+.how-box-manual{margin-top:0; text-align:center; background:var(--navy-3); border:1.5px solid rgba(250,210,4,.3);}
+.how-box-manual p{color:var(--paper); font-size:.9rem; line-height:1.6; max-width:420px; margin:0 auto;}
+
+.foot{max-width:720px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+
+.faq{margin-top:1.25rem;}
+.faq dt{font-weight:700; margin-top:1.1rem; font-family:'Karla',sans-serif;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem; line-height:1.6;}
+
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card > a.tag{align-self:stretch; text-align:center;}
+  .topbar .title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:55vw;}
+  .topbar-inner{padding:.6rem 1rem;}
+  .hero{padding-top:2rem;}
+}
+
+.quiz-head{display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:1.25rem;}
+.progress{font-family:'Oswald',sans-serif; font-size:.8rem; color:var(--muted);}
+.qcard{border:1px solid var(--line); border-radius:10px; padding:1.4rem; margin-top:1.25rem; background:var(--navy-2);}
+.qn{font-family:'Oswald',sans-serif; font-size:.68rem; color:var(--muted-2); display:flex; justify-content:space-between; letter-spacing:.04em; text-transform:uppercase;}
+.qtext{margin-top:.6rem; font-size:1rem; line-height:1.6; white-space:pre-wrap;}
+.domain-pill{display:inline-block; font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.04em; text-transform:uppercase; background:var(--navy); border:1px solid var(--line); padding:.2rem .55rem; border-radius:3px; color:var(--gold);}
+.opts{display:flex; flex-direction:column; gap:.55rem; margin-top:1.1rem;}
+.opt{display:flex; gap:.7rem; align-items:flex-start; border:1.5px solid var(--line); border-radius:8px; padding:.65rem .8rem; font-size:.93rem; line-height:1.5; background:var(--navy);}
+.opt input{margin-top:.25rem;} .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold);}
+.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.quiz-actions{display:flex; justify-content:center; margin-top:2rem; gap:.75rem;}
+.score-panel{border:1px solid var(--line); border-radius:10px; padding:1.5rem; background:var(--navy-2); margin-top:1.25rem;}
+.score-big{font-family:'Anton',sans-serif; font-size:2.2rem; color:var(--gold);}
+.domain-bars{display:flex; flex-direction:column; gap:.55rem; margin-top:1.25rem;}
+.dbar-row{display:grid; grid-template-columns:minmax(110px,170px) 1fr 3.2rem; gap:.6rem; align-items:center; font-size:.82rem;}
+.dbar-track{height:8px; background:var(--navy); border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+.dbar-fill{height:100%; background:var(--correct);}
+.dname{color:var(--muted);} .dpct{font-family:'Oswald',sans-serif; text-align:right; color:var(--muted-2);}
+
+.briefing{padding-top:1.5rem;}
+.briefing h1{font-size:1.5rem; font-family:'Oswald',sans-serif; text-transform:uppercase; font-weight:700;}
+.briefing p{color:var(--muted); font-size:.96rem; line-height:1.65; margin-top:1rem;}
+.briefing ul{color:var(--muted); font-size:.94rem; line-height:1.8; margin:1.1rem 0 0; padding-left:1.3rem;}
+.briefing ul li::marker{color:var(--gold);}
+.check-gate{display:flex; gap:.75rem; align-items:flex-start; margin-top:1.75rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.25rem;}
+.check-gate input{margin-top:.2rem; width:1.05rem; height:1.05rem; accent-color:var(--gold); flex-shrink:0;}
+.check-gate label{font-size:.93rem; line-height:1.5;}
+#btn-start-test{margin-top:1.5rem; width:100%; justify-content:center; opacity:.4; pointer-events:none;}
+#btn-start-test.enabled{opacity:1; pointer-events:auto;}
+.section-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.75rem; gap:.75rem; flex-wrap:wrap; row-gap:.75rem;}
+.section-nav .mid{font-family:'Oswald',sans-serif; font-size:.78rem; color:var(--muted); order:-1; width:100%; text-align:center;}
+.section-nav .btn{flex:1;}
+
+@media (max-width:480px){
+  .section-nav .btn{padding:.7rem .9rem; font-size:.7rem; white-space:normal; text-align:center;}
+  .qcard{padding:1.1rem;}
+  .briefing h1{font-size:1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <img class="logo" src="../../assets/exam-success-academy-logo.png" alt="Exam Success Academy">
+    <span class="title">ParaPro Study Guide</span>
+  </div>
+</div>
+<div class="page" style="max-width:820px;">
+  <a href="./" class="back-link">← Back to Simulation Test Center</a>
+  
+<div class="briefing" id="briefing">
+  <h1>ParaPro Test – Full-Length Exam Simulation 1</h1>
+  <p>This online full-length simulation has been designed to closely reflect the difficulty, pacing, and overall testing experience of the official ParaPro Assessment.</p>
+  <p>Unlike the practice simulations included in the book, this is a separate 90-question exam, aligned with the format and demands of the real test.</p>
+  <p>This simulation is organized into sections of 30 questions. The official exam is not divided into sections — this structure is intentional and helps you maintain focus over a long exam, manage pacing and time effectively, and reduce mental fatigue without reducing difficulty.</p>
+  <p>The test should be completed in one sitting, without external assistance, to obtain a realistic performance benchmark.</p>
+  <p>Take this first timed simulation to establish your performance baseline and identify priority areas before advancing further.</p>
+  <ul>
+    <li>Suggested time: 90 minutes</li>
+    <li>Do not pause the test once started</li>
+    <li>Treat this as test day</li>
+  </ul>
+  <div class="check-gate">
+    <input type="checkbox" id="check-ready">
+    <label for="check-ready">I am ready to start the test under exam conditions. <span style="color:var(--gold);">*</span></label>
+  </div>
+  <button class="btn btn-gold" id="btn-start-test">Yes, start the test now</button>
+</div>
+  
+<div id="quiz-wrapper" hidden>
+  <div class="quiz-head" style="margin-top:1rem;">
+    <div><div class="eyebrow" style="font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);">Self-hosted · no explanations shown</div><h1 style="font-size:1.4rem; font-family:'Oswald',sans-serif; text-transform:uppercase; margin-top:.3rem;">Simulation Test 1</h1></div>
+    <span class="progress" id="quiz-progress"></span>
+  </div>
+  <div id="quiz-body"></div>
+  <div class="section-nav" id="section-nav">
+    <button class="btn btn-ghost" id="btn-prev">← Previous</button>
+    <span class="mid" id="section-progress"></span>
+    <button class="btn btn-gold" id="btn-next">Next Section →</button>
+  </div>
+  <div class="quiz-actions">
+    <button class="btn btn-ghost" id="btn-reset" style="display:none;">Restart</button>
+  </div>
+  <div id="score-area"></div>
+</div>
+  
+<div class="foot">
+  <div class="copyright">© 2026 Exam Success Academy. All rights reserved.</div>
+  <div class="legal">Independently produced — not affiliated with, endorsed by, sponsored by, or approved by the Educational Testing Service (ETS) or the ParaPro Assessment program.</div>
+</div>
+</div>
+<script>
+function runQuiz(questions, domainOrder){
+  const SECTION_SIZE = 30;
+  const body = document.getElementById('quiz-body');
+  const answers = {};
+  const sections = [];
+  for(let i = 0; i < questions.length; i += SECTION_SIZE){ sections.push(questions.slice(i, i + SECTION_SIZE)); }
+  let current = 0;
+
+  sections.forEach(function(group, sIdx){
+    const sec = document.createElement('div');
+    sec.className = 'qsection';
+    sec.dataset.index = sIdx;
+    sec.hidden = sIdx !== 0;
+    group.forEach(function(q){
+      const card = document.createElement('div');
+      card.className = 'qcard';
+      card.innerHTML = '<div class="qn"><span>Question ' + q.n + ' / ' + questions.length + '</span><span class="domain-pill">' + (q.domain||'') + '</span></div><div class="qtext"></div><div class="opts"></div>';
+      card.querySelector('.qtext').textContent = q.q;
+      const opts = card.querySelector('.opts');
+      ['a','b','c','d'].forEach(function(letter){
+        const label = document.createElement('label');
+        label.className = 'opt';
+        label.dataset.letter = letter.toUpperCase();
+        label.innerHTML = '<input type="radio" name="q' + q.n + '" value="' + letter.toUpperCase() + '"><span><span class="letter">' + letter.toUpperCase() + '.</span> <span class="opttext"></span></span>';
+        label.querySelector('.opttext').textContent = q[letter];
+        label.querySelector('input').addEventListener('change', function(){ answers[q.n] = letter.toUpperCase(); updateProgress(); });
+        opts.appendChild(label);
+      });
+      sec.appendChild(card);
+    });
+    body.appendChild(sec);
+  });
+
+  function updateProgress(){
+    document.getElementById('quiz-progress').textContent = Object.keys(answers).length + ' / ' + questions.length + ' answered';
+    document.getElementById('section-progress').textContent = 'Section ' + (current + 1) + ' of ' + sections.length;
+  }
+  function showSection(idx){
+    document.querySelectorAll('.qsection').forEach(function(s){ s.hidden = Number(s.dataset.index) !== idx; });
+    current = idx;
+    document.getElementById('btn-prev').disabled = idx === 0;
+    document.getElementById('btn-next').textContent = (idx === sections.length - 1) ? 'Submit Test' : 'Next Section →';
+    updateProgress();
+    document.getElementById('quiz-wrapper').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  document.getElementById('btn-prev').addEventListener('click', function(){ if(current > 0) showSection(current - 1); });
+  document.getElementById('btn-next').addEventListener('click', function(){
+    if(current < sections.length - 1){ showSection(current + 1); return; }
+    finalizeQuiz();
+  });
+  updateProgress();
+
+  function finalizeQuiz(){
+    let correct = 0;
+    const byDomain = {};
+    questions.forEach(function(q){
+      const given = answers[q.n];
+      const isCorrect = given === q.correct;
+      if(isCorrect) correct++;
+      const d = q.domain || 'Other';
+      byDomain[d] = byDomain[d] || {correct:0,total:0};
+      byDomain[d].total++;
+      if(isCorrect) byDomain[d].correct++;
+    });
+    document.querySelectorAll('.qsection').forEach(function(s){ s.hidden = false; });
+    document.querySelectorAll('.qcard').forEach(function(card, i){
+      const q = questions[i];
+      const given = answers[q.n];
+      card.querySelectorAll('.opt').forEach(function(opt){
+        opt.querySelector('input').disabled = true;
+        if(opt.dataset.letter === q.correct) opt.classList.add('correct');
+        else if(opt.dataset.letter === given) opt.classList.add('wrong');
+      });
+    });
+    const pct = Math.round((correct/questions.length)*100);
+    const scoreArea = document.getElementById('score-area');
+    let bars = '';
+    domainOrder.filter(function(d){return byDomain[d];}).forEach(function(d){
+      const s = byDomain[d];
+      const p = Math.round((s.correct/s.total)*100);
+      bars += '<div class="dbar-row"><span class="dname">' + d + '</span><div class="dbar-track"><div class="dbar-fill" style="width:' + p + '%"></div></div><span class="dpct">' + s.correct + '/' + s.total + '</span></div>';
+    });
+    scoreArea.innerHTML = '<div class="score-panel"><div class="eyebrow" style="font-family:\'Oswald\',sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);">Result — no explanations shown, readiness signal only</div><div class="score-big">' + correct + ' / ' + questions.length + ' <span style="font-size:1.05rem; color:var(--muted); font-family:\'Karla\',sans-serif; font-weight:500;">(' + pct + '%)</span></div><div class="domain-bars">' + bars + '</div></div>';
+    document.getElementById('section-nav').style.display = 'none';
+    document.getElementById('btn-reset').style.display = 'inline-flex';
+    scoreArea.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+  document.getElementById('btn-reset').addEventListener('click', function(){ window.location.reload(); });
+
+  const checkGate = document.getElementById('check-ready');
+  const startBtn = document.getElementById('btn-start-test');
+  checkGate.addEventListener('change', function(){ startBtn.classList.toggle('enabled', checkGate.checked); });
+  startBtn.addEventListener('click', function(){
+    if(!checkGate.checked) return;
+    document.getElementById('briefing').hidden = true;
+    document.getElementById('quiz-wrapper').hidden = false;
+    document.getElementById('quiz-wrapper').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+}
+
+runQuiz([{"n": 1, "q": "Read the passage. Many communities have started “little free libraries”—small boxes where people can take a book or leave a book. The goal is to make reading easier to access and to encourage neighbors to share with one another. Some boxes are built near schools so families can borrow books without needing to travel to a public library. What is the main idea of the passage?", "a": "Neighbors should only borrow books if they can replace them.", "b": "Public libraries are too far away for most families to use.", "c": "Little free libraries help communities share books and increase access to reading.", "d": "Schools should build boxes to store their textbooks.", "correct": "C", "domain": "Reading"}, {"n": 2, "q": "In the passage, the word “access” most nearly means", "a": "permission", "b": "ability to get or use", "c": "interest in", "d": "argument about", "correct": "B", "domain": "Reading"}, {"n": 3, "q": "Which detail best supports the idea that little free libraries make reading easier for families?", "a": "They are small boxes.", "b": "Some boxes are built near schools.", "c": "Neighbors share with one another.", "d": "People can take a book or leave a book.", "correct": "B", "domain": "Reading"}, {"n": 4, "q": "Read the passage. Jamal was nervous about his first day in the art club. He didn’t know anyone, and he worried that his drawings weren’t good enough. When he walked in, the club leader greeted him and asked what he liked to draw. Jamal showed a sketch from his notebook. “That’s a strong start,” the leader said. “Want to try adding shading?” Jamal sat down and began to draw, feeling more confident. Which statement best describes how Jamal feels at the end?", "a": "Confused because he did not understand the club rules", "b": "Embarrassed because his drawing was criticized", "c": "Confident because he received helpful encouragement", "d": "Angry that the leader asked a question", "correct": "C", "domain": "Reading"}, {"n": 5, "q": "What does the club leader do that most helps Jamal?", "a": "Hands Jamal a finished drawing to copy", "b": "Gives specific, supportive advice", "c": "Tells Jamal to stop worrying", "d": "Tells Jamal he must practice alone", "correct": "B", "domain": "Reading"}, {"n": 6, "q": "Read the sentence: “Jamal showed a sketch from his notebook.” The word “sketch” most likely means", "a": "a careful measurement", "b": "a quick drawing", "c": "a long speech", "d": "a list of supplies", "correct": "B", "domain": "Reading"}, {"n": 7, "q": "Read the passage. A teacher asked students to keep a science journal. At first, several students wrote only one short sentence each day. The teacher modeled how to write observations by describing what she saw, heard, and measured. She also posted sentence starters, such as “I noticed…” and “I wonder….” Over time, students wrote longer entries with more details. What caused the students’ journal entries to improve?", "a": "The teacher provided models and supports.", "b": "The students stopped writing daily.", "c": "The teacher assigned more homework.", "d": "The teacher graded journals more strictly.", "correct": "A", "domain": "Reading"}, {"n": 8, "q": "Which of these is an example of an “observation” as used in the passage?", "a": "“We should do the experiment again.”", "b": "“Science is my favorite subject.”", "c": "“I think the experiment will work.”", "d": "“The water level rose 2 centimeters.”", "correct": "D", "domain": "Reading"}, {"n": 9, "q": "Which statement is a reasonable inference from the passage?", "a": "The teacher stopped using science journals by the end of the year.", "b": "The students had already written detailed journals in the past.", "c": "The students refused to write in journals.", "d": "Sentence starters helped students add details to their writing.", "correct": "D", "domain": "Reading"}, {"n": 10, "q": "Read the passage. A school cafeteria introduced a “share table” where students can place unopened packaged foods they do not want, such as a sealed yogurt or a whole piece of fruit. Other students may take these items if they want them. The school explained the rules clearly and reminded students to wash their hands before eating. What is the purpose of the share table?", "a": "To reduce wasted food by allowing safe sharing", "b": "To replace the need for cafeteria workers", "c": "To make students bring lunch from home", "d": "To encourage students to skip cafeteria meals", "correct": "A", "domain": "Reading"}, {"n": 11, "q": "The word “sealed” most nearly means", "a": "broken open", "b": "very large", "c": "tightly closed", "d": "carefully cooked", "correct": "C", "domain": "Reading"}, {"n": 12, "q": "Which detail shows the school is concerned about safety?", "a": "The foods are packaged.", "b": "The school explained the rules clearly and reminded students to wash their hands before eating.", "c": "Students may take items if they want them.", "d": "The table is in the cafeteria.", "correct": "B", "domain": "Reading"}, {"n": 13, "q": "Read the passage. When Mia studied for her spelling test, she practiced by writing each word five times. She still missed several words on the test. Her teacher suggested a different method: Mia should say each word aloud, break it into parts, and use it in a sentence. After trying the new method for a week, Mia began to remember more words correctly. Which study method helped Mia most?", "a": "Writing each word five times", "b": "Skipping difficult words", "c": "Saying the word, breaking it into parts, and using it in a sentence", "d": "Guessing the spelling during the test", "correct": "C", "domain": "Reading"}, {"n": 14, "q": "What does the passage suggest about the first method Mia used?", "a": "It did not help Mia remember the spellings well enough.", "b": "It worked perfectly for Mia.", "c": "It was too difficult for the teacher to explain.", "d": "It was better than using the words in sentences.", "correct": "A", "domain": "Reading"}, {"n": 15, "q": "Read the passage. The town park used to be empty on weekends. Then volunteers organized a Saturday clean-up and invited families to help. After the clean-up, the volunteers added a walking path sign and placed benches near the playground. Soon more people began visiting the park to walk, play, and relax. Why did more people begin visiting the park?", "a": "The park became cleaner and had added features.", "b": "Families were required to visit by the town.", "c": "The volunteers removed the playground.", "d": "The park charged an entrance fee.", "correct": "A", "domain": "Reading"}, {"n": 16, "q": "The word “organized” in the passage most nearly means", "a": "canceled", "b": "decorated", "c": "hid", "d": "planned", "correct": "D", "domain": "Reading"}, {"n": 17, "q": "Which detail is most important to the sequence of events?", "a": "Benches were placed near the playground.", "b": "Volunteers organized a Saturday clean-up.", "c": "The park used to be empty on weekends.", "d": "People visited the park to relax.", "correct": "B", "domain": "Reading"}, {"n": 18, "q": "Read the passage. Carlos read the same paragraph three times and still couldn’t explain what it meant. He decided to stop and ask himself questions: “Who is this about? What happened? Why did it happen?” He also underlined key words. After that, he could summarize the paragraph in his own words. Which strategy helped Carlos understand the paragraph?", "a": "Asking questions and underlining key words", "b": "Skipping the paragraph and moving on", "c": "Memorizing each sentence word for word", "d": "Reading only the first and last sentence", "correct": "A", "domain": "Reading"}, {"n": 19, "q": "What does “summarize” mean in the passage?", "a": "Add new details", "b": "Copy exactly", "c": "Change the topic", "d": "Tell the main points briefly", "correct": "D", "domain": "Reading"}, {"n": 20, "q": "A student is struggling to understand a short passage like Carlos did. What is the best support to offer first?", "a": "Have the student avoid difficult words", "b": "Encourage the student to ask “who/what/why” questions while reading", "c": "Ask the student to read faster to save time", "d": "Tell the student the answers so the student can finish quickly", "correct": "B", "domain": "Reading"}, {"n": 21, "q": "Read the passage. During a class discussion, several students spoke at once. Ms. Patel held up her hand as a signal for quiet. Then she said, “Let’s take turns so we can hear everyone’s ideas.” She called on students one at a time and asked each student to explain their thinking. What is Ms. Patel’s main goal?", "a": "To allow everyone to be heard clearly", "b": "To test students on hand signals", "c": "To end the discussion early", "d": "To make sure only certain students speak", "correct": "A", "domain": "Reading"}, {"n": 22, "q": "What does the phrase “take turns” suggest?", "a": "Students should whisper instead of talk.", "b": "Students should write their ideas instead of speaking.", "c": "Students should leave the room.", "d": "Students should speak in an organized order.", "correct": "D", "domain": "Reading"}, {"n": 23, "q": "Which is a reasonable inference about Ms. Patel’s classroom?", "a": "Ms. Patel never calls on students.", "b": "Students are not allowed to share ideas.", "c": "Students must agree with one another.", "d": "Ms. Patel uses routines to manage discussion.", "correct": "D", "domain": "Reading"}, {"n": 24, "q": "Read the passage. A student wrote: “The character was brave. The character was brave when he helped his friend. The character was brave because he was brave.” Which revision would improve the writing most?", "a": "Remove the sentence about helping his friend.", "b": "Replace repeated ideas with a specific example and explanation.", "c": "Add more repetition of the word “brave.”", "d": "Change “character” to “person” in every sentence.", "correct": "B", "domain": "Reading"}, {"n": 25, "q": "Read the passage. The school newsletter announced that the spring concert would start at 6:30 p.m. in the auditorium. It also asked families to arrive early to find seats. Because parking can be limited, the newsletter suggested carpooling if possible. Why does the newsletter suggest carpooling?", "a": "The auditorium is closed.", "b": "Parking may be limited.", "c": "The concert is too long.", "d": "Families are required to share rides.", "correct": "B", "domain": "Reading"}, {"n": 26, "q": "The word “suggested” most nearly means", "a": "forgot", "b": "demanded", "c": "proved", "d": "recommended", "correct": "D", "domain": "Reading"}, {"n": 27, "q": "What should families do according to the newsletter?", "a": "Arrive early to find seats", "b": "Bring food to share", "c": "Leave before 6:30 p.m.", "d": "Sit only in the front row", "correct": "A", "domain": "Reading"}, {"n": 28, "q": "A student reads the newsletter and does not understand the word “limited.” What is the best way to help?", "a": "Ask the student to use context clues about parking to infer the meaning", "b": "Tell the student to skip the word", "c": "Tell the student “limited” always means “expensive”", "d": "Have the student rewrite the entire newsletter from memory", "correct": "A", "domain": "Reading"}, {"n": 29, "q": "Read the passage. Lena’s class planted bean seeds in cups near a sunny window. Each day, students measured the plant’s height and wrote the number in a chart. After two weeks, the class compared their charts and talked about how sunlight and water might affect growth. What is the main purpose of measuring and charting the plants each day?", "a": "To make the seeds grow faster", "b": "To avoid talking about the results", "c": "To collect data over time", "d": "To decorate the classroom", "correct": "C", "domain": "Reading"}, {"n": 30, "q": "Which conclusion is best supported by the passage?", "a": "The plants did not need sunlight.", "b": "All plants grow the same amount every day.", "c": "Measuring helped students discuss factors that affect growth.", "d": "Charts are only useful in math class.", "correct": "C", "domain": "Reading"}, {"n": 31, "q": "What is 48 + 27?", "a": "75", "b": "95", "c": "85", "d": "65", "correct": "A", "domain": "Math"}, {"n": 32, "q": "What is 96 ÷ 8?", "a": "10", "b": "11", "c": "12", "d": "14", "correct": "C", "domain": "Math"}, {"n": 33, "q": "What is the value of 7 × 6?", "a": "42", "b": "36", "c": "46", "d": "48", "correct": "A", "domain": "Math"}, {"n": 34, "q": "Which fraction is equivalent to 3/4?", "a": "2026-08-06 00:00:00", "b": "12/20", "c": "15/24", "d": "9/16", "correct": "A", "domain": "Math"}, {"n": 35, "q": "What is 2/3 + 1/6?", "a": "2026-06-05 00:00:00", "b": "2026-02-01 00:00:00", "c": "1 1/6", "d": "2026-03-02 00:00:00", "correct": "A", "domain": "Math"}, {"n": 36, "q": "What is 5.2 − 1.85?", "a": "03:35:00", "b": "03:45:00", "c": "03:25:00", "d": "04:35:00", "correct": "A", "domain": "Math"}, {"n": 37, "q": "Which decimal is the same as 45%?", "a": "45", "b": "00:45:00", "c": "45.0", "d": "4.5", "correct": "B", "domain": "Math"}, {"n": 38, "q": "A shirt costs $20. It is on sale for 25% off. What is the sale price?", "a": "$15", "b": "$25", "c": "$5", "d": "$10", "correct": "A", "domain": "Math"}, {"n": 39, "q": "Which is closest to the product 19 × 21?", "a": "500", "b": "300", "c": "400", "d": "200", "correct": "C", "domain": "Math"}, {"n": 40, "q": "What is 3/5 of 40?", "a": "18", "b": "24", "c": "30", "d": "20", "correct": "B", "domain": "Math"}, {"n": 41, "q": "A recipe uses 2 cups of flour for 12 cookies. How many cups of flour are needed for 18 cookies?", "a": "2.5", "b": "3", "c": "2", "d": "4", "correct": "B", "domain": "Math"}, {"n": 42, "q": "What is the perimeter of a rectangle with length 9 cm and width 4 cm?", "a": "26 cm", "b": "13 cm", "c": "36 cm", "d": "18 cm", "correct": "A", "domain": "Math"}, {"n": 43, "q": "What is the area of a rectangle that is 7 feet long and 3 feet wide?", "a": "42 square feet", "b": "10 square feet", "c": "21 square feet", "d": "28 square feet", "correct": "C", "domain": "Math"}, {"n": 44, "q": "Which number is a multiple of both 3 and 5?", "a": "10", "b": "18", "c": "12", "d": "30", "correct": "D", "domain": "Math"}, {"n": 45, "q": "Solve for x: x + 15 = 42", "a": "27", "b": "25", "c": "17", "d": "57", "correct": "A", "domain": "Math"}, {"n": 46, "q": "Solve: 4x = 28", "a": "6", "b": "7", "c": "9", "d": "8", "correct": "B", "domain": "Math"}, {"n": 47, "q": "A class has 12 boys and 16 girls. What fraction of the class is girls?", "a": "2026-07-03 00:00:00", "b": "2026-07-05 00:00:00", "c": "2026-05-07 00:00:00", "d": "2026-07-04 00:00:00", "correct": "D", "domain": "Math"}, {"n": 48, "q": "Which is the best estimate of 398 + 205?", "a": "700", "b": "500", "c": "600", "d": "800", "correct": "C", "domain": "Math"}, {"n": 49, "q": "A student has $12 and spends $3.75. How much money is left?", "a": "$8.35", "b": "$9.25", "c": "$8.15", "d": "$8.25", "correct": "D", "domain": "Math"}, {"n": 50, "q": "A teacher buys 3 packs of pencils. Each pack has 12 pencils. How many pencils did the teacher buy?", "a": "36", "b": "15", "c": "24", "d": "48", "correct": "A", "domain": "Math"}, {"n": 51, "q": "Read the table. Snack | Number of Students: Apple 8, Banana 5, Crackers 7, Yogurt 10. Which snack was chosen by the fewest students?", "a": "Yogurt", "b": "Banana", "c": "Apple", "d": "Crackers", "correct": "B", "domain": "Math"}, {"n": 52, "q": "Based on the table in Question 51, how many students chose fruit (apple or banana)?", "a": "18", "b": "12", "c": "11", "d": "13", "correct": "D", "domain": "Math"}, {"n": 53, "q": "A number line goes from 0 to 1. Point P is at 0.6. Which fraction is equal to 0.6?", "a": "2026-03-02 00:00:00", "b": "2026-06-05 00:00:00", "c": "2026-05-03 00:00:00", "d": "2026-05-06 00:00:00", "correct": "C", "domain": "Math"}, {"n": 54, "q": "What is 1.5 + 0.75?", "a": "01:25:00", "b": "02:05:00", "c": "02:35:00", "d": "02:25:00", "correct": "D", "domain": "Math"}, {"n": 55, "q": "A classroom has 28 students. If 3/4 of the students bring lunch from home, how many students bring lunch from home?", "a": "19", "b": "24", "c": "21", "d": "20", "correct": "C", "domain": "Math"}, {"n": 56, "q": "A box has 6 red markers and 4 blue markers. What is the ratio of red to blue markers?", "a": "6:5", "b": "2:3", "c": "3:2", "d": "5:2", "correct": "C", "domain": "Math"}, {"n": 57, "q": "A student scored 18 out of 24 on a quiz. What percent is this score?", "a": "0.8", "b": "0.75", "c": "0.7", "d": "0.65", "correct": "B", "domain": "Math"}, {"n": 58, "q": "A school ordered 250 folders. They were packed in boxes of 25. How many boxes were needed?", "a": "10", "b": "25", "c": "8", "d": "5", "correct": "A", "domain": "Math"}, {"n": 59, "q": "A student reads 12 pages in 15 minutes. At the same rate, how many pages will the student read in 30 minutes?", "a": "24", "b": "18", "c": "20", "d": "30", "correct": "A", "domain": "Math"}, {"n": 60, "q": "A teacher needs 2 1/2 gallons of paint for a project. The teacher has already used 1 3/4 gallons. How much paint is still needed?", "a": "1 gallon", "b": "3/4 gallon", "c": "1 1/4 gallons", "d": "1/4 gallon", "correct": "B", "domain": "Math"}, {"n": 61, "q": "Choose the sentence with correct subject-verb agreement.", "a": "The list of students is on the desk.", "b": "The list of students be on the desk.", "c": "The list of students are on the desk.", "d": "The list of students were on the desk.", "correct": "A", "domain": "Writing"}, {"n": 62, "q": "Which sentence uses a comma correctly?", "a": "After, lunch we went to the library.", "b": "After lunch we, went to the library.", "c": "After lunch we went, to the library.", "d": "After lunch, we went to the library.", "correct": "D", "domain": "Writing"}, {"n": 63, "q": "Which word correctly completes the sentence? “The students put ______ backpacks in the cubbies.”", "a": "there", "b": "they’re", "c": "their", "d": "theirs", "correct": "C", "domain": "Writing"}, {"n": 64, "q": "Which sentence is punctuated correctly?", "a": "Please bring pencils, paper, and a folder.", "b": "Please bring pencils, paper and a folder.", "c": "Please bring pencils paper, and a folder.", "d": "Please bring, pencils, paper and a folder.", "correct": "A", "domain": "Writing"}, {"n": 65, "q": "Which sentence is a complete sentence?", "a": "Running down the hallway.", "b": "The class started quietly.", "c": "When the teacher arrived.", "d": "Because the bell rang.", "correct": "B", "domain": "Writing"}, {"n": 66, "q": "Identify the best revision for clarity. Original: “The book was read by Maria quickly.”", "a": "Maria quickly read the book.", "b": "Quickly, the book was read.", "c": "The book quickly was read by Maria.", "d": "Maria was quickly reading the book.", "correct": "A", "domain": "Writing"}, {"n": 67, "q": "Which sentence contains an error in verb tense?", "a": "Tomorrow we will visit the museum.", "b": "Now we are working on our project.", "c": "Yesterday we walked to the park.", "d": "Last week we are studying fractions.", "correct": "D", "domain": "Writing"}, {"n": 68, "q": "Which sentence uses the apostrophe correctly?", "a": "The dog's bowl is empty.", "b": "The dog's' bowl is empty.", "c": "The dogs' bowl's is empty.", "d": "The dogs bowl is empty.", "correct": "A", "domain": "Writing"}, {"n": 69, "q": "Which sentence avoids a run-on best?", "a": "I finished my work I asked, for more.", "b": "I finished my work I asked for more.", "c": "I finished my work and I asked for more.", "d": "I finished my work, I asked for more.", "correct": "C", "domain": "Writing"}, {"n": 70, "q": "Choose the best word to complete the sentence. “The directions were ______, so everyone knew what to do.”", "a": "unclear", "b": "careless", "c": "clear", "d": "closed", "correct": "C", "domain": "Writing"}, {"n": 71, "q": "Which sentence is written in the most formal, school-appropriate language?", "a": "The assignment was super hard.", "b": "The assignment was hard, you know?", "c": "The assignment was kinda hard.", "d": "The assignment was challenging.", "correct": "D", "domain": "Writing"}, {"n": 72, "q": "Which sentence uses capitalization correctly?", "a": "We studied the American Revolution in class.", "b": "We studied the american Revolution in class.", "c": "We studied the american revolution in class.", "d": "We studied the American revolution in class.", "correct": "A", "domain": "Writing"}, {"n": 73, "q": "Which word correctly completes the sentence? “I have ______ finished my homework.”", "a": "always", "b": "all ready", "c": "already", "d": "almost", "correct": "C", "domain": "Writing"}, {"n": 74, "q": "Which sentence is correct?", "a": "Each of the students were having a locker.", "b": "Each of the students has a locker.", "c": "Each of the students have a locker.", "d": "Each of the students are having a locker.", "correct": "B", "domain": "Writing"}, {"n": 75, "q": "Which sentence uses pronouns correctly?", "a": "Me and him went to the office.", "b": "He and I went to the office.", "c": "He and me went to the office.", "d": "Him and I went to the office.", "correct": "B", "domain": "Writing"}, {"n": 76, "q": "Which option best combines the sentences without changing the meaning? “The students finished the test. They turned it in.”", "a": "The students finished the test, and turned it in.", "b": "The students finished the test and they turned it in.", "c": "The students finished; and the test they turned it in.", "d": "Finishing the test. The students turned it in.", "correct": "A", "domain": "Writing"}, {"n": 77, "q": "Which sentence contains an error in punctuation?", "a": "I brought my lunch: sandwich, apple, and water.", "b": "I brought my lunch, a sandwich, an apple, and water.", "c": "I brought my lunch—a sandwich, an apple, and water.", "d": "I brought my lunch: a sandwich, an apple, and water.", "correct": "B", "domain": "Writing"}, {"n": 78, "q": "Which sentence is the best revision to eliminate wordiness? Original: “In my opinion, I think the rule is important.”", "a": "I think the rule is important.", "b": "In my opinion, the rule is important, I think.", "c": "I think, in my opinion, the rule is important.", "d": "The rule is important in my opinion, I think.", "correct": "A", "domain": "Writing"}, {"n": 79, "q": "Choose the correct form of the verb. “Neither of the answers ______ correct.”", "a": "were", "b": "are", "c": "be", "d": "is", "correct": "D", "domain": "Writing"}, {"n": 80, "q": "Which sentence has correct parallel structure?", "a": "The student likes reading, to write, and drawing.", "b": "The student likes read, write, and drawing.", "c": "The student likes to read, writing, and to draw.", "d": "The student likes reading, writing, and drawing.", "correct": "D", "domain": "Writing"}, {"n": 81, "q": "A student writes: “I goed to the store.” Which correction is best?", "a": "I went to the store.", "b": "I going to the store.", "c": "I go to the store.", "d": "I goed to the stores.", "correct": "A", "domain": "Writing"}, {"n": 82, "q": "Which is the best topic sentence for a paragraph about classroom routines?", "a": "Teachers like to give homework.", "b": "Classroom routines help the day run smoothly.", "c": "Some days are longer than others.", "d": "My classroom has a door and windows.", "correct": "B", "domain": "Writing"}, {"n": 83, "q": "Which sentence uses the comma correctly with a dependent clause?", "a": "If you, finish early, you may read quietly.", "b": "If, you finish early you may read quietly.", "c": "If you finish early you may read quietly.", "d": "If you finish early, you may read quietly.", "correct": "D", "domain": "Writing"}, {"n": 84, "q": "Choose the sentence with correct punctuation for dialogue.", "a": "Ms. Lee said, “Please line up.”", "b": "Ms. Lee, said “Please line up.”", "c": "Ms. Lee said “Please line up.”", "d": "Ms. Lee said “Please line up”.", "correct": "A", "domain": "Writing"}, {"n": 85, "q": "A student’s paragraph jumps from one idea to another without transitions. What revision would help most?", "a": "Add more exclamation points.", "b": "Change every sentence to a question.", "c": "Add transition words like “first,” “next,” and “finally.”", "d": "Remove all commas.", "correct": "C", "domain": "Writing"}, {"n": 86, "q": "Which sentence is written correctly?", "a": "The childrens books are on the shelf.", "b": "The childrens's books are on the shelf.", "c": "The childrens' books are on the shelf.", "d": "The children's books are on the shelf.", "correct": "D", "domain": "Writing"}, {"n": 87, "q": "Which sentence has correct spelling?", "a": "The teacher gave us indepandent work.", "b": "The teacher gave us independent work.", "c": "The teacher gave us independant work.", "d": "The teacher gave us independint work.", "correct": "B", "domain": "Writing"}, {"n": 88, "q": "Choose the best revision to correct the misplaced modifier. Original: “Walking into the room, the homework was collected.”", "a": "The homework was collected, walking into the room.", "b": "Walking into the room, the homework collected.", "c": "The homework collected the teacher walking into the room.", "d": "Walking into the room, the teacher collected the homework.", "correct": "D", "domain": "Writing"}, {"n": 89, "q": "A teacher’s note says: “Bring you’re permission slip tomorrow.” Which change corrects the error?", "a": "Change “you’re” to “your.”", "b": "Change “tomorrow” to “to morrow.”", "c": "Change “permission” to “permision.”", "d": "Change “Bring” to “Brang.”", "correct": "A", "domain": "Writing"}, {"n": 90, "q": "Which sentence is the best concluding sentence for a paragraph about reading every day?", "a": "Libraries have many shelves.", "b": "Some books have long chapters.", "c": "Reading every day can help build vocabulary and improve understanding.", "d": "Not everyone likes the same stories.", "correct": "C", "domain": "Writing"}], ["Reading", "Math", "Writing"]);</script>
+</body>
+</html>
