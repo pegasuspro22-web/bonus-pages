@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ParaPro High-Yield 30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#0F1E45; --navy-2:#16295C; --navy-3:#1E3470; --line:#2A3B6E;
+  --gold:#F5C518; --gold-ink:#1B2A55;
+  --paper:#F5F3EA; --muted:#9AA6C8; --muted-2:#6E7BA3;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Anton',Impact,sans-serif; font-weight:400; letter-spacing:.01em;}
+.ui{font-family:'Oswald',system-ui,sans-serif; text-transform:uppercase; letter-spacing:.06em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(15,30,69,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:760px; margin:0 auto; padding:.6rem 1.25rem; display:flex; align-items:center; gap:1rem; justify-content:space-between;}
+.brand{display:flex; align-items:center; gap:.85rem; min-width:0;}
+.brand .logo{height:52px; width:auto; flex-shrink:0; display:block;}
+.brand .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600; color:var(--paper); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.topbar-right{display:flex; align-items:center; gap:.9rem; flex-shrink:0;}
+#score-readout{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; color:var(--muted); white-space:nowrap;}
+#score-readout b{color:var(--gold);}
+.btn{
+  display:inline-flex; align-items:center; gap:.4rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; text-decoration:none;
+  padding:.6rem 1.1rem; border-radius:6px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink);}
+.btn-ghost{border-color:var(--line); color:var(--paper);}
+
+.page{max-width:760px; margin:0 auto; padding:0 1.25rem 5rem;}
+.hero{text-align:center; padding:3rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(3rem,14vw,5rem); line-height:.95; margin-top:.3rem;}
+.hero h1 .sub{display:block; font-size:.4em; color:var(--gold); margin-top:.15em;}
+.hero .lede{max-width:520px; margin:1.1rem auto 0; color:var(--muted); font-size:1.05rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:2rem 0;}
+.stat{background:var(--navy-2); padding:1.1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.9rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.jumpnav{display:flex; gap:.5rem; overflow-x:auto; padding:.25rem .1rem 1.5rem; -webkit-overflow-scrolling:touch;}
+.jumpnav a{
+  flex-shrink:0; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--muted); background:var(--navy-2); border:1px solid var(--line); border-radius:999px;
+  padding:.45rem .9rem; text-decoration:none;
+}
+.jumpnav a b{color:var(--gold); font-weight:600;}
+
+.section-head{padding-top:2.5rem; margin-bottom:1.25rem; scroll-margin-top:4.5rem;}
+.section-head .n{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.1em; color:var(--gold); text-transform:uppercase; font-weight:600;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.7rem; font-weight:700; text-transform:uppercase; margin-top:.2rem;}
+.section-head .rule{height:3px; width:3rem; background:var(--gold); margin-top:.6rem; border-radius:2px;}
+
+.passage-group{background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.5rem; margin-bottom:1.25rem;}
+.passage{font-style:italic; color:var(--muted); font-size:.95rem; line-height:1.7; padding-bottom:1.25rem; margin-bottom:1.25rem; border-bottom:1px solid var(--line);}
+.passage .lbl{display:block; font-style:normal; font-family:'Oswald',sans-serif; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:.5rem;}
+.passage-group .qcard{background:transparent; border:none; padding:0; margin:0;}
+.passage-group .qcard + .qcard{margin-top:1.75rem; padding-top:1.75rem; border-top:1px solid var(--line);}
+
+.qcard{background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.5rem; margin-bottom:1.25rem; scroll-margin-top:4.5rem;}
+.qmeta{display:flex; gap:.6rem; align-items:baseline; font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-bottom:.7rem;}
+.qmeta .num{color:var(--gold); font-weight:600;}
+.qtext{font-size:1.06rem; font-weight:700; color:var(--paper); margin-bottom:1.1rem; white-space:pre-line;}
+
+.opts{display:flex; flex-direction:column; gap:.55rem;}
+.opt{
+  display:flex; gap:.75rem; align-items:flex-start; width:100%; text-align:left;
+  background:var(--navy); border:1.5px solid var(--line); border-radius:8px; padding:.75rem .95rem;
+  color:var(--paper); font-family:'Karla',sans-serif; font-size:.96rem; cursor:pointer;
+}
+.opt:hover{border-color:var(--gold);}
+.opt .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold); flex-shrink:0;}
+.opt .mark{margin-left:auto; font-weight:700; flex-shrink:0; display:none;}
+.qcard.answered .opt{cursor:default;}
+.qcard.answered .opt:hover{border-color:var(--line);}
+.qcard.answered .opt.pick-correct{border-color:var(--correct); background:var(--correct-soft);}
+.qcard.answered .opt.pick-correct .mark{display:inline; color:var(--correct);}
+.qcard.answered .opt.pick-wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.qcard.answered .opt.pick-wrong .mark{display:inline; color:var(--incorrect);}
+
+.result{margin-top:1.1rem; padding-top:1.1rem; border-top:1px dashed var(--line);}
+.result .verdict{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; margin-bottom:.5rem;}
+.result .verdict.good{color:var(--correct);} .result .verdict.bad{color:var(--incorrect);}
+.result .exp{color:var(--muted); font-size:.92rem; line-height:1.65;}
+.result .exp b{color:var(--paper);}
+
+.foot{max-width:760px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.8rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.78rem; line-height:1.7; margin-top:.5rem;}
+
+@media (max-width:560px){
+  .brand .title{display:none;}
+  .brand .logo{height:40px;}
+  #score-readout{display:none;}
+  .topbar-inner{padding:.55rem 1rem;}
+  .btn{padding:.55rem .85rem; font-size:.72rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img class="logo" src="assets/exam-success-academy-logo.png" alt="Exam Success Academy">
+      <span class="title">ParaPro High-Yield 30</span>
+    </div>
+    <div class="topbar-right">
+      <span id="score-readout"></span>
+      <a class="btn btn-gold" href="downloads/ParaPro_High-Yield_30.pdf" target="_blank" rel="noopener">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">Exclusive bonus · ParaPro Assessment Study Guide</div>
+    <h1 class="disp">ParaPro<span class="sub">High-Yield 30</span></h1>
+    <p class="lede">30 high-yield questions, weighted to approximate the real ParaPro
+    section split (Reading, Mathematics, Writing). Pick an answer on any question to
+    see whether it's right and read the full explanation.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="n">30</div><div class="l">Questions</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">ParaPro Sections</div></div>
+    <div class="stat"><div class="n">100%</div><div class="l">With Explanations</div></div>
+  </div>
+
+  <div class="jumpnav"><a href="#reading">Reading <b>10</b></a><a href="#mathematics">Mathematics <b>10</b></a><a href="#writing">Writing <b>10</b></a></div>
+
+  
+<div class="section-head" id="reading">
+  <div class="n">Section 1 of 3 · 10 questions</div>
+  <h2>Reading</h2>
+  <div class="rule"></div>
+</div><div class="passage-group"><div class="passage"><span class="lbl">Passage</span>Ms. Ortiz noticed that during independent reading time, several students kept asking her to define words instead of trying to figure them out first. She began asking, “What do you think it means? What clues does the sentence give you?” before offering the definition herself. Within a few weeks, more students started using context clues on their own before asking for help.</div>
+<div class="qcard" id="q1">
+  <div class="qmeta"><span class="num">Q1</span><span>Main Idea</span></div>
+  <div class="qtext">What is the main idea of the passage?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Ms. Ortiz stopped helping students with vocabulary.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Students should never ask a teacher for help.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Independent reading time was removed from the schedule.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Ms. Ortiz taught students to use context clues before asking for help.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> The passage shows Ms. Ortiz shifting her approach — asking guiding questions about context clues before giving definitions — which led students to try that strategy on their own. That shift is the passage's main idea. Choice A misstates what happened: she still helped, just differently. Choice B overgeneralizes a specific teaching strategy into an absolute rule the passage never states. Choice C introduces a detail that never appears in the passage.</div>
+  </div>
+</div>
+<div class="qcard" id="q2">
+  <div class="qmeta"><span class="num">Q2</span><span>Vocabulary in Context</span></div>
+  <div class="qtext">As used in the passage, “context clues” most nearly means:</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>rules for correct spelling</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>hints in the surrounding text that suggest a word's meaning</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>a list of vocabulary words to memorize</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>the definition printed in a dictionary</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> “Context clues” refers to hints within the surrounding sentence or passage that help a reader figure out an unfamiliar word's meaning — exactly what Ms. Ortiz was prompting students to notice (“What clues does the sentence give you?”). Choice A confuses context clues with spelling rules, an unrelated skill. Choice C describes a vocabulary list, not a reading strategy. Choice D describes a dictionary definition, which is the opposite of figuring a word out independently from context.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>A classroom library was organized by reading level, but many students always picked the same few books from the shelf. The paraeducator added a rotating display of new titles at students' eye level each Monday. Within a month, checkout records showed a wider variety of books being borrowed than before.</div>
+<div class="qcard" id="q3">
+  <div class="qmeta"><span class="num">Q3</span><span>Main Idea</span></div>
+  <div class="qtext">What is the main idea of the passage?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>A weekly rotating book display led students to borrow a wider variety of books.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Reading levels were removed from the classroom library.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Students refused to read any books from the shelf.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>The library was moved to a new location in the school.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> The passage describes a specific change (a rotating display of new titles) and its measured effect (a wider variety of books borrowed) — that cause-and-effect relationship is the main idea. Choice B is not supported; the passage never says reading levels were removed. Choice C contradicts the passage, which says students did pick books, just a narrow set at first. Choice D introduces a detail never mentioned.</div>
+  </div>
+</div>
+<div class="qcard" id="q4">
+  <div class="qmeta"><span class="num">Q4</span><span>Supporting Evidence</span></div>
+  <div class="qtext">Which detail from the passage best supports the idea that the display was effective?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The library was organized by reading level.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Students always picked the same few books.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Checkout records showed a wider variety of books borrowed.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>The display was placed at students' eye level.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The checkout records showing a wider variety of borrowed books are the direct evidence the passage gives that the change worked. Choice A describes the library's original organization, not evidence of the display's effect. Choice B describes the problem before the change, not evidence that the solution worked. Choice D describes a detail of how the display was set up, not evidence of its outcome.</div>
+  </div>
+</div></div>
+
+<div class="qcard" id="q5">
+  <div class="qmeta"><span class="num">Q5</span><span>Vocabulary in Context</span></div>
+  <div class="qtext">In the sentence “The teacher's instructions were concise, so the students finished quickly,” the word “concise” most nearly means:</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>confusing</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>written in a foreign language</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>repeated several times</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>brief and clear</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> “Concise” means expressed in few words, clearly and briefly — consistent with instructions that let students finish quickly. Choice A is close to the opposite; confusing instructions would likely slow students down, not speed them up. Choice B introduces a meaning unrelated to “concise.” Choice C is also nearly opposite — repeated instructions would take longer, not less time.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q6">
+  <div class="qmeta"><span class="num">Q6</span><span>Vocabulary in Context</span></div>
+  <div class="qtext">In the sentence “The librarian's approach to organizing the shelves was methodical, following the same careful steps every time,” the word “methodical” most nearly means:</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>done in an orderly, systematic way</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>careless and random</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>done only once</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>based on guessing</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> “Methodical” describes an orderly, systematic way of doing something, matching “following the same careful steps every time.” Choice B is the opposite of methodical. Choice C misreads “every time” in the sentence, which indicates repetition, not a single occurrence. Choice D contradicts the idea of following careful, deliberate steps.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q7">
+  <div class="qmeta"><span class="num">Q7</span><span>Instructional Application</span></div>
+  <div class="qtext">A paraeducator notices that a student can read most words on a page correctly but cannot explain what the passage was about afterward. Which strategy would best address this specific difficulty?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Have the student reread the passage more quickly.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Pause after each paragraph and ask the student to summarize what happened.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Assign a longer, more difficult passage instead.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Have the student skip the passage and move to vocabulary flashcards.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The student's difficulty is with comprehension, not word recognition, so pausing to summarize builds the specific skill of tracking meaning while reading. Choice A addresses speed, not comprehension, and would not target the actual problem. Choice C increases difficulty without addressing the comprehension gap, likely making the problem worse. Choice D avoids the passage entirely and shifts to an unrelated skill, not the comprehension strategy the student needs.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q8">
+  <div class="qmeta"><span class="num">Q8</span><span>Instructional Application</span></div>
+  <div class="qtext">A student consistently mispronounces multisyllabic words by guessing based on the first letter alone. Which approach would most directly help the student improve?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Tell the student the correct pronunciation each time without further instruction.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Have the student avoid multisyllabic words in future reading.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Ask the student to read the word ten times in a row.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Teach the student to break the word into smaller syllable chunks and sound out each part.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Breaking words into syllable chunks directly targets the student's specific error (guessing from the first letter) by teaching a decoding strategy for the whole word. Choice A provides the answer but does not teach a transferable skill the student can use independently next time. Choice B avoids the problem rather than building the skill needed to solve it. Choice C (repetition without a new strategy) does not address the underlying decoding error.</div>
+  </div>
+</div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>Before the class field trip, the teacher reviewed the schedule three times and posted it on the board. On the day of the trip, only two students asked what time the bus would leave. The teacher noted this was far fewer questions than in previous years, when the schedule had only been announced once verbally.</div>
+<div class="qcard" id="q9">
+  <div class="qmeta"><span class="num">Q9</span><span>Main Idea</span></div>
+  <div class="qtext">What is the main idea of the passage?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Field trips should be canceled if students ask too many questions.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>The bus was late on the day of the field trip.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Reviewing the schedule multiple times and posting it reduced the number of students' questions.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Students are not interested in field trip schedules.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The passage links the repeated, posted schedule to a measurable drop in questions compared to previous years — that connection is the main idea. Choice A is not supported; the passage never suggests canceling trips. Choice B introduces a detail never mentioned. Choice D contradicts the passage, since students did ask about the schedule, just fewer of them.</div>
+  </div>
+</div>
+<div class="qcard" id="q10">
+  <div class="qmeta"><span class="num">Q10</span><span>Inference</span></div>
+  <div class="qtext">Based on the passage, what can be reasonably inferred about how the schedule was communicated in previous years?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>It was announced only once and not posted, unlike this year.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>It was posted on the board multiple times, just like this year.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>It was never communicated to students at all.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>It was sent home in a letter to parents only.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> The passage directly contrasts this year's approach (“reviewed... three times and posted”) with previous years, when “the schedule had only been announced once verbally” — meaning it was not posted and was communicated only a single time. Choice B contradicts the direct contrast the passage draws. Choice C goes further than the passage supports; it says the schedule was announced, just less thoroughly. Choice D introduces a method the passage never mentions.</div>
+  </div>
+</div></div>
+<div class="section-head" id="mathematics">
+  <div class="n">Section 2 of 3 · 10 questions</div>
+  <h2>Mathematics</h2>
+  <div class="rule"></div>
+</div>
+<div class="qcard" id="q11">
+  <div class="qmeta"><span class="num">Q11</span><span>Fractions</span></div>
+  <div class="qtext">A recipe calls for 2/3 cup of sugar. If the recipe is doubled, how much sugar is needed?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>1/3 cup</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>4/3 cup</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>4/6 cup</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>2 cups</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Doubling 2/3 gives 2/3 × 2 = 4/3 cup (1 1/3 cups). Choice A results from halving the amount instead of doubling it. Choice C results from the common error of adding the numerators and denominators separately (2+2=4, 3+3=6) instead of multiplying the numerator only. Choice D results from tripling the amount instead of doubling it: 2/3 × 3 = 2.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q12">
+  <div class="qmeta"><span class="num">Q12</span><span>Percent</span></div>
+  <div class="qtext">A paraeducator scored 42 out of 50 points on a training quiz. What percent did the paraeducator score?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>70%</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>80%</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>84%</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>92%</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> 42/50 = 0.84 = 84%. Choice A results from misreading the total as 60 instead of 50: 42/60 = 70%. Choice B results from misreading the score as 40 instead of 42: 40/50 = 80%. Choice D results from subtracting the missed points from 100 without converting them to a percent of 50 first: 100 − (50−42) = 100 − 8 = 92.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q13">
+  <div class="qmeta"><span class="num">Q13</span><span>Decimals</span></div>
+  <div class="qtext">A paraeducator has $18.75 and spends $6.40 on classroom supplies. How much money is left?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>$12.35</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>$11.35</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>$12.45</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>$25.15</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> $18.75 − $6.40 = $12.35. Choice B results from subtracting $7.40 instead of $6.40, a $1 misread of the amount spent: 18.75−7.40=11.35. Choice C results from misreading $6.40 as $6.30: 18.75−6.30=12.45. Choice D results from adding the amount spent instead of subtracting it: 18.75+6.40=25.15.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q14">
+  <div class="qmeta"><span class="num">Q14</span><span>Algebra</span></div>
+  <div class="qtext">Solve for x: 2x + 5 = 17</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>10</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>11</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>12</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>6</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Subtracting 5 from both sides gives 2x=12; dividing by 2 gives x=6. Choice A results from subtracting the coefficient (2) from 12 instead of dividing by it: 12−2=10. Choice B results from adding 5 to 17 instead of subtracting it: 2x=22, x=11. Choice C is the value of 2x itself (17−5=12), mistakenly left un-divided by 2.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q15">
+  <div class="qmeta"><span class="num">Q15</span><span>Geometry</span></div>
+  <div class="qtext">A rectangular classroom rug measures 6 feet by 4 feet. What is its perimeter?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>10 feet</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>20 feet</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>24 feet</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>48 feet</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Perimeter = 2×(6+4) = 20 feet. Choice A adds the two side lengths (6+4=10) but forgets to double the sum for the two pairs of sides. Choice C computes the rug's area (6×4=24) instead of its perimeter. Choice D results from doubling the area (24×2=48) instead of correctly computing the perimeter.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q16">
+  <div class="qmeta"><span class="num">Q16</span><span>Data Analysis</span></div>
+  <div class="qtext">A paraeducator recorded how many books each of 5 students read in a month: Ana–4, Ben–6, Cleo–3, Dev–6, Ella–5. What is the median number of books read?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>4</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>6</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>5</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>24</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Sorted from least to greatest: 3, 4, 5, 6, 6. The median is the middle value: 5. Choice A results from picking the second-lowest value instead of the true middle value after sorting. Choice B is the mode (6 appears twice), not the median. Choice D is the sum of all five values (4+6+3+6+5=24), not the median.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q17">
+  <div class="qmeta"><span class="num">Q17</span><span>Ratio &amp; Proportion</span></div>
+  <div class="qtext">In a classroom, the ratio of boys to girls is 3 to 5. If there are 12 boys, how many girls are there?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>20</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>15</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>17</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>7</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> The scale factor is 12÷3=4, so girls = 5×4=20. Choice B results from adding the boys' ratio number (3) directly to the boy count instead of finding and applying the scale factor: 12+3=15. Choice C results from adding the girls' ratio number (5) directly to the boy count instead of scaling proportionally: 12+5=17. Choice D results from subtracting the girls' ratio number (5) from the boy count instead of scaling proportionally: 12−5=7.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q18">
+  <div class="qmeta"><span class="num">Q18</span><span>Order of Operations</span></div>
+  <div class="qtext">What is the value of 3 + 2 × (8 − 5)?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>15</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>9</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>14</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>6</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Following order of operations: parentheses first (8−5=3), then multiplication (2×3=6), then addition (3+6=9). Choice A results from adding 3 and 2 first (5), then multiplying by 3: 5×3=15. Choice C results from ignoring the parentheses and evaluating strictly in the order written: 2×8=16, then 3+16−5=14. Choice D results from dropping the “3+” term entirely and computing only 2×(8−5)=6.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q19">
+  <div class="qmeta"><span class="num">Q19</span><span>Diagnosing Student Errors</span></div>
+  <div class="qtext">A student solved 1/4 + 2/4 and wrote the answer as 3/8. What error did the student most likely make?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The student subtracted instead of added.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>The student multiplied the two fractions instead of adding them.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>The student converted the fractions to decimals first.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>The student added both the numerators and the denominators instead of keeping the denominator the same.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> The answer 3/8 comes exactly from adding the numerators (1+2=3) and the denominators (4+4=8) separately, instead of keeping the common denominator and adding only the numerators (which gives 3/4). Choice A is incorrect because subtracting the fractions would give 1/4, not 3/8. Choice B is incorrect because multiplying the fractions would give 2/16 (1/8), not 3/8. Choice C is incorrect because converting to decimals and adding would give 0.75, not a value matching 3/8 (0.375).</div>
+  </div>
+</div>
+
+<div class="qcard" id="q20">
+  <div class="qmeta"><span class="num">Q20</span><span>Diagnosing Student Errors</span></div>
+  <div class="qtext">A student rounded 452 to the nearest hundred and wrote 400. What error did the student most likely make?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The student rounded to the nearest ten instead of the nearest hundred.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>The student added 100 instead of rounding.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>The student rounded down instead of up.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>The student rounded to the nearest thousand.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> 452 is closer to 500 than to 400 (only 48 away from 500, versus 52 away from 400), so the correct rounded value is 500. The student's answer of 400 means they rounded down instead of up. Choice A is incorrect because rounding 452 to the nearest ten gives 450, not 400. Choice B is incorrect because adding 100 to 452 gives 552, not 400. Choice D is incorrect because rounding 452 to the nearest thousand gives 0, not 400.</div>
+  </div>
+</div>
+<div class="section-head" id="writing">
+  <div class="n">Section 3 of 3 · 10 questions</div>
+  <h2>Writing</h2>
+  <div class="rule"></div>
+</div>
+<div class="qcard" id="q21">
+  <div class="qmeta"><span class="num">Q21</span><span>Usage</span></div>
+  <div class="qtext">Identify the segment that contains an error. If there is no error, choose “No mistakes.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The list of supplies</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>are kept</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>in the closet.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>No mistakes</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Segment B contains a subject-verb agreement error. The subject of the sentence is “the list” (singular), and “of supplies” is a prepositional phrase that does not change the subject's number — so the verb should be “is kept,” not “are kept.” Segment A correctly introduces the singular subject. Segment C is correct. Since segment B contains a genuine error, “No mistakes” is incorrect.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q22">
+  <div class="qmeta"><span class="num">Q22</span><span>Usage</span></div>
+  <div class="qtext">Identify the segment that contains an error. If there is no error, choose “No mistakes.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Between you and I,</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>the assignment was</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>too difficult to finish in one class period.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>No mistakes</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Segment A incorrectly uses the subject pronoun “I” as the object of the preposition “between.” Prepositions take object pronouns, so the correct form is “between you and me.” Segment B is correct. Segment C is correct. Since segment A contains a genuine error, “No mistakes” is incorrect.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q23">
+  <div class="qmeta"><span class="num">Q23</span><span>Punctuation</span></div>
+  <div class="qtext">Identify the segment that contains an error. If there is no error, choose “No mistakes.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The paraeducator organized the materials by subject</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>and then labeled each folder clearly,</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>this made it easier for substitutes to find what they needed.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>No mistakes</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Segment C creates a comma splice: “...labeled each folder clearly, this made it easier...” joins two independent clauses with only a comma. A semicolon, period, or connecting word (such as “which”) is needed instead. Segment A is correctly constructed. Segment B is correctly punctuated. Since segment C contains the comma-splice error, “No mistakes” is incorrect.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q24">
+  <div class="qmeta"><span class="num">Q24</span><span>Capitalization</span></div>
+  <div class="qtext">Identify the segment that contains an error. If there is no error, choose “No mistakes.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The paraeducator met with the principal</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>on tuesday morning</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>to discuss the new schedule.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>No mistakes</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Segment B fails to capitalize “tuesday.” Days of the week are proper nouns and must always be capitalized: “Tuesday.” Segment A is correct — “principal” is used generically here with no name following it, so it should not be capitalized. Segment C is correct. Since segment B contains a genuine error, “No mistakes” is incorrect.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q25">
+  <div class="qmeta"><span class="num">Q25</span><span>Sentence Structure</span></div>
+  <div class="qtext">Which is the best way to combine these two sentences?<br>“The paraeducator prepared the materials early. The lesson could start on time.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The paraeducator prepared the materials early, the lesson could start on time.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>The paraeducator prepared the materials early, but the lesson could start on time.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>The paraeducator prepared the materials early, and it was the lesson that could start on time.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>The paraeducator prepared the materials early so that the lesson could start on time.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Choice D clearly shows the purpose relationship between the two ideas using “so that” — the materials were prepared for the purpose of starting the lesson on time. Choice A creates a comma splice by joining two independent clauses with only a comma. Choice B uses “but,” a contrast word, which misrepresents the relationship — there is no contrast between the two ideas. Choice C is awkward and unnecessarily wordy (“it was the lesson that”), which weakens clarity instead of improving it.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q26">
+  <div class="qmeta"><span class="num">Q26</span><span>Paragraph Organization</span></div>
+  <div class="qtext">Which sentence does NOT belong in the following paragraph?<br>“(1) The after-school program offers homework help every day. (2) Students can also join a chess club on Wednesdays. (3) The school's cafeteria serves lunch at noon. (4) On Fridays, there is an art workshop for students who want to draw or paint.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Sentence 3</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Sentence 1</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Sentence 2</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Sentence 4</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Sentences 1, 2, and 4 all describe activities offered by the after-school program, which is the paragraph's topic. Sentence 3, about when the cafeteria serves lunch, is unrelated to the after-school program's activities and breaks the paragraph's focus. Choices B, C, and D are incorrect because those sentences all directly support the paragraph's main topic.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q27">
+  <div class="qmeta"><span class="num">Q27</span><span>Writing Process</span></div>
+  <div class="qtext">A student has finished writing a first draft of a story. According to the standard writing process, what should the student do next?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Publish the story immediately without any changes.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Begin planning a completely different story.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Revise the draft to improve ideas, organization, and clarity.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Submit the draft directly for a final grade.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> In the standard writing process (prewriting, drafting, revising, editing, publishing), revising follows drafting — the writer reviews and improves the draft's content and organization before moving on to editing and publishing. Choice A skips essential steps in the process. Choice B abandons the current piece instead of continuing the process with it. Choice D treats the first draft as a finished product, skipping revision and editing entirely.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q28">
+  <div class="qmeta"><span class="num">Q28</span><span>Spelling</span></div>
+  <div class="qtext">Identify the segment that contains an error. If there is no error, choose “No mistakes.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>The teacher gave seperate</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>instructions to each</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>small group.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>No mistakes</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Segment A misspells “separate” (correct spelling has an “a” in the middle: s-e-p-a-r-a-t-e, not “seperate”). Segments B and C contain no spelling errors. Because segment A contains a clear spelling error, “No mistakes” is incorrect.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q29">
+  <div class="qmeta"><span class="num">Q29</span><span>Punctuation</span></div>
+  <div class="qtext">Identify the segment that contains an error. If there is no error, choose “No mistakes.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>After the assembly ended,</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>the students returned to their classrooms</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>and continued their lessons.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>No mistakes</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> The sentence is correctly constructed throughout: segment A closes the introductory clause with a comma, segment B is a correctly formed independent clause with proper subject-verb-pronoun agreement (“students... their”), and segment C completes the sentence with a parallel verb phrase joined by “and” without an unnecessary comma. Since no segment contains an error, “No mistakes” is the correct choice.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q30">
+  <div class="qmeta"><span class="num">Q30</span><span>Instructional Application</span></div>
+  <div class="qtext">A student's paragraph begins: “There are many things about recess. It is fun. Some kids play tag.” The teacher wants the student to add a clear topic sentence. Which revision best achieves this?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>“There are many things about recess.”</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>“Recess is my favorite part of the school day because of the games we play.”</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>“It is fun.”</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>“Some kids play tag.”</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Choice B clearly states the paragraph's main idea (recess being enjoyable because of games) and gives the paragraph a clear focus, which is what a topic sentence should do. Choice A is vague — “many things” does not tell the reader what the paragraph is actually about. Choice C and Choice D are supporting details, not topic sentences; they describe specific parts of recess rather than introducing the paragraph's overall focus.</div>
+  </div>
+</div>
+
+  <div class="foot">
+    <div class="copyright">© 2026 Exam Success Academy. All rights reserved.</div>
+    <div class="legal">Exclusive bonus for readers of the ParaPro Assessment Study Guide. Independently produced —
+    not affiliated with, endorsed by, sponsored by, or approved by the Educational Testing Service (ETS) or the
+    ParaPro Assessment program.</div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.qcard').forEach(function(card){
+  card.querySelectorAll('.opt').forEach(function(opt){
+    opt.addEventListener('click', function(){
+      if(card.classList.contains('answered')) return;
+      card.classList.add('answered');
+      var chosenCorrect = opt.dataset.correct === '1';
+      opt.classList.add(chosenCorrect ? 'pick-correct' : 'pick-wrong');
+      if(!chosenCorrect){
+        var right = card.querySelector('.opt[data-correct="1"]');
+        if(right) right.classList.add('pick-correct');
+      }
+      var result = card.querySelector('.result');
+      var verdict = result.querySelector('.verdict');
+      verdict.textContent = chosenCorrect ? 'Correct' : 'Not quite';
+      verdict.className = 'verdict ' + (chosenCorrect ? 'good' : 'bad');
+      result.hidden = false;
+      answeredCount++;
+      if(chosenCorrect) correctCount++;
+      updateScore();
+    });
+  });
+});
+var answeredCount = 0, correctCount = 0;
+var TOTAL = document.querySelectorAll('.qcard').length;
+function updateScore(){
+  document.getElementById('score-readout').innerHTML =
+    '<b>' + answeredCount + '</b>/' + TOTAL + ' answered' +
+    (answeredCount ? '  ·  <b>' + correctCount + '</b> correct' : '');
+}
+updateScore();
+</script>
+</body>
+</html>

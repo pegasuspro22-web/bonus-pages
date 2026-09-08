@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Praxis Core High-Yield 30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#0F1E45; --navy-2:#16295C; --navy-3:#1E3470; --line:#2A3B6E;
+  --gold:#F5C518; --gold-ink:#1B2A55;
+  --paper:#F5F3EA; --muted:#9AA6C8; --muted-2:#6E7BA3;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Anton',Impact,sans-serif; font-weight:400; letter-spacing:.01em;}
+.ui{font-family:'Oswald',system-ui,sans-serif; text-transform:uppercase; letter-spacing:.06em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(15,30,69,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:760px; margin:0 auto; padding:.6rem 1.25rem; display:flex; align-items:center; gap:1rem; justify-content:space-between;}
+.brand{display:flex; align-items:center; gap:.85rem; min-width:0;}
+.brand .logo{height:52px; width:auto; flex-shrink:0; display:block;}
+.brand .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600; color:var(--paper); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.topbar-right{display:flex; align-items:center; gap:.9rem; flex-shrink:0;}
+#score-readout{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; color:var(--muted); white-space:nowrap;}
+#score-readout b{color:var(--gold);}
+.btn{
+  display:inline-flex; align-items:center; gap:.4rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; text-decoration:none;
+  padding:.6rem 1.1rem; border-radius:6px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink);}
+.btn-ghost{border-color:var(--line); color:var(--paper);}
+
+.page{max-width:760px; margin:0 auto; padding:0 1.25rem 5rem;}
+.hero{text-align:center; padding:3rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(3rem,14vw,5rem); line-height:.95; margin-top:.3rem;}
+.hero h1 .sub{display:block; font-size:.4em; color:var(--gold); margin-top:.15em;}
+.hero .lede{max-width:520px; margin:1.1rem auto 0; color:var(--muted); font-size:1.05rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:2rem 0;}
+.stat{background:var(--navy-2); padding:1.1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.9rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.jumpnav{display:flex; gap:.5rem; overflow-x:auto; padding:.25rem .1rem 1.5rem; -webkit-overflow-scrolling:touch;}
+.jumpnav a{
+  flex-shrink:0; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--muted); background:var(--navy-2); border:1px solid var(--line); border-radius:999px;
+  padding:.45rem .9rem; text-decoration:none;
+}
+.jumpnav a b{color:var(--gold); font-weight:600;}
+
+.section-head{padding-top:2.5rem; margin-bottom:1.25rem; scroll-margin-top:4.5rem;}
+.section-head .n{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.1em; color:var(--gold); text-transform:uppercase; font-weight:600;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.7rem; font-weight:700; text-transform:uppercase; margin-top:.2rem;}
+.section-head .rule{height:3px; width:3rem; background:var(--gold); margin-top:.6rem; border-radius:2px;}
+
+.passage-group{background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.5rem; margin-bottom:1.25rem;}
+.passage{font-style:italic; color:var(--muted); font-size:.95rem; line-height:1.7; padding-bottom:1.25rem; margin-bottom:1.25rem; border-bottom:1px solid var(--line);}
+.passage .lbl{display:block; font-style:normal; font-family:'Oswald',sans-serif; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:.5rem;}
+.passage-group .qcard{background:transparent; border:none; padding:0; margin:0;}
+.passage-group .qcard + .qcard{margin-top:1.75rem; padding-top:1.75rem; border-top:1px solid var(--line);}
+
+.qcard{background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.5rem; margin-bottom:1.25rem; scroll-margin-top:4.5rem;}
+.qmeta{display:flex; gap:.6rem; align-items:baseline; font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-bottom:.7rem;}
+.qmeta .num{color:var(--gold); font-weight:600;}
+.qtext{font-size:1.06rem; font-weight:700; color:var(--paper); margin-bottom:1.1rem; white-space:pre-line;}
+
+.opts{display:flex; flex-direction:column; gap:.55rem;}
+.opt{
+  display:flex; gap:.75rem; align-items:flex-start; width:100%; text-align:left;
+  background:var(--navy); border:1.5px solid var(--line); border-radius:8px; padding:.75rem .95rem;
+  color:var(--paper); font-family:'Karla',sans-serif; font-size:.96rem; cursor:pointer;
+}
+.opt:hover{border-color:var(--gold);}
+.opt .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold); flex-shrink:0;}
+.opt .mark{margin-left:auto; font-weight:700; flex-shrink:0; display:none;}
+.qcard.answered .opt{cursor:default;}
+.qcard.answered .opt:hover{border-color:var(--line);}
+.qcard.answered .opt.pick-correct{border-color:var(--correct); background:var(--correct-soft);}
+.qcard.answered .opt.pick-correct .mark{display:inline; color:var(--correct);}
+.qcard.answered .opt.pick-wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.qcard.answered .opt.pick-wrong .mark{display:inline; color:var(--incorrect);}
+
+.result{margin-top:1.1rem; padding-top:1.1rem; border-top:1px dashed var(--line);}
+.result .verdict{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; margin-bottom:.5rem;}
+.result .verdict.good{color:var(--correct);} .result .verdict.bad{color:var(--incorrect);}
+.result .exp{color:var(--muted); font-size:.92rem; line-height:1.65;}
+.result .exp b{color:var(--paper);}
+
+.foot{max-width:760px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.8rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.78rem; line-height:1.7; margin-top:.5rem;}
+
+@media (max-width:560px){
+  .brand .title{display:none;}
+  .brand .logo{height:40px;}
+  #score-readout{display:none;}
+  .topbar-inner{padding:.55rem 1rem;}
+  .btn{padding:.55rem .85rem; font-size:.72rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img class="logo" src="assets/exam-success-academy-logo.png" alt="Exam Success Academy">
+      <span class="title">Praxis Core High-Yield 30</span>
+    </div>
+    <div class="topbar-right">
+      <span id="score-readout"></span>
+      <a class="btn btn-gold" href="downloads/Praxis_Core_High-Yield_30.pdf" target="_blank" rel="noopener">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">Exclusive bonus · Praxis Core Study Guide</div>
+    <h1 class="disp">Praxis Core<span class="sub">High-Yield 30</span></h1>
+    <p class="lede">30 high-yield questions, weighted to approximate the real Praxis Core
+    Combined Test section split (Reading, Mathematics, Writing). Pick an answer on any
+    question to see whether it's right and read the full explanation.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="n">30</div><div class="l">Questions</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">Praxis Core Sections</div></div>
+    <div class="stat"><div class="n">100%</div><div class="l">With Explanations</div></div>
+  </div>
+
+  <div class="jumpnav"><a href="#reading">Reading <b>11</b></a><a href="#mathematics">Mathematics <b>11</b></a><a href="#writing">Writing <b>8</b></a></div>
+
+  
+<div class="section-head" id="reading">
+  <div class="n">Section 1 of 3 · 11 questions</div>
+  <h2>Reading</h2>
+  <div class="rule"></div>
+</div><div class="passage-group"><div class="passage"><span class="lbl">Passage</span>New teachers often assume that classroom management is primarily about discipline — correcting misbehavior after it happens. Experienced teachers, however, tend to describe it differently: as the design of routines and expectations that prevent most disruptions before they start. A veteran teacher who spends the first weeks of school explicitly teaching how to line up, pass in papers, and ask for help is not wasting instructional time; she is investing it.</div>
+<div class="qcard" id="q1">
+  <div class="qmeta"><span class="num">Q1</span><span>Main Idea</span></div>
+  <div class="qtext">What is the main idea of the passage?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>New teachers are less effective than experienced teachers.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Effective classroom management focuses on preventing disruptions through routines, not just correcting misbehavior.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Teaching students how to line up wastes valuable instructional time.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Discipline should be the primary focus of classroom management.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The passage contrasts a reactive view of classroom management (correcting misbehavior) with a proactive one (designing routines that prevent disruptions), and argues the proactive approach is more effective — that contrast is the main idea. Choice A overgeneralizes; the passage compares two views of classroom management, not teachers' overall effectiveness. Choice C directly contradicts the passage, which says this time is “invested,” not wasted. Choice D describes the view the passage argues against, not its main point.</div>
+  </div>
+</div>
+<div class="qcard" id="q2">
+  <div class="qmeta"><span class="num">Q2</span><span>Inference</span></div>
+  <div class="qtext">Based on the passage, what can be inferred about the veteran teacher's use of the first weeks of school?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>She believes discipline is unnecessary in a well-run classroom.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>She spends most of her time addressing misbehavior after it occurs.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>She avoids teaching routines so students can learn them independently.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>She considers early routine-building essential to preventing future disruptions.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> The passage explicitly frames her time spent teaching routines as an investment tied to preventing disruptions, supporting the inference that she sees early routine-building as essential. Choice A overstates the passage, which never claims discipline is unnecessary — only that prevention is emphasized. Choice B contradicts the passage's description of her proactive approach. Choice C contradicts the passage, which says she “explicitly teaches” routines rather than leaving students to learn them alone.</div>
+  </div>
+</div>
+<div class="qcard" id="q3">
+  <div class="qmeta"><span class="num">Q3</span><span>Vocabulary in Context</span></div>
+  <div class="qtext">As used in the passage, the word “investing” most nearly means:</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>using productively for future benefit</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>wasting</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>donating</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>postponing</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> “Investing” here means using the time productively in a way that pays off later (preventing future disruptions), matching “using productively for future benefit.” Choice B is the opposite of the intended meaning — the passage explicitly says this time is not wasted. Choice C introduces a meaning (giving something away) unrelated to the sentence. Choice D suggests delay, which does not match the meaning of actively and productively using the time now.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>A district considering a longer school day pointed to research showing that added instructional minutes correlate with higher test scores. Critics countered that correlation is not the same as causation: districts that can afford longer days often have more resources overall, which could explain the score differences just as easily as the extra time itself. The district ultimately piloted the change in only a few schools before deciding whether to expand it further.</div>
+<div class="qcard" id="q4">
+  <div class="qmeta"><span class="num">Q4</span><span>Main Idea</span></div>
+  <div class="qtext">What is the main idea of the passage?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Longer school days always improve test scores.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Test scores are not an accurate way to measure school quality.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>A district considered extending the school day but faced questions about whether the evidence truly showed the extra time caused higher scores.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>The district decided not to change its school schedule at all.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The passage centers on the district's consideration of a longer day, the correlation-versus-causation objection critics raised, and the cautious pilot approach taken in response — that overall arc is the main idea. Choice A overstates the passage, which raises doubt about causation rather than affirming the claim. Choice B introduces a broader claim about test scores the passage never makes. Choice D contradicts the passage, which says the district piloted the change, not that it rejected it outright.</div>
+  </div>
+</div>
+<div class="qcard" id="q5">
+  <div class="qmeta"><span class="num">Q5</span><span>Detail</span></div>
+  <div class="qtext">According to the passage, what specific concern did critics raise about the research on longer school days?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Longer school days are illegal in most districts.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Districts with more resources may explain the score differences, not the extra time itself.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Students dislike spending more time in school.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>The added instructional minutes did not actually improve test scores at all.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The passage states the critics' specific concern directly: better-resourced districts could explain the score differences “just as easily as the extra time itself.” Choice A introduces a claim never made in the passage. Choice C introduces a student-preference concern the passage never mentions. Choice D misstates the critics' argument — they questioned the cause of the improvement, not whether scores improved at all.</div>
+  </div>
+</div>
+<div class="qcard" id="q6">
+  <div class="qmeta"><span class="num">Q6</span><span>Craft &amp; Purpose</span></div>
+  <div class="qtext">The author's discussion of the district's decision to pilot the change in only a few schools primarily serves to:</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>suggest that the district took a measured approach given the uncertainty in the research.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>criticize the district for being too cautious.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>prove that longer school days do not work.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>argue that pilot programs are a waste of district resources.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Mentioning the small-scale pilot right after the correlation-versus-causation objection shows the district responding to that uncertainty with a cautious, evidence-gathering approach — supporting choice A. Choice B introduces a critical tone the passage does not take; the passage presents the decision neutrally. Choice C overstates the passage, which never concludes longer days “do not work.” Choice D introduces an opinion about pilot programs the passage never expresses.</div>
+  </div>
+</div></div>
+
+<div class="qcard" id="q7">
+  <div class="qmeta"><span class="num">Q7</span><span>Vocabulary in Context</span></div>
+  <div class="qtext">In the sentence “The committee's decision was arbitrary, based on no clear criteria or consistent reasoning,” the word “arbitrary” most nearly means:</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>carefully researched</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>unanimous</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>legally binding</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>based on random whim rather than reason or system</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> “Arbitrary” describes a decision made without a clear reason or system, matching the sentence's own description (“no clear criteria or consistent reasoning”). Choice A is close to the opposite — a carefully researched decision would have clear criteria. Choice B introduces an unrelated meaning about group agreement. Choice C introduces an unrelated legal meaning.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q8">
+  <div class="qmeta"><span class="num">Q8</span><span>Craft &amp; Purpose</span></div>
+  <div class="qtext">A reviewer writes: “The novel's pacing drags in the middle chapters, though the ending redeems much of what came before.” What is the reviewer's overall attitude toward the novel?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Entirely negative</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Entirely positive</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Mixed, with both a criticism and a point of praise</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Indifferent and without any clear opinion</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The sentence contains both a criticism (“pacing drags”) and praise (“the ending redeems much of what came before”), making the reviewer's attitude mixed rather than one-sided. Choice A ignores the praise for the ending. Choice B ignores the criticism of the pacing. Choice D is contradicted by the sentence, which expresses clear, specific opinions on both counts.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q9">
+  <div class="qmeta"><span class="num">Q9</span><span>Integration of Ideas</span></div>
+  <div class="qtext">“Because Employee A has more years of experience than Employee B, Employee A should be promoted instead of Employee B.” Which unstated assumption does this argument rely on?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Years of experience is the most important factor in deciding who should be promoted.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Employee B has never received positive performance reviews.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Employee A and Employee B work in the same department.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>The company has only one promotion available.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> The argument moves directly from “more experience” to “should be promoted” without stating why experience should determine the outcome — it relies on the unstated assumption that experience is the most important (or a sufficient) factor for promotion. Choice B introduces a claim about performance reviews that the argument never relies on. Choice C introduces a detail that isn't necessary for the argument's logic to function. Choice D introduces a scarcity assumption the argument doesn't depend on — it would work the same whether one or several promotions were available.</div>
+  </div>
+</div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>Community gardens were once considered a niche hobby, but city planners increasingly treat them as infrastructure. A garden can reduce stormwater runoff, lower nearby summer temperatures, and give residents without yards a place to grow food. Some cities now require new developments above a certain size to include garden space, treating it with the same seriousness as parking or sidewalks.</div>
+<div class="qcard" id="q10">
+  <div class="qmeta"><span class="num">Q10</span><span>Main Idea</span></div>
+  <div class="qtext">What is the main idea of the passage?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Parking requirements are more important than garden space in new developments.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Community gardens are increasingly viewed by city planners as a form of practical infrastructure, not just a hobby.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Community gardens have no effect on local temperatures.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Most residents prefer yards to community gardens.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The passage traces a shift in how city planners view community gardens — from a niche hobby to practical infrastructure with real benefits — which is its central point. Choice A reverses the comparison the passage draws, which treats garden space as being taken just as seriously as parking, not less seriously. Choice C directly contradicts the passage, which credits gardens with lowering nearby summer temperatures. Choice D introduces a preference claim the passage never makes.</div>
+  </div>
+</div>
+<div class="qcard" id="q11">
+  <div class="qmeta"><span class="num">Q11</span><span>Vocabulary in Context</span></div>
+  <div class="qtext">As used in the passage, the word “niche” most nearly means:</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>mainstream and widely practiced</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>illegal</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>a small, specialized interest or activity</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>expensive</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> “Niche” describes something appealing to a small, specialized group rather than the general public — matching the passage's contrast between a “niche hobby” and something city planners now treat as broadly important infrastructure. Choice A is nearly the opposite of “niche.” Choice B and Choice D introduce meanings unrelated to the word.</div>
+  </div>
+</div></div>
+<div class="section-head" id="mathematics">
+  <div class="n">Section 2 of 3 · 11 questions</div>
+  <h2>Mathematics</h2>
+  <div class="rule"></div>
+</div>
+<div class="qcard" id="q12">
+  <div class="qmeta"><span class="num">Q12</span><span>Percent</span></div>
+  <div class="qtext">A school district's budget is $2,400,000. If 35% of the budget is allocated to teacher salaries, how much money is allocated to salaries?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>$720,000</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>$875,000</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>$1,560,000</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>$840,000</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> 0.35 × 2,400,000 = $840,000. Choice A results from using 30% instead of 35%: 2,400,000×0.30=720,000. Choice B results from misreading the total budget as $2,500,000 instead of $2,400,000: 2,500,000×0.35=875,000. Choice C is 65% of the budget (the remaining, non-salary portion) instead of the 35% allocated to salaries: 2,400,000×0.65=1,560,000.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q13">
+  <div class="qmeta"><span class="num">Q13</span><span>Rate</span></div>
+  <div class="qtext">A car travels 150 miles in 3 hours at a constant speed. At this same speed, how many miles will it travel in 5 hours?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>250 miles</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>200 miles</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>375 miles</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>300 miles</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> The rate is 150÷3=50 mph, so in 5 hours the car travels 50×5=250 miles. Choice B results from adding only one extra hour's worth of distance (150+50=200) instead of the full two additional hours needed to reach 5 hours. Choice C results from misreading the original time as 2 hours instead of 3, giving a rate of 75 mph: 75×5=375. Choice D results from using 6 hours instead of 5: 50×6=300.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q14">
+  <div class="qmeta"><span class="num">Q14</span><span>Unit Conversion</span></div>
+  <div class="qtext">A recipe requires 2.5 quarts of water. How many cups is this? (1 quart = 4 cups)</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>5 cups</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>10 cups</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>8 cups</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>12 cups</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> 2.5 × 4 = 10 cups. Choice A results from mistakenly using the conversion for pints (1 quart = 2 pints) instead of cups (1 quart = 4 cups): 2.5×2=5. Choice C results from rounding 2.5 down to 2 quarts before converting: 2×4=8. Choice D results from rounding 2.5 up to 3 quarts before converting: 3×4=12.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q15">
+  <div class="qmeta"><span class="num">Q15</span><span>Algebra</span></div>
+  <div class="qtext">Solve for x: 4x − 7 = 3x + 5</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>12</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>-2</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>2</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>5</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Subtracting 3x from both sides gives x−7=5; adding 7 to both sides gives x=12. Choice B results from subtracting 7 (instead of adding it) when isolating x: 5−7=−2. Choice C results from subtracting the two constant terms directly (7−5=2) instead of correctly isolating x. Choice D is simply the constant term from the right side of the equation (5), mistakenly treated as the answer without solving.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q16">
+  <div class="qmeta"><span class="num">Q16</span><span>Algebra Word Problem</span></div>
+  <div class="qtext">A tutoring center charges a $20 registration fee plus $15 per session. If a family paid $110 total, how many sessions did they purchase?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>5</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>7</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>9</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>6</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Subtracting the fee: $110−$20=$90. Dividing by the per-session rate: 90÷15=6 sessions. Choice A results from mistakenly subtracting the $20 fee twice: (110−20−20)/15≈4.67, rounded to 5. Choice B results from forgetting to subtract the $20 registration fee first and dividing the full $110 by $15: 110/15≈7.33, rounded to 7. Choice C results from using $10 per session instead of $15 on the post-fee amount: 90/10=9.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q17">
+  <div class="qmeta"><span class="num">Q17</span><span>Geometry</span></div>
+  <div class="qtext">A triangular garden has a base of 10 feet and a height of 6 feet. What is its area?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>60 sq ft</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>30 sq ft</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>16 sq ft</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>32 sq ft</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Area = (1/2)(10)(6) = 30 sq ft. Choice A forgets the 1/2 factor: 10×6=60. Choice C adds the base and height instead of multiplying: 10+6=16. Choice D results from computing 2×(10+6)=32, a perimeter-style calculation, instead of the triangle area formula.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q18">
+  <div class="qmeta"><span class="num">Q18</span><span>Geometry — Angles</span></div>
+  <div class="qtext">In a triangle, two of the angles measure 50° and 65°. What is the measure of the third angle?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>65°</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>115°</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>15°</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>55°</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> The angles of a triangle sum to 180°, so the third angle is 180−50−65=65°. Choice B is the sum of the two given angles (50+65=115), mistakenly treated as the third angle instead of subtracting that sum from 180°. Choice C results from subtracting the two given angles from each other (65−50=15) instead of subtracting their sum from 180°. Choice D results from an arithmetic slip adding 50+65 as 125 instead of 115, giving 180−125=55.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q19">
+  <div class="qmeta"><span class="num">Q19</span><span>Data Analysis</span></div>
+  <div class="qtext">A survey asked 40 teachers which grade level they prefer to teach: 12 chose elementary, 10 chose middle school, and the rest chose high school. What percent of teachers chose high school?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>30%</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>25%</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>45%</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>55%</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> High school: 40−12−10=18 teachers. 18/40=0.45=45%. Choice A is 12/40=30%, the percentage that chose elementary, not high school. Choice B is 10/40=25%, the percentage that chose middle school, not high school. Choice D results from adding the elementary and middle school counts (12+10=22) and reporting that as the high school percentage: 22/40=55%, instead of subtracting them from the total first.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q20">
+  <div class="qmeta"><span class="num">Q20</span><span>Statistics</span></div>
+  <div class="qtext">A tutor's five students scored 82, 88, 91, 75, and 84 on a quiz. What is the mean score?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>82</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>88</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>420</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>84</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Sum = 82+88+91+75+84 = 420. Mean = 420÷5 = 84. Choice A mistakenly reports the first score listed (82) instead of calculating the mean. Choice B is simply one of the five individual scores (88), not the mean of all five. Choice C is the sum of all five scores (420), not divided by the number of students to find the mean.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q21">
+  <div class="qmeta"><span class="num">Q21</span><span>Order of Operations</span></div>
+  <div class="qtext">What is the value of (6 + 4) × 2 − 8 ÷ 2?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>6</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>10</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>16</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>12</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Parentheses first (6+4=10), then multiplication (10×2=20), then division (8÷2=4), then subtraction (20−4=16). Choice A results from treating the entire expression as one left-to-right chain, including the final division: ((6+4)×2−8)÷2 = 12÷2 = 6. Choice B results from ignoring the parentheses around (6+4) and applying standard order of operations to 6+4×2−8÷2: 4×2=8, 8÷2=4, so 6+8−4=10. Choice D results from computing (6+4)×2−8=12 but forgetting the final ÷2 entirely.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q22">
+  <div class="qmeta"><span class="num">Q22</span><span>Estimation</span></div>
+  <div class="qtext">Which of the following is the best estimate of 812 × 48?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>32,000</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>40,000</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>400,000</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>4,000</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Rounding 812 to 800 and 48 to 50 gives 800×50=40,000, close to the actual product (38,976). Choice A results from rounding 48 down to 40 instead of up to 50: 800×40=32,000. Choice C results from rounding 48 up to 500 by mistake (an extra zero): 800×500=400,000. Choice D results from rounding 812 down to 80 instead of 800 (a misplaced zero): 80×50=4,000.</div>
+  </div>
+</div>
+<div class="section-head" id="writing">
+  <div class="n">Section 3 of 3 · 8 questions</div>
+  <h2>Writing</h2>
+  <div class="rule"></div>
+</div>
+<div class="qcard" id="q23">
+  <div class="qmeta"><span class="num">Q23</span><span>Usage</span></div>
+  <div class="qtext">Identify the segment that contains an error. If there is no error, choose “No mistakes.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Each of the reports</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>submitted by the committee members</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>contain several recommendations.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>No mistakes</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Segment C contains a subject-verb agreement error. The subject is “each” (singular), and the phrase “of the reports submitted by the committee members” is a modifying phrase that doesn't change the subject's number — so the verb should be “contains,” not “contain.” Segment A correctly introduces the singular subject. Segment B is a correctly formed modifying phrase. Since segment C contains a genuine error, “No mistakes” is incorrect.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q24">
+  <div class="qmeta"><span class="num">Q24</span><span>Usage</span></div>
+  <div class="qtext">Identify the segment that contains an error. If there is no error, choose “No mistakes.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Whomever scored the highest on the exam</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>received the award</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>for academic excellence.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>No mistakes</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Segment A incorrectly uses “whomever” where “whoever” is required. The pronoun functions as the subject of the verb “scored” within its own clause, so it must take the subject form “whoever,” regardless of the clause's role in the larger sentence. Segment B is correct. Segment C is correct. Since segment A contains a genuine error, “No mistakes” is incorrect.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q25">
+  <div class="qmeta"><span class="num">Q25</span><span>Punctuation</span></div>
+  <div class="qtext">Identify the segment that contains an error. If there is no error, choose “No mistakes.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The teacher carefully reviewed</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>the students input</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>before finalizing the grades for the semester.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>No mistakes</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Segment B is missing an apostrophe: “students input” should be “students' input” to show that the input belongs to the students. Segment A is correctly worded. Segment C is correct. Since segment B contains the missing-apostrophe error, “No mistakes” is incorrect.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q26">
+  <div class="qmeta"><span class="num">Q26</span><span>Capitalization</span></div>
+  <div class="qtext">Identify the segment that contains an error. If there is no error, choose “No mistakes.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The report was submitted to the Department of Education</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>after the spring semester,</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>according to district Policy.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>No mistakes</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Segment C incorrectly capitalizes “Policy.” Used generically here (not as part of an official, specific title), “policy” should be lowercase. Segment A correctly capitalizes “Department of Education,” which is a proper name. Segment B is correct. Since segment C contains a genuine error, “No mistakes” is incorrect.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q27">
+  <div class="qmeta"><span class="num">Q27</span><span>Sentence Structure</span></div>
+  <div class="qtext">Which is the best way to combine these two sentences?<br>“The study had a small sample size. Its conclusions may not apply to the general population.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The study had a small sample size, its conclusions may not apply to the general population.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>The study had a small sample size, and its conclusions may not apply to the general population, this is important to note.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>The study had a small sample size, or its conclusions may not apply to the general population.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Because the study had a small sample size, its conclusions may not apply to the general population.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Choice D uses “because” to correctly show the cause-and-effect relationship between the small sample size and the limited applicability of the conclusions. Choice A creates a comma splice by joining two independent clauses with only a comma. Choice B is a run-on that adds an unnecessary, vaguely connected clause (“this is important to note”) on top of a comma splice. Choice C uses “or,” suggesting an alternative rather than a cause-and-effect relationship, which misrepresents the connection between the two ideas.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q28">
+  <div class="qmeta"><span class="num">Q28</span><span>Spelling</span></div>
+  <div class="qtext">Identify the segment that contains an error. If there is no error, choose “No mistakes.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>The consistant grading policy</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>applied to every department</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>at the school.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>No mistakes</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Segment A misspells “consistent” (correct spelling ends in “-ent,” not “-ant”: c-o-n-s-i-s-t-e-n-t). Segments B and C contain no spelling errors. Because segment A contains a clear spelling error, “No mistakes” is incorrect.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q29">
+  <div class="qmeta"><span class="num">Q29</span><span>Punctuation</span></div>
+  <div class="qtext">Identify the segment that contains an error. If there is no error, choose “No mistakes.”</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Although the meeting ran long,</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>the committee reached a decision</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>before the deadline.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>No mistakes</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> The sentence is correctly constructed throughout: segment A closes the introductory dependent clause with a comma, segment B is a correctly formed independent clause, and segment C completes the sentence with a correctly attached prepositional phrase, with no missing or unnecessary punctuation anywhere. Since no segment contains an error, “No mistakes” is the correct choice — not every sentence has a planted error, and recognizing a genuinely correct one matters just as much as spotting real mistakes.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q30">
+  <div class="qmeta"><span class="num">Q30</span><span>Research &amp; Citation</span></div>
+  <div class="qtext">A student writing a research paper wants to use a statistic from a source but is not quoting it word for word. What is the most appropriate way to handle this in the paper?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Copy the sentence exactly as written in the source, with no citation.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Paraphrase the statistic in the student's own words and cite the source.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Omit the statistic entirely to avoid any citation requirement.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Use the statistic without any indication of where it came from, since it is only a number.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> When using information from a source without quoting it directly, the correct approach is to paraphrase it in one's own words and still credit the original source with a citation — this avoids plagiarism while properly crediting the source of the data. Choice A is incorrect on two counts: copying text exactly requires quotation marks, and any borrowed information still requires a citation. Choice C is an overly cautious non-solution that avoids using legitimate source material unnecessarily. Choice D is incorrect because even factual statistics and data drawn from a specific source require a citation to credit that source and allow readers to verify it.</div>
+  </div>
+</div>
+
+  <div class="foot">
+    <div class="copyright">© 2026 Exam Success Academy. All rights reserved.</div>
+    <div class="legal">Exclusive bonus for readers of the Praxis Core Study Guide. Independently produced —
+    not affiliated with, sponsored by, endorsed by, or approved by Praxis Core's administering organization.</div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.qcard').forEach(function(card){
+  card.querySelectorAll('.opt').forEach(function(opt){
+    opt.addEventListener('click', function(){
+      if(card.classList.contains('answered')) return;
+      card.classList.add('answered');
+      var chosenCorrect = opt.dataset.correct === '1';
+      opt.classList.add(chosenCorrect ? 'pick-correct' : 'pick-wrong');
+      if(!chosenCorrect){
+        var right = card.querySelector('.opt[data-correct="1"]');
+        if(right) right.classList.add('pick-correct');
+      }
+      var result = card.querySelector('.result');
+      var verdict = result.querySelector('.verdict');
+      verdict.textContent = chosenCorrect ? 'Correct' : 'Not quite';
+      verdict.className = 'verdict ' + (chosenCorrect ? 'good' : 'bad');
+      result.hidden = false;
+      answeredCount++;
+      if(chosenCorrect) correctCount++;
+      updateScore();
+    });
+  });
+});
+var answeredCount = 0, correctCount = 0;
+var TOTAL = document.querySelectorAll('.qcard').length;
+function updateScore(){
+  document.getElementById('score-readout').innerHTML =
+    '<b>' + answeredCount + '</b>/' + TOTAL + ' answered' +
+    (answeredCount ? '  ·  <b>' + correctCount + '</b> correct' : '');
+}
+updateScore();
+</script>
+</body>
+</html>
