@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulation Test 1 — PSAT 10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#020C57; --navy-2:#0A1668; --navy-3:#111F79; --line:#2C3B8F;
+  --gold:#EDB500; --gold-ink:#1A1040;
+  --paper:#F5F3EA; --muted:#9BA4D6; --muted-2:#6F79B3;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --alert-soft:#3A2E12; --alert:#EDB500; --alert-muted:#D9CBA3;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Anton',Impact,sans-serif; font-weight:400; letter-spacing:.01em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(2,12,87,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:720px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:38px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600;}
+
+.page{max-width:720px; margin:0 auto; padding:0 1.25rem 5rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.75rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(1.9rem,6.5vw,2.7rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:480px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.75rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.5rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.step-list{counter-reset:step; margin:2rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.5rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{
+  font-family:'Anton',sans-serif; font-size:1.1rem; color:var(--gold-ink); background:var(--gold);
+  width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:.1rem;
+}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0; line-height:1.6;}
+.action-block{margin-top:.9rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none;
+  padding:.85rem 1.5rem; border-radius:999px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(237,181,0,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+
+.subject-chip{font-family:'Karla',sans-serif; font-weight:600; font-size:.92rem; letter-spacing:.01em; background:var(--navy); border:1.5px dashed var(--line); border-radius:8px; padding:.7rem 1rem; color:var(--paper); word-break:break-word;}
+.subject-chip b{color:var(--gold);}
+
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.6rem; box-shadow:var(--shadow); margin-top:1.75rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+
+.section-head{padding-top:2.25rem; margin-bottom:1.1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+
+.card-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); margin-top:1.25rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center;}
+.card h3{font-size:1rem; font-weight:700; font-family:'Karla',sans-serif;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{
+  font-family:'Oswald',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; text-decoration:none; flex-shrink:0;
+}
+.tag.ghost{background:var(--navy); color:var(--paper); border:1.5px solid var(--line);}
+
+.check-list{display:flex; flex-direction:column; gap:1rem; margin-top:1.25rem;}
+.check-row{display:flex; gap:.9rem; align-items:flex-start;}
+.check-row .mark{
+  flex-shrink:0; width:1.6rem; height:1.6rem; border-radius:50%; background:var(--gold); color:var(--gold-ink);
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; margin-top:.05rem;
+}
+.check-row h3{font-size:.98rem; font-weight:700; font-family:'Karla',sans-serif;}
+.check-row p{color:var(--muted); font-size:.9rem; margin:.2rem 0 0; line-height:1.5;}
+
+.how-box{margin-top:1.25rem; text-align:center;}
+.how-box p{color:var(--paper); font-size:.95rem; line-height:1.65; max-width:440px; margin:0 auto;}
+.how-box .fine{color:var(--alert-muted); font-size:.83rem; margin-top:.9rem;}
+
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+
+.how-box-manual{margin-top:0; text-align:center; background:var(--navy-3); border:1.5px solid rgba(237,181,0,.3);}
+.how-box-manual p{color:var(--paper); font-size:.9rem; line-height:1.6; max-width:420px; margin:0 auto;}
+
+.foot{max-width:720px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+
+.faq{margin-top:1.25rem;}
+.faq dt{font-weight:700; margin-top:1.1rem; font-family:'Karla',sans-serif;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem; line-height:1.6;}
+
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card > a.tag{align-self:stretch; text-align:center;}
+  .topbar .title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:55vw;}
+  .topbar-inner{padding:.6rem 1rem;}
+  .hero{padding-top:2rem;}
+}
+
+.quiz-head{display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:1.25rem;}
+.progress{font-family:'Oswald',sans-serif; font-size:.8rem; color:var(--muted);}
+.qcard{border:1px solid var(--line); border-radius:10px; padding:1.4rem; margin-top:1.25rem; background:var(--navy-2);}
+.qn{font-family:'Oswald',sans-serif; font-size:.68rem; color:var(--muted-2); display:flex; justify-content:space-between; letter-spacing:.04em; text-transform:uppercase;}
+.qtext{margin-top:.6rem; font-size:1rem; line-height:1.6; white-space:pre-wrap;}
+.opts{display:flex; flex-direction:column; gap:.55rem; margin-top:1.1rem;}
+.opt{display:flex; gap:.7rem; align-items:flex-start; border:1.5px solid var(--line); border-radius:8px; padding:.65rem .8rem; font-size:.93rem; line-height:1.5; background:var(--navy);}
+.opt input{margin-top:.25rem;} .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold);}
+.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.quiz-actions{display:flex; justify-content:center; margin-top:2rem; gap:.75rem;}
+.score-panel{border:1px solid var(--line); border-radius:10px; padding:1.5rem; background:var(--navy-2); margin-top:1.25rem;}
+.score-big{font-family:'Anton',sans-serif; font-size:2.2rem; color:var(--gold);}
+
+.briefing{padding-top:1.5rem;}
+.briefing h1{font-size:1.5rem; font-family:'Oswald',sans-serif; text-transform:uppercase; font-weight:700;}
+.briefing p{color:var(--muted); font-size:.96rem; line-height:1.65; margin-top:1rem;}
+.briefing ul{color:var(--muted); font-size:.94rem; line-height:1.8; margin:1.1rem 0 0; padding-left:1.3rem;}
+.briefing ul li::marker{color:var(--gold);}
+.check-gate{display:flex; gap:.75rem; align-items:flex-start; margin-top:1.75rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.25rem;}
+.check-gate input{margin-top:.2rem; width:1.05rem; height:1.05rem; accent-color:var(--gold); flex-shrink:0;}
+.check-gate label{font-size:.93rem; line-height:1.5;}
+#btn-start-test{margin-top:1.5rem; width:100%; justify-content:center; opacity:.4; pointer-events:none;}
+#btn-start-test.enabled{opacity:1; pointer-events:auto;}
+.section-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.75rem; gap:.75rem; flex-wrap:wrap; row-gap:.75rem;}
+.section-nav .mid{font-family:'Oswald',sans-serif; font-size:.78rem; color:var(--muted); order:-1; width:100%; text-align:center;}
+.section-nav .btn{flex:1;}
+
+@media (max-width:480px){
+  .section-nav .btn{padding:.7rem .9rem; font-size:.7rem; white-space:normal; text-align:center;}
+  .qcard{padding:1.1rem;}
+  .briefing h1{font-size:1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <img class="logo" src="../../assets/passforge-press-logo-white.png" alt="PassForge Press">
+    <span class="title">PSAT 10 Study Guide</span>
+  </div>
+</div>
+<div class="page" style="max-width:820px;">
+  <a href="./" class="back-link">← Back to Simulation Test Center</a>
+  
+<div class="briefing" id="briefing">
+  <h1>PSAT 10 Test – Full-Length Exam Simulation 1</h1>
+  <p>This online full-length simulation has been designed to closely reflect the difficulty, pacing, and overall testing experience of the official digital PSAT 10.</p>
+  <p>Unlike the practice simulations included in the printable Simulation Tests PDF, this is a separate 98-question exam, aligned with the format and demands of the real test.</p>
+  <p>This simulation is organized into sections of 30 questions. The official exam is not divided this way — this structure is intentional and helps you maintain focus over a long exam, manage pacing and time effectively, and reduce mental fatigue without reducing difficulty.</p>
+  <p>The test should be completed in one sitting, without external assistance, to obtain a realistic performance benchmark.</p>
+  <p>Take this first timed simulation to establish your performance baseline and identify priority areas before advancing further.</p>
+  <ul>
+    <li>Suggested time: 90 minutes</li>
+    <li>Do not pause the test once started</li>
+    <li>Treat this as test day</li>
+  </ul>
+  <div class="check-gate">
+    <input type="checkbox" id="check-ready">
+    <label for="check-ready">I am ready to start the test under exam conditions. <span style="color:var(--gold);">*</span></label>
+  </div>
+  <button class="btn btn-gold" id="btn-start-test">Yes, start the test now</button>
+</div>
+  
+<div id="quiz-wrapper" hidden>
+  <div class="quiz-head" style="margin-top:1rem;">
+    <div><div class="eyebrow" style="font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);">Self-hosted · no explanations shown</div><h1 style="font-size:1.4rem; font-family:'Oswald',sans-serif; text-transform:uppercase; margin-top:.3rem;">Simulation Test 1</h1></div>
+    <span class="progress" id="quiz-progress"></span>
+  </div>
+  <div id="quiz-body"></div>
+  <div class="section-nav" id="section-nav">
+    <button class="btn btn-ghost" id="btn-prev">← Previous</button>
+    <span class="mid" id="section-progress"></span>
+    <button class="btn btn-gold" id="btn-next">Next Section →</button>
+  </div>
+  <div class="quiz-actions">
+    <button class="btn btn-ghost" id="btn-reset" style="display:none;">Restart</button>
+  </div>
+  <div id="score-area"></div>
+</div>
+  
+<div class="foot">
+  <div class="copyright">© 2026 PassForge Press. All rights reserved.</div>
+  <div class="legal">Independently produced — not affiliated with, endorsed by, sponsored by, or approved by the College Board or the PSAT 10 program.</div>
+</div>
+</div>
+<script>
+function runQuiz(questions){
+  const SECTION_SIZE = 30;
+  const body = document.getElementById('quiz-body');
+  const answers = {};
+  const sections = [];
+  for(let i = 0; i < questions.length; i += SECTION_SIZE){ sections.push(questions.slice(i, i + SECTION_SIZE)); }
+  let current = 0;
+
+  sections.forEach(function(group, sIdx){
+    const sec = document.createElement('div');
+    sec.className = 'qsection';
+    sec.dataset.index = sIdx;
+    sec.hidden = sIdx !== 0;
+    group.forEach(function(q){
+      const card = document.createElement('div');
+      card.className = 'qcard';
+      card.innerHTML = '<div class="qn"><span>Question ' + q.n + ' / ' + questions.length + '</span></div><div class="qtext"></div><div class="opts"></div>';
+      card.querySelector('.qtext').textContent = q.q;
+      const opts = card.querySelector('.opts');
+      ['a','b','c','d'].forEach(function(letter){
+        const label = document.createElement('label');
+        label.className = 'opt';
+        label.dataset.letter = letter.toUpperCase();
+        label.innerHTML = '<input type="radio" name="q' + q.n + '" value="' + letter.toUpperCase() + '"><span><span class="letter">' + letter.toUpperCase() + '.</span> <span class="opttext"></span></span>';
+        label.querySelector('.opttext').textContent = q[letter];
+        label.querySelector('input').addEventListener('change', function(){ answers[q.n] = letter.toUpperCase(); updateProgress(); });
+        opts.appendChild(label);
+      });
+      sec.appendChild(card);
+    });
+    body.appendChild(sec);
+  });
+
+  function updateProgress(){
+    document.getElementById('quiz-progress').textContent = Object.keys(answers).length + ' / ' + questions.length + ' answered';
+    document.getElementById('section-progress').textContent = 'Section ' + (current + 1) + ' of ' + sections.length;
+  }
+  function showSection(idx){
+    document.querySelectorAll('.qsection').forEach(function(s){ s.hidden = Number(s.dataset.index) !== idx; });
+    current = idx;
+    document.getElementById('btn-prev').disabled = idx === 0;
+    document.getElementById('btn-next').textContent = (idx === sections.length - 1) ? 'Submit Test' : 'Next Section →';
+    updateProgress();
+    document.getElementById('quiz-wrapper').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  document.getElementById('btn-prev').addEventListener('click', function(){ if(current > 0) showSection(current - 1); });
+  document.getElementById('btn-next').addEventListener('click', function(){
+    if(current < sections.length - 1){ showSection(current + 1); return; }
+    finalizeQuiz();
+  });
+  updateProgress();
+
+  function finalizeQuiz(){
+    let correct = 0;
+    questions.forEach(function(q){
+      const given = answers[q.n];
+      if(given === q.correct) correct++;
+    });
+    document.querySelectorAll('.qsection').forEach(function(s){ s.hidden = false; });
+    document.querySelectorAll('.qcard').forEach(function(card, i){
+      const q = questions[i];
+      const given = answers[q.n];
+      card.querySelectorAll('.opt').forEach(function(opt){
+        opt.querySelector('input').disabled = true;
+        if(opt.dataset.letter === q.correct) opt.classList.add('correct');
+        else if(opt.dataset.letter === given) opt.classList.add('wrong');
+      });
+    });
+    const pct = Math.round((correct/questions.length)*100);
+    const scoreArea = document.getElementById('score-area');
+    scoreArea.innerHTML = '<div class="score-panel"><div class="eyebrow" style="font-family:\'Oswald\',sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);">Result — no explanations shown, readiness signal only</div><div class="score-big">' + correct + ' / ' + questions.length + ' <span style="font-size:1.05rem; color:var(--muted); font-family:\'Karla\',sans-serif; font-weight:500;">(' + pct + '%)</span></div></div>';
+    document.getElementById('section-nav').style.display = 'none';
+    document.getElementById('btn-reset').style.display = 'inline-flex';
+    scoreArea.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+  document.getElementById('btn-reset').addEventListener('click', function(){ window.location.reload(); });
+
+  const checkGate = document.getElementById('check-ready');
+  const startBtn = document.getElementById('btn-start-test');
+  checkGate.addEventListener('change', function(){ startBtn.classList.toggle('enabled', checkGate.checked); });
+  startBtn.addEventListener('click', function(){
+    if(!checkGate.checked) return;
+    document.getElementById('briefing').hidden = true;
+    document.getElementById('quiz-wrapper').hidden = false;
+    document.getElementById('quiz-wrapper').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+}
+
+runQuiz([{"n": 1, "q": "A collection of 6 reports on food-rescue logistics, along with the original field notes, ______ available in the university archive.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "is", "b": "are", "c": "have been", "d": "were being", "correct": "A"}, {"n": 2, "q": "As part of an independent review, curators examining rural broadband access considered the following problem. The system 2x + 3y = -11 and 1x -2y = 19 has solution (x, y).\n\nWhat is x + y?", "a": "-1", "b": "-3", "c": "-2", "d": "12", "correct": "C"}, {"n": 3, "q": "As part of a mountain county, planners examining dance notation archives considered the following problem. A circle has radius 4.\n\nWhat is its area, in terms of π?", "a": "8π", "b": "16π", "c": "4π", "d": "16π16ππ", "correct": "B"}, {"n": 4, "q": "As part of a university field station, students examining heat-resilient wheat trials considered the following problem. Two similar figures have a scale factor of 8 from the smaller to the larger. A corresponding side on the smaller figure is 6.\n\nWhat is the corresponding side length on the larger figure?", "a": "14", "b": "3/4", "c": "49", "d": "48", "correct": "D"}, {"n": 5, "q": "As part of a coastal district, planners examining reusable packaging systems considered the following problem. A circle has radius 8.\n\nWhat is its area, in terms of π?", "a": "16π", "b": "64π", "c": "8π", "d": "64π64ππ", "correct": "B"}, {"n": 6, "q": "What value of x satisfies 9x +2 = 65?", "a": "7", "b": "8", "c": "6", "d": "63/10", "correct": "A"}, {"n": 7, "q": "Early models predicted that battery recycling methods would produce little measurable change. ______, observations collected during the pilot showed a clear and sustained effect.\n\nWhich choice completes the text with the most logical transition?", "a": "nevertheless", "b": "Therefore", "c": "For example", "d": "Similarly", "correct": "A"}, {"n": 8, "q": "In a survey related to a wildlife overpass, 58 participants using method A reported an average score of 77, while 58 participants using method B reported an average score of 52. An analyst claimed that method A was associated with a higher average score in this sample.\n\nWhich choice best uses the data to support the analyst’s conclusion?", "a": "Each method was used by 58 participants.", "b": "The survey included two methods.", "c": "Method A’s average score was 77, which was 25 points higher than method B’s average of 52.", "d": "The scores were reported as averages.", "correct": "C"}, {"n": 9, "q": "Three weekly measurements in a study of heat-resilient wheat trials were 30, 40, and 35.\n\nWhat was the mean of the three measurements?", "a": "105", "b": "35", "c": "105/2", "d": "5", "correct": "B"}, {"n": 10, "q": "A later analysis explains: The team reported that a marine acoustics study made the project more responsive to local knowledge. The authors caution, however, that the result may depend on local conditions.\n\nWhich choice best describes the overall structure of the text?", "a": "It introduces an unrelated topic that the passage never connects to its main point.", "b": "It proves that every earlier interpretation was deliberately dishonest.", "c": "It supplies a complete statistical analysis of all projects in the field.", "d": "It limits the scope of the preceding positive finding.", "correct": "D"}, {"n": 11, "q": "What are the solutions to x² -6x +8 = 0?", "a": "-2 and -4", "b": "3 and 3", "c": "8 and -6", "d": "2 and 4", "correct": "D"}, {"n": 12, "q": "For x > 0, (x^(9/5))^25 = x^k.\n\nWhat is the value of k?", "a": "9/5", "b": "45", "c": "25", "d": "5", "correct": "B"}, {"n": 13, "q": "As part of an independent review, researchers examining battery recycling methods considered the following problem. The first survey of public library outreach produced an unexpected result ______ the research team repeated the survey with a larger sample.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": ", consequently,", "b": ": consequently", "c": "; consequently,", "d": ", and consequently,", "correct": "C"}, {"n": 14, "q": "Several design choices made school meal-waste reduction easier for residents to use. ______, labels were rewritten in plain language and placed at eye level.\n\nWhich choice completes the text with the most logical transition?", "a": "Nevertheless", "b": "Consequently", "c": "for example", "d": "Instead", "correct": "C"}, {"n": 15, "q": "As part of a rural consortium, engineers examining open-source medical devices considered the following problem. Designers studying a mathematical modeling team argue that the new design reduced energy use without reducing output.\n\nWhich finding, if true, would most directly support the claim?", "a": "A report lists the names of all people who participated in the project.", "b": "Meter readings show a 24 percent decline in energy consumption while production logs show unchanged weekly output.", "c": "The project received favorable attention in a regional newspaper.", "d": "The project operated for several years before the study began.", "correct": "B"}, {"n": 16, "q": "The first survey of public library outreach produced an unexpected result ______ the research team repeated the survey with a larger sample.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "; consequently,", "b": ", consequently,", "c": ": consequently", "d": ", and consequently,", "correct": "A"}, {"n": 17, "q": "The system 4x + 1y = -29 and 5x -4y = -31 has solution (x, y).\n\nWhat is x + y?", "a": "-8", "b": "-7", "c": "-9", "d": "-6", "correct": "A"}, {"n": 18, "q": "Curators studying a local oral-history collection argue that early access, not greater initial ability, explains the later advantage.\n\nWhich finding, if true, would most directly support the claim?", "a": "A report lists the names of all people who participated in the project.", "b": "The project received favorable attention in a regional newspaper.", "c": "The project operated for several years before the study began.", "d": "The groups had equal baseline scores, but only the group given early access improved before the second test.", "correct": "D"}, {"n": 19, "q": "The archive contains field notebooks, recorded interviews ______ high-resolution maps related to rural broadband access.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": ", and", "b": "and,", "c": ", and,", "d": "; and", "correct": "A"}, {"n": 20, "q": "Let f(x) = 2x +4 and g(x) = x².\n\nWhat is g(f(-1))?", "a": "6", "b": "8", "c": "4", "d": "5", "correct": "C"}, {"n": 21, "q": "What value of x satisfies 8(x + 6) = 10x +46?", "a": "2", "b": "1", "c": "-1", "d": "1/9", "correct": "B"}, {"n": 22, "q": "In a random sample of 230 records related to bilingual theater programs, 55 met a specified criterion.\n\nBased on the sample, what proportion of records met the criterion?", "a": "35/46", "b": "11/46", "c": "11/35", "d": "1/55", "correct": "B"}, {"n": 23, "q": "Let f(x) = 4x +5 and g(x) = x².\n\nWhat is g(f(-3))?", "a": "49", "b": "41", "c": "149", "d": "50", "correct": "A"}, {"n": 24, "q": "As part of a university field station, students examining migratory butterfly corridors considered the following problem. During an independent review, researchers responsible for a renewable microgrid placed blank feedback cards beside every exit. Within a month, they had moved the most requested resource closer to the entrance and extended Saturday hours, but they never announced why.\n\nWhich choice most reasonably can be inferred from the text?", "a": "The organizers were using visitors’ feedback to guide practical changes.", "b": "The project had already achieved every one of its long-term goals.", "c": "The team believed that additional evidence could never change its decision.", "d": "The passage shows that cost was the only factor considered.", "correct": "A"}, {"n": 25, "q": "Text 1\nRegarding a marine acoustics study during a three-year review, Text 1 describes the finding as unexpected under the traditional model.\n\nText 2\nRegarding the same subject, Text 2 proposes a revised model under which the same finding would be predicted.\n\nBased on the texts, how would the author of Text 2 most likely respond to the position in Text 1?", "a": "Text 2 repeats Text 1’s position without adding any qualification.", "b": "Text 2 offers a framework that accounts for the observation Text 1 finds surprising.", "c": "Text 2 discusses a wholly unrelated issue and cannot be compared with Text 1.", "d": "Text 2 proves that none of Text 1’s factual observations occurred.", "correct": "B"}, {"n": 26, "q": "For which value of x is the expression (x + 4)/(x² -2x -8) undefined?", "a": "4", "b": "3", "c": "-4", "d": "-1", "correct": "C"}, {"n": 27, "q": "By the time the independent reviewers arrived, the research team ______ all measurements related to rooftop cooling gardens twice.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "had checked", "b": "checks", "c": "has checked", "d": "will check", "correct": "A"}, {"n": 28, "q": "As part of a rural consortium, planners examining rooftop cooling gardens considered the following problem. Text 1\nRegarding a pollinator garden network during the pilot year, Text 1 argues that uniform procedures are essential because they make results comparable across sites.\n\nText 2\nRegarding the same subject, Text 2 agrees that outcomes should be comparable but contends that procedures may vary when local conditions differ.\n\nBased on the texts, how would the author of Text 2 most likely respond to the position in Text 1?", "a": "Text 2 accepts Text 1’s goal of comparability but qualifies its claim that identical procedures are always required.", "b": "Text 2 repeats Text 1’s position without adding any qualification.", "c": "Text 2 discusses a wholly unrelated issue and cannot be compared with Text 1.", "d": "Text 2 proves that none of Text 1’s factual observations occurred.", "correct": "A"}, {"n": 29, "q": "During an initial review, reports about a traditional weaving cooperative became more consistent after the team replaced a single open comment box with separate fields for time, location, and observed conditions.\n\nWhich choice most reasonably can be inferred from the text?", "a": "The project had already achieved every one of its long-term goals.", "b": "A more structured reporting format likely made observations easier to compare.", "c": "The team believed that additional evidence could never change its decision.", "d": "The passage shows that cost was the only factor considered.", "correct": "B"}, {"n": 30, "q": "The equation 9(4)^t = 36864 models a growing quantity.\n\nWhat is the value of t?", "a": "7", "b": "5", "c": "6", "d": "24", "correct": "C"}, {"n": 31, "q": "As part of a public workshop, ecologists examining battery recycling methods considered the following problem. For which value of x is the expression (x + 2)/(x² +4x -12) undefined?", "a": "-2", "b": "2", "c": "7", "d": "-5", "correct": "A"}, {"n": 32, "q": "As part of an independent review, curators examining public library outreach considered the following problem. The system 6x + 1y = -19 and 5x -6y = -50 has solution (x, y).\n\nWhat is x + y?", "a": "1", "b": "2", "c": "0", "d": "-9", "correct": "A"}, {"n": 33, "q": "For x > 0, (x^(6/3))^15 = x^k.\n\nWhat is the value of k?", "a": "2", "b": "30", "c": "15", "d": "5", "correct": "B"}, {"n": 34, "q": "The archive contains field notebooks, recorded interviews ______ high-resolution maps related to migratory butterfly corridors.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "and,", "b": ", and,", "c": ", and", "d": "; and", "correct": "C"}, {"n": 35, "q": "As part of a mountain county, researchers examining ceramic glaze research considered the following problem. For x > 0, (x^(7/5))^15 = x^k.\n\nWhat is the value of k?", "a": "7/5", "b": "21", "c": "15", "d": "3", "correct": "B"}, {"n": 36, "q": "Leaders of open-source medical devices initially treated standardization as the clearest route to quality. Yet volunteers found that allowing carefully documented local adaptations linked a small design choice to a much larger effect. Rather than abandoning standards, the group revised them to specify desired outcomes while leaving room for different methods.\n\nWhich choice best states the main idea of the text?", "a": "The project eliminated every standard in favor of unrestricted experimentation.", "b": "The project retained common goals while allowing flexible methods that improved its results.", "c": "Local adaptations consistently reduced the quality of the project.", "d": "The group concluded that methods matter but outcomes do not.", "correct": "B"}, {"n": 37, "q": "What are the solutions to x² +0x -4 = 0?", "a": "2 and -2", "b": "-1 and 1", "c": "-4 and 0", "d": "-2 and 2", "correct": "D"}, {"n": 38, "q": "What value of x satisfies 2(x + 6) = 3x +3?", "a": "10", "b": "9", "c": "-9", "d": "9/5", "correct": "B"}, {"n": 39, "q": "In a survey related to a mangrove restoration effort, 67 participants using method A reported an average score of 77, while 67 participants using method B reported an average score of 65. An analyst claimed that method A was associated with a higher average score in this sample.\n\nWhich choice best uses the data to support the analyst’s conclusion?", "a": "Method A’s average score was 77, which was 12 points higher than method B’s average of 65.", "b": "Each method was used by 67 participants.", "c": "The survey included two methods.", "d": "The scores were reported as averages.", "correct": "A"}, {"n": 40, "q": "Text 1\nRegarding a pollinator garden network during the expansion phase, Text 1 argues that uniform procedures are essential because they make results comparable across sites.\n\nText 2\nRegarding the same subject, Text 2 agrees that outcomes should be comparable but contends that procedures may vary when local conditions differ.\n\nBased on the texts, how would the author of Text 2 most likely respond to the position in Text 1?", "a": "Text 2 repeats Text 1’s position without adding any qualification.", "b": "Text 2 discusses a wholly unrelated issue and cannot be compared with Text 1.", "c": "Text 2 accepts Text 1’s goal of comparability but qualifies its claim that identical procedures are always required.", "d": "Text 2 proves that none of Text 1’s factual observations occurred.", "correct": "C"}, {"n": 41, "q": "By the time the independent reviewers arrived, the research team ______ all measurements related to lunar dust experiments twice.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "checks", "b": "had checked", "c": "has checked", "d": "will check", "correct": "B"}, {"n": 42, "q": "As part of a regional pilot, engineers examining citizen rainfall measurement considered the following problem. A preliminary account states: The manual for a deep-sea research mission first defines the desired outcome, then gives two contrasting examples, and finally provides a checklist readers can apply to new cases.\n\nWhich choice best describes the overall structure of the text?", "a": "It introduces an unrelated topic that the passage never connects to its main point.", "b": "It proves that every earlier interpretation was deliberately dishonest.", "c": "It supplies a complete statistical analysis of all projects in the field.", "d": "It moves from a general principle to examples and then to a practical application.", "correct": "D"}, {"n": 43, "q": "For P(x) = 4x² -2x +2, what is the remainder when P(x) is divided by x − 2?", "a": "15", "b": "12", "c": "14", "d": "4", "correct": "C"}, {"n": 44, "q": "The function f(x) = (x +7)² +10.\n\nWhat is f(-2)?", "a": "36", "b": "34", "c": "35", "d": "-7", "correct": "C"}, {"n": 45, "q": "For years, linguists working with wetland carbon storage relied on brief annual inspections. A new team instead recorded observations every week. The more frequent records improved accuracy by combining independent measurements. The team concluded that consistent monitoring can produce a more accurate picture than occasional snapshots.\n\nWhich choice best states the main idea of the text?", "a": "Annual inspections are always more accurate than weekly observations.", "b": "The project should be ended because collecting records takes time.", "c": "Regular, frequent observation can reveal important patterns that occasional inspections overlook.", "d": "Only professional historians can conduct reliable monitoring.", "correct": "C"}, {"n": 46, "q": "As part of a university field station, planners examining solar-powered desalination considered the following problem. The function f(x) = (x -8)² -12.\n\nWhat is f(10)?", "a": "-7", "b": "-9", "c": "-8", "d": "8", "correct": "C"}, {"n": 47, "q": "As part of an urban laboratory, planners examining water-main leak detection considered the following problem. For P(x) = 2x² +2x +1, what is the remainder when P(x) is divided by x − 6?", "a": "85", "b": "86", "c": "79", "d": "5", "correct": "A"}, {"n": 48, "q": "A collection of 3 reports on reusable packaging systems, along with the original field notes, ______ available in the university archive.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "are", "b": "is", "c": "have been", "d": "were being", "correct": "B"}, {"n": 49, "q": "As part of a mountain county, planners examining wetland carbon storage considered the following problem. The equation 7(3)^t = 1701 models a growing quantity.\n\nWhat is the value of t?", "a": "5", "b": "6", "c": "4", "d": "15", "correct": "A"}, {"n": 50, "q": "A collection of 8 reports on remote music instruction, along with the original field notes, ______ available in the university archive.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "are", "b": "have been", "c": "is", "d": "were being", "correct": "C"}, {"n": 51, "q": "A later analysis explains: A historian describes the original purpose of a coastal wetland, notes how that purpose changed over time, and closes by explaining why the later purpose is more familiar today.\n\nWhich choice best describes the overall structure of the text?", "a": "It introduces an unrelated topic that the passage never connects to its main point.", "b": "It proves that every earlier interpretation was deliberately dishonest.", "c": "It supplies a complete statistical analysis of all projects in the field.", "d": "It traces a development over time and connects it to present understanding.", "correct": "D"}, {"n": 52, "q": "By the time the independent reviewers arrived, the research team ______ all measurements related to community seed libraries twice.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "had checked", "b": "checks", "c": "has checked", "d": "will check", "correct": "A"}, {"n": 53, "q": "In a random sample of 240 records related to bilingual theater programs, 55 met a specified criterion.\n\nBased on the sample, what proportion of records met the criterion?", "a": "37/48", "b": "11/37", "c": "1/55", "d": "11/48", "correct": "D"}, {"n": 54, "q": "In a survey related to a local oral-history collection, 52 participants using method A reported an average score of 67, while 52 participants using method B reported an average score of 45. An analyst claimed that method A was associated with a higher average score in this sample.\n\nWhich choice best uses the data to support the analyst’s conclusion?", "a": "Each method was used by 52 participants.", "b": "Method A’s average score was 67, which was 22 points higher than method B’s average of 45.", "c": "The survey included two methods.", "d": "The scores were reported as averages.", "correct": "B"}, {"n": 55, "q": "As part of a public workshop, students examining river-plastic interception considered the following problem. Linguists studying a wildlife overpass argue that the creator intended the work as criticism rather than celebration.\n\nWhich finding, if true, would most directly support the claim?", "a": "A report lists the names of all people who participated in the project.", "b": "The project received favorable attention in a regional newspaper.", "c": "The creator’s notes explicitly describe the work as exposing the costs hidden beneath the event’s triumphant public image.", "d": "The project operated for several years before the study began.", "correct": "C"}, {"n": 56, "q": "As part of a rural consortium, researchers examining public library outreach considered the following problem. The equation 5(2)^t = 320 models a growing quantity.\n\nWhat is the value of t?", "a": "7", "b": "5", "c": "6", "d": "12", "correct": "C"}, {"n": 57, "q": "What is the solution (x, y) to the system 3x + 6y = 6 and 2x -4y = -20?", "a": "(3, -4)", "b": "(-4, 3)", "c": "(-3, 2)", "d": "(4, -3)", "correct": "B"}, {"n": 58, "q": "As part of a public workshop, students examining public transit reliability considered the following problem. Organizers studying a mathematical modeling team argue that the new design reduced energy use without reducing output.\n\nWhich finding, if true, would most directly support the claim?", "a": "A report lists the names of all people who participated in the project.", "b": "The project received favorable attention in a regional newspaper.", "c": "The project operated for several years before the study began.", "d": "Meter readings show a 24 percent decline in energy consumption while production logs show unchanged weekly output.", "correct": "D"}, {"n": 59, "q": "As part of a rural consortium, students examining water-main leak detection considered the following problem. The function f(x) = (x -4)² +11.\n\nWhat is f(8)?", "a": "27", "b": "28", "c": "26", "d": "4", "correct": "A"}, {"n": 60, "q": "During an independent review, researchers responsible for a renewable microgrid placed blank feedback cards beside every exit. Within a month, they had moved the most requested resource closer to the entrance and extended Saturday hours, but they never announced why.\n\nWhich choice most reasonably can be inferred from the text?", "a": "The organizers were using visitors’ feedback to guide practical changes.", "b": "The project had already achieved every one of its long-term goals.", "c": "The team believed that additional evidence could never change its decision.", "d": "The passage shows that cost was the only factor considered.", "correct": "A"}, {"n": 61, "q": "Early models predicted that food-rescue logistics would produce little measurable change. ______, observations collected during the pilot showed a clear and sustained effect.\n\nWhich choice completes the text with the most logical transition?", "a": "nevertheless", "b": "Therefore", "c": "For example", "d": "Similarly", "correct": "A"}, {"n": 62, "q": "As part of an independent review, researchers examining bee habitat corridors considered the following problem. The first survey of heat-resilient wheat trials produced an unexpected result ______ the research team repeated the survey with a larger sample.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": ", consequently,", "b": ": consequently", "c": ", and consequently,", "d": "; consequently,", "correct": "D"}, {"n": 63, "q": "As part of a rural consortium, researchers examining wildlife camera networks considered the following problem. What value of x satisfies 7(x + 4) = 9x +14?", "a": "8", "b": "-7", "c": "7/8", "d": "7", "correct": "D"}, {"n": 64, "q": "What are the solutions to x² +8x +12 = 0?", "a": "6 and 2", "b": "-5 and -3", "c": "12 and 8", "d": "-6 and -2", "correct": "D"}, {"n": 65, "q": "As part of an independent review, curators examining wetland carbon storage considered the following problem. Let f(x) = 4x -3 and g(x) = x².\n\nWhat is g(f(-1))?", "a": "1", "b": "13", "c": "49", "d": "50", "correct": "C"}, {"n": 66, "q": "As part of a public workshop, researchers examining solar-powered desalination considered the following problem. Linguists studying a city heat-mapping program argue that the creator intended the work as criticism rather than celebration.\n\nWhich finding, if true, would most directly support the claim?", "a": "A report lists the names of all people who participated in the project.", "b": "The project received favorable attention in a regional newspaper.", "c": "The creator’s notes explicitly describe the work as exposing the costs hidden beneath the event’s triumphant public image.", "d": "The project operated for several years before the study began.", "correct": "C"}, {"n": 67, "q": "The line 6x − y = -3 is the graph of y = f(x).\n\nWhat is f(6)?", "a": "39", "b": "33", "c": "9", "d": "36", "correct": "A"}, {"n": 68, "q": "As part of an urban laboratory, planners examining railway heritage preservation considered the following problem. The system 3x + 1y = 20 and 5x -3y = 52 has solution (x, y).\n\nWhat is x + y?", "a": "4", "b": "5", "c": "3", "d": "12", "correct": "A"}, {"n": 69, "q": "A collection of 4 reports on water-main leak detection, along with the original field notes, ______ available in the university archive.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "are", "b": "have been", "c": "is", "d": "were being", "correct": "C"}, {"n": 70, "q": "The revised protocol for urban night-sky monitoring reduced measurement error in every trial. ______, the research team adopted the protocol for the full study.\n\nWhich choice completes the text with the most logical transition?", "a": "However", "b": "therefore", "c": "For example", "d": "Meanwhile", "correct": "B"}, {"n": 71, "q": "A collection of 3 reports on neighborhood oral histories, along with the original field notes, ______ available in the university archive.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "are", "b": "is", "c": "have been", "d": "were being", "correct": "B"}, {"n": 72, "q": "During a public review, reports about a coastal wetland became more consistent after the team replaced a single open comment box with separate fields for time, location, and observed conditions.\n\nWhich choice most reasonably can be inferred from the text?", "a": "The project had already achieved every one of its long-term goals.", "b": "A more structured reporting format likely made observations easier to compare.", "c": "The team believed that additional evidence could never change its decision.", "d": "The passage shows that cost was the only factor considered.", "correct": "B"}, {"n": 73, "q": "As part of an urban laboratory, ecologists examining coastal erosion records considered the following problem. Analysts studying a lunar geology project argue that the apparent decline resulted from a change in measurement rather than a real change.\n\nWhich finding, if true, would most directly support the claim?", "a": "The series returns to its earlier level when all years are recalculated with the same measurement method.", "b": "A report lists the names of all people who participated in the project.", "c": "The project received favorable attention in a regional newspaper.", "d": "The project operated for several years before the study began.", "correct": "A"}, {"n": 74, "q": "In an initial assessment, the report on a bilingual newspaper was described as ______ because it was following accepted practice.\n\nWhich choice completes the text with the most logical and precise word or phrase?", "a": "unorthodox", "b": "private", "c": "conventional", "d": "efficient", "correct": "C"}, {"n": 75, "q": "A right triangle has perpendicular legs of lengths 8 and 4.\n\nWhat is its area?", "a": "32", "b": "12", "c": "16", "d": "8", "correct": "C"}, {"n": 76, "q": "The system 4x + 3y = -27 and 3x -4y = -14 has solution (x, y).\n\nWhat is x + y?", "a": "-6", "b": "-8", "c": "-7", "d": "-5", "correct": "C"}, {"n": 77, "q": "In a survey related to a lunar geology project, 76 participants using method A reported an average score of 90, while 76 participants using method B reported an average score of 72. An analyst claimed that method A was associated with a higher average score in this sample.\n\nWhich choice best uses the data to support the analyst’s conclusion?", "a": "Each method was used by 76 participants.", "b": "The survey included two methods.", "c": "Method A’s average score was 90, which was 18 points higher than method B’s average of 72.", "d": "The scores were reported as averages.", "correct": "C"}, {"n": 78, "q": "As part of an urban laboratory, researchers examining public library outreach considered the following problem. Let f(x) = 6x -4 and g(x) = x².\n\nWhat is g(f(-1))?", "a": "2", "b": "32", "c": "100", "d": "101", "correct": "C"}, {"n": 79, "q": "As part of a mountain county, curators examining neighborhood oral histories considered the following problem. Designers studying a mathematical modeling team argue that the new design reduced energy use without reducing output.\n\nWhich finding, if true, would most directly support the claim?", "a": "A report lists the names of all people who participated in the project.", "b": "Meter readings show a 24 percent decline in energy consumption while production logs show unchanged weekly output.", "c": "The project received favorable attention in a regional newspaper.", "d": "The project operated for several years before the study began.", "correct": "B"}, {"n": 80, "q": "In a later review, the report on a ceramic artist’s studio was described as ______ because it was carefully considered.\n\nWhich choice completes the text with the most logical and precise word or phrase?", "a": "impulsive", "b": "minor", "c": "deliberate", "d": "repeated", "correct": "C"}, {"n": 81, "q": "As part of a public workshop, engineers examining museum accessibility design considered the following problem. Text 1\nRegarding a coastal wetland during a three-year review, Text 1 claims that the surviving record accurately represents everyday practice.\n\nText 2\nRegarding the same subject, Text 2 argues that unusual or prestigious examples were more likely to be preserved than ordinary ones.\n\nBased on the texts, how would the author of Text 2 most likely respond to the position in Text 1?", "a": "Text 2 repeats Text 1’s position without adding any qualification.", "b": "Text 2 discusses a wholly unrelated issue and cannot be compared with Text 1.", "c": "Text 2 proves that none of Text 1’s factual observations occurred.", "d": "Text 2 questions whether the surviving evidence is representative of typical practice.", "correct": "D"}, {"n": 82, "q": "During an evaluation of alpine glacier surveys, a measured value decreased from 120 to 107.\n\nWhat was the percent decrease, to the nearest tenth of a percent?", "a": "12.1%", "b": "10.8%", "c": "89.2%", "d": "13%", "correct": "B"}, {"n": 83, "q": "A student has taken these notes:\n• A 2022 pilot examined museum accessibility design.\n• Participation increased by 57% during the pilot.\n• Researchers cautioned that the pilot covered only one community.\nThe student wants to summarize the result while acknowledging a limitation.\n\nWhich choice most effectively uses relevant information from the notes to accomplish this goal?", "a": "Museum accessibility design certainly increases participation by 57% in every community.", "b": "Researchers conducted a pilot in 2022, and participation is important.", "c": "Because the pilot covered one community, its participation data have no value.", "d": "A 2022 pilot of museum accessibility design recorded a 57% increase in participation, though the study’s single-community scope limits how broadly the result can be applied.", "correct": "D"}, {"n": 84, "q": "The archive contains field notebooks, recorded interviews ______ high-resolution maps related to school energy audits.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": ", and", "b": "and,", "c": ", and,", "d": "; and", "correct": "A"}, {"n": 85, "q": "The function f(x) = (x -1)² -8.\n\nWhat is f(4)?", "a": "2", "b": "0", "c": "1", "d": "3", "correct": "C"}, {"n": 86, "q": "A student has taken these notes:\n• A 2017 pilot examined rooftop cooling gardens.\n• Participation increased by 47% during the pilot.\n• Researchers cautioned that the pilot covered only one community.\nThe student wants to summarize the result while acknowledging a limitation.\n\nWhich choice most effectively uses relevant information from the notes to accomplish this goal?", "a": "Rooftop cooling gardens certainly increases participation by 47% in every community.", "b": "Researchers conducted a pilot in 2017, and participation is important.", "c": "A 2017 pilot of rooftop cooling gardens recorded a 47% increase in participation, though the study’s single-community scope limits how broadly the result can be applied.", "d": "Because the pilot covered one community, its participation data have no value.", "correct": "C"}, {"n": 87, "q": "As part of a regional pilot, engineers examining alpine glacier surveys considered the following problem. A linear function f satisfies f(2) = -9 and f(4) = -1.\n\nWhat is the slope of the graph of y = f(x)?", "a": "-4", "b": "8/3", "c": "5", "d": "4", "correct": "D"}, {"n": 88, "q": "In a random sample of 270 records related to wildlife camera networks, 40 met a specified criterion.\n\nBased on the sample, what proportion of records met the criterion?", "a": "23/27", "b": "4/27", "c": "4/23", "d": "1/40", "correct": "B"}, {"n": 89, "q": "As part of an independent review, archivists examining tidal marsh restoration considered the following problem. Early models predicted that tidal marsh restoration would produce little measurable change. ______, observations collected during the pilot showed a clear and sustained effect.\n\nWhich choice completes the text with the most logical transition?", "a": "however", "b": "Therefore", "c": "For example", "d": "Similarly", "correct": "A"}, {"n": 90, "q": "By the time the independent reviewers arrived, the research team ______ all measurements related to storm-surge modeling twice.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "checks", "b": "has checked", "c": "had checked", "d": "will check", "correct": "C"}, {"n": 91, "q": "As part of a public workshop, researchers examining tidal marsh restoration considered the following problem. The equation 5(4)^t = 5120 models a growing quantity.\n\nWhat is the value of t?", "a": "6", "b": "4", "c": "5", "d": "20", "correct": "C"}, {"n": 92, "q": "As part of an urban laboratory, students examining lunar dust experiments considered the following problem. A circle has radius 4.\n\nWhat is its area, in terms of π?", "a": "8π", "b": "16π", "c": "4π", "d": "16π16ππ", "correct": "B"}, {"n": 93, "q": "The archive contains field notebooks, recorded interviews ______ high-resolution maps related to railway heritage preservation.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "and,", "b": ", and,", "c": ", and", "d": "; and", "correct": "C"}, {"n": 94, "q": "Early models predicted that microplastic filtration would produce little measurable change. ______, observations collected during the pilot showed a clear and sustained effect.\n\nWhich choice completes the text with the most logical transition?", "a": "Therefore", "b": "For example", "c": "instead", "d": "Similarly", "correct": "C"}, {"n": 95, "q": "What is the solution (x, y) to the system 3x + 3y = 15 and 3x -3y = 39?", "a": "(-4, 9)", "b": "(9, -4)", "c": "(10, -5)", "d": "(-9, 4)", "correct": "B"}, {"n": 96, "q": "What value of x satisfies 5(x + 4) = 6x +29?", "a": "-8", "b": "9", "c": "-9/11", "d": "-9", "correct": "D"}, {"n": 97, "q": "During a follow-up review, although the first prototype for a marine acoustics study performed best in calm conditions, the team selected a slightly less efficient model that continued operating during heat, rain, and strong wind.\n\nWhich choice most reasonably can be inferred from the text?", "a": "The project had already achieved every one of its long-term goals.", "b": "The team valued dependable performance across conditions more than peak performance in one condition.", "c": "The team believed that additional evidence could never change its decision.", "d": "The passage shows that cost was the only factor considered.", "correct": "B"}, {"n": 98, "q": "The archive contains field notebooks, recorded interviews ______ high-resolution maps related to dance notation archives.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?", "a": "and,", "b": ", and,", "c": "; and", "d": ", and", "correct": "D"}]);</script>
+</body>
+</html>
