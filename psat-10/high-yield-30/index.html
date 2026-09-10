@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PSAT 10 High-Yield 30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#020C57; --navy-2:#0A1668; --navy-3:#111F79; --line:#2C3B8F;
+  --gold:#EDB500; --gold-ink:#1A1040;
+  --paper:#F5F3EA; --muted:#9BA4D6; --muted-2:#6F79B3;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Anton',Impact,sans-serif; font-weight:400; letter-spacing:.01em;}
+.ui{font-family:'Oswald',system-ui,sans-serif; text-transform:uppercase; letter-spacing:.06em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(2,12,87,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:760px; margin:0 auto; padding:.6rem 1.25rem; display:flex; align-items:center; gap:1rem; justify-content:space-between;}
+.brand{display:flex; align-items:center; gap:.85rem; min-width:0;}
+.brand .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.brand .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600; color:var(--paper); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.topbar-right{display:flex; align-items:center; gap:.9rem; flex-shrink:0;}
+#score-readout{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; color:var(--muted); white-space:nowrap;}
+#score-readout b{color:var(--gold);}
+.btn{
+  display:inline-flex; align-items:center; gap:.4rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; text-decoration:none;
+  padding:.6rem 1.1rem; border-radius:6px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink);}
+.btn-ghost{border-color:var(--line); color:var(--paper);}
+
+.page{max-width:760px; margin:0 auto; padding:0 1.25rem 5rem;}
+.hero{text-align:center; padding:3rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(3rem,14vw,5rem); line-height:.95; margin-top:.3rem;}
+.hero h1 .sub{display:block; font-size:.4em; color:var(--gold); margin-top:.15em;}
+.hero .lede{max-width:520px; margin:1.1rem auto 0; color:var(--muted); font-size:1.05rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:2rem 0;}
+.stat{background:var(--navy-2); padding:1.1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.9rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.jumpnav{display:flex; gap:.5rem; overflow-x:auto; padding:.25rem .1rem 1.5rem; -webkit-overflow-scrolling:touch;}
+.jumpnav a{
+  flex-shrink:0; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--muted); background:var(--navy-2); border:1px solid var(--line); border-radius:999px;
+  padding:.45rem .9rem; text-decoration:none;
+}
+.jumpnav a b{color:var(--gold); font-weight:600;}
+
+.section-head{padding-top:2.5rem; margin-bottom:1.25rem; scroll-margin-top:4.5rem;}
+.section-head .n{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.1em; color:var(--gold); text-transform:uppercase; font-weight:600;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.7rem; font-weight:700; text-transform:uppercase; margin-top:.2rem;}
+.section-head .rule{height:3px; width:3rem; background:var(--gold); margin-top:.6rem; border-radius:2px;}
+
+.passage-group{background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.5rem; margin-bottom:1.25rem;}
+.passage{font-style:italic; color:var(--muted); font-size:.95rem; line-height:1.7; padding-bottom:1.25rem; margin-bottom:1.25rem; border-bottom:1px solid var(--line); white-space:pre-line;}
+.passage .lbl{display:block; font-style:normal; font-family:'Oswald',sans-serif; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:.5rem;}
+.passage-group .qcard{background:transparent; border:none; padding:0; margin:0;}
+
+.qcard{background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.5rem; margin-bottom:1.25rem; scroll-margin-top:4.5rem;}
+.qmeta{display:flex; gap:.6rem; align-items:baseline; font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-bottom:.7rem;}
+.qmeta .num{color:var(--gold); font-weight:600;}
+.qtext{font-size:1.06rem; font-weight:700; color:var(--paper); margin-bottom:1.1rem; white-space:pre-line;}
+
+.opts{display:flex; flex-direction:column; gap:.55rem;}
+.opt{
+  display:flex; gap:.75rem; align-items:flex-start; width:100%; text-align:left;
+  background:var(--navy); border:1.5px solid var(--line); border-radius:8px; padding:.75rem .95rem;
+  color:var(--paper); font-family:'Karla',sans-serif; font-size:.96rem; cursor:pointer;
+}
+.opt:hover{border-color:var(--gold);}
+.opt .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold); flex-shrink:0;}
+.opt .mark{margin-left:auto; font-weight:700; flex-shrink:0; display:none;}
+.qcard.answered .opt{cursor:default;}
+.qcard.answered .opt:hover{border-color:var(--line);}
+.qcard.answered .opt.pick-correct{border-color:var(--correct); background:var(--correct-soft);}
+.qcard.answered .opt.pick-correct .mark{display:inline; color:var(--correct);}
+.qcard.answered .opt.pick-wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.qcard.answered .opt.pick-wrong .mark{display:inline; color:var(--incorrect);}
+
+.result{margin-top:1.1rem; padding-top:1.1rem; border-top:1px dashed var(--line);}
+.result .verdict{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; margin-bottom:.5rem;}
+.result .verdict.good{color:var(--correct);} .result .verdict.bad{color:var(--incorrect);}
+.result .exp{color:var(--muted); font-size:.92rem; line-height:1.65;}
+.result .exp b{color:var(--paper);}
+
+.foot{max-width:760px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.8rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.78rem; line-height:1.7; margin-top:.5rem;}
+
+@media (max-width:560px){
+  .brand .title{display:none;}
+  .brand .logo{height:36px;}
+  #score-readout{display:none;}
+  .topbar-inner{padding:.55rem 1rem;}
+  .btn{padding:.55rem .85rem; font-size:.72rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img class="logo" src="assets/passforge-press-logo-white.png" alt="PassForge Press">
+      <span class="title">PSAT 10 High-Yield 30</span>
+    </div>
+    <div class="topbar-right">
+      <span id="score-readout"></span>
+      <a class="btn btn-gold" href="downloads/PSAT10_High-Yield_30.pdf" target="_blank" rel="noopener">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">Exclusive bonus · PSAT 10 Study Guide</div>
+    <h1 class="disp">PSAT 10<span class="sub">High-Yield 30</span></h1>
+    <p class="lede">30 high-yield questions, weighted to approximate the real digital
+    PSAT 10 section split (Reading &amp; Writing, Math). Pick an answer on any question
+    to see whether it's right and read the full explanation.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="n">30</div><div class="l">Questions</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">PSAT 10 Sections</div></div>
+    <div class="stat"><div class="n">100%</div><div class="l">With Explanations</div></div>
+  </div>
+
+  <div class="jumpnav"><a href="#reading-writing">Reading and Writing <b>17</b></a><a href="#math">Math <b>13</b></a></div>
+
+  
+<div class="section-head" id="reading-writing">
+  <div class="n">Section 1 of 2 · 17 questions</div>
+  <h2>Reading and Writing</h2>
+  <div class="rule"></div>
+</div><div class="passage-group"><div class="passage"><span class="lbl">Passage</span>Marine biologists studying deep-sea vent communities have long assumed that such ecosystems are largely self-contained, but recent tracking data reveal a surprising ______: larvae from vent-dwelling species have been found drifting hundreds of miles away, settling in entirely different vent fields.</div>
+<div class="qcard" id="q1">
+  <div class="qmeta"><span class="num">Q1</span><span>Craft and Structure — Words in Context</span></div>
+  <div class="qtext">Which choice completes the text with the most logical and precise word or phrase?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>certainty</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>isolation</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>connectivity</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>decline</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> "Connectivity" matches the idea that larvae travel between distant vent fields, linking populations once assumed to be separate. "Certainty" and "decline" don't relate to the movement described. "Isolation" is the opposite of what the data show — vent communities turn out NOT to be self-contained.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>Despite the committee's initial ______ about funding an untested teaching method, pilot classroom results were compelling enough that the program was expanded district-wide within a year.</div>
+<div class="qcard" id="q2">
+  <div class="qmeta"><span class="num">Q2</span><span>Craft and Structure — Words in Context</span></div>
+  <div class="qtext">Which choice completes the text with the most logical and precise word or phrase?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>reluctance</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>enthusiasm</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>indifference</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>familiarity</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> "Reluctance" fits "despite... initial [X]" being overcome by compelling results — the committee was hesitant at first. "Enthusiasm" wouldn't need to be overcome by good results. "Indifference" and "familiarity" don't create the contrast the sentence needs, since "despite" signals a shift from doubt to acceptance.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>A city planner proposed closing Elm Street to car traffic on weekends. Local shop owners worried that reduced car access would hurt sales. The planner responded by citing data from three other cities where similar closures had increased foot traffic and, within a year, raised nearby retail revenue by an average of 18%.</div>
+<div class="qcard" id="q3">
+  <div class="qmeta"><span class="num">Q3</span><span>Craft and Structure — Text Structure and Purpose</span></div>
+  <div class="qtext">Which choice best describes the function of the last sentence in the passage?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>It undermines the planner's proposal by revealing a flaw in the data.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>It shifts the discussion to an unrelated aspect of city planning.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>It summarizes the shop owners' objection in more detail.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>It offers evidence intended to address the shop owners' concern.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> The last sentence gives concrete data — revenue increases in other cities — directly responding to the shop owners' worry about lost sales; that's evidence addressing their concern. It doesn't undermine the proposal (choice A; no flaw is mentioned), doesn't shift topics (choice B), and doesn't merely restate the objection (choice C) — it answers it.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>The essay opens with a vivid description of a single abandoned factory, then gradually widens its focus to the economic decline of the entire town, and finally ends by connecting that decline to national manufacturing trends.</div>
+<div class="qcard" id="q4">
+  <div class="qmeta"><span class="num">Q4</span><span>Craft and Structure — Text Structure and Purpose</span></div>
+  <div class="qtext">Which choice best describes the overall structure of the essay?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>It repeats the same claim in three different forms for emphasis.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>It moves from a specific, local image to a broader national context.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>It presents two opposing arguments and evaluates each in turn.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>It moves from general national trends to a specific local example.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The essay explicitly moves from one factory (specific/local) to the town (broader) to national trends (broadest) — specific to general. Choice D reverses that order. Choices A and C describe structures (repetition, argument/counterargument) that aren't present in the description given.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>A 2024 study tracked 400 commuters who switched from driving to cycling for their daily commute. Researchers measured self-reported stress levels before and after the switch. On average, participants reported a 22% drop in stress within two months, though the effect was smaller for commuters whose routes included heavy traffic intersections.</div>
+<div class="qcard" id="q5">
+  <div class="qmeta"><span class="num">Q5</span><span>Information and Ideas — Central Ideas and Details</span></div>
+  <div class="qtext">Which choice best states the main finding of the study?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Cycling commutes are always less stressful than driving commutes, regardless of route.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Switching to cycling was associated with reduced stress, though busy intersections lessened the effect.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Commuters who drive report significantly more stress than commuters who walk.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>The study found no meaningful relationship between commute method and stress.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Choice B captures both parts of the finding: an overall stress reduction and the qualification that busy intersections lessened the effect. Choice A overstates the finding by ignoring that qualifier ("always," "regardless of route"). Choice C introduces walking, which the passage never mentions. Choice D contradicts the reported 22% drop.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>Coral reefs cover less than 1% of the ocean floor, yet they support roughly a quarter of all known marine species. This concentration of biodiversity makes reefs a priority for conservation, even though their small physical footprint might suggest otherwise.</div>
+<div class="qcard" id="q6">
+  <div class="qmeta"><span class="num">Q6</span><span>Information and Ideas — Central Ideas and Details</span></div>
+  <div class="qtext">According to the passage, why are coral reefs considered a conservation priority?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Because they cover a very large portion of the ocean floor.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Because they are the only ocean habitat that supports marine life.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Because they support a disproportionately large share of marine species relative to their size.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Because their small size makes them easy to protect.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The passage's central contrast is between small area (under 1%) and large species share (a quarter) — that disproportion is why reefs matter. Choice A is factually wrong; the passage says reefs cover very little area. Choice B overstates the claim with "only." Choice D isn't stated or implied anywhere in the passage.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>A researcher claims that home tutoring in mathematics improves standardized test scores more than group tutoring does. Two groups of 50 students each received 10 weeks of tutoring; the home-tutoring group's average score rose from 68 to 79, while the group-tutoring group's average rose from 67 to 74.</div>
+<div class="qcard" id="q7">
+  <div class="qmeta"><span class="num">Q7</span><span>Information and Ideas — Command of Evidence</span></div>
+  <div class="qtext">Which choice best supports the researcher's claim?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>The home-tutoring group's average gain (11 points) was larger than the group-tutoring group's average gain (7 points).</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Both groups started with nearly identical average scores.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Each group contained exactly 50 students.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>The tutoring lasted 10 weeks for both groups.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> The claim is a comparison of effectiveness, so the relevant evidence is the size of each group's improvement: home tutoring gained more points (11 vs. 7). Choices B, C, and D describe conditions that were equal between the two groups — useful for a fair comparison, but they don't by themselves show that one method worked better.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>A city council member argues that a new bike-lane network reduced traffic congestion downtown. Average commute times downtown were 34 minutes before the bike lanes were installed and 31 minutes one year after installation. During the same year, the city also synchronized several downtown traffic lights.</div>
+<div class="qcard" id="q8">
+  <div class="qmeta"><span class="num">Q8</span><span>Information and Ideas — Command of Evidence</span></div>
+  <div class="qtext">Which choice best describes a weakness in using the commute-time data to support the council member's claim?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The commute times were not measured in the same city.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>The sample size of commuters was too small to be meaningful.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Commute times actually increased after the bike lanes were installed.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>A second change (traffic-light synchronization) occurred during the same period, so the drop in commute times can't be attributed to the bike lanes alone.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Because the traffic-light synchronization happened at the same time as the bike-lane installation, the 3-minute drop could be caused by either change, or both — the data alone can't isolate the bike lanes' effect. Choices A and C are factually wrong according to the passage (commute times were measured downtown, and they decreased, not increased). Choice B isn't addressed by the passage at all.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>The museum's new wing features a recreated dig site ______ visitors can search for artifacts themselves.</div>
+<div class="qcard" id="q9">
+  <div class="qmeta"><span class="num">Q9</span><span>Standard English Conventions</span></div>
+  <div class="qtext">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>were</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>we're</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>where</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>where,</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> "Where" correctly introduces a clause describing the dig site (a place). "Were" (choice A) and "we're" (choice B) are homophones that don't fit grammatically — the sentence needs a relative pronoun referring to a location, not a verb or contraction. Choice D adds an unnecessary comma that incorrectly separates the clause from the site it describes.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>The collection of rare manuscripts, donated by three separate alumni over the past decade, ______ housed in a climate-controlled room on the library's top floor.</div>
+<div class="qcard" id="q10">
+  <div class="qmeta"><span class="num">Q10</span><span>Standard English Conventions</span></div>
+  <div class="qtext">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>are</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>is</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>were</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>have been</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The subject of the sentence is "the collection" (singular), not "manuscripts" or "alumni," which sit inside a modifying phrase. A singular subject takes "is." Choices A, C, and D all agree with a plural noun instead of the true singular subject.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>By the time the results were announced, the two ______ methods had already been adopted by several other labs studying the same phenomenon.</div>
+<div class="qcard" id="q11">
+  <div class="qmeta"><span class="num">Q11</span><span>Standard English Conventions</span></div>
+  <div class="qtext">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>researcher's</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>researchers's</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>researchers</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>researchers'</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> "Researchers'" is the correct plural possessive — since there are two researchers, the apostrophe goes after the "s." Choice A is singular possessive, but the sentence describes two researchers. Choice B ("researchers's") isn't a standard English form. Choice C has no apostrophe at all, leaving "methods" without an owner.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>Originally designed for military communication, engineers eventually adapted the technology for civilian use in hospitals and schools.</div>
+<div class="qcard" id="q12">
+  <div class="qmeta"><span class="num">Q12</span><span>Standard English Conventions</span></div>
+  <div class="qtext">Which choice best revises the sentence to correct a misplaced modifier?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Originally designed for military communication, the technology was eventually adapted by engineers for civilian use in hospitals and schools.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Originally designed for military communication, civilian use in hospitals and schools eventually came from engineers adapting the technology.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Engineers, originally designed for military communication, eventually adapted the technology for civilian use in hospitals and schools.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>No change is needed.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> The opening phrase "Originally designed for military communication" describes the technology, not the engineers, so "the technology" must immediately follow the comma — which only choice A does. The original sentence (and choice C) incorrectly implies the engineers were "originally designed for military communication." Choice B still doesn't place "the technology" right after the modifier.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>The novel's final chapter, which many critics consider the strongest part of the book ______ resolves every major plot thread introduced in the first half.</div>
+<div class="qcard" id="q13">
+  <div class="qmeta"><span class="num">Q13</span><span>Standard English Conventions</span></div>
+  <div class="qtext">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>;</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>,</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>(no punctuation)</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The clause "which many critics consider the strongest part of the book" is nonessential information inserted into the main sentence ("The novel's final chapter... resolves every major plot thread") — nonessential clauses need a comma on both sides. Since the clause already opens with a comma, it must close with one too (choice B). Ending it with a semicolon, period, or no punctuation instead breaks the sentence's grammar.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>The new library wing was completed six months ahead of schedule. ______, the project came in nearly 12% under its original budget.</div>
+<div class="qcard" id="q14">
+  <div class="qmeta"><span class="num">Q14</span><span>Expression of Ideas — Transitions</span></div>
+  <div class="qtext">Which choice completes the text with the most logical transition?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>However</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>For example</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Additionally</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>In contrast</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Both sentences describe positive outcomes of the same project — early completion and under-budget spending — so "Additionally" (choice C) correctly signals that a second positive fact is being added. "However" (A) and "In contrast" (D) wrongly signal a contradiction where none exists. "For example" (B) wrongly implies the budget fact is an instance of the schedule fact, when they're two separate facts.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>Many species of migratory birds rely on magnetic fields to navigate. Increasing electromagnetic interference from urban areas, ______, may be disrupting these natural navigation systems.</div>
+<div class="qcard" id="q15">
+  <div class="qmeta"><span class="num">Q15</span><span>Expression of Ideas — Transitions</span></div>
+  <div class="qtext">Which choice completes the text with the most logical transition?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>researchers suspect</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>for instance</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>in other words</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>therefore</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> "Researchers suspect" (choice A) works as a parenthetical attribution — the sentence reads naturally as "interference..., researchers suspect, may be disrupting...," signaling this is a hypothesis rather than a proven fact. "For instance" (B) and "in other words" (C) don't fit that parenthetical slot. "Therefore" (D) would need to signal a logical conclusion, but nothing earlier in the text establishes a cause requiring "therefore."</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>A student has researched two facts:
+• A local nonprofit distributed 4,000 winter coats to families in need last year.
+• The nonprofit relies entirely on volunteer labor and donated materials, with no paid staff.
+The student wants to emphasize how the nonprofit achieved a large impact with minimal resources.</div>
+<div class="qcard" id="q16">
+  <div class="qmeta"><span class="num">Q16</span><span>Expression of Ideas — Rhetorical Synthesis</span></div>
+  <div class="qtext">Which choice most effectively uses relevant information from the notes to accomplish this goal?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The nonprofit distributed winter coats last year, and it relies on volunteers.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>The nonprofit distributed 4,000 coats last year, and it has no paid staff.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Last year was a successful year for the nonprofit, which gave away thousands of coats.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Despite relying entirely on volunteer labor and donated materials, the nonprofit distributed 4,000 coats to families in need last year.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Choice D directly connects the minimal resources (all-volunteer, no paid staff) to the large impact (4,000 coats) with "despite," which is exactly the emphasis the student wants. Choice B lists both facts but without framing them as impact-despite-limited-resources. Choice A omits the specific coat count. Choice C is vague ("thousands") and drops the volunteer-only detail entirely.</div>
+  </div>
+</div></div>
+<div class="passage-group"><div class="passage"><span class="lbl">Passage</span>A student has researched two facts:
+• A community garden project converted 12 vacant lots into growing spaces over three years.
+• A survey found that residents near the converted lots reported a 30% increase in sense of neighborhood safety.
+The student wants to present the connection between the garden project and residents' sense of safety.</div>
+<div class="qcard" id="q17">
+  <div class="qmeta"><span class="num">Q17</span><span>Expression of Ideas — Rhetorical Synthesis</span></div>
+  <div class="qtext">Which choice most effectively uses relevant information from the notes to accomplish this goal?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Community gardens are a popular way to make use of vacant lots in cities.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>After the community garden project converted 12 vacant lots into growing spaces, nearby residents reported a 30% increase in their sense of neighborhood safety.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>The community garden project converted 12 vacant lots into growing spaces over three years.</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>A survey found that residents reported a 30% increase in their sense of neighborhood safety.</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Choice B links both facts together — the conversion project, then the resulting survey finding — in a single connected statement, exactly the connection the student wants to present. Choices C and D each state only one fact alone. Choice A is a general claim not drawn from the specific notes at all.</div>
+  </div>
+</div></div>
+<div class="section-head" id="math">
+  <div class="n">Section 2 of 2 · 13 questions</div>
+  <h2>Math</h2>
+  <div class="rule"></div>
+</div>
+<div class="qcard" id="q18">
+  <div class="qmeta"><span class="num">Q18</span><span>Algebra</span></div>
+  <div class="qtext">If 5x − 3 = 2x + 15, what is the value of x?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>6</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>4</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>8</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>12</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> 5x − 3 = 2x + 15 → 5x − 2x = 15 + 3 → 3x = 18 → x = 6. Choice B would result from combining the constants incorrectly; choices C and D don't satisfy the original equation when substituted back in.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q19">
+  <div class="qmeta"><span class="num">Q19</span><span>Algebra</span></div>
+  <div class="qtext">The system of equations 2x + y = 11 and x − y = 1 has solution (x, y). What is the value of x + y?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>5</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>9</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>11</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>7</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Adding the two equations directly eliminates y: (2x + y) + (x − y) = 11 + 1, so 3x = 12 and x = 4. From x − y = 1, y = 3. So x + y = 4 + 3 = 7. Choice A would come from an arithmetic slip solving for y; choices B and C don't satisfy both original equations.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q20">
+  <div class="qmeta"><span class="num">Q20</span><span>Algebra</span></div>
+  <div class="qtext">A parking garage charges $4 for the first hour and $2.50 for each additional hour. If Maya has at most $16.50 to spend, what is the maximum number of whole hours she can park?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>4</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>5</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>6</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>7</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The cost for h hours (h ≥ 1) is 4 + 2.5(h − 1). Setting 4 + 2.5(h − 1) ≤ 16.50 gives 2.5(h − 1) ≤ 12.5, so h − 1 ≤ 5 and h ≤ 6. At h = 6 the cost is exactly $16.50, within budget; at h = 7 (choice D) the cost would be $19.00, over budget. Choices A and B don't use the full amount available.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q21">
+  <div class="qmeta"><span class="num">Q21</span><span>Advanced Math</span></div>
+  <div class="qtext">What are the solutions to x² − 5x − 14 = 0?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>x = 2 and x = 7</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>x = −2 and x = 7</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>x = −7 and x = 2</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>x = −2 and x = −7</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> x² − 5x − 14 factors as (x − 7)(x + 2), since −7 × 2 = −14 and −7 + 2 = −5. Setting each factor to zero gives x = 7 and x = −2. The other choices come from sign errors made while factoring.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q22">
+  <div class="qmeta"><span class="num">Q22</span><span>Advanced Math</span></div>
+  <div class="qtext">For x &gt; 0, (x^(4/3))² = x^k. What is the value of k?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>8/3</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>2/3</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>6</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>16/9</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Raising a power to a power multiplies the exponents: (4/3) × 2 = 8/3. Choice B results from dividing instead of multiplying the exponents; choices C and D come from other common exponent-rule errors.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q23">
+  <div class="qmeta"><span class="num">Q23</span><span>Advanced Math</span></div>
+  <div class="qtext">The function f(x) = 2(x − 3)² + 1. What is f(5)?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>5</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>7</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>11</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>9</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Substituting x = 5: 2(5 − 3)² + 1 = 2(2)² + 1 = 2(4) + 1 = 9. Choice B would result from squaring before subtracting inside the parentheses incorrectly; choices A and C come from other order-of-operations slips.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q24">
+  <div class="qmeta"><span class="num">Q24</span><span>Advanced Math</span></div>
+  <div class="qtext">For P(x) = 3x² − 5x + 4, what is the remainder when P(x) is divided by (x − 2)?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>2</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>4</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>6</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>10</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> By the Remainder Theorem, the remainder when P(x) is divided by (x − 2) equals P(2): 3(2)² − 5(2) + 4 = 12 − 10 + 4 = 6. The other choices come from arithmetic slips evaluating P(2).</div>
+  </div>
+</div>
+
+<div class="qcard" id="q25">
+  <div class="qmeta"><span class="num">Q25</span><span>Problem-Solving and Data Analysis</span></div>
+  <div class="qtext">A backpack's price was reduced from $80 to $68. By what percent was the price reduced?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>12%</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>15%</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>17%</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>20%</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The dollar decrease is $80 − $68 = $12. As a percent of the original price: 12/80 = 0.15 = 15%. Choice A mistakes the dollar amount for the percent; choices C and D come from dividing by the wrong base.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q26">
+  <div class="qmeta"><span class="num">Q26</span><span>Problem-Solving and Data Analysis</span></div>
+  <div class="qtext">In a random sample of 180 students, 120 reported owning a bicycle. Based on this sample, how many students out of a school of 900 would be expected to own a bicycle?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>600</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>450</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>720</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>540</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> The sample proportion is 120/180 = 2/3. Applying that proportion to 900 students: 900 × 2/3 = 600. Choice D would come from using 3/5 instead of 2/3; choices B and C come from other proportion errors.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q27">
+  <div class="qmeta"><span class="num">Q27</span><span>Problem-Solving and Data Analysis</span></div>
+  <div class="qtext">Five students scored 72, 85, 90, 68, and 80 on a quiz. What is the median score?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>78</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>79</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>81</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>80</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Sorting the scores gives 68, 72, 80, 85, 90. With five values, the median is the middle (third) value: 80. Choices A, B, and C are close to the mean (79) or other miscalculations, not the median.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q28">
+  <div class="qmeta"><span class="num">Q28</span><span>Geometry and Trigonometry</span></div>
+  <div class="qtext">A right triangle has legs of length 9 and 12. What is its area?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>27</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>108</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>54</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>21</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The area of a right triangle is half the product of its two legs: (1/2)(9)(12) = 54. Choice B omits the factor of 1/2; choices A and D come from other arithmetic errors.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q29">
+  <div class="qmeta"><span class="num">Q29</span><span>Geometry and Trigonometry</span></div>
+  <div class="qtext">A circle has a diameter of 14. What is its area, in terms of π?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>14π</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>49π</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>196π</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>28π</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The radius is half the diameter: 14/2 = 7. Area = πr² = π(7)² = 49π. Choice A confuses diameter with area; choice C squares the diameter instead of the radius.</div>
+  </div>
+</div>
+
+<div class="qcard" id="q30">
+  <div class="qmeta"><span class="num">Q30</span><span>Geometry and Trigonometry</span></div>
+  <div class="qtext">In right triangle ABC, angle C is the right angle, the length of side BC (opposite angle A) is 6, and the length of the hypotenuse AB is 10. What is sin(A)?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>3/5</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>4/5</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>5/3</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>5/4</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> sin(A) is the ratio of the side opposite angle A to the hypotenuse: 6/10 = 3/5. Choice B (4/5) would be cos(A), using the other leg (8, found via the Pythagorean theorem) over the hypotenuse. Choices C and D invert the correct ratios.</div>
+  </div>
+</div>
+
+  <div class="foot">
+    <div class="copyright">© 2026 PassForge Press. All rights reserved.</div>
+    <div class="legal">Exclusive bonus for readers of the PSAT 10 Study Guide. Independently produced —
+    not affiliated with, endorsed by, sponsored by, or approved by the College Board or the PSAT 10 program.</div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.qcard').forEach(function(card){
+  card.querySelectorAll('.opt').forEach(function(opt){
+    opt.addEventListener('click', function(){
+      if(card.classList.contains('answered')) return;
+      card.classList.add('answered');
+      var chosenCorrect = opt.dataset.correct === '1';
+      opt.classList.add(chosenCorrect ? 'pick-correct' : 'pick-wrong');
+      if(!chosenCorrect){
+        var right = card.querySelector('.opt[data-correct="1"]');
+        if(right) right.classList.add('pick-correct');
+      }
+      var result = card.querySelector('.result');
+      var verdict = result.querySelector('.verdict');
+      verdict.textContent = chosenCorrect ? 'Correct' : 'Not quite';
+      verdict.className = 'verdict ' + (chosenCorrect ? 'good' : 'bad');
+      result.hidden = false;
+      answeredCount++;
+      if(chosenCorrect) correctCount++;
+      updateScore();
+    });
+  });
+});
+var answeredCount = 0, correctCount = 0;
+var TOTAL = document.querySelectorAll('.qcard').length;
+function updateScore(){
+  document.getElementById('score-readout').innerHTML =
+    '<b>' + answeredCount + '</b>/' + TOTAL + ' answered' +
+    (answeredCount ? '  ·  <b>' + correctCount + '</b> correct' : '');
+}
+updateScore();
+</script>
+</body>
+</html>
