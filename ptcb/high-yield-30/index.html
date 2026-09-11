@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PTCB High-Yield 30+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#0A1444; --navy-2:#111C55; --navy-3:#192767; --line:#2A3B77;
+  --gold:#F4D348; --gold-ink:#151B45;
+  --paper:#F3F1E8; --muted:#9AA3CC; --muted-2:#6E77A8;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px; overflow-x:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Anton',Impact,sans-serif; font-weight:400; letter-spacing:.01em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(10,20,68,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:760px; margin:0 auto; padding:.6rem 1.25rem; display:flex; align-items:center; gap:1rem; justify-content:space-between;}
+.brand{display:flex; align-items:center; gap:.85rem; min-width:0;}
+.brand .logo{height:48px; width:auto; flex-shrink:0; display:block;}
+.brand .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600; color:var(--paper); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.topbar-right{display:flex; align-items:center; gap:.9rem; flex-shrink:0;}
+#score-readout{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; color:var(--muted); white-space:nowrap;}
+#score-readout b{color:var(--gold);}
+.btn{
+  display:inline-flex; align-items:center; gap:.4rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; text-decoration:none;
+  padding:.6rem 1.1rem; border-radius:6px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink);}
+
+.page{max-width:760px; margin:0 auto; padding:0 1.25rem 5rem;}
+.hero{text-align:center; padding:3rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(2.6rem,12vw,4.4rem); line-height:.98; margin-top:.3rem;}
+.hero h1 .sub{display:block; font-size:.38em; color:var(--gold); margin-top:.2em;}
+.hero .lede{max-width:520px; margin:1.1rem auto 0; color:var(--muted); font-size:1.05rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:2rem 0;}
+.stat{background:var(--navy-2); padding:1.1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.9rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.jumpnav{display:flex; gap:.5rem; overflow-x:auto; padding:.25rem .1rem 1.5rem; -webkit-overflow-scrolling:touch;}
+.jumpnav a{
+  flex-shrink:0; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--muted); background:var(--navy-2); border:1px solid var(--line); border-radius:999px;
+  padding:.45rem .9rem; text-decoration:none;
+}
+.jumpnav a b{color:var(--gold); font-weight:600;}
+
+.section-head{padding-top:2.5rem; margin-bottom:1.25rem; scroll-margin-top:4.5rem;}
+.section-head .n{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.1em; color:var(--gold); text-transform:uppercase; font-weight:600;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.5rem; font-weight:700; text-transform:uppercase; margin-top:.2rem;}
+.section-head .rule{height:3px; width:3rem; background:var(--gold); margin-top:.6rem; border-radius:2px;}
+
+.qcard{background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.5rem; margin-bottom:1.25rem; scroll-margin-top:4.5rem;}
+.qmeta{display:flex; gap:.6rem; align-items:baseline; font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-bottom:.7rem;}
+.qmeta .num{color:var(--gold); font-weight:600;}
+.qtext{font-size:1.06rem; font-weight:700; color:var(--paper); margin-bottom:1.1rem; white-space:pre-line;}
+
+.opts{display:flex; flex-direction:column; gap:.55rem;}
+.opt{
+  display:flex; gap:.75rem; align-items:flex-start; width:100%; text-align:left;
+  background:var(--navy); border:1.5px solid var(--line); border-radius:8px; padding:.75rem .95rem;
+  color:var(--paper); font-family:'Karla',sans-serif; font-size:.96rem; cursor:pointer;
+}
+.opt:hover{border-color:var(--gold);}
+.opt .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold); flex-shrink:0;}
+.opt .mark{margin-left:auto; font-weight:700; flex-shrink:0; display:none;}
+.qcard.answered .opt{cursor:default;}
+.qcard.answered .opt:hover{border-color:var(--line);}
+.qcard.answered .opt.pick-correct{border-color:var(--correct); background:var(--correct-soft);}
+.qcard.answered .opt.pick-correct .mark{display:inline; color:var(--correct);}
+.qcard.answered .opt.pick-wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.qcard.answered .opt.pick-wrong .mark{display:inline; color:var(--incorrect);}
+
+.result{margin-top:1.1rem; padding-top:1.1rem; border-top:1px dashed var(--line);}
+.result .verdict{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; margin-bottom:.5rem;}
+.result .verdict.good{color:var(--correct);} .result .verdict.bad{color:var(--incorrect);}
+.result .exp{color:var(--muted); font-size:.92rem; line-height:1.65;}
+.result .exp b{color:var(--paper);}
+
+.foot{max-width:760px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.8rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.78rem; line-height:1.7; margin-top:.5rem;}
+
+@media (max-width:560px){
+  .brand .title{display:none;}
+  .brand .logo{height:38px;}
+  #score-readout{display:none;}
+  .topbar-inner{padding:.55rem 1rem;}
+  .btn{padding:.55rem .85rem; font-size:.72rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img class="logo" src="../assets/med-prep-logo.png" alt="MED PREP">
+      <span class="title">PTCB High-Yield 30+</span>
+    </div>
+    <div class="topbar-right">
+      <span id="score-readout"></span>
+      <a class="btn btn-gold" href="https://drive.google.com/uc?export=download&id=1Cl7JbhLCY5LPOQ1bNDFA-ddwBmrBCOBt" target="_blank" rel="noopener">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">Exclusive bonus · PTCB Study Guide</div>
+    <h1 class="disp">PTCB<span class="sub">High-Yield 30+</span></h1>
+    <p class="lede">30 scenario-based questions, distributed to mirror the real PTCE blueprint weights.
+    Pick an answer on any question to see whether it's right and read the full explanation
+    — plus the exam trap it's built to catch.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="n">30</div><div class="l">Questions</div></div>
+    <div class="stat"><div class="n">4</div><div class="l">PTCE Domains</div></div>
+    <div class="stat"><div class="n">100%</div><div class="l">With Explanations</div></div>
+  </div>
+
+  <div class="jumpnav"><a href="#medications">Medications <b>12</b></a><a href="#order-entry">Order <b>8</b></a><a href="#compounding">Sterile <b>6</b></a><a href="#inventory-qa">Inventory, <b>4</b></a></div>
+
+  
+<div class="section-head" id="medications">
+  <div class="n">40% of the PTCE blueprint · 12 questions</div>
+  <h2>Medications &amp; Federal Requirements</h2>
+  <div class="rule"></div>
+</div>
+<div class="qcard" id="q1">
+  <div class="qmeta"><span class="num">Q1</span></div>
+  <div class="qtext">A pharmacy technician is helping place an order for oxycodone tablets (Schedule II) to restock pharmacy inventory. Which method is required to complete this order without using paper forms?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>A regular purchase order faxed to the wholesaler</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>A properly completed DEA Form 222, or an approved electronic equivalent through the Controlled Substance Ordering System (CSOS)</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>A verbal order confirmed later by the pharmacist</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>An email request that references the NDC number</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because schedule II drugs must be ordered using a DEA Form 222 (or the CSOS electronic equivalent). A technician may prepare the order, but it must be executed under the authority of a registered pharmacist. A is incorrect because a standard purchase order is used for non-controlled inventory and has no legal standing for a Schedule II order. C is incorrect because verbal orders are not permitted for routine Schedule II stock ordering; the oral-order exception applies only to bona fide emergency dispensing to a patient, not wholesale purchasing. D is incorrect because an email has no legal basis and does not meet DEA documentation or security requirements for CII procurement. Exam trap: confusing the routine stock-ordering rule for Schedule II drugs with the emergency oral-prescription exception, which applies only to dispensing for a specific patient in an emergency.</div>
+  </div>
+</div>
+<div class="qcard" id="q2">
+  <div class="qmeta"><span class="num">Q2</span></div>
+  <div class="qtext">A prescriber wants to send an electronic prescription for alprazolam (Schedule IV) directly to the pharmacy. For this e-prescription to be valid under federal EPCS (Electronic Prescribing of Controlled Substances) requirements, what must be true?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The prescriber only needs a valid state medical license number</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>The prescribing software must be certified for EPCS, and the prescriber must complete identity proofing with two-factor authentication</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>The pharmacy must telephone the prescriber to confirm every controlled substance e-prescription before it can be considered valid</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>E-prescribing of any controlled substance is prohibited nationwide</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because EPCS requires the prescriber to be identity-proofed and to use software certified for controlled substance prescribing, with two-factor authentication applied at the time of signing. A is incorrect because a license number alone does not satisfy the identity-proofing and software certification requirements of EPCS. C is incorrect because a valid EPCS transmission does not require a routine confirmation call; that would defeat the purpose of a certified electronic workflow. D is incorrect because EPCS is legal and, in many states, mandated for controlled substance prescriptions. Exam trap: assuming any electronic prescription for a controlled substance is automatically non-compliant, when properly certified EPCS is fully legal.</div>
+  </div>
+</div>
+<div class="qcard" id="q3">
+  <div class="qmeta"><span class="num">Q3</span></div>
+  <div class="qtext">A customer's adult son calls the pharmacy asking for details about his mother's new prescription, including the drug name, dose, and refill history. He is not listed on the patient's account as an authorized contact. What is the best action?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Provide the information because he is an immediate family member</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Ask the caller to state his mother's date of birth to confirm identity, then release the information</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Decline to release protected health information without proper patient authorization or verified permission, and offer to have the pharmacist follow up with the patient</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Give only the drug name but withhold the dose</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The correct answer is C because under HIPAA, being a relative does not by itself authorize disclosure of PHI. Without documented patient authorization or another permitted basis for disclosure, the pharmacy must decline and can offer to contact the patient directly. A is incorrect because family relationship alone does not establish HIPAA authorization to receive PHI. B is incorrect because knowing the patient's date of birth does not prove the caller has permission to receive protected health information. D is incorrect because even partial details, such as the drug name, are still PHI and require proper authorization before disclosure. Exam trap: assuming that releasing only "part" of the information (like just the drug name) is a safe compromise.</div>
+  </div>
+</div>
+<div class="qcard" id="q4">
+  <div class="qmeta"><span class="num">Q4</span></div>
+  <div class="qtext">A new prescription is entered for hydrALAZINE 25 mg, but the technician pulls a stock bottle labeled HYDROXYzine 25 mg from a nearby storage bin. What practice would most likely have prevented this look-alike/sound-alike (LASA) near-miss?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Storing all antihypertensive and antihistamine drugs together, alphabetically, for easy access</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Using tall-man lettering and physically separating LASA drug pairs on the shelf</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Relying on the patient to recognize the tablet by its color</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Dispensing whichever bottle is in stock and correcting the record afterward if needed</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because tall-man lettering (e.g., hydrALAZINE vs. hydroxyZINE) combined with physical separation of look-alike/sound-alike drugs on the shelf is a recognized best practice to reduce selection errors. A is incorrect because grouping drugs strictly alphabetically without differentiation increases the risk that LASA pairs sit right next to each other. C is incorrect because patients cannot reliably identify medications by tablet color and should never be relied upon as a safety check. D is incorrect because dispensing first and correcting later is unsafe and does not prevent the error from reaching the patient. Exam trap: assuming alphabetical shelving is itself a safeguard, when it can actually increase LASA mix-up risk by placing similar names side by side.</div>
+  </div>
+</div>
+<div class="qcard" id="q5">
+  <div class="qmeta"><span class="num">Q5</span></div>
+  <div class="qtext">A prescription for isotretinoin is presented for a patient of childbearing potential. Before the prescription can be dispensed, what must the pharmacy confirm through the drug's REMS (Risk Evaluation and Mitigation Strategy) program?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>That the patient has a valid driver's license</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>That active REMS enrollment/authorization requirements, including required pregnancy testing documentation, have been met as specified by the program</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>That the prescriber has an active DEA registration number</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Nothing beyond the standard prescription check is required</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because isotretinoin carries a strict REMS program (iPLEDGE) due to its teratogenic risk. Dispensing requires confirmation that program requirements, such as documented pregnancy testing and enrollment status, have been satisfied. A is incorrect because a driver's license is unrelated to REMS enrollment requirements. C is incorrect because a DEA number applies to controlled substances; isotretinoin is not a controlled substance, and its restrictions come from REMS, not DEA scheduling. D is incorrect because REMS drugs require additional, drug-specific verification beyond a routine prescription check. Exam trap: forgetting that a non-controlled medication can still carry REMS restrictions that are just as strict as those for controlled substances.</div>
+  </div>
+</div>
+<div class="qcard" id="q6">
+  <div class="qmeta"><span class="num">Q6</span></div>
+  <div class="qtext">A technician arrives in the morning and finds that the pharmacy refrigerator holding vaccines read 48°F (9°C) overnight, above the required storage range. What is the best first action?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Administer or dispense the vaccines since the reading is only slightly out of range</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Discard all of the vaccines immediately without documenting the excursion</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Quarantine the affected vaccines, label them "do not use," document the excursion, and follow the manufacturer's or immunization program's guidance before further use</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Move the vaccines to a shelf in the medication room until the refrigerator is repaired</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The correct answer is C because a temperature excursion requires the affected vaccines to be quarantined and clearly marked as unusable pending guidance from the manufacturer or the applicable immunization program, since viability cannot be assumed from appearance alone. A is incorrect because "slightly out of range" is not a basis for assuming a vaccine remains viable; potency cannot be judged visually. B is incorrect because immediate discarding without documentation skips required reporting and may waste vaccines that could still be usable pending manufacturer guidance. D is incorrect because moving vaccines to unrefrigerated storage compounds the problem instead of addressing it. Exam trap: assuming a reading that is only a few degrees out of range is automatically "close enough" to be safe to use.</div>
+  </div>
+</div>
+<div class="qcard" id="q7">
+  <div class="qmeta"><span class="num">Q7</span></div>
+  <div class="qtext">During order verification, a technician notices that a new prescription for warfarin was entered at double the patient's usual maintenance dose, with no documented reason for the change. What should the technician do?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Fill the prescription exactly as written, since technicians should not question dosing</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Contact the prescriber directly to change the dose without involving the pharmacist</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Flag the discrepancy for the pharmacist to review before the prescription is verified and dispensed</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Quietly dispense the patient's previous, lower dose instead of what was newly ordered</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The correct answer is C because technicians are trained to recognize red flags on high-alert medications like warfarin and escalate them to the pharmacist for clinical judgment, rather than resolving the discrepancy themselves. A is incorrect because filling without question ignores a legitimate safety concern on a narrow-therapeutic-index drug. B is incorrect because contacting the prescriber to alter a clinical order is outside a technician's scope of practice. D is incorrect because silently substituting a different dose than what was ordered is unsafe and outside the technician's authority. Exam trap: assuming a technician's only two options are to "fill as written" or "decide independently," instead of escalating to the pharmacist.</div>
+  </div>
+</div>
+<div class="qcard" id="q8">
+  <div class="qmeta"><span class="num">Q8</span></div>
+  <div class="qtext">The pharmacy receives a Class I drug recall notice for a lot of metoprolol tablets that have already been dispensed to several patients. What is the appropriate technician action?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Wait for affected patients to call in before taking any action</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Follow the pharmacy's recall procedure: identify affected patients from dispensing records and notify them according to pharmacist/SOP direction</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Destroy the remaining stock only, with no patient notification necessary</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Notify only the patients who happen to ask specifically about a recall</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because a Class I recall involves a reasonable probability of serious harm and requires proactive identification and notification of affected patients using dispensing records, following the pharmacy's recall SOP. A is incorrect because waiting for patients to call in is reactive and inappropriate for the highest-risk recall classification. C is incorrect because destroying remaining stock addresses inventory but ignores the units already dispensed to patients. D is incorrect because notification should be proactive and systematic, not limited to patients who happen to inquire. Exam trap: treating a Class I recall (highest risk) the same as a lower-risk recall that may not require proactive outreach.</div>
+  </div>
+</div>
+<div class="qcard" id="q9">
+  <div class="qmeta"><span class="num">Q9</span></div>
+  <div class="qtext">An e-prescription is written for a brand-name thyroid medication with no "dispense as written" indicated, and the state permits generic substitution. Since this is a narrow therapeutic index drug, what should guide the technician's product selection?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Any levothyroxine-containing product currently in stock</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Only an AB-rated generic equivalent, since narrow therapeutic index drugs require confirmed bioequivalence before substitution, per pharmacist judgment and state law</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Whichever thyroid medication is cheapest, regardless of formulation</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>A different strength that happens to be easier to obtain</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because for narrow therapeutic index drugs like levothyroxine, substitution should be limited to products with confirmed AB-rated bioequivalence, and many states impose additional restrictions on switching manufacturers. A is incorrect because not every levothyroxine product on the market carries an AB rating relative to the prescribed brand; interchangeability is not automatic. C is incorrect because cost alone should never override bioequivalence and safety considerations for a narrow therapeutic index drug. D is incorrect because substituting a different strength changes the prescribed dose and requires prescriber involvement, not a technician's own decision. Exam trap: treating all products containing the same active ingredient as automatically interchangeable, ignoring AB-rating and narrow-therapeutic-index concerns.</div>
+  </div>
+</div>
+<div class="qcard" id="q10">
+  <div class="qmeta"><span class="num">Q10</span></div>
+  <div class="qtext">A pharmacy receives a shipment of a prescription drug from a new supplier, and the technician notices that the required transaction documentation (history, information, and statement) is missing. Under the Drug Supply Chain Security Act (DSCSA), what is the correct action?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Accept the shipment and add it to stock since an invoice is present</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Quarantine the product and do not use it until the required transaction documentation is obtained and verified</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Return the product only if a patient later reports a problem with it</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Contact the FDA directly instead of the supplier</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because the DSCSA requires verifiable transaction documentation to trace a drug's chain of custody. Product received without this documentation should be quarantined until it is obtained and verified. A is incorrect because an invoice alone does not satisfy DSCSA traceability/pedigree documentation requirements. C is incorrect because waiting for a patient complaint is reactive and bypasses a required supply-chain safeguard. D is incorrect because the appropriate first step is resolving the missing documentation with the supplier, not escalating to a federal agency before doing so. Exam trap: assuming a standard invoice is equivalent to the transaction history/information/statement required for drug traceability.</div>
+  </div>
+</div>
+<div class="qcard" id="q11">
+  <div class="qmeta"><span class="num">Q11</span></div>
+  <div class="qtext">A customer attempts to purchase 3.6 grams of pseudoephedrine in a single transaction. Under the Combat Methamphetamine Epidemic Act, what is the federal maximum allowable purchase amount per customer, per day?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>1.5 grams</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>3.6 grams</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>7.5 grams</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>There is no daily limit, only a monthly limit</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because federal law limits pseudoephedrine purchases to 3.6 grams per day and 9 grams per 30-day period, so this transaction is exactly at, and within, the allowable daily limit. A is incorrect because 1.5 grams is below the actual federal daily limit. C is incorrect because 7.5 grams exceeds the daily limit; it relates to the reduced monthly limit for mail-order/mobile purchases, not a single day's in-store limit. D is incorrect because a specific daily limit does exist in addition to the monthly limit. Exam trap: mixing up the daily limit (3.6 g) with the 30-day limit (9 g, or 7.5 g for certain mail-order sales).</div>
+  </div>
+</div>
+<div class="qcard" id="q12">
+  <div class="qmeta"><span class="num">Q12</span></div>
+  <div class="qtext">A prescription calls for insulin glargine, but an automated dispensing bin also stores insulin lispro in similar-looking packaging directly next to it. Which strategy, consistent with ISMP best practices, most reduces the risk of an insulin mix-up?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Storing all insulin products together by manufacturer for convenient access</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Separating different insulin types into clearly labeled, distinct storage locations and using barcode scanning to verify the product before final check</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Trusting staff to remember which insulin has which cap color</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Stocking only one type of insulin to eliminate the possibility of confusion</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because ISMP recommends physically separating look-alike insulin products and using barcode verification as an independent check, since insulins are a well-documented high-alert medication category. A is incorrect because grouping all insulins together for convenience is specifically discouraged because it increases mix-up risk. C is incorrect because relying on memory of packaging or cap color is not a reliable safety system. D is incorrect because stocking a single insulin type is not a realistic or acceptable solution to a labeling/storage risk. Exam trap: assuming that grouping similar products together for staff convenience is a neutral or helpful practice, when it is a recognized ISMP risk factor.</div>
+  </div>
+</div>
+<div class="section-head" id="order-entry">
+  <div class="n">27% of the PTCE blueprint · 8 questions</div>
+  <h2>Order Entry &amp; Processing</h2>
+  <div class="rule"></div>
+</div>
+<div class="qcard" id="q13">
+  <div class="qmeta"><span class="num">Q13</span></div>
+  <div class="qtext">A prescription reads: "amoxicillin 875 mg, take 1 tablet by mouth twice daily x 14 days, dispense #28." What days' supply should be entered?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>7 days</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>14 days</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>28 days</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>56 days</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because 28 tablets ÷ 2 tablets per day = 14 days' supply, which also matches the prescriber's stated duration. A is incorrect because 7 days would result from an incorrect division or from misreading the frequency as four times daily. C is incorrect because 28 days would result from treating each tablet as a full day's dose instead of accounting for the twice-daily frequency. D is incorrect because 56 days is not supported by either the quantity dispensed or the frequency ordered. Exam trap: using the total number of tablets dispensed as the days' supply, without dividing by the daily dose.</div>
+  </div>
+</div>
+<div class="qcard" id="q14">
+  <div class="qmeta"><span class="num">Q14</span></div>
+  <div class="qtext">A new prescription reads "levothyroxine 0.088 mg daily," but the pharmacy's stock bottles are labeled in mcg. What is the correct equivalent strength to select?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>8.8 mcg</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>88 mcg</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>880 mcg</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>8,800 mcg</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because 0.088 mg × 1,000 mcg/mg = 88 mcg, so the 88 mcg strength should be selected. A is incorrect because 8.8 mcg reflects a decimal-point error that would result in a tenfold underdose. C is incorrect because 880 mcg reflects a decimal-point error that would result in a tenfold overdose. D is incorrect because 8,800 mcg reflects a 100-fold error and would represent a dangerous overdose. Exam trap: misplacing the decimal point when converting between mg and mcg — a classic source of tenfold or thousandfold dosing errors.</div>
+  </div>
+</div>
+<div class="qcard" id="q15">
+  <div class="qmeta"><span class="num">Q15</span></div>
+  <div class="qtext">A prescriber writes: "1 tab po qid prn pain." If the patient uses the medication at the maximum frequency indicated by the sig, how many tablets would be taken in 24 hours?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>1 tablet</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>2 tablets</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>3 tablets</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>4 tablets</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> The correct answer is D because "Qid" means four times daily, so at maximum use the patient would take 4 tablets in 24 hours. A is incorrect because 1 tablet would apply only to a once-daily ("qd") order, not "qid." B is incorrect because 2 tablets would apply to a twice-daily ("bid") order. C is incorrect because 3 tablets would apply to a three-times-daily ("tid") order. Exam trap: confusing the similar-looking abbreviations "qid" (four times daily), "tid" (three times daily), and "qd"/"qod" (once daily/every other day).</div>
+  </div>
+</div>
+<div class="qcard" id="q16">
+  <div class="qmeta"><span class="num">Q16</span></div>
+  <div class="qtext">A refill claim is submitted and rejects with the code "Refill Too Soon." The patient explains they are leaving on a two-month trip the next day. What is the best next step?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Override the rejection without any documentation to accommodate the patient</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Tell the patient nothing can be done and to come back in a few days</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Contact the third-party payer to request a vacation supply override, with appropriate documentation, per plan policy</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Charge the patient full cash price without mentioning any other option</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The correct answer is C because many plans allow a documented vacation/travel override for early refills; the technician should pursue this option with the payer rather than assuming the claim cannot be resolved. A is incorrect because overriding a payer rejection without proper authorization and documentation is not appropriate. B is incorrect because dismissing the request without exploring an override option is not the best next step. D is incorrect because moving straight to full cash price skips a legitimate, lower-cost option that may be available to the patient. Exam trap: assuming a rejection code always means a dead end, instead of pursuing an appropriate override process.</div>
+  </div>
+</div>
+<div class="qcard" id="q17">
+  <div class="qmeta"><span class="num">Q17</span></div>
+  <div class="qtext">During claim submission, a Drug Utilization Review (DUR) alert fires for "therapeutic duplication" between a newly prescribed NSAID and one already active on the patient's profile. What should the technician do?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Override the DUR alert independently to keep the workflow moving</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Bring the DUR alert to the pharmacist's attention before continuing to process the prescription</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Delete the older prescription from the profile so that the alert clears</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Ignore the alert, since DUR alerts are usually false positives</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because clinical DUR alerts require pharmacist judgment. The technician's role is to bring the alert forward for review, not to resolve or dismiss it independently. A is incorrect because overriding a clinical alert is outside the technician's scope of practice. C is incorrect because deleting a prescription from the profile to make an alert disappear falsifies the patient's medication record and is inappropriate. D is incorrect because assuming alerts are "usually" false positives is not a safe basis for ignoring a clinical safety check. Exam trap: believing technicians may resolve clinical DUR alerts on their own because they seem to "usually work out fine."</div>
+  </div>
+</div>
+<div class="qcard" id="q18">
+  <div class="qmeta"><span class="num">Q18</span></div>
+  <div class="qtext">A patient asks to transfer a prescription for alprazolam (Schedule IV) with two refills remaining to a different pharmacy. Under federal law, how many times may this Schedule IV prescription be transferred?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>An unlimited number of times, the same as a non-controlled prescription</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>One time only, unless the two pharmacies share a real-time, online database that allows them to track the total number of transfers</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Never — Schedule IV prescriptions cannot legally be transferred</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Only with the patient's written consent, regardless of shared database access</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because federal law generally limits transfers of Schedule III–V prescriptions to one time, unless the pharmacies share a real-time online database, in which case additional transfers up to the remaining refills may be permitted. A is incorrect because the unlimited-transfer rule applies to non-controlled prescriptions, not Schedule III–V medications. C is incorrect because Schedule IV prescriptions can be transferred; they are not transfer-prohibited like some other categories. D is incorrect because written consent is not the deciding factor; shared real-time database access is what determines whether more than one transfer is allowed. Exam trap: applying the "unlimited transfer" rule for non-controlled drugs to a Schedule III–V medication, or assuming Schedule IV prescriptions can never be transferred at all.</div>
+  </div>
+</div>
+<div class="qcard" id="q19">
+  <div class="qmeta"><span class="num">Q19</span></div>
+  <div class="qtext">A claim rejects with the code "NDC Not Covered," even though the drug and strength match the prescription exactly. What is the most likely cause, and the appropriate next step?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The patient is not eligible for insurance, so service should be denied</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>The specific package size or manufacturer (NDC) billed is not on the plan's formulary; try billing an alternate, covered NDC for the same drug and strength</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>The prescriber must rewrite the prescription from scratch</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Cash price must always be charged whenever an NDC-level rejection occurs</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because an "NDC Not Covered" rejection usually means the specific product/package billed isn't on the formulary, even though the drug itself is covered; billing a different covered NDC of the same medication often resolves it. A is incorrect because this rejection is NDC-specific, not necessarily an eligibility issue. C is incorrect because the prescription itself is not the problem; the issue is which product code was selected for billing. D is incorrect because moving to cash price is premature before trying an alternate covered NDC. Exam trap: assuming an NDC-level rejection means the entire drug is not covered, rather than just the specific package or manufacturer that was billed.</div>
+  </div>
+</div>
+<div class="qcard" id="q20">
+  <div class="qmeta"><span class="num">Q20</span></div>
+  <div class="qtext">The pharmacy does not have enough oxycodone 15 mg tablets in stock to fill a prescription for #60. The pharmacist partially fills #30 now. For a standard (non-emergency, non-long-term-care) Schedule II prescription, what is required regarding the remaining quantity under federal law?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The remaining amount may be filled anytime within 12 months of the partial fill</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>The remaining quantity must be supplied within 72 hours or the balance becomes void</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>The remaining portion must be provided within 30 days of the date the prescription was written</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Partial filling of Schedule II prescriptions is never permitted</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The correct answer is C because for a standard Schedule II prescription, federal law requires the remaining quantity from a partial fill to be supplied within 30 days of the date the prescription was issued (longer timeframes apply only to long-term care and terminally ill patients). A is incorrect because 12 months is far longer than the standard federal window for completing a Schedule II partial fill. B is incorrect because 72 hours is too short and does not reflect the actual federal rule. D is incorrect because partial filling of Schedule II prescriptions is explicitly permitted under federal law, subject to timing requirements. Exam trap: confusing the standard 30-day partial-fill rule with the extended provisions that apply only to long-term care facility patients or those with a terminal illness.</div>
+  </div>
+</div>
+<div class="section-head" id="compounding">
+  <div class="n">20% of the PTCE blueprint · 6 questions</div>
+  <h2>Sterile &amp; Non-Sterile Compounding</h2>
+  <div class="rule"></div>
+</div>
+<div class="qcard" id="q21">
+  <div class="qmeta"><span class="num">Q21</span></div>
+  <div class="qtext">A technician is preparing to enter the sterile compounding cleanroom to prepare an IV admixture. Which sequence correctly reflects USP &lt;797&gt; garbing order?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Gown first, then hand hygiene, then gloves, then shoe covers</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Shoe covers, head cover, and facial hair cover first; then hand hygiene; then gown; then hand antisepsis and sterile gloves donned last</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Sterile gloves first, to protect the hands, followed by the rest of the garb</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Any order is acceptable as long as every item is eventually worn</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because USP &lt;797&gt; specifies a defined garbing sequence — outer garb (shoe covers, head/facial hair covers) first, then hand hygiene, then the gown, with hand antisepsis and sterile gloves performed and donned last, immediately before entering the compounding area. A is incorrect because putting on the gown before performing hand hygiene reverses the required sequence. C is incorrect because donning gloves before completing gowning and hand antisepsis contaminates the gloves before compounding even begins. D is incorrect because the order of garbing is specifically defined to minimize contamination risk; it is not interchangeable. Exam trap: donning gloves too early in the sequence, before hand hygiene and gowning are complete.</div>
+  </div>
+</div>
+<div class="qcard" id="q22">
+  <div class="qmeta"><span class="num">Q22</span></div>
+  <div class="qtext">A technician is assigning a beyond-use date (BUD) to a compounded sterile preparation (CSP) for which no sterility testing was performed. Under USP &lt;797&gt;, which factor most directly determines the correct default BUD to assign?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The cost of the ingredients used in the preparation</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>The assigned risk level of the compounding process together with the storage/temperature condition (e.g., room temperature, refrigerated, frozen), per USP &lt;797&gt; category</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>The technician's personal preference, based on past experience</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Only the expiration date printed on the original manufacturer's container, regardless of compounding</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because USP &lt;797&gt; ties default BUDs to the compounding risk level and the storage condition chosen for the finished preparation, not to the source ingredient's original expiration date. A is incorrect because ingredient cost has no bearing on sterility or stability. C is incorrect because BUD assignment follows the USP standard, not individual preference. D is incorrect because a compounded preparation's BUD is typically much shorter than the manufacturer's original container expiration date, because compounding can introduce contamination or stability risk that the original packaging was not designed to address. Exam trap: assigning a BUD based on the manufacturer's original container expiration date instead of the USP &lt;797&gt; risk-level and storage-condition default for the compounded preparation.</div>
+  </div>
+</div>
+<div class="qcard" id="q23">
+  <div class="qmeta"><span class="num">Q23</span></div>
+  <div class="qtext">While working in a horizontal laminar airflow workbench, a technician needs to manipulate a vial and syringe. Where should critical sites (needle, vial septum, syringe tip) be positioned relative to airflow to maintain sterility?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Behind other supplies, since HEPA-filtered air reaches every part of the hood equally</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Within the path of "first air," without anything blocking the HEPA-filtered airflow from reaching the critical site</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>As close to the front edge of the hood as possible, for easier visibility</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Positioning does not matter as long as sterile gloves are worn</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because critical sites must remain in the unobstructed path of "first air" — the HEPA-filtered air coming directly from the filter — to prevent contamination during manipulation. A is incorrect because placing critical sites behind other objects blocks first air and increases contamination risk, even though HEPA filtration covers the general work zone. C is incorrect because working too close to the front edge of the hood moves critical sites outside the zone of reliable unidirectional airflow. D is incorrect because sterile gloves are necessary but do not replace the need for correct aseptic technique and airflow management. Exam trap: assuming HEPA-filtered air protects every location in the hood equally, regardless of what is blocking the airflow to the critical site.</div>
+  </div>
+</div>
+<div class="qcard" id="q24">
+  <div class="qmeta"><span class="num">Q24</span></div>
+  <div class="qtext">A technician is compounding a topical ointment that includes a coarse, insoluble powder ingredient. Which technique should be used to reduce particle size and evenly disperse the powder before incorporating it into the ointment base?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Trituration alone, with no levigating agent</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Levigation — mixing the powder with a small amount of a compatible liquid (levigating agent) to form a smooth paste before incorporation into the base</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Adding the powder directly into the melted base with no pretreatment</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Sifting the powder through a fine mesh only, with no liquid involved</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because levigation uses a small amount of a compatible liquid vehicle to form a smooth paste with an insoluble powder, allowing it to be evenly and comfortably incorporated into a semisolid base such as an ointment. A is incorrect because trituration (grinding in a mortar) reduces particle size for dry powder-to-powder mixtures but does not address even incorporation into a semisolid base the way levigation does. C is incorrect because adding a coarse powder directly to a melted base without pretreatment risks a gritty, unevenly dispersed final product. D is incorrect because sifting alone can reduce clumping but does not achieve the smooth dispersion levigation provides for incorporation into an ointment base. Exam trap: confusing trituration (dry particle-size reduction) with levigation (using a liquid vehicle to form a paste before incorporation into a base).</div>
+  </div>
+</div>
+<div class="qcard" id="q25">
+  <div class="qmeta"><span class="num">Q25</span></div>
+  <div class="qtext">A prescription calls for 240 mL of a 2.5% w/v solution. The pharmacy stocks a 10% w/v concentrate and a compatible diluent. How many mL of the 10% concentrate are needed?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>30 mL</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>60 mL</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>90 mL</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>120 mL</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because using C1V1 = C2V2: 10% × V1 = 2.5% × 240 mL, so V1 = (2.5 × 240) ÷ 10 = 60 mL of the 10% concentrate, brought to a final volume of 240 mL with diluent. A is incorrect because 30 mL results from an incorrect setup of the dilution equation. C is incorrect because 90 mL overestimates the amount of concentrate needed for this final concentration. D is incorrect because 120 mL would be required only if the final concentration were 5%, not 2.5%. Exam trap: setting up the C1V1 = C2V2 equation with the values reversed, which produces an answer that is off by a clean multiple.</div>
+  </div>
+</div>
+<div class="qcard" id="q26">
+  <div class="qmeta"><span class="num">Q26</span></div>
+  <div class="qtext">A technician is preparing a non-sterile hazardous drug compound (such as a hormone cream) outside of a sterile hood. Per USP &lt;800&gt;, what is the minimum required PPE for this hazardous compounding activity?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>A single pair of standard, non-chemotherapy gloves</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Two pairs of chemotherapy-tested gloves, an impermeable disposable gown, and appropriate eye/face protection as indicated by the task</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>No special PPE is required for non-sterile hazardous compounding</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>A surgical mask only, without gloves or a gown</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because USP &lt;800&gt; requires chemotherapy-tested double gloving, an impermeable gown, and additional protection such as eye/face shields when splashing is possible, for hazardous drug handling — including non-sterile compounding. A is incorrect because standard gloves are not tested or rated for hazardous drug protection. C is incorrect because USP &lt;800&gt; applies to non-sterile hazardous compounding, not only sterile chemotherapy preparation. D is incorrect because a mask alone does not protect the skin from dermal exposure to a hazardous compound. Exam trap: assuming hazardous drug precautions apply only to sterile IV chemotherapy preparation, when USP &lt;800&gt; also governs non-sterile hazardous compounding and handling.</div>
+  </div>
+</div>
+<div class="section-head" id="inventory-qa">
+  <div class="n">13% of the PTCE blueprint · 4 questions</div>
+  <h2>Inventory, Billing &amp; Quality Assurance</h2>
+  <div class="rule"></div>
+</div>
+<div class="qcard" id="q27">
+  <div class="qmeta"><span class="num">Q27</span></div>
+  <div class="qtext">During a routine count, the perpetual inventory log for hydrocodone/acetaminophen shows 40 tablets on hand, but the physical count reveals only 32 tablets. What is the correct first action?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Adjust the log to match the physical count and move on</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Report the discrepancy to the pharmacist-in-charge immediately for investigation, following the pharmacy's controlled substance loss/diversion procedure</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Assume it was a counting error and simply recount at the next scheduled inventory</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Notify the DEA directly, without involving the pharmacist</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because a controlled substance discrepancy must be reported to the pharmacist-in-charge right away so it can be investigated according to the pharmacy's loss/diversion policy, which may in turn involve regulatory reporting if warranted. A is incorrect because silently adjusting the log to "balance the books" conceals a discrepancy that must be investigated. C is incorrect because delaying investigation until the next scheduled count allows a potential diversion issue to go unaddressed. D is incorrect because reporting to the DEA is a decision made through the pharmacy's established procedure, typically involving the pharmacist-in-charge, not a technician acting independently and skipping internal escalation. Exam trap: quietly correcting the inventory count instead of escalating and investigating a controlled substance discrepancy.</div>
+  </div>
+</div>
+<div class="qcard" id="q28">
+  <div class="qmeta"><span class="num">Q28</span></div>
+  <div class="qtext">While restocking a shelf, a technician notices that a newly delivered lot of a medication has an earlier expiration date than the lot already on the shelf. Following standard inventory management practice, what should the technician do?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Place the new stock behind the existing stock, and shelve/dispense according to whichever lot expires soonest, regardless of delivery order</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Always place new deliveries in front, regardless of expiration dates</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Return the new stock to the wholesaler without checking dates</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Mix both lots together without regard to expiration dates</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> The correct answer is A because stock should be organized and dispensed so that the soonest-expiring product is used first, regardless of which lot arrived most recently — a practice often summarized as first-expired, first-out (FEFO). B is incorrect because always placing new deliveries in front, without checking dates, can cause a shorter-dated lot already on hand to expire unused. C is incorrect because returning stock without cause is unnecessary; the correct response is to organize by expiration date, not reject the delivery. D is incorrect because mixing lots without regard to expiration dates makes it impossible to reliably dispense the soonest-expiring product first. Exam trap: assuming "first in, first out" always means "most recently delivered goes last," when the actual goal is to dispense whichever stock expires soonest (FEFO).</div>
+  </div>
+</div>
+<div class="qcard" id="q29">
+  <div class="qmeta"><span class="num">Q29</span></div>
+  <div class="qtext">A technician catches their own near-miss error — almost selecting the wrong medication strength — before it reaches the patient. What is the best action, consistent with a continuous quality improvement (CQI) program?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Say nothing, since no patient was actually harmed</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Report the near-miss through the pharmacy's internal quality/error-reporting system so the process can be reviewed and improved</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Only report the error if a supervisor happens to witness it</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Document it directly in the patient's file, without following the internal CQI reporting process</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because near-misses are valuable CQI data. Reporting them through the pharmacy's internal system allows the underlying process failure to be identified and corrected before a similar error reaches a patient. A is incorrect because near-misses that go unreported provide no opportunity to prevent a similar error in the future. C is incorrect because reporting should not depend on whether a supervisor happens to observe the event. D is incorrect because the patient's file is not the correct channel for internal process-improvement reporting. Exam trap: believing that only errors which actually reach the patient are worth reporting, when near-misses are essential input for a CQI program.</div>
+  </div>
+</div>
+<div class="qcard" id="q30">
+  <div class="qmeta"><span class="num">Q30</span></div>
+  <div class="qtext">A patient has two insurance plans on file: an employer-sponsored commercial plan and Medicaid. Under standard coordination of benefits (COB) rules, which plan should generally be billed first?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Medicaid should always be billed first because it is a government plan</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>The employer-sponsored (commercial) plan should be billed first, with Medicaid billed as the payer of last resort for any remaining balance</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Whichever plan the patient prefers to have billed first</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Both plans should be billed simultaneously for the full amount</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The correct answer is B because Medicaid is, by rule, the payer of last resort. Any other applicable coverage — such as an employer-sponsored commercial plan — must be billed first, with Medicaid covering only what remains, if anything, after that. A is incorrect because Medicaid is specifically not billed first when other coverage is available. C is incorrect because billing order for coordination of benefits follows payer rules, not patient preference. D is incorrect because billing both plans simultaneously for the full amount is not how coordination of benefits works and can result in improper billing. Exam trap: billing Medicaid first, when COB rules require it to be billed last, after all other applicable coverage.</div>
+  </div>
+</div>
+
+  <div class="foot">
+    <div class="copyright">© 2026 MED PREP. All rights reserved.</div>
+    <div class="legal">Exclusive bonus for readers of the PTCB Study Guide. Independently produced —
+    not affiliated with, sponsored by, endorsed by, or approved by the Pharmacy Technician Certification Board (PTCB).</div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.qcard').forEach(function(card){
+  card.querySelectorAll('.opt').forEach(function(opt){
+    opt.addEventListener('click', function(){
+      if(card.classList.contains('answered')) return;
+      card.classList.add('answered');
+      var chosenCorrect = opt.dataset.correct === '1';
+      opt.classList.add(chosenCorrect ? 'pick-correct' : 'pick-wrong');
+      if(!chosenCorrect){
+        var right = card.querySelector('.opt[data-correct="1"]');
+        if(right) right.classList.add('pick-correct');
+      }
+      var result = card.querySelector('.result');
+      var verdict = result.querySelector('.verdict');
+      verdict.textContent = chosenCorrect ? 'Correct' : 'Not quite';
+      verdict.className = 'verdict ' + (chosenCorrect ? 'good' : 'bad');
+      result.hidden = false;
+      answeredCount++;
+      if(chosenCorrect) correctCount++;
+      updateScore();
+    });
+  });
+});
+var answeredCount = 0, correctCount = 0;
+var TOTAL = document.querySelectorAll('.qcard').length;
+function updateScore(){
+  document.getElementById('score-readout').innerHTML =
+    '<b>' + answeredCount + '</b>/' + TOTAL + ' answered' +
+    (answeredCount ? '  ·  <b>' + correctCount + '</b> correct' : '');
+}
+updateScore();
+</script>
+</body>
+</html>
