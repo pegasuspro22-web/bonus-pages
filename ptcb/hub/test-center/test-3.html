@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulation Test 3 — PTCB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#0A1444; --navy-2:#111C55; --navy-3:#192767; --line:#2A3B77;
+  --gold:#F4D348; --gold-ink:#151B45;
+  --paper:#F3F1E8; --muted:#9AA3CC; --muted-2:#6E77A8;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --alert-soft:#3A2E12; --alert:#F4D348; --alert-muted:#D9CBA3;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px; overflow-x:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Anton',Impact,sans-serif; font-weight:400; letter-spacing:.01em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(10,20,68,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:720px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600;}
+
+.page{max-width:720px; margin:0 auto; padding:0 1.25rem 5rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.75rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(1.9rem,6.5vw,2.7rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:480px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.75rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.5rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.step-list{counter-reset:step; margin:2rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.5rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{
+  font-family:'Anton',sans-serif; font-size:1.1rem; color:var(--gold-ink); background:var(--gold);
+  width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:.1rem;
+}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0; line-height:1.6;}
+.action-block{margin-top:.9rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none;
+  padding:.85rem 1.5rem; border-radius:999px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(244,211,72,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+
+.subject-chip{font-family:'Karla',sans-serif; font-weight:600; font-size:.92rem; letter-spacing:.01em; background:var(--navy); border:1.5px dashed var(--line); border-radius:8px; padding:.7rem 1rem; color:var(--paper); word-break:break-word;}
+.subject-chip b{color:var(--gold);}
+
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.6rem; box-shadow:var(--shadow); margin-top:1.75rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+
+.section-head{padding-top:2.25rem; margin-bottom:1.1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+
+.card-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); margin-top:1.25rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center;}
+.card h3{font-size:1rem; font-weight:700; font-family:'Karla',sans-serif;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{
+  font-family:'Oswald',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; text-decoration:none; flex-shrink:0;
+}
+.tag.ghost{background:var(--navy); color:var(--paper); border:1.5px solid var(--line);}
+
+.check-list{display:flex; flex-direction:column; gap:1rem; margin-top:1.25rem;}
+.check-row{display:flex; gap:.9rem; align-items:flex-start;}
+.check-row .mark{
+  flex-shrink:0; width:1.6rem; height:1.6rem; border-radius:50%; background:var(--gold); color:var(--gold-ink);
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; margin-top:.05rem;
+}
+.check-row h3{font-size:.98rem; font-weight:700; font-family:'Karla',sans-serif;}
+.check-row p{color:var(--muted); font-size:.9rem; margin:.2rem 0 0; line-height:1.5;}
+
+.blueprint-table{width:100%; border-collapse:collapse; margin-top:1.25rem; font-size:.88rem;}
+.blueprint-table th{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--line);}
+.blueprint-table td{padding:.65rem .6rem; border-bottom:1px solid var(--line); color:var(--paper);}
+.blueprint-table td.share{color:var(--gold); font-family:'Oswald',sans-serif; font-weight:700; text-align:right; white-space:nowrap;}
+
+.how-box{margin-top:1.25rem; text-align:center;}
+.how-box p{color:var(--paper); font-size:.95rem; line-height:1.65; max-width:440px; margin:0 auto;}
+.how-box .fine{color:var(--alert-muted); font-size:.83rem; margin-top:.9rem;}
+
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+
+.how-box-manual{margin-top:0; text-align:center; background:var(--navy-3); border:1.5px solid rgba(244,211,72,.3);}
+.how-box-manual p{color:var(--paper); font-size:.9rem; line-height:1.6; max-width:420px; margin:0 auto;}
+
+.foot{max-width:720px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+
+.faq{margin-top:1.25rem;}
+.faq dt{font-weight:700; margin-top:1.1rem; font-family:'Karla',sans-serif;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem; line-height:1.6;}
+
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card > a.tag{align-self:stretch; text-align:center;}
+  .topbar .title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:55vw;}
+  .topbar-inner{padding:.6rem 1rem;}
+  .hero{padding-top:2rem;}
+  .blueprint-table{font-size:.78rem;}
+  .blueprint-table th:nth-child(2), .blueprint-table td:nth-child(2){display:none;}
+  .btn{white-space:normal; text-align:center; word-break:break-word;}
+  .action-block{width:100%;}
+  .action-block .btn{width:100%; justify-content:center;}
+}
+
+.quiz-head{display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:1.25rem;}
+.progress{font-family:'Oswald',sans-serif; font-size:.8rem; color:var(--muted);}
+.qcard{border:1px solid var(--line); border-radius:10px; padding:1.4rem; margin-top:1.25rem; background:var(--navy-2);}
+.qn{font-family:'Oswald',sans-serif; font-size:.68rem; color:var(--muted-2); letter-spacing:.04em; text-transform:uppercase;}
+.qtext{margin-top:.6rem; font-size:1rem; line-height:1.6; white-space:pre-wrap;}
+.opts{display:flex; flex-direction:column; gap:.55rem; margin-top:1.1rem;}
+.opt{display:flex; gap:.7rem; align-items:flex-start; border:1.5px solid var(--line); border-radius:8px; padding:.65rem .8rem; font-size:.93rem; line-height:1.5; background:var(--navy);}
+.opt input{margin-top:.25rem;} .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold);}
+.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.quiz-actions{display:flex; justify-content:center; margin-top:2rem; gap:.75rem;}
+.score-panel{border:1px solid var(--line); border-radius:10px; padding:1.5rem; background:var(--navy-2); margin-top:1.25rem; text-align:center;}
+.score-big{font-family:'Anton',sans-serif; font-size:2.2rem; color:var(--gold);}
+
+.briefing{padding-top:1.5rem;}
+.briefing h1{font-size:1.5rem; font-family:'Oswald',sans-serif; text-transform:uppercase; font-weight:700;}
+.briefing p{color:var(--muted); font-size:.96rem; line-height:1.65; margin-top:1rem;}
+.briefing ul{color:var(--muted); font-size:.94rem; line-height:1.8; margin:1.1rem 0 0; padding-left:1.3rem;}
+.briefing ul li::marker{color:var(--gold);}
+.check-gate{display:flex; gap:.75rem; align-items:flex-start; margin-top:1.75rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.25rem;}
+.check-gate input{margin-top:.2rem; width:1.05rem; height:1.05rem; accent-color:var(--gold); flex-shrink:0;}
+.check-gate label{font-size:.93rem; line-height:1.5;}
+#btn-start-test{margin-top:1.5rem; width:100%; justify-content:center; opacity:.4; pointer-events:none;}
+#btn-start-test.enabled{opacity:1; pointer-events:auto;}
+.section-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.75rem; gap:.75rem; flex-wrap:wrap; row-gap:.75rem;}
+.section-nav .mid{font-family:'Oswald',sans-serif; font-size:.78rem; color:var(--muted); order:-1; width:100%; text-align:center;}
+.section-nav .btn{flex:1;}
+
+@media (max-width:480px){
+  .section-nav .btn{padding:.7rem .9rem; font-size:.7rem; white-space:normal; text-align:center;}
+  .qcard{padding:1.1rem;}
+  .briefing h1{font-size:1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <img class="logo" src="../../assets/med-prep-logo.png" alt="MED PREP">
+    <span class="title">PTCB Study Guide</span>
+  </div>
+</div>
+<div class="page" style="max-width:820px;">
+  <a href="./" class="back-link">← Back to Simulation Test Center</a>
+  
+<div class="briefing" id="briefing">
+  <h1>PTCB Test – Full-Length Exam Simulation 3</h1>
+  <p>This online full-length simulation has been designed to closely reflect the difficulty, pacing, and overall testing experience of the official PTCE.</p>
+  <p>This simulation is a full-length 90-question exam, aligned with the format and demands of the real test — 80 scored, 10 unscored, presented together as on exam day.</p>
+  <p>The test is organized into 3 sections of 30 questions to help you maintain focus and manage pacing without reducing difficulty. The official exam is not divided into sections.</p>
+  <p>The test should be completed in one sitting, without external assistance, to obtain a realistic performance benchmark.</p>
+  <p>Challenge your judgment on scenario-based questions and build test endurance with timed practice designed to simulate real exam pressure.</p>
+  <ul>
+    <li>Suggested time: 110 minutes</li>
+    <li>Do not pause the test once started</li>
+    <li>Treat this as test day</li>
+  </ul>
+  <div class="check-gate">
+    <input type="checkbox" id="check-ready">
+    <label for="check-ready">I am ready to start the test under exam conditions. <span style="color:var(--gold);">*</span></label>
+  </div>
+  <button class="btn btn-gold" id="btn-start-test">Yes, start the test now</button>
+</div>
+  
+<div id="quiz-wrapper" hidden>
+  <div class="quiz-head" style="margin-top:1rem;">
+    <div><div class="eyebrow" style="font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);">Self-hosted · no explanations shown</div><h1 style="font-size:1.4rem; font-family:'Oswald',sans-serif; text-transform:uppercase; margin-top:.3rem;">Simulation Test 3</h1></div>
+    <span class="progress" id="quiz-progress"></span>
+  </div>
+  <div id="quiz-body"></div>
+  <div class="section-nav" id="section-nav">
+    <button class="btn btn-ghost" id="btn-prev">← Previous</button>
+    <span class="mid" id="section-progress"></span>
+    <button class="btn btn-gold" id="btn-next">Next Section →</button>
+  </div>
+  <div class="quiz-actions">
+    <button class="btn btn-ghost" id="btn-reset" style="display:none;">Restart</button>
+  </div>
+  <div id="score-area"></div>
+</div>
+  
+<div class="foot">
+  <div class="copyright">© 2026 MED PREP. All rights reserved.</div>
+  <div class="legal">Independently produced — not affiliated with, endorsed by, or sponsored by the Pharmacy Technician Certification Board (PTCB).</div>
+</div>
+</div>
+<script>
+function runQuiz(questions){
+  const SECTION_SIZE = 30;
+  const body = document.getElementById('quiz-body');
+  const answers = {};
+  const sections = [];
+  for(let i = 0; i < questions.length; i += SECTION_SIZE){ sections.push(questions.slice(i, i + SECTION_SIZE)); }
+  let current = 0;
+
+  sections.forEach(function(group, sIdx){
+    const sec = document.createElement('div');
+    sec.className = 'qsection';
+    sec.dataset.index = sIdx;
+    sec.hidden = sIdx !== 0;
+    group.forEach(function(q){
+      const card = document.createElement('div');
+      card.className = 'qcard';
+      card.innerHTML = '<div class="qn">Question ' + q.n + ' / ' + questions.length + '</div><div class="qtext"></div><div class="opts"></div>';
+      card.querySelector('.qtext').textContent = q.q;
+      const opts = card.querySelector('.opts');
+      ['a','b','c','d'].forEach(function(letter){
+        const label = document.createElement('label');
+        label.className = 'opt';
+        label.dataset.letter = letter.toUpperCase();
+        label.innerHTML = '<input type="radio" name="q' + q.n + '" value="' + letter.toUpperCase() + '"><span><span class="letter">' + letter.toUpperCase() + '.</span> <span class="opttext"></span></span>';
+        label.querySelector('.opttext').textContent = q[letter];
+        label.querySelector('input').addEventListener('change', function(){ answers[q.n] = letter.toUpperCase(); updateProgress(); });
+        opts.appendChild(label);
+      });
+      sec.appendChild(card);
+    });
+    body.appendChild(sec);
+  });
+
+  function updateProgress(){
+    document.getElementById('quiz-progress').textContent = Object.keys(answers).length + ' / ' + questions.length + ' answered';
+    document.getElementById('section-progress').textContent = 'Section ' + (current + 1) + ' of ' + sections.length;
+  }
+  function showSection(idx){
+    document.querySelectorAll('.qsection').forEach(function(s){ s.hidden = Number(s.dataset.index) !== idx; });
+    current = idx;
+    document.getElementById('btn-prev').disabled = idx === 0;
+    document.getElementById('btn-next').textContent = (idx === sections.length - 1) ? 'Submit Test' : 'Next Section \u2192';
+    updateProgress();
+    document.getElementById('quiz-wrapper').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  document.getElementById('btn-prev').addEventListener('click', function(){ if(current > 0) showSection(current - 1); });
+  document.getElementById('btn-next').addEventListener('click', function(){
+    if(current < sections.length - 1){ showSection(current + 1); return; }
+    finalizeQuiz();
+  });
+  updateProgress();
+
+  function finalizeQuiz(){
+    let correct = 0;
+    questions.forEach(function(q){
+      if(answers[q.n] === q.correct) correct++;
+    });
+    document.querySelectorAll('.qsection').forEach(function(s){ s.hidden = false; });
+    document.querySelectorAll('.qcard').forEach(function(card, i){
+      const q = questions[i];
+      const given = answers[q.n];
+      card.querySelectorAll('.opt').forEach(function(opt){
+        opt.querySelector('input').disabled = true;
+        if(opt.dataset.letter === q.correct) opt.classList.add('correct');
+        else if(opt.dataset.letter === given) opt.classList.add('wrong');
+      });
+    });
+    const pct = Math.round((correct/questions.length)*100);
+    const scoreArea = document.getElementById('score-area');
+    scoreArea.innerHTML = '<div class="score-panel"><div class="eyebrow" style="font-family:\'Oswald\',sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);">Result \u2014 no explanations shown, readiness signal only</div><div class="score-big">' + correct + ' / ' + questions.length + ' <span style="font-size:1.05rem; color:var(--muted); font-family:\'Karla\',sans-serif; font-weight:500;">(' + pct + '%)</span></div></div>';
+    document.getElementById('section-nav').style.display = 'none';
+    document.getElementById('btn-reset').style.display = 'inline-flex';
+    scoreArea.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+  document.getElementById('btn-reset').addEventListener('click', function(){ window.location.reload(); });
+
+  const checkGate = document.getElementById('check-ready');
+  const startBtn = document.getElementById('btn-start-test');
+  checkGate.addEventListener('change', function(){ startBtn.classList.toggle('enabled', checkGate.checked); });
+  startBtn.addEventListener('click', function(){
+    if(!checkGate.checked) return;
+    document.getElementById('briefing').hidden = true;
+    document.getElementById('quiz-wrapper').hidden = false;
+    document.getElementById('quiz-wrapper').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+}
+
+runQuiz([{"n": 1, "q": "While counting levothyroxine 75 mcg, you notice the label was printed for levothyroxine 25 mcg. The stock bottle is already open on the tray. What is the best next step?", "a": "Finish counting and leave a note for the pharmacist", "b": "Stop the fill, separate the product, and reprint the correct label before continuing", "c": "Change the quantity so the patient can “use up” the tablets", "d": "Cross out the strength on the label and handwrite the correct one", "correct": "B"}, {"n": 2, "q": "A patient wants to purchase two boxes of pseudoephedrine 30 mg tablets (24 tablets per box). What must occur before the sale is completed?", "a": "Record only the total number of tablets sold; ID is optional if under the daily limit", "b": "Have the patient sign the log and verify government-issued photo ID", "c": "Require a prescription because it is kept behind the counter", "d": "Refuse sale unless the patient has bought none in the last 30 days", "correct": "B"}, {"n": 3, "q": "New eRx: “Lantus SoloStar 100 units/mL: inject 18 units SQ nightly. Dispense 1 box.” A box contains five 3 mL pens. What days’ supply should be entered?", "a": "83 days", "b": "28 days", "c": "50 days", "d": "14 days", "correct": "A"}, {"n": 4, "q": "A hard copy prescription for hydrocodone/acetaminophen is presented with the patient name, drug, strength, directions, quantity, date, and prescriber DEA, but no prescriber signature. What should the technician do?", "a": "Process it since the DEA is present", "b": "Ask the patient to return with a signed copy", "c": "Call the prescriber and document verbal approval to substitute for the signature", "d": "Set it aside for pharmacist review because it is not valid as written", "correct": "D"}, {"n": 5, "q": "While receiving a tote, you find a sealed bottle with a label in a foreign language and no NDC. The invoice shows a U.S. NDC for the item. What is the best handling step?", "a": "Stock it if the lot and expiration are present", "b": "Quarantine it as suspect product pending investigation and documentation", "c": "Relabel it with the invoice NDC and file the invoice", "d": "Return it to the shelf until the wholesaler responds", "correct": "B"}, {"n": 6, "q": "A prescription reads: “metoprolol succinate ER 50 mg daily.” The system defaulted to metoprolol tartrate 50 mg. What is the correct entry action?", "a": "Select metoprolol succinate ER and verify dosage form before proceeding", "b": "Keep tartrate and change directions to twice daily", "c": "Keep tartrate because strength is the same", "d": "Select carvedilol 12.5 mg because it’s similar", "correct": "A"}, {"n": 7, "q": "A patient profile lists “sulfa—anaphylaxis.” A new prescription is for sulfamethoxazole/trimethoprim DS. What should the technician do during processing?", "a": "Document “allergy noted” and continue to fill", "b": "Ask the patient if they still want it and proceed if yes", "c": "Route the order for pharmacist review before filling", "d": "Substitute nitrofurantoin and process", "correct": "C"}, {"n": 8, "q": "Amoxicillin suspension 400 mg/5 mL: “Take 6.25 mL PO twice daily for 10 days.” What total volume should be dispensed?", "a": "125 mL", "b": "100 mL", "c": "150 mL", "d": "120 mL", "correct": "A"}, {"n": 9, "q": "At pickup, the patient says they only take budesonide/formoterol “when I’m short of breath,” but the label is “inhale 2 puffs twice daily.” What is the best technician response?", "a": "Update the label to PRN to match patient use", "b": "Refer the patient to the pharmacist because the use does not match directions", "c": "Tell the patient to use it only when needed and avoid daily use", "d": "Recommend OTC epinephrine inhaler instead", "correct": "B"}, {"n": 10, "q": "A Schedule II invoice is filed with other invoices. Under federal law, controlled substance records must generally be retained for at least:", "a": "2 years", "b": "1 year", "c": "6 years", "d": "3 years", "correct": "A"}, {"n": 11, "q": "A prescription taper: Prednisone 10 mg tablets: “4 tabs daily x 3 days, then 3 tabs daily x 3 days, then 2 tabs daily x 3 days, then 1 tab daily x 3 days.” Quantity to dispense?", "a": "36 tablets", "b": "30 tablets", "c": "24 tablets", "d": "40 tablets", "correct": "B"}, {"n": 12, "q": "A patient on warfarin asks which OTC pain reliever to take for a headache. What should the technician do?", "a": "Recommend naproxen because it lasts longer", "b": "Recommend ibuprofen if taken with food", "c": "Recommend aspirin 325 mg for better pain control", "d": "Offer pharmacist counseling for an appropriate recommendation", "correct": "D"}, {"n": 13, "q": "A patient asks if they can store nitroglycerin SL tablets in a weekly pill organizer. What is the best technician response?", "a": "Yes, as long as the organizer is dark colored", "b": "Yes, if they keep the organizer in the refrigerator", "c": "No; refer to the pharmacist because it typically must be kept in the original container", "d": "No; tablets must be dissolved in water first and then stored", "correct": "C"}, {"n": 14, "q": "Which filing method meets federal requirements for controlled substance prescriptions?", "a": "Schedule II prescriptions filed separately from all other prescriptions", "b": "All prescriptions in a single file with no markings", "c": "Schedule III–V filed separately from non-controls; Schedule II filed with non-controls", "d": "All controlled prescriptions filed separately from non-controls in one controlled file, including Schedule II", "correct": "A"}, {"n": 15, "q": "A prescription is for “diltiazem ER 240 mg daily,” but the eRx does not specify CD/LA/XR and multiple are in the system. What should the technician do?", "a": "Select any ER product at the same strength", "b": "Select immediate-release 120 mg twice daily", "c": "Route for pharmacist selection/clarification before entry completion", "d": "Choose the lowest-cost ER option", "correct": "C"}, {"n": 16, "q": "A patient’s active meds show simvastatin 40 mg nightly. A new eRx arrives for atorvastatin 40 mg daily from a different prescriber. What is the best technician step?", "a": "Fill both because they are different drugs", "b": "Discontinue simvastatin in the profile and fill atorvastatin", "c": "Ask the patient which one they want and fill that one", "d": "Route for pharmacist review due to possible therapy change/duplication", "correct": "D"}, {"n": 17, "q": "Third-party rejection: “Refill too soon.” Patient says the prescriber increased the dose yesterday. What should the technician do next?", "a": "Reduce days’ supply on the claim without changing quantity and resubmit", "b": "Use an override code automatically and dispense", "c": "Route for pharmacist review to determine whether a new prescription/plan action is needed", "d": "Tell the patient insurance will not cover any dose increases", "correct": "C"}, {"n": 18, "q": "Prescription: “Albuterol HFA inhale 2 puffs q4-6h PRN.” System selected albuterol nebulizer solution. What should the technician do?", "a": "Keep the selection since both are albuterol", "b": "Correct the dosage form/device to the HFA inhaler before proceeding", "c": "Substitute levalbuterol to avoid confusion", "d": "Delete the eRx and request a new one", "correct": "B"}, {"n": 19, "q": "A refrigerated biologic was filled and placed in will-call. After 2 days, the patient has not picked it up and you find it in a regular bin. What should be done?", "a": "Return it to the refrigerator immediately and dispense when patient arrives", "b": "Place it back into stock if the package looks intact", "c": "Quarantine it for pharmacist evaluation since storage conditions cannot be verified", "d": "Add an auxiliary sticker “refrigerate” and keep it for pickup", "correct": "C"}, {"n": 20, "q": "A patient requests an early refill of oxycodone/acetaminophen (Schedule II), claiming the medication was stolen. What is the best technician first step?", "a": "Process a partial fill to get them through the weekend", "b": "Document the details and route to the pharmacist for evaluation", "c": "Tell the patient replacement is never allowed for Schedule II", "d": "Transfer the prescription to another pharmacy", "correct": "B"}, {"n": 21, "q": "During order entry, the technician types “10u insulin” in the sig. What is the safest way to enter the dose?", "a": "10 u", "b": "10 units", "c": "10 IU", "d": "10.0 units", "correct": "B"}, {"n": 22, "q": "A patient has “penicillin—anaphylaxis” documented. A prescription arrives for cephalexin 500 mg. What should the technician do?", "a": "Fill as written because cross-reactivity is impossible", "b": "Ask the patient to try one dose and report back", "c": "Substitute azithromycin per protocol", "d": "Route for pharmacist review of allergy risk before dispensing", "correct": "D"}, {"n": 23, "q": "A prescription for methotrexate reads “take 6 tablets once weekly.” At pickup, the patient states they take it daily. What is the best technician action?", "a": "Change directions to daily to match patient report", "b": "Provide the medication and tell the patient to follow the label", "c": "Immediately involve the pharmacist due to high-risk dosing confusion", "d": "Split into 3 tablets twice weekly to compromise", "correct": "C"}, {"n": 24, "q": "A patient brings an email printout with a QR code and asks you to “scan it” to fill an antibiotic; the pharmacy has not received a prescription. What should the technician do?", "a": "Create the prescription from the printout and proceed", "b": "Treat the QR code as equivalent to an eRx", "c": "Explain a valid prescription must come from the prescriber/pharmacy system; offer to contact the prescriber office", "d": "Dispense an emergency supply of the antibiotic", "correct": "C"}, {"n": 25, "q": "Azithromycin 250 mg: “Take 2 tablets today, then 1 tablet daily on days 2–5.” Quantity to dispense?", "a": "5 tablets", "b": "6 tablets", "c": "7 tablets", "d": "10 tablets", "correct": "B"}, {"n": 26, "q": "An inhaler contains 200 actuations. Directions: “Inhale 2 puffs four times daily.” Days’ supply?", "a": "25 days", "b": "20 days", "c": "50 days", "d": "12 days", "correct": "A"}, {"n": 27, "q": "While restocking, you find a stock bottle of warfarin 5 mg with a broken seal and powder residue in the cap. What should the technician do?", "a": "Wipe the cap and return it to stock", "b": "Use the tablets if they look intact and are not expired", "c": "Quarantine the bottle as damaged/suspect and route for proper disposition", "d": "Repackage into amber vials and label as repackaged", "correct": "C"}, {"n": 28, "q": "Another pharmacy requests a transfer of a patient’s alprazolam prescription. Under federal rules, which statement is correct?", "a": "Schedule IV prescriptions may be transferred unlimited times until refills run out", "b": "Schedule IV prescriptions may be transferred one time between pharmacies for refill dispensing (unless otherwise permitted)", "c": "Schedule IV prescriptions may not be transferred under any circumstance", "d": "Schedule IV prescriptions may be transferred only if originally written on paper", "correct": "B"}, {"n": 29, "q": "A new Rx is for rivaroxaban 20 mg daily with evening meal. The profile includes “CrCl 20 mL/min.” What should the technician do?", "a": "Fill as written because renal function is a prescriber issue", "b": "Change the dose to 15 mg and proceed", "c": "Ask the patient to split the tablet", "d": "Route for pharmacist review due to high-risk anticoagulant and renal concern", "correct": "D"}, {"n": 30, "q": "A spouse comes to pick up prescriptions but is not listed as authorized in the profile. What is the best technician action?", "a": "Release the prescriptions but avoid discussing medication names", "b": "Refuse all pickup by anyone other than the patient", "c": "Verify identity and confirm authorization per the patient’s documented preferences before releasing", "d": "Ask the spouse to sign the HIPAA notice and then release", "correct": "C"}, {"n": 31, "q": "A patient asks, “Is sertraline the same as Zoloft?” What is the best technician response?", "a": "Yes; it’s the generic name for Zoloft", "b": "No; they are different SSRIs", "c": "Only the pharmacist can answer whether they are the same medication", "d": "Yes; but advise stopping if it causes nausea", "correct": "A"}, {"n": 32, "q": "Order entry: “Wellbutrin SR 150 mg: take 1 tablet BID.” What total daily dose is ordered?", "a": "150 mg/day", "b": "200 mg/day", "c": "300 mg/day", "d": "450 mg/day", "correct": "C"}, {"n": 33, "q": "An eRx is received for doxycycline monohydrate 100 mg, but only doxycycline hyclate 100 mg is in stock. What should the technician do?", "a": "Substitute hyclate automatically and proceed", "b": "Change the eRx to tetracycline and fill", "c": "Dispense hyclate but keep monohydrate on the label", "d": "Route to the pharmacist to determine appropriate product substitution/dispense", "correct": "D"}, {"n": 34, "q": "A patient profile shows lisinopril 20 mg daily. A new prescription arrives for losartan 50 mg daily. What is the best technician action?", "a": "Enter losartan and discontinue lisinopril immediately", "b": "Ask the patient which one to take and proceed", "c": "Route for pharmacist review due to possible therapy change/duplication", "d": "Put losartan on hold until lisinopril runs out", "correct": "C"}, {"n": 35, "q": "Another pharmacy calls for a transfer of a non-controlled prescription. Which identifier is typically appropriate to provide if requested for prescriber identification?", "a": "Prescriber NPI", "b": "Prescriber DEA", "c": "Pharmacy DEA", "d": "Patient driver’s license number", "correct": "A"}, {"n": 36, "q": "A medication requires a Medication Guide with each dispensing. When should it be provided?", "a": "Only with the first fill", "b": "Only when the patient requests it", "c": "With each dispensing when required, including refills", "d": "Only for brand-name product", "correct": "C"}, {"n": 37, "q": "Valacyclovir 1 g: “Take 2 tablets by mouth twice daily for 1 day.” Quantity to dispense?", "a": "2 tablets", "b": "4 tablets", "c": "6 tablets", "d": "8 tablets", "correct": "B"}, {"n": 38, "q": "Humalog 100 units/mL vial (10 mL): “Inject 8 units three times daily with meals.” Days’ supply?", "a": "41 days", "b": "30 days", "c": "60 days", "d": "25 days", "correct": "A"}, {"n": 39, "q": "The patient has a documented latex allergy. You see the selected product packaging states “contains natural rubber latex.” What should the technician do?", "a": "Dispense but add a latex warning sticker", "b": "Open the package and remove the latex component", "c": "Dispense because latex warnings are precautionary only", "d": "Route for pharmacist/product selection before dispensing", "correct": "D"}, {"n": 40, "q": "A prescriber sends “Norvasc 10 mg daily.” You only have amlodipine 10 mg. What is the best technician action?", "a": "Dispense amlodipine if substitution is permitted and label reflects the dispensed product", "b": "Call the prescriber for a new prescription stating “generic OK”", "c": "Dispense amlodipine 5 mg and change directions to 2 tablets daily", "d": "Tell the patient brand is required for Norvasc", "correct": "A"}, {"n": 41, "q": "A patient requests zolpidem early: last fill was 10 days ago for a 30-day supply. What should the technician do?", "a": "Fill it because Schedule IV refills are permitted", "b": "Deny it because early refills are never allowed", "c": "Route for pharmacist evaluation of the early refill request", "d": "Transfer the prescription to another pharmacy", "correct": "C"}, {"n": 42, "q": "A patient’s driver’s license shows DOB 02/01/1980, but the profile shows 01/02/1980. The prescription at pickup is a controlled substance. What is the best next step?", "a": "Ignore it if the address matches", "b": "Complete the sale and correct DOB after pickup", "c": "Update DOB immediately with no further action", "d": "Resolve identity discrepancy before dispensing", "correct": "D"}, {"n": 43, "q": "Label: “Take 2.5 mL PO BID.” Concentration: 250 mg/5 mL. How many mg per dose?", "a": "62.5 mg", "b": "100 mg", "c": "125 mg", "d": "250 mg", "correct": "C"}, {"n": 44, "q": "A potassium chloride IV order arrives without a diluent or final concentration specified. What should the technician do?", "a": "Choose the standard diluent and proceed", "b": "Prepare as IV push to avoid dilution issues", "c": "Route for pharmacist clarification before preparation", "d": "Prepare a concentrated syringe for nursing to dilute", "correct": "C"}, {"n": 45, "q": "A prescription reads “Take 1 tsp PO TID.” What volume should be entered per dose?", "a": "2 mL", "b": "5 mL", "c": "10 mL", "d": "15 mL", "correct": "B"}, {"n": 46, "q": "You are dispensing clopidogrel 75 mg daily. The patient profile includes OTC omeprazole daily. What is the best technician action?", "a": "Ignore OTC products in interaction screening", "b": "Tell the patient to separate doses by 2 hours", "c": "Route for pharmacist review due to potential interaction concern", "d": "Automatically switch omeprazole to pantoprazole", "correct": "C"}, {"n": 47, "q": "While filling spironolactone 25 mg, the wrong drug hydrochlorothiazide 25 mg is stored nearby. Which strategy best reduces this look-alike/sound-alike risk?", "a": "Keep all diuretics together for efficiency", "b": "Remove generic names from shelf tags", "c": "Stock only one strength of each diuretic", "d": "Use shelf separation, barcode verification, and Tall Man lettering where appropriate", "correct": "D"}, {"n": 48, "q": "Enoxaparin 40 mg/0.4 mL: “Inject 0.4 mL SQ daily x 10 days.” Product is packaged as a box of 10 prefilled syringes. What quantity should be dispensed?", "a": "10 syringes (1 box)", "b": "1 syringe", "c": "0.4 mL total", "d": "2 boxes", "correct": "A"}, {"n": 49, "q": "A patient asks what furosemide is used for. What is the appropriate technician response?", "a": "Explain it treats fluid retention and discuss monitoring", "b": "Tell the patient it is for blood pressure only", "c": "Provide pharmacist counseling for indication and use", "d": "Recommend taking it at bedtime", "correct": "C"}, {"n": 50, "q": "Morphine oral solution 10 mg/5 mL: “Take 7.5 mL q4h PRN pain.” How many mg per dose?", "a": "10 mg", "b": "12.5 mg", "c": "20 mg", "d": "15 mg", "correct": "D"}, {"n": 51, "q": "During entry you see “QD” on a prescriber’s directions. What is best practice for safer processing?", "a": "Keep QD because it is widely used", "b": "Convert to “daily” to reduce abbreviation errors", "c": "Convert to “QID” to avoid confusion", "d": "Remove the frequency and leave it blank", "correct": "B"}, {"n": 52, "q": "Benzonatate 100 mg: “Take 1 capsule q6h PRN cough.” Quantity 120. Using the maximum daily dose, what days’ supply should be entered?", "a": "10 days", "b": "20 days", "c": "30 days", "d": "60 days", "correct": "D"}, {"n": 53, "q": "For a Schedule II prescription reported “lost,” which statement is correct?", "a": "It can be refilled once if the patient provides a police report", "b": "The pharmacy may dispense a 72-hour emergency supply without a new prescription", "c": "A new prescription is required; Schedule II prescriptions cannot be refilled", "d": "The pharmacy can legally replace it if the patient signs a loss affidavit", "correct": "C"}, {"n": 54, "q": "A patient requests a copy of their prescription history. Under HIPAA, the pharmacy may:", "a": "Deny because it is internal business data", "b": "Provide access after verifying identity and processing the request", "c": "Release only to a prescriber", "d": "Release only with a subpoena", "correct": "B"}, {"n": 55, "q": "A cycle count for a C-II bottle shows the perpetual inventory is short by 2 tablets. What should the technician do?", "a": "Adjust on-hand to match the system count to reconcile", "b": "Ignore because small differences are common", "c": "Add 2 tablets from another bottle and note the transfer", "d": "Report the discrepancy promptly for investigation per controlled substance procedures", "correct": "D"}, {"n": 56, "q": "A refill request arrives for both glipizide and glyburide for the same patient, both listed as active. What should the technician do?", "a": "Fill both to prevent gaps in diabetes therapy", "b": "Delete one because they are equivalent", "c": "Route for pharmacist review due to therapeutic duplication and hypoglycemia risk", "d": "Ask the patient which one they prefer and fill only that", "correct": "C"}, {"n": 57, "q": "Timolol 0.5% ophthalmic: “Instill 1 drop OS BID.” Patient requests it be changed to both eyes. What should the technician do?", "a": "Change OS to OU per patient request", "b": "Dispense two bottles and tell patient to use in both eyes", "c": "Dispense as written and route to pharmacist for assessment/clarification", "d": "Change the directions and annotate “per patient”", "correct": "C"}, {"n": 58, "q": "DAW 1 is indicated on a claim. What does DAW 1 mean?", "a": "Generic substitution required", "b": "Brand medically necessary; do not substitute", "c": "Either brand or generic is acceptable", "d": "Dispense generic but charge brand copay", "correct": "B"}, {"n": 59, "q": "A prescription is metformin ER 500 mg: “Take 1 tablet twice daily.” Insurance covers only once-daily ER without prior authorization. What should the technician do?", "a": "Change to once daily and submit", "b": "Split into two separate once-daily prescriptions to force coverage", "c": "Route to the pharmacist to determine appropriate resolution (PA/new Rx/alternative)", "d": "Bill cash only and avoid insurance", "correct": "C"}, {"n": 60, "q": "Before compounding an oral liquid from tablets, what is the best first step to reduce contamination and calculation errors?", "a": "Start crushing tablets while gathering supplies", "b": "Wash hands and verify the master formulation/worksheet before measuring", "c": "Label the final container after mixing to prevent smearing", "d": "Use any measuring device as long as it’s clean", "correct": "B"}, {"n": 61, "q": "Ofloxacin ophthalmic 0.3%: “Instill 1 drop OU q4h while awake x 7 days.” Stock is 5 mL bottles. What quantity should be dispensed?", "a": "1 mL", "b": "2.5 mL", "c": "5 mL", "d": "10 mL", "correct": "C"}, {"n": 62, "q": "A patient brings back an unopened bottle of medication and asks if it can be used for another patient. What is correct?", "a": "Yes, if sealed and within expiration", "b": "Yes, if stored properly according to the patient", "c": "No, patient-returned medications are not re-dispensed", "d": "Yes, if the pharmacist inspects and initials it", "correct": "C"}, {"n": 63, "q": "The profile lists “lamotrigine—rash requiring medical care.” A new eRx arrives for Lamictal 100 mg. What should the technician do?", "a": "Fill brand to reduce rash risk", "b": "Remove the allergy since rash is not relevant", "c": "Fill and add “stop if rash occurs” sticker", "d": "Route for pharmacist review due to documented reaction", "correct": "D"}, {"n": 64, "q": "You selected an OTC omeprazole NDC during filling, but the claim was billed using a prescription-only NDC, creating audit risk. Best prevention step?", "a": "Always dispense OTC NDCs because the drug is the same", "b": "Ensure the dispensed NDC matches the billed NDC and verify product selection at fill", "c": "Bill using the prescription NDC and dispense OTC product anyway", "d": "Switch all patients to pantoprazole to avoid OTC issues", "correct": "B"}, {"n": 65, "q": "Capsules are out of stock and a patient requests tablets of the same drug and strength instead. What should the technician do?", "a": "Substitute if the patient agrees at pickup", "b": "Substitute and document “same medication”", "c": "Substitute only if it is not a controlled substance", "d": "Route to pharmacist because dosage form substitution may require approval/clinical assessment", "correct": "D"}, {"n": 66, "q": "A prescription is written for clonidine 0.2 mg tablets, but the technician accidentally grabbed clonidine 0.1 mg. With barcode scanning used correctly, when is this most likely to be detected?", "a": "At data entry when selecting the patient", "b": "When scanning the stock bottle at the filling station", "c": "When printing the will-call receipt", "d": "When the patient signs at pickup", "correct": "B"}, {"n": 67, "q": "The pharmacy receives a recall notice for contamination listing specific affected lots. What should the technician do?", "a": "Continue dispensing until replacements arrive", "b": "Quarantine affected lots and follow recall instructions immediately", "c": "Relabel with a new lot number and document", "d": "Dispense only to patients who consent", "correct": "B"}, {"n": 68, "q": "A patient asks the pharmacy to send their medication profile to a new physician’s office. Under HIPAA, disclosures for treatment purposes are:", "a": "Prohibited by minimum necessary", "b": "Permitted without patient authorization for treatment", "c": "Allowed only if the patient pays cash", "d": "Allowed only with a subpoena", "correct": "B"}, {"n": 69, "q": "Prescription: “lisinopril 10 mg daily #90 with 3 refills.” Patient can afford only 30 tablets today. What is the best technician action?", "a": "Change quantity to 30 and keep refills identical without documenting", "b": "Dispense 30 and discard the remaining 60 from the prescribed quantity", "c": "Process a 30-day fill consistent with system/billing rules and ensure remaining quantity is handled appropriately", "d": "Refuse because the prescription must be filled as 90 tablets", "correct": "C"}, {"n": 70, "q": "A patient asks how to dispose of unused fentanyl patches. What is the best technician response?", "a": "Recommend an authorized take-back option when available and offer pharmacist counseling for questions", "b": "Tell the patient to flush every patch immediately", "c": "Tell the patient to return them to the pharmacy for restocking", "d": "Tell the patient to throw them in the trash without any precautions", "correct": "A"}, {"n": 71, "q": "New eRx: rosuvastatin 20 mg daily. Patient filled atorvastatin 40 mg daily last week from the same prescriber. What should the technician do?", "a": "Fill rosuvastatin and inactivate atorvastatin immediately", "b": "Fill both and let the patient decide", "c": "Put rosuvastatin on hold until atorvastatin is finished", "d": "Route for pharmacist review due to possible therapy change/duplication", "correct": "D"}, {"n": 72, "q": "A dispensing error reached the patient and is being documented for quality assurance. What is appropriate technician involvement?", "a": "Complete internal incident documentation per QA process and ensure pharmacist is informed", "b": "Delete the transaction so it won’t appear in reports", "c": "Call the patient and provide medical advice", "d": "Document only if a refund is requested", "correct": "A"}, {"n": 73, "q": "Patient has morphine ER 30 mg BID active. New prescription arrives for morphine IR 30 mg q4-6h PRN pain. What should the technician do?", "a": "Process both automatically; ER and IR are always used together", "b": "Route for pharmacist review due to opioid safety/duplication risk", "c": "Delete the ER medication and fill IR", "d": "Fill IR first because PRN takes priority", "correct": "B"}, {"n": 74, "q": "Prescription: Ventolin HFA 90 mcg/actuation. Technician selected ProAir RespiClick in the system. What is the best technician action?", "a": "Continue; both are albuterol", "b": "Change only the directions to match the new device", "c": "Ask the patient at pickup which device they prefer and keep it", "d": "Correct the product selection to match the prescribed device before proceeding", "correct": "D"}, {"n": 75, "q": "Prescription: hydroxyzine pamoate 25 mg TID PRN anxiety. Stock is hydroxyzine HCl 25 mg. What should the technician do?", "a": "Substitute automatically because they are identical", "b": "Dispense HCl and keep pamoate on the label", "c": "Route to pharmacist because salt form substitution may matter", "d": "Change to diphenhydramine because it is similar", "correct": "C"}, {"n": 76, "q": "A caregiver calls requesting the patient’s full medication list. The caregiver is not listed as authorized and the patient is not on the call. What should the technician do?", "a": "Provide the list because caregivers are assumed authorized", "b": "Provide only medication names, not strengths", "c": "Fax the list to the caregiver to avoid phone disclosure", "d": "Decline and request patient authorization or have the patient contact the pharmacy directly", "correct": "D"}, {"n": 77, "q": "A hard copy for Adderall XR 20 mg is missing the patient address. What should the technician do?", "a": "Process it; address is never required", "b": "Have the patient write the address on the prescription and proceed", "c": "Enter the address from the profile and proceed without further review", "d": "Route for pharmacist review because required elements/validity may be in question for a controlled substance prescription", "correct": "D"}, {"n": 78, "q": "A patient wants to transfer tramadol 50 mg (Schedule IV) to another pharmacy. Under federal rules, it may be transferred:", "a": "Unlimited times until refills are used", "b": "One time between pharmacies for refill dispensing (unless otherwise permitted)", "c": "Never; controlled substances cannot be transferred", "d": "Only if it was originally written on paper", "correct": "B"}, {"n": 79, "q": "During unit-dose cart fill, one unit-dose package has a torn label and the lot number is not visible. What should the technician do?", "a": "Use it; lot numbers are not required for unit-dose distribution", "b": "Copy the lot number from another package of the same medication", "c": "Quarantine that unit and replace with a properly labeled package", "d": "Use it only for non-critical meds", "correct": "C"}, {"n": 80, "q": "Label prints for metoprolol succinate ER 25 mg. The bottle selected is metoprolol succinate 25 mg from an older bottle without ER noted. What should the technician do?", "a": "Dispense it; succinate implies ER", "b": "Correct to the proper ER product and re-verify (including scan) before counting", "c": "Change the sig to twice daily", "d": "Leave it for the pharmacist to fix at final check", "correct": "B"}, {"n": 81, "q": "A refill request comes for both citalopram 20 mg daily and escitalopram 10 mg daily, both active from different clinics. What should the technician do?", "a": "Process both refills to avoid interruption", "b": "Ask the patient which one works better and fill that one", "c": "Route for pharmacist review due to potential duplicate SSRI therapy", "d": "Delete citalopram because escitalopram is newer", "correct": "C"}, {"n": 82, "q": "Patient says they are “severely allergic to penicillin,” but the allergy field is blank. Prescription is for cephalexin. What should the technician do?", "a": "Add the allergy and fill the prescription without delay", "b": "Fill it because the allergy is not documented", "c": "Enter the allergy information and route for pharmacist review before dispensing", "d": "Tell the patient to call the prescriber; the pharmacy cannot document allergies", "correct": "C"}, {"n": 83, "q": "Inpatient order entry: “vancomycin 1 g IV q12h; first dose STAT.” What is the best technician handling?", "a": "Enter it as routine; nursing will prioritize", "b": "Hold until pharmacist rounds to avoid rushing", "c": "Enter and queue with STAT priority per workflow so it can be prepared/verified urgently", "d": "Change q12h to q8h to match STAT intent", "correct": "C"}, {"n": 84, "q": "A technician is processing a refill and sees the last fill date was entered incorrectly, causing the claim to reject “refill too soon.” What should the technician do?", "a": "Correct the fill date if supported by records and resubmit the claim", "b": "Override the rejection code and proceed", "c": "Tell the patient insurance is down", "d": "Reduce the days’ supply to 1 day and resubmit", "correct": "A"}, {"n": 85, "q": "Prescription: “Nitrostat 0.4 mg SL.” Which auxiliary direction is most appropriate to ensure product stability and safety?", "a": "“Store in the refrigerator”", "b": "“Do not transfer tablets to another container unless directed”", "c": "“Take with meals to prevent stomach upset”", "d": "“Crush tablets before placing under tongue”", "correct": "B"}, {"n": 86, "q": "A controlled substance order arrives from the wholesaler. Where should the technician file the invoice to support compliance?", "a": "With all other purchase invoices; no special handling", "b": "In a readily retrievable controlled-substance record system", "c": "Only attached to the prescription hard copies", "d": "In the patient’s profile documents", "correct": "B"}, {"n": 87, "q": "Prescription: “Insulin aspart (NovoLog) 100 units/mL: inject 12 units TID with meals. Dispense: 2 pens.” Each pen is 3 mL. What days’ supply should be entered?", "a": "16 days", "b": "10 days", "c": "5 days", "d": "12 days", "correct": "A"}, {"n": 88, "q": "A patient asks to return unused tablets for a refund and says they were stored “in a cool place.” What is the correct technician response?", "a": "Accept and restock if the bottle is unopened", "b": "Accept and re-dispense after pharmacist inspection", "c": "Explain the pharmacy cannot re-dispense returned medications; proceed with return/refund per store policy if applicable", "d": "Accept only if the medication is not controlled", "correct": "C"}, {"n": 89, "q": "A prescription is written for “amoxicillin/clavulanate 875/125 mg: take 1 tablet BID x 7 days.” Quantity to dispense?", "a": "21 tablets", "b": "28 tablets", "c": "14 tablets", "d": "20 tablets", "correct": "C"}, {"n": 90, "q": "A new C-II e-prescription arrives for methylphenidate. The patient asks to use a manufacturer coupon instead of insurance. What is the best technician action?", "a": "Run the coupon automatically; discounts are always allowed", "b": "Refuse all coupons for controlled substances", "c": "Bill both coupon and insurance and choose the higher reimbursement", "d": "Confirm the appropriate billing method per plan/pharmacy requirements and route questions as needed before processing", "correct": "D"}]);</script>
+</body>
+</html>
