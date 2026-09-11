@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NHA Phlebotomy High-Frequency Pack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#020C57; --navy-2:#0A1668; --navy-3:#111F79; --line:#2C3B8F;
+  --gold:#FAD204; --gold-ink:#0B1440;
+  --paper:#F5F3EA; --muted:#9BA4D6; --muted-2:#6F79B3;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Anton',Impact,sans-serif; font-weight:400; letter-spacing:.01em;}
+.ui{font-family:'Oswald',system-ui,sans-serif; text-transform:uppercase; letter-spacing:.06em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(2,12,87,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:760px; margin:0 auto; padding:.6rem 1.25rem; display:flex; align-items:center; gap:1rem; justify-content:space-between;}
+.brand{display:flex; align-items:center; gap:.85rem; min-width:0;}
+.brand .logo{height:36px; width:auto; flex-shrink:0; display:block;}
+.brand .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600; color:var(--paper); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.topbar-right{display:flex; align-items:center; gap:.9rem; flex-shrink:0;}
+#score-readout{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; color:var(--muted); white-space:nowrap;}
+#score-readout b{color:var(--gold);}
+.btn{
+  display:inline-flex; align-items:center; gap:.4rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; text-decoration:none;
+  padding:.6rem 1.1rem; border-radius:6px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink);}
+.btn-ghost{border-color:var(--line); color:var(--paper);}
+
+.page{max-width:760px; margin:0 auto; padding:0 1.25rem 5rem;}
+.hero{text-align:center; padding:3rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(2.2rem,10vw,3.6rem); line-height:1.02; margin-top:.3rem;}
+.hero h1 .sub{display:block; font-size:.42em; color:var(--gold); margin-top:.25em;}
+.hero .lede{max-width:520px; margin:1.1rem auto 0; color:var(--muted); font-size:1.05rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:2rem 0;}
+.stat{background:var(--navy-2); padding:1.1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.9rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.qcard{background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.5rem; margin-bottom:1.25rem; scroll-margin-top:4.5rem;}
+.qmeta{display:flex; gap:.6rem; align-items:baseline; font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-bottom:.7rem;}
+.qmeta .num{color:var(--gold); font-weight:600;}
+.qtext{font-size:1.06rem; font-weight:700; color:var(--paper); margin-bottom:1.1rem; white-space:pre-line;}
+
+.opts{display:flex; flex-direction:column; gap:.55rem;}
+.opt{
+  display:flex; gap:.75rem; align-items:flex-start; width:100%; text-align:left;
+  background:var(--navy); border:1.5px solid var(--line); border-radius:8px; padding:.75rem .95rem;
+  color:var(--paper); font-family:'Karla',sans-serif; font-size:.96rem; cursor:pointer;
+}
+.opt:hover{border-color:var(--gold);}
+.opt .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold); flex-shrink:0;}
+.opt .mark{margin-left:auto; font-weight:700; flex-shrink:0; display:none;}
+.qcard.answered .opt{cursor:default;}
+.qcard.answered .opt:hover{border-color:var(--line);}
+.qcard.answered .opt.pick-correct{border-color:var(--correct); background:var(--correct-soft);}
+.qcard.answered .opt.pick-correct .mark{display:inline; color:var(--correct);}
+.qcard.answered .opt.pick-wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.qcard.answered .opt.pick-wrong .mark{display:inline; color:var(--incorrect);}
+
+.result{margin-top:1.1rem; padding-top:1.1rem; border-top:1px dashed var(--line);}
+.result .verdict{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; margin-bottom:.5rem;}
+.result .verdict.good{color:var(--correct);} .result .verdict.bad{color:var(--incorrect);}
+.result .exp{color:var(--muted); font-size:.92rem; line-height:1.65;}
+.result .exp b{color:var(--paper);}
+
+.foot{max-width:760px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.8rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.78rem; line-height:1.7; margin-top:.5rem;}
+
+@media (max-width:560px){
+  .brand .title{display:none;}
+  .brand .logo{height:32px;}
+  #score-readout{display:none;}
+  .topbar-inner{padding:.55rem 1rem;}
+  .btn{padding:.55rem .85rem; font-size:.72rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img class="logo" src="assets/clinical-bridge-logo-white.png" alt="Clinical Bridge Exam Prep">
+      <span class="title">NHA Phlebotomy High-Frequency Pack</span>
+    </div>
+    <div class="topbar-right">
+      <span id="score-readout"></span>
+      <a class="btn btn-gold" href="https://drive.google.com/uc?export=download&id=1vaEp_OBaWdx4OXv3LsXgwsW-XTdtzXY0" target="_blank" rel="noopener">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">Exclusive bonus · NHA Phlebotomy Study Guide</div>
+    <h1 class="disp">High-Frequency<span class="sub">Pack</span></h1>
+    <p class="lede">30 exam-style questions built on the most tested CPT patterns.
+    Pick an answer on any question to see whether it's right and read the full
+    step-by-step explanation.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="n">30</div><div class="l">Questions</div></div>
+    <div class="stat"><div class="n">100%</div><div class="l">With Explanations</div></div>
+    <div class="stat"><div class="n">FREE</div><div class="l">For Our Readers</div></div>
+  </div>
+
+  
+<div class="qcard" id="q1">
+  <div class="qmeta"><span class="num">Q1</span></div>
+  <div class="qtext">At an outpatient draw station, the requisition is for Taylor Morgan, DOB 08/12/1994. The patient states the same identifiers, but the printed label set reads Taylor Morgen. What should you do before collecting?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Draw first and correct the spelling on the label afterward</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Draw and place a second label over the incorrect one</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Reprint corrected labels and re-verify identifiers before the draw</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Cross out the misspelling on the label and initial it</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Step 1: The label has a patient-identifier error before collection begins. Step 2: Patient identity and specimen labeling must match the verified patient exactly. Step 3: The safest action is to correct the label first, then re-verify and collect. a) “Fix it later” is the classic labeling trap; once the specimen is collected, you have created preventable identification risk. b) Covering one label with another creates ambiguity and can cause scanning or identification errors. d) Hand-correcting a printed identifier is not the best answer when the correct action is to generate an accurate label and verify again.</div>
+  </div>
+</div>
+<div class="qcard" id="q2">
+  <div class="qmeta"><span class="num">Q2</span></div>
+  <div class="qtext">You leave the room of a patient on suspected C. difficile precautions and remove your gloves. What hand hygiene is required next?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Alcohol hand rub is preferred if hands are not visibly soiled</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Wash with soap and water</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>No hand hygiene is needed if gloves were intact</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Wipe hands with a disinfectant wipe</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Step 1: C. difficile is spore-forming. Step 2: Alcohol products are less reliable for removing spores than soap and water. Step 3: After glove removal, soap-and-water handwashing is the safest answer. a) This is the trap: “not visibly soiled” does not make alcohol hand rub the best choice for C. difficile. c) Gloves reduce contamination but do not replace hand hygiene. d) Disinfectant wipes are not the standard hand-hygiene method for this situation.</div>
+  </div>
+</div>
+<div class="qcard" id="q3">
+  <div class="qmeta"><span class="num">Q3</span></div>
+  <div class="qtext">In the middle of a blood draw, you notice that the sharps container opening is jammed and the container appears overfilled. What is the safest immediate plan?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Use a nearby approved sharps container for disposal, then report or replace the overfilled one</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Push the contents down with forceps to make room</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Carry the used needle to another room to find an empty sharps container</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Recap the needle so you can transport it safely</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Step 1: An overfilled sharps container is a safety hazard. Step 2: OSHA requires sharps containers to be close to the point of use and not allowed to overfill. Step 3: The safe immediate choice is to use another approved container, then report or replace the overfilled one. b) Pushing contents down increases exposure risk. c) Carrying a used needle to another room increases exposure risk during transport and violates safe sharps handling practices. d) Recapping a contaminated needle is unsafe and increases the risk of needlestick injury.</div>
+  </div>
+</div>
+<div class="qcard" id="q4">
+  <div class="qmeta"><span class="num">Q4</span></div>
+  <div class="qtext">A patient says, “I fainted the last time,” but insists on standing during venipuncture. What is the best response?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Proceed while asking the patient to look away</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Proceed standing but avoid using a tourniquet</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Proceed standing but keep a chair nearby in case the patient feels dizzy</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Require the patient to sit or recline before the draw</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Step 1: A history of fainting makes patient positioning a pre-collection safety issue. Step 2: The exam expects you to prevent injury, not just finish the draw. Step 3: Seated or reclined positioning is the safest choice before starting. a) Looking away may reduce anxiety, but standing is still unsafe for a syncope-prone patient. b) Tourniquet changes do not solve the fall risk. c) Keeping a chair nearby does not eliminate fall risk; proper positioning must be established before the procedure begins.</div>
+  </div>
+</div>
+<div class="qcard" id="q5">
+  <div class="qmeta"><span class="num">Q5</span></div>
+  <div class="qtext">During venipuncture, the patient reports a sharp, electric pain that radiates into the hand. What should you do first?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Immediately discontinue the draw and remove the needle</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Continue until the tube finishes filling</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Slightly withdraw and redirect the needle without removing it</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Ask the patient to open and close the fist slowly</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Step 1: Sharp electric pain radiating into the hand suggests possible nerve contact or injury. Step 2: Continued probing or finishing the tube increases the chance of harm. Step 3: Stop immediately and remove the needle. b) Finishing the tube prioritizes specimen completion over patient safety. c) Attempting to redirect the needle when nerve involvement is suspected can worsen injury; the correct action is immediate removal. d) Hand movement does not correct a suspected nerve contact problem.</div>
+  </div>
+</div>
+<div class="qcard" id="q6">
+  <div class="qmeta"><span class="num">Q6</span></div>
+  <div class="qtext">You are asked to collect a legal blood alcohol specimen. Another staff member already cleaned the site with an alcohol pad and the area has dried. What should you do?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Proceed because the alcohol has evaporated</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Proceed and document that alcohol was used</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Clean again with an approved non-alcohol antiseptic per protocol before puncture</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Skip cleansing to avoid introducing more alcohol</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Step 1: Legal blood alcohol collection has special site-prep rules. Step 2: The key issue is to avoid alcohol-based antisepsis in the collection protocol used for evidentiary testing. Step 3: Re-prep the site with an approved non-alcohol antiseptic per protocol before drawing. a) Even if alcohol has dried, using it violates legal collection protocol and may compromise the validity of the specimen. b) Documentation does not fix a collection-method problem. d) Skipping antisepsis would create an aseptic and evidentiary problem.</div>
+  </div>
+</div>
+<div class="qcard" id="q7">
+  <div class="qmeta"><span class="num">Q7</span></div>
+  <div class="qtext">In the lobby, two patients stand up when you call Alex Kim. What should you do next?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Ask who arrived first and collect that patient</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Ask each patient to state full name and DOB, then match to the order</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Ask which one is “here for blood work” and proceed</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Compare each face to the chart and choose the closer match</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Step 1: Same-name patients create a high-risk wrong-patient scenario. Step 2: You need person-specific identifiers, such as full name and DOB, matched to the order. Step 3: Positive identification must happen before collection. a) Arrival order has nothing to do with identity verification. c) “Here for blood work” is not a unique identifier. d) Visual recognition is unreliable and not the standard.</div>
+  </div>
+</div>
+<div class="qcard" id="q8">
+  <div class="qmeta"><span class="num">Q8</span></div>
+  <div class="qtext">You drew two tubes, walked to the counter to label them, and then realized you were no longer at the bedside. The patient has already left. What should you do?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Label from memory because the draw just happened</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Return to the room to confirm identity verbally and then label the tubes</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Ask registration to verify the patient, then label the tubes</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Follow policy for unlabeled or mislabeled specimens</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Step 1: The tubes were not labeled in the patient’s presence at the point of collection. Step 2: That creates a specimen identification problem. Step 3: The correct next step is to follow policy for unlabeled or mislabeled specimens, which often means rejection or recollection. a) Memory is not an acceptable patient-identification system. b) Verbal confirmation after the fact does not validate specimen identity because labeling must occur in the patient’s presence at the time of collection. c) Registration staff cannot confirm specimen identity because they did not witness the collection process.</div>
+  </div>
+</div>
+<div class="qcard" id="q9">
+  <div class="qmeta"><span class="num">Q9</span></div>
+  <div class="qtext">The patient withdraws consent after you apply the tourniquet but before needle insertion. What is the correct action?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Proceed because setup has already started</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Attempt one tube quickly, then stop</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Stop the procedure and remove the tourniquet</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Ask a coworker to persuade the patient while you continue</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Step 1: Consent can be withdrawn before the procedure starts. Step 2: Once the patient refuses, the phlebotomist must stop. Step 3: Remove the tourniquet and follow the refusal process. a) Preparation does not override refusal. b) Collecting “just one tube” is still proceeding without consent. d) Persuasion while you continue ignores the patient’s decision and is not appropriate exam logic.</div>
+  </div>
+</div>
+<div class="qcard" id="q10">
+  <div class="qmeta"><span class="num">Q10</span></div>
+  <div class="qtext">You are collecting from a patient in airborne isolation for suspected tuberculosis. What is required at minimum?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Surgical mask, gloves, and gown</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>N95 or other facility-approved respirator, with required isolation PPE</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Face shield only</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Gloves only</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Step 1: Suspected TB requires airborne precautions. Step 2: Airborne precautions call for a fit-tested N95 or higher-level respirator for personnel. Step 3: Use the respirator and any other facility-required isolation PPE. a) A surgical mask protects against droplets but does not provide the respiratory protection required for airborne pathogens like TB. c) A face shield alone does not provide airborne respiratory protection. d) Gloves alone are inadequate.</div>
+  </div>
+</div>
+<div class="qcard" id="q11">
+  <div class="qmeta"><span class="num">Q11</span></div>
+  <div class="qtext">An outpatient requisition is missing the ordering provider information. The patient is seated and ready. What should you do?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Obtain the missing ordering information per procedure before collecting</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Collect anyway and let the laboratory resolve the order later</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Collect and hold the specimen until the missing information is resolved</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Ask the patient which provider they want listed</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Step 1: The requisition is incomplete. Step 2: The NHA outline specifically expects order/requisition review and verification before collection. Step 3: Resolve the missing ordering information first. b) “Collect now, fix later” is a common but unsafe processing shortcut. c) Holding a specimen without complete order information can compromise processing and is not appropriate without proper order verification. d) The patient is not the authoritative source for provider-of-record selection.</div>
+  </div>
+</div>
+<div class="qcard" id="q12">
+  <div class="qmeta"><span class="num">Q12</span></div>
+  <div class="qtext">A patient has an IV infusing in the right forearm. The left arm is unrestricted and has a good vein. You need a CBC and a CMP. What is the best site choice?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Right arm above the IV</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Right arm below the IV</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Right hand to avoid the IV site</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Left arm</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Step 1: Blood drawn from an extremity near an active IV can be diluted or contaminated. Step 2: If the opposite arm is available, that is the preferred site. Step 3: Use the left arm. a) Above an IV is not the best answer when a clean opposite arm is available. b) Below an active IV is also at risk for contamination or dilution. c) Switching to the right hand does not correct the IV-related problem if it is still the same extremity.</div>
+  </div>
+</div>
+<div class="qcard" id="q13">
+  <div class="qmeta"><span class="num">Q13</span></div>
+  <div class="qtext">Using a butterfly set with tubing, you must collect a PT/INR and the light blue tube is the first required tube. What should you do to help ensure proper fill?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Collect the light blue tube directly without any additional step</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Use a discard tube first if required by protocol to clear air in the tubing</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Draw a lavender tube first to start the flow</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Put the light blue tube last so additive carryover does not affect it</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Step 1: With a butterfly set, tubing air can affect the first-citrate fill. Step 2: A discard tube is used when protocol requires clearing tubing dead space before the light blue tube. Step 3: That helps preserve the proper blood-to-additive ratio. a) Direct collection may short-fill the citrate tube. c) Drawing lavender first would violate order-of-draw principles. d) Moving the citrate tube later in the sequence increases the risk of additive carryover and breaks the expected routine workflow.</div>
+  </div>
+</div>
+<div class="qcard" id="q14">
+  <div class="qmeta"><span class="num">Q14</span></div>
+  <div class="qtext">A light blue tube for coagulation testing is collected but is clearly underfilled. What is the best action?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Send it; the lab can correct the ratio mathematically</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Add blood from another tube to reach the line</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Recollect so the required blood-to-additive ratio is met</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Centrifuge it immediately to reduce clotting risk</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Step 1: Sodium citrate tubes depend on a precise blood-to-additive ratio. Step 2: A clearly underfilled tube may produce invalid coagulation results. Step 3: The best answer is recollection. a) The lab does not simply “math-correct” routine underfill problems. b) Topping off from another tube breaks specimen integrity. d) Spinning early does not repair a ratio error.</div>
+  </div>
+</div>
+<div class="qcard" id="q15">
+  <div class="qmeta"><span class="num">Q15</span></div>
+  <div class="qtext">During collection for potassium and lactate, the patient keeps pumping the fist. What should you do?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Ask the patient to relax the hand and keep it still</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Encourage fist pumping to maintain blood flow</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Tighten the tourniquet to compensate</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Allow minimal movement as long as flow remains steady</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Step 1: Fist pumping can alter analytes, especially lactate and potassium. Step 2: The patient should relax the hand and avoid repeated clenching. Step 3: That reduces preanalytical distortion. b) Encouraging pumping reinforces the error. c) Tightening the tourniquet increases stasis rather than fixing the cause. d) Even minimal repeated movement can alter analytes; the safest instruction is to keep the hand relaxed and still.</div>
+  </div>
+</div>
+<div class="qcard" id="q16">
+  <div class="qmeta"><span class="num">Q16</span></div>
+  <div class="qtext">A provider orders PT/INR, CMP, and CBC using standard venipuncture. Which order of draw is correct?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>SST, lavender, light blue</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Lavender, light blue, SST</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Green, SST, lavender</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Light blue, SST, lavender</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Step 1: This is an order-of-draw question: coagulation before serum before EDTA. Step 2: PT/INR uses light blue citrate, CMP is commonly serum/SST, and CBC uses lavender EDTA. Step 3: The correct sequence is light blue, then SST, then lavender. a) Serum before citrate risks improper sequence. b) EDTA before citrate is especially problematic because of additive carryover risk. c) Green is not the requested tube for PT/INR or the best answer for this set.</div>
+  </div>
+</div>
+<div class="qcard" id="q17">
+  <div class="qmeta"><span class="num">Q17</span></div>
+  <div class="qtext">Blood flow stops right after you push a new tube onto the multisample needle. The needle is still in the vein. What should you try first?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Probe side-to-side to find the vein again</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Check that the tube is fully seated and try a new tube if needed</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Leave the tourniquet on longer to force flow</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Slightly adjust the needle angle while maintaining position</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Step 1: Flow stopping right after a new tube is attached means the problem may be the tube, not the vein. Step 2: The first troubleshooting move is to confirm the tube is fully seated and, if necessary, try another tube. Step 3: Only after that would you consider other causes. a) Probing is not the first or safest correction. c) Extra tourniquet time is not the best first troubleshooting step. d) Adjusting needle position prematurely may cause vessel damage; troubleshooting should start with equipment checks first.</div>
+  </div>
+</div>
+<div class="qcard" id="q18">
+  <div class="qmeta"><span class="num">Q18</span></div>
+  <div class="qtext">You see a hematoma forming during the draw. What should you do first?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Release the tourniquet, remove the needle, and apply firm pressure</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Complete the current tube before stopping the draw</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Elevate the arm and apply heat immediately</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Ask the patient to bend the elbow tightly</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Step 1: A developing hematoma means blood is leaking into tissue. Step 2: Continuing the draw worsens the complication. Step 3: Release the tourniquet, remove the needle, and apply firm pressure. b) Completing the tube continues blood leakage into tissue and worsens the hematoma. c) Heat is not the immediate first response during active leakage. d) Bending the elbow does not provide the best direct pressure and may worsen bruising.</div>
+  </div>
+</div>
+<div class="qcard" id="q19">
+  <div class="qmeta"><span class="num">Q19</span></div>
+  <div class="qtext">While collecting blood cultures, you cleanse the site and then palpate the vein again without maintaining asepsis. What should you do?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Proceed because your gloves are clean</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Wipe the site with alcohol and puncture immediately</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Re-prep the site using the proper antisepsis procedure and allow it to dry</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Move slightly away from the site and proceed</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Step 1: Blood cultures require strict asepsis. Step 2: Touching the site after preparation compromises the skin antisepsis. Step 3: The safest correction is to re-prep the site and allow proper drying/contact time again. a) Clean gloves do not preserve a contaminated prep site. b) A quick alcohol wipe is not the same as repeating the approved skin-prep procedure. d) Moving slightly away does not solve contamination of the prepared field.</div>
+  </div>
+</div>
+<div class="qcard" id="q20">
+  <div class="qmeta"><span class="num">Q20</span></div>
+  <div class="qtext">You are collecting blood cultures with a butterfly set that contains air in the tubing. Which bottle should be filled first?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Anaerobic bottle first</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Aerobic bottle first</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Fill both bottles by alternating a few milliliters at a time</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Order does not matter</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Step 1: With a butterfly set, there is air in the tubing. Step 2: Filling the aerobic bottle first prevents that air from compromising the anaerobic bottle. Step 3: Therefore, aerobic first is the best answer. a) Filling the anaerobic bottle first allows air in the tubing to enter the bottle, which can compromise the specimen. c) Alternating small amounts is not standard bottle collection technique. d) Order does matter in this setup.</div>
+  </div>
+</div>
+<div class="qcard" id="q21">
+  <div class="qmeta"><span class="num">Q21</span></div>
+  <div class="qtext">A timed trough drug level is ordered. The patient says the medication was taken 30 minutes ago. What should you do?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Draw now and record it as a trough</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Draw now and document the timing difference</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Tell the patient to skip the next dose</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Follow procedure because the timing is not appropriate for a trough draw</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Step 1: A trough level is meant to represent the drug concentration just before the next dose. Step 2: If the medication was taken 30 minutes ago, the timing is inappropriate for a trough. Step 3: The phlebotomist should follow procedure and coordinate the correct timing, not relabel the specimen as something it is not. a) Calling it a trough would be inaccurate. b) Documenting the incorrect timing does not correct the fact that the specimen does not represent a true trough level. c) Instructing dose changes is outside phlebotomy scope.</div>
+  </div>
+</div>
+<div class="qcard" id="q22">
+  <div class="qmeta"><span class="num">Q22</span></div>
+  <div class="qtext">A patient arrives for a 2-hour postprandial glucose draw and says they finished eating 3 hours ago. What should you do?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Draw now and label it “late”</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Have the patient eat again and restart timing yourself</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Clarify timing requirements and follow procedure, which may require rescheduling</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Convert it to a fasting specimen and draw immediately</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Step 1: A 2-hour postprandial specimen depends on timing from the meal. Step 2: At 3 hours after eating, the collection no longer matches the ordered timing. Step 3: The correct response is to follow procedure for a mistimed specimen, which may mean clarifying or rescheduling. a) “Late” documentation does not make it a valid 2-hour specimen. b) Restarting timing on your own changes the collection plan without authorization. d) Converting it to a fasting test is outside scope.</div>
+  </div>
+</div>
+<div class="qcard" id="q23">
+  <div class="qmeta"><span class="num">Q23</span></div>
+  <div class="qtext">You need an adult capillary puncture, but the patient’s hands are cold and perfusion is poor. What is the best preparation?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Warm the site or otherwise increase circulation before puncture</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Use a second puncture site immediately if flow is poor</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Puncture the thumb because it has more blood flow</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Massage aggressively from knuckle to fingertip</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Step 1: Cold fingers often produce poor capillary flow. Step 2: Warming the site or otherwise improving circulation helps produce a usable specimen. Step 3: That is the safest and most specimen-friendly first step. b) Performing a second puncture without first improving circulation may result in another inadequate specimen. c) The thumb is generally avoided for routine capillary puncture. d) Aggressive massage can hemolyze or dilute the specimen.</div>
+  </div>
+</div>
+<div class="qcard" id="q24">
+  <div class="qmeta"><span class="num">Q24</span></div>
+  <div class="qtext">During a fingerstick, what should you do with the first drop of blood?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Use it for the first test to avoid wasting specimen</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Wipe it away, then collect subsequent drops</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Reclean the site with alcohol before collecting again</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Apply gentle pressure to increase drop size</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Step 1: The first drop may contain tissue fluid or debris. Step 2: Wiping it away improves specimen quality. Step 3: Then collect subsequent free-flowing drops. a) Using the first drop risks contamination. c) Recleaning after puncture is unnecessary and can disrupt collection. d) Even gentle pressure can introduce tissue fluid contamination if excessive; the preferred method is free-flowing blood.</div>
+  </div>
+</div>
+<div class="qcard" id="q25">
+  <div class="qmeta"><span class="num">Q25</span></div>
+  <div class="qtext">After venipuncture, a patient who takes an anticoagulant continues to ooze from the site. What is the best action?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Reapply the tourniquet above the site</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Ask the patient to bend the elbow tightly and leave</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Apply a pressure bandage and allow the patient to leave</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Apply firm pressure longer and reassess before the patient leaves</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Step 1: Continued oozing after venipuncture is a post-procedure safety issue, especially in anticoagulated patients. Step 2: The immediate priority is hemostasis. Step 3: Maintain firm pressure longer, then reassess before discharge. a) A tourniquet is not a pressure dressing. b) Bending the elbow is not the best way to control bleeding and may worsen bruising. c) Allowing the patient to leave with active bleeding risks continued blood loss and complications.</div>
+  </div>
+</div>
+<div class="qcard" id="q26">
+  <div class="qmeta"><span class="num">Q26</span></div>
+  <div class="qtext">A bilirubin specimen must be transported through a brightly lit area. What should you do?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Protect the specimen from light during transport</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Transport immediately without light protection to reduce delay</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Place it on ice only</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Warm it so bilirubin does not precipitate</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Step 1: Bilirubin is a light-sensitive analyte. Step 2: Exposure to bright light can degrade the specimen. Step 3: Protecting it from light preserves specimen integrity. b) Speed does not prevent light degradation; bilirubin must be protected from light regardless of transport time. c) Ice may be required for some tests, but light protection is the key issue here. d) Warming is unrelated and may be inappropriate.</div>
+  </div>
+</div>
+<div class="qcard" id="q27">
+  <div class="qmeta"><span class="num">Q27</span></div>
+  <div class="qtext">An SST is centrifuged within minutes of collection before it has fully clotted. What problem is most likely?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>EDTA contamination from another tube</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Sodium citrate carryover</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Fibrin strands or microclots may interfere with testing</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>The separator gel will always correct the problem</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Step 1: Serum must clot adequately before centrifugation. Step 2: If it is spun too soon, fibrin strands or microclots may remain. Step 3: Those can interfere with testing or instrument performance. a) EDTA contamination is a different preanalytical problem. b) Citrate carryover is unrelated to premature serum centrifugation. d) Separator gel does not reliably “fix” incomplete clotting.</div>
+  </div>
+</div>
+<div class="qcard" id="q28">
+  <div class="qmeta"><span class="num">Q28</span></div>
+  <div class="qtext">Ammonia is ordered. Which handling step is most appropriate after collection?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Transport promptly at room temperature</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Put the specimen on ice immediately and process promptly per protocol</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Protect it from light only</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Allow it to clot for 30 minutes before transport</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Step 1: Ammonia is highly sensitive to handling conditions. Step 2: Public handling instructions call for immediate icing and prompt processing. Step 3: Delays or warm handling can produce falsely increased results. a) Even prompt transport at room temperature can lead to falsely elevated ammonia levels due to ongoing metabolism. c) Light protection is not the key handling issue here. d) Ammonia is not collected as a serum-clot specimen in this workflow.</div>
+  </div>
+</div>
+<div class="qcard" id="q29">
+  <div class="qmeta"><span class="num">Q29</span></div>
+  <div class="qtext">In a chain-of-custody urine drug screen, the specimen temperature is outside the acceptable range when checked within 4 minutes. What should you do?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Accept if documentation is complete and volume is sufficient</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Refrigerate it and recheck later</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Discard it and document nothing until the donor leaves</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Follow chain-of-custody protocol for out-of-range temperature</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Step 1: Chain-of-custody urine collection has strict temperature rules. Step 2: Temperature must be checked within 4 minutes, and out-of-range temperature triggers the required protocol response. Step 3: The collector must follow the chain-of-custody procedure, including the immediate next collection step required by rule. a) Complete documentation does not override temperature validity requirements in chain-of-custody procedures. b) Rechecking later defeats the purpose of the immediate validity check. c) Discarding without proper documentation breaks chain-of-custody integrity.</div>
+  </div>
+</div>
+<div class="qcard" id="q30">
+  <div class="qmeta"><span class="num">Q30</span></div>
+  <div class="qtext">A patient asks you to interpret their A1c and tell them whether they have diabetes. What is the best response?</div>
+  <div class="opts">
+<button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Explain the diagnostic cutoff and give your opinion</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Explain what the test measures without giving interpretation</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Refer the patient to the ordering provider for interpretation</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Tell the patient that lab results are not your responsibility</span><span class="mark">✓</span></button>
+</div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Step 1: The question asks for result interpretation, not specimen collection procedure. Step 2: The official NHA outline places the phlebotomist role in identification, collection, safety, and processing. Step 3: The in-scope response is to refer interpretation to the ordering provider. a) Giving a diagnostic opinion exceeds phlebotomy scope. b) Explaining the test without interpretation can still lead the patient to draw conclusions, which is outside the phlebotomist’s scope. d) That response is unprofessional and not patient-centered.</div>
+  </div>
+</div>
+
+  <div class="foot">
+    <div class="copyright">© 2026 Clinical Bridge Exam Prep. All rights reserved.</div>
+    <div class="legal">Exclusive bonus for readers of the NHA Phlebotomy Study Guide. Independently produced —
+    not affiliated with, endorsed by, sponsored by, or approved by the National Healthcareer Association (NHA) or the CPT program.</div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.qcard').forEach(function(card){
+  card.querySelectorAll('.opt').forEach(function(opt){
+    opt.addEventListener('click', function(){
+      if(card.classList.contains('answered')) return;
+      card.classList.add('answered');
+      var chosenCorrect = opt.dataset.correct === '1';
+      opt.classList.add(chosenCorrect ? 'pick-correct' : 'pick-wrong');
+      if(!chosenCorrect){
+        var right = card.querySelector('.opt[data-correct="1"]');
+        if(right) right.classList.add('pick-correct');
+      }
+      var result = card.querySelector('.result');
+      var verdict = result.querySelector('.verdict');
+      verdict.textContent = chosenCorrect ? 'Correct' : 'Not quite';
+      verdict.className = 'verdict ' + (chosenCorrect ? 'good' : 'bad');
+      result.hidden = false;
+      answeredCount++;
+      if(chosenCorrect) correctCount++;
+      updateScore();
+    });
+  });
+});
+var answeredCount = 0, correctCount = 0;
+var TOTAL = document.querySelectorAll('.qcard').length;
+function updateScore(){
+  document.getElementById('score-readout').innerHTML =
+    '<b>' + answeredCount + '</b>/' + TOTAL + ' answered' +
+    (answeredCount ? '  ·  <b>' + correctCount + '</b> correct' : '');
+}
+updateScore();
+</script>
+</body>
+</html>
