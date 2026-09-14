@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<title>CMSRN High-Yield Pack</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F1B18; --paper:#F6FAF9; --surface:#FFFFFF;
+  --teal:#1F5C4F; --teal-ink:#ffffff; --sage:#3E8E7E;
+  --line:#D9E4E0; --line-strong:#C3D3CD;
+  --muted:#54635E; --muted-2:#7C8B86;
+  --vital:#B8791F; --vital-soft:#F8EEDC;
+  --shadow: 0 1px 2px rgba(15,27,24,.04), 0 12px 28px -16px rgba(15,27,24,.14);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Serif",Georgia,serif; font-size:16px; line-height:1.55; padding-inline:20px;}
+h1,h2,h3,.eyebrow,.btn,.stat-num,.step-label{font-family:"IBM Plex Sans",system-ui,sans-serif;}
+.mono,.stat-num,.subject-chip b{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
+h1,h2,h3{text-wrap:balance; margin:0; color:var(--ink);}
+a{color:inherit;}
+.shell{max-width:640px; margin:0 auto; padding-block:28px 56px;}
+.topbar{display:flex; align-items:center; gap:10px; padding-block:14px; border-bottom:1px solid var(--line); margin-bottom:34px;}
+.topbar .mark{width:26px; height:16px; flex:none;}
+.topbar .brand{font-weight:700; font-size:.82rem; letter-spacing:.06em; text-transform:uppercase; color:var(--teal);}
+.topbar .brand-sub{font-family:"IBM Plex Serif",serif; font-size:.82rem; color:var(--muted-2); font-style:italic;}
+.back-link{display:inline-block; margin-bottom:18px; font-size:.85rem; color:var(--sage); text-decoration:none;}
+.eyebrow{display:inline-flex; align-items:center; gap:.5em; font-size:.72rem; font-weight:600; letter-spacing:.11em; text-transform:uppercase; color:var(--sage);}
+.eyebrow::before{content:""; width:16px; height:1px; background:var(--sage);}
+.hero{margin-top:14px;}
+.hero h1{font-size:clamp(1.9rem,6vw,2.5rem); font-weight:700; letter-spacing:-.01em; margin-top:.6rem; max-width:18ch;}
+.hero p.lede{margin-top:.9rem; color:var(--muted); font-size:1.08rem; max-width:42ch;}
+.vitals{margin-top:32px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.vitals-head{display:flex; align-items:center; justify-content:space-between; padding:12px 18px; background:var(--teal); color:var(--teal-ink);}
+.vitals-head .label{font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;}
+.vitals-head svg{display:block; height:14px; width:90px; opacity:.9;}
+.vitals-grid{display:grid; grid-template-columns:repeat(4,1fr);}
+.vitals-grid .cell{padding:16px 14px; border-right:1px solid var(--line); border-top:1px solid var(--line);}
+.vitals-grid .cell:nth-child(4n){border-right:none;}
+.vitals-grid .cell:nth-child(-n+4){border-top:none;}
+.stat-num{font-size:1.5rem; font-weight:600; color:var(--teal); line-height:1; display:block;}
+.stat-label{margin-top:6px; font-size:.72rem; color:var(--muted); line-height:1.35; text-transform:uppercase; letter-spacing:.03em;}
+h2.section-title{margin-top:44px; font-size:1.15rem; font-weight:700; display:flex; align-items:baseline; gap:.6em;}
+h2.section-title .chart-no{font-family:"IBM Plex Mono",monospace; font-size:.85rem; font-weight:600; color:var(--sage);}
+.chart{margin-top:18px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);}
+.chart-row{display:grid; grid-template-columns:56px 1fr; padding:20px 20px;}
+.chart-row + .chart-row{border-top:1px solid var(--line);}
+.chart-row .idx{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--sage); font-size:.95rem; padding-top:.15em;}
+.chart-row .step-label{font-weight:600; font-size:1.02rem; margin:0 0 .35rem;}
+.chart-row p{margin:0; color:var(--muted); font-size:.96rem;}
+.cta-row{margin:14px 20px 20px; display:flex; flex-wrap:wrap; gap:10px;}
+.btn{display:inline-flex; align-items:center; gap:.55em; font-weight:600; font-size:.92rem; padding:.75em 1.15em; border-radius:6px; text-decoration:none; border:1px solid transparent;}
+.btn-teal{background:var(--teal); color:var(--teal-ink);}
+.btn-vital{background:var(--vital); color:#fff;}
+.btn-ghost{background:transparent; color:var(--teal); border-color:var(--line-strong);}
+.subject-chip{margin:0 20px 20px; display:inline-block; font-size:.82rem; color:var(--muted); background:var(--vital-soft); border:1px dashed var(--vital); border-radius:6px; padding:.55em .8em;}
+.alt-path{margin-top:22px; padding:16px 18px; border-left:3px solid var(--line-strong); color:var(--muted); font-size:.92rem; background:var(--surface); border-radius:0 var(--radius) var(--radius) 0;}
+.alt-path b{color:var(--ink);}
+.todo{display:inline-block; margin:0 20px 14px; font-size:.78rem; font-weight:600; color:var(--vital); font-family:"IBM Plex Mono",monospace;}
+.soon{margin-top:28px; padding:28px 22px; text-align:center; border:1px dashed var(--line-strong); border-radius:var(--radius); background:var(--surface); color:var(--muted);}
+.soon b{color:var(--ink); display:block; margin-bottom:.4em; font-family:"IBM Plex Sans",sans-serif;}
+footer{margin-top:52px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted-2); font-size:.8rem;}
+footer p{margin:.25em 0;}
+@media (max-width:520px){
+  .vitals-grid{grid-template-columns:repeat(2,1fr);}
+  .vitals-grid .cell:nth-child(2n){border-right:none;}
+  .vitals-grid .cell:nth-child(-n+2){border-top:none;}
+  .vitals-grid .cell:nth-child(3),.vitals-grid .cell:nth-child(4){border-top:1px solid var(--line);}
+  .chart-row{grid-template-columns:32px 1fr;}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="topbar">
+    <svg class="mark" viewBox="0 0 26 16" fill="none" aria-hidden="true">
+      <rect width="26" height="16" rx="2" fill="#1F5C4F"/>
+      <path d="M3 8H7L9 4L12 12L14 8H23" stroke="#3E8E7E" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="brand">MSNCB Certification</span>
+    <span class="brand-sub">— Digital Companion</span>
+  </div>
+<a href="../welcome/" class="back-link">← Back to welcome</a>
+
+  <div class="hero">
+    <span class="eyebrow">Coming soon</span>
+    <h1>CMSRN High-Yield Pack</h1>
+    <p class="lede">This part of the study suite is still being built — the bonus simulations and question bank are in production now.</p>
+  </div>
+  <div class="soon">
+    <b>Not ready yet</b>
+    Check back soon, or reply to your unlock email and we'll let you know the moment it's live.
+  </div>
+
+  <footer>
+    <p>Not affiliated with, endorsed by, or sponsored by MSNCB, the owner of the CMSRN® certification.</p>
+    <p>© 2026 Evan Marston. All rights reserved.</p>
+  </footer>
+</div>
+</body>
+</html>
