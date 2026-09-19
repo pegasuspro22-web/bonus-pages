@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NREMT High-Yield 30+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F1F4FA; --surface-2:#E7ECF6; --line:#D7DFEF;
+  --navy:#0A1B3D; --navy-2:#F1F4FA; --navy-3:#E7ECF6;
+  --gold:#FFC72C; --gold-ink:#1A1200; --gold-text:#A66A00;
+  --paper:#0A1B3D; --muted:#4C5C82; --muted-2:#6B7AA1;
+  --correct:#1E7A3D; --correct-soft:#E6F4EA; --incorrect:#C22A30; --incorrect-soft:#FBE7E8;
+  --alert-soft:#FFF6E0; --alert:#FFC72C; --alert-muted:#8A6A1E;
+  --shadow: 0 10px 28px -18px rgba(10,27,61,.28);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg); color:var(--navy); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Archivo Black',Impact,sans-serif; font-weight:400; letter-spacing:.005em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:720px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600;}
+
+.page{max-width:720px; margin:0 auto; padding:0 1.25rem 5rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.75rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-text); font-weight:600;}
+.hero h1{font-size:clamp(1.9rem,6.5vw,2.7rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:480px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.75rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Archivo Black',sans-serif; font-size:1.4rem; color:var(--gold-text);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.step-list{counter-reset:step; margin:2rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.5rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{
+  font-family:'Archivo Black',sans-serif; font-size:1rem; color:var(--gold-ink); background:var(--gold);
+  width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:.1rem;
+}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0; line-height:1.6;}
+.action-block{margin-top:.9rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none;
+  padding:.85rem 1.5rem; border-radius:999px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(255,199,44,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold-text);}
+
+.subject-chip{font-family:'Karla',sans-serif; font-weight:600; font-size:.92rem; letter-spacing:.01em; background:var(--surface); border:1.5px dashed var(--gold-text); border-radius:8px; padding:.7rem 1rem; color:var(--navy); word-break:break-word;}
+.subject-chip b{color:var(--gold-text);}
+
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.6rem; box-shadow:var(--shadow); margin-top:1.75rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+
+.section-head{padding-top:2.25rem; margin-bottom:1.1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+
+.card-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); margin-top:1.25rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center;}
+.card h3{font-size:1rem; font-weight:700; font-family:'Karla',sans-serif;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{
+  font-family:'Oswald',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; text-decoration:none; flex-shrink:0;
+}
+.tag.ghost{background:var(--surface); color:var(--navy); border:1.5px solid var(--line);}
+
+.check-list{display:flex; flex-direction:column; gap:1rem; margin-top:1.25rem;}
+.check-row{display:flex; gap:.9rem; align-items:flex-start;}
+.check-row .mark{
+  flex-shrink:0; width:1.6rem; height:1.6rem; border-radius:50%; background:var(--gold); color:var(--gold-ink);
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; margin-top:.05rem;
+}
+.check-row h3{font-size:.98rem; font-weight:700; font-family:'Karla',sans-serif;}
+.check-row p{color:var(--muted); font-size:.9rem; margin:.2rem 0 0; line-height:1.5;}
+
+.how-box{margin-top:1.25rem; text-align:center;}
+.how-box p{color:var(--paper); font-size:.95rem; line-height:1.65; max-width:440px; margin:0 auto;}
+.how-box .fine{color:var(--alert-muted); font-size:.83rem; margin-top:.9rem;}
+
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+
+.how-box-manual{margin-top:0; text-align:center; background:var(--navy-3); border:1.5px solid rgba(166,106,0,.35);}
+.how-box-manual p{color:var(--paper); font-size:.9rem; line-height:1.6; max-width:420px; margin:0 auto;}
+
+.foot{max-width:720px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+
+.faq{margin-top:1.25rem;}
+.faq dt{font-weight:700; margin-top:1.1rem; font-family:'Karla',sans-serif;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem; line-height:1.6;}
+
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card > a.tag{align-self:stretch; text-align:center;}
+  .topbar .title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:55vw;}
+  .topbar-inner{padding:.6rem 1rem;}
+  .hero{padding-top:2rem;}
+}
+
+.quiz-head{display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:1.25rem;}
+.progress{font-family:'Oswald',sans-serif; font-size:.8rem; color:var(--muted);}
+.qcard{border:1px solid var(--line); border-radius:10px; padding:1.4rem; margin-top:1.25rem; background:var(--navy-2);}
+.qn{font-family:'Oswald',sans-serif; font-size:.68rem; color:var(--muted-2); display:flex; justify-content:space-between; letter-spacing:.04em; text-transform:uppercase;}
+.qtext{margin-top:.6rem; font-size:1rem; line-height:1.6; white-space:pre-wrap;}
+.domain-pill{display:inline-block; font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.04em; text-transform:uppercase; background:var(--navy); border:1px solid var(--navy); padding:.2rem .55rem; border-radius:3px; color:var(--gold);}
+.opts{display:flex; flex-direction:column; gap:.55rem; margin-top:1.1rem;}
+.opt{display:flex; gap:.7rem; align-items:flex-start; border:1.5px solid var(--line); border-radius:8px; padding:.65rem .8rem; font-size:.93rem; line-height:1.5; background:var(--bg);}
+.opt input{margin-top:.25rem;} .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold-text);}
+.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.quiz-actions{display:flex; justify-content:center; margin-top:2rem; gap:.75rem;}
+.score-panel{border:1px solid var(--line); border-radius:10px; padding:1.5rem; background:var(--navy-2); margin-top:1.25rem;}
+.score-big{font-family:'Archivo Black',sans-serif; font-size:2rem; color:var(--gold-text);}
+.domain-bars{display:flex; flex-direction:column; gap:.55rem; margin-top:1.25rem;}
+.dbar-row{display:grid; grid-template-columns:minmax(110px,170px) 1fr 3.2rem; gap:.6rem; align-items:center; font-size:.82rem;}
+.dbar-track{height:8px; background:var(--surface-2); border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+.dbar-fill{height:100%; background:var(--correct);}
+.dname{color:var(--muted);} .dpct{font-family:'Oswald',sans-serif; text-align:right; color:var(--muted-2);}
+
+.briefing{padding-top:1.5rem;}
+.briefing h1{font-size:1.5rem; font-family:'Oswald',sans-serif; text-transform:uppercase; font-weight:700;}
+.briefing p{color:var(--muted); font-size:.96rem; line-height:1.65; margin-top:1rem;}
+.briefing ul{color:var(--muted); font-size:.94rem; line-height:1.8; margin:1.1rem 0 0; padding-left:1.3rem;}
+.briefing ul li::marker{color:var(--gold-text);}
+.check-gate{display:flex; gap:.75rem; align-items:flex-start; margin-top:1.75rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.25rem;}
+.check-gate input{margin-top:.2rem; width:1.05rem; height:1.05rem; accent-color:var(--gold-text); flex-shrink:0;}
+.check-gate label{font-size:.93rem; line-height:1.5;}
+#btn-start-test{margin-top:1.5rem; width:100%; justify-content:center; opacity:.4; pointer-events:none;}
+#btn-start-test.enabled{opacity:1; pointer-events:auto;}
+.section-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.75rem; gap:.75rem; flex-wrap:wrap; row-gap:.75rem;}
+.section-nav .mid{font-family:'Oswald',sans-serif; font-size:.78rem; color:var(--muted); order:-1; width:100%; text-align:center;}
+.section-nav .btn{flex:1;}
+
+@media (max-width:480px){
+  .section-nav .btn{padding:.7rem .9rem; font-size:.7rem; white-space:normal; text-align:center;}
+  .qcard{padding:1.1rem;}
+  .briefing h1{font-size:1.25rem;}
+}
+
+.stat-row.three{grid-template-columns:repeat(3,1fr);} .stat-row.three .stat{padding:1rem .4rem;} .stat-row.three .l{font-size:.56rem;}
+.pk-hero .lede{max-width:520px;}
+.jumpnav{display:flex; gap:.5rem; overflow-x:auto; padding:.25rem .1rem 1.25rem; -webkit-overflow-scrolling:touch;}
+.jumpnav a{flex-shrink:0; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:.45rem .9rem; text-decoration:none;}
+.jumpnav a b{color:var(--gold-text); font-weight:700;}
+.pk-head{padding-top:2.25rem; margin-bottom:1.1rem; scroll-margin-top:4.5rem;}
+.pk-head .n{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.1em; color:var(--gold-text); text-transform:uppercase; font-weight:600;}
+.pk-head h2{font-family:'Oswald',sans-serif; font-size:1.5rem; font-weight:700; text-transform:uppercase; margin-top:.2rem;}
+.pk-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+.pcard{scroll-margin-top:4.5rem; margin-top:0; margin-bottom:1.1rem;}
+.pcard .qmeta{display:flex; gap:.6rem; align-items:baseline; font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-bottom:.6rem;}
+.pcard .qmeta .num{color:var(--gold-text); font-weight:700;}
+.pcard .qtext{font-weight:700; font-size:1.02rem; margin-top:0;}
+button.opt{width:100%; text-align:left; font-family:'Karla',sans-serif; color:var(--navy); cursor:pointer;}
+button.opt:hover{border-color:var(--gold-text);}
+button.opt .mark{margin-left:auto; font-weight:700; display:none; flex-shrink:0;}
+.pcard.answered button.opt{cursor:default;}
+.pcard.answered button.opt:hover{border-color:var(--line);}
+.pcard.answered button.opt.correct .mark{display:inline; color:var(--correct);}
+.pcard.answered button.opt.wrong .mark{display:inline; color:var(--incorrect);}
+.pcard.answered button.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.pcard.answered button.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.result{margin-top:1.1rem; padding-top:1.1rem; border-top:1px dashed var(--line);}
+.result .verdict{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; margin-bottom:.5rem;}
+.result .verdict.good{color:var(--correct);} .result .verdict.bad{color:var(--incorrect);}
+.result .exp{color:var(--muted); font-size:.92rem; line-height:1.65;}
+.result .exp b{color:var(--navy);}
+#score-readout{margin-left:auto; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; color:var(--muted); white-space:nowrap;}
+#score-readout b{color:var(--gold-text);}
+.topbar .btn{margin-left:.75rem; padding:.55rem 1rem; font-size:.72rem;}
+@media (max-width:560px){ #score-readout{display:none;} .topbar .btn{margin-left:auto;} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <img class="logo" src="../assets/clinical-bridge-logo-white.png" alt="Clinical Bridge Exam Prep">
+    <span class="title">NREMT High-Yield 30+</span>
+    <span id="score-readout"></span>
+    <a class="btn btn-gold" href="https://drive.google.com/uc?export=download&id=1ApO8niWbsmehbIRUKJIgwzCvMoLWWaj9" target="_blank" rel="noopener">Download PDF</a>
+  </div>
+</div>
+<div class="page">
+  <div class="hero pk-hero">
+    <div class="eyebrow">Exclusive bonus · NREMT Study Guide</div>
+    <h1>NREMT High-Yield 30+</h1>
+    <p class="lede">30 hand-picked questions, weighted to the real NREMT domain proportions. Pick an answer on any question to see whether it's right and read the full explanation.</p>
+  </div>
+  <div class="stat-row three"><div class="stat"><div class="n">30</div><div class="l">Questions</div></div><div class="stat"><div class="n">5</div><div class="l">Exam Domains</div></div><div class="stat"><div class="n">100%</div><div class="l">With Explanations</div></div></div>
+  <div class="jumpnav"><a href="#scene">Scene <b>5</b></a><a href="#primary">Primary <b>13</b></a><a href="#secondary">Secondary <b>2</b></a><a href="#treatment">Treatment <b>7</b></a><a href="#operations">Operations <b>3</b></a></div>
+  
+<div class="pk-head" id="scene">
+  <div class="n">Section 1 of 5 · 5 questions</div>
+  <h2>Scene Size-Up &amp; Safety</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="qcard pcard" id="q1">
+  <div class="qmeta"><span class="num">Q1</span><span>START triage</span></div>
+  <div class="qtext">After a stage collapse at an outdoor concert, you begin triaging several adults with START. One man is not walking, is breathing 24 times a minute, and has a strong radial pulse. When you ask him to show you two fingers, he mumbles unrelated words and does not respond to your command. Which triage category applies?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Minor</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Deceased/expectant</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Immediate</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Delayed</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> START checks walking, breathing, perfusion, and mental status in that order. His breathing rate is under 30 and his radial pulse is present, but a patient who cannot follow a simple command fails the mental-status check and is tagged Immediate. Delayed would fit only if he obeyed commands. Minor is reserved for patients who can walk. Deceased/expectant applies to patients who are not breathing even after you open the airway.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q2">
+  <div class="qmeta"><span class="num">Q2</span><span>Hazmat awareness</span></div>
+  <div class="qtext">You are dispatched to a chemical storage building for a worker who is lightheaded and vomiting. A coworker says he is inside. Outside a partly open bay door you see a diamond-shaped placard with a skull and crossbones on several drums, and you smell a sharp chemical odor. What should you do first?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Stay upwind at a safe distance, request hazmat resources, and keep everyone away from the door</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Enter quickly, drag the patient out, and call for additional help afterward</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Ask the coworker to carry the patient out to you while you wait at the truck</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Take a deep breath and go in briefly to check whether the patient is responsive</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> A placard and a strong odor point to a hazardous-materials scene, and EMTs at the awareness level do not enter it. Stay uphill and upwind, keep people out, and request trained hazmat resources. Sending the coworker in adds a second victim and can spread contamination. Holding your breath does not protect your skin or eyes. Entering first and calling later puts you and your crew at risk.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q3">
+  <div class="qmeta"><span class="num">Q3</span><span>Violent scene</span></div>
+  <div class="qtext">Your crew is sent to a nightclub parking lot for a man with a stab wound. Bystanders say the attacker ran off but disagree about which way he went, and police have not arrived. The patient is calling for help about 30 feet away. What is the best action?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Drive slowly around the lot first to see whether the attacker is still nearby</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Have one crew member treat the patient while the other watches for the attacker</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Rush to the patient, give lifesaving care, and leave as quickly as possible</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Stage in a safe location until law enforcement reports the scene is secure</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Scene safety comes before patient care, and an unsecured scene with an unknown attacker is not safe. Staging until law enforcement clears it protects your crew so you can help this patient and others. Driving around looking for the attacker puts you in the danger you are trying to avoid. Splitting the crew leaves one person watching for a threat without any protection. A fast rush in treats the patient but ignores the risk of adding two more patients.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q4">
+  <div class="qmeta"><span class="num">Q4</span><span>PPE selection</span></div>
+  <div class="qtext">An agitated patient with a bleeding mouth injury after a fall is spitting blood and thrashing as you try to hold his head still. You expect to suction and to have close body contact. Which PPE is most appropriate?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Gloves and eye protection only, because the mouth is not your main concern</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Gloves, eye protection, mask, and gown</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>A gown and a mask only, so your hands stay free</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Gloves only, because speed matters most</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Choose PPE for every route of exposure the call creates. Spitting and suctioning risk blood in the eyes, nose, and mouth, and close contact risks soaking your uniform, so full protection is needed. Gloves alone leave the face and clothing exposed. Skipping the mask ignores splash to the mouth and nose. Leaving off gloves removes the most basic barrier when you are handling blood.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q5">
+  <div class="qmeta"><span class="num">Q5</span><span>Scene hazards</span></div>
+  <div class="qtext">You respond to a building site where a worker was struck by a falling pipe. The patient is lying beneath scaffolding while a crane is still lifting materials directly overhead. What is the safest initial action?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Wait to enter until the overhead work is stopped or the area is made safe</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Call to the patient from where you are and wait for him to crawl out</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Approach quickly while watching the moving load</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Work from beneath the scaffold roof because it gives overhead cover</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> An active overhead hazard makes the scene unsafe, so it has to be controlled before you enter. Ask the site supervisor to stop the crane and secure the area. Rushing in with an eye on the load still exposes you to a second strike. A scaffold roof is not built to stop falling objects and can create false confidence. Waiting for an injured patient to crawl out delays care and can worsen injuries.</div>
+  </div>
+</div>
+<div class="pk-head" id="primary">
+  <div class="n">Section 2 of 5 · 13 questions</div>
+  <h2>Primary Assessment</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="qcard pcard" id="q6">
+  <div class="qmeta"><span class="num">Q6</span><span>Pediatric general impression</span></div>
+  <div class="qtext">A 2-year-old is brought to you after choking on a piece of hot dog. The child is now breathing. Which finding from your first look is most concerning?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The child is crying loudly and clinging to the parent</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>The child turns away from you and screams when you approach</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>The child is alert and pushes your hands away</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>The child is quiet and limp, and has bluish lips</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Your first look uses the pediatric assessment triangle: appearance, work of breathing, and color of the skin. A quiet, limp child with blue lips has poor tone and poor oxygenation, which signals a serious problem. Loud crying, screaming at a stranger, and pushing your hands away all show a child who is awake, moving air, and reacting normally.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q7">
+  <div class="qmeta"><span class="num">Q7</span><span>General impression changes</span></div>
+  <div class="qtext">You enter a kitchen where a 72-year-old man with diabetes is seated at the table. He greets you and answers your first question. Seconds later he stares blankly, picks at his shirt, and no longer squeezes your hand when asked. His breathing is regular and his skin is pale and sweaty. What is the best conclusion about his general impression?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Expected for his age unless a glucose reading proves otherwise</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Concerning, because his condition is getting worse as you watch</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Less important right now than getting a full medical history</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Reassuring, because he answered your first question correctly</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> General impression is not a single snapshot. It continues while you observe. A patient who loses the ability to follow commands and becomes pale and sweaty is deteriorating and needs urgent attention, whatever the cause turns out to be. His first answer does not cancel what you see next. Blaming age delays care. History matters, but only after you deal with a changing mental status.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q8">
+  <div class="qmeta"><span class="num">Q8</span><span>AVPU</span></div>
+  <div class="qtext">A 22-year-old is found on a couch after suspected drug use. When you speak loudly, he briefly opens his eyes and mumbles, then drifts off again. Slow breathing is present. Which AVPU level best describes his responsiveness?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Unresponsive</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Alert</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Responds to voice</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Responds to pain</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> He reacts when you speak, so he is at the Verbal level of AVPU, even though the response is brief and weak. Alert would require him to be awake and oriented without being prompted. Pain would mean he responds only to a painful stimulus, and unresponsive means no response at all. A Verbal level with slow breathing marks him as a high-priority patient.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q9">
+  <div class="qmeta"><span class="num">Q9</span><span>Oropharyngeal airway</span></div>
+  <div class="qtext">You insert an oropharyngeal airway in an unresponsive adult after a fall from a ladder. As soon as it is in place, the patient gags and retches. What should you do next?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Remove the airway and be ready to suction and reposition the airway</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Push the airway in farther so it seats properly</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Tape the airway in place so it cannot come out</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Leave it in place, because gagging shows the airway is working</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> An oropharyngeal airway is for patients with no gag reflex. Gagging means the reflex is present and the device can trigger vomiting and aspiration, so remove it. Then keep suction ready and manage the airway with positioning, choosing another adjunct only if it suits the patient's injuries. Pushing it deeper or taping it in place forces a device the patient cannot tolerate, and gagging is not a sign of a good airway.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q10">
+  <div class="qmeta"><span class="num">Q10</span><span>Inadequate breathing</span></div>
+  <div class="qtext">A 65-year-old man with COPD is on oxygen by nonrebreather mask. Over several minutes he becomes drowsy, his breathing rate falls from 26 to 8 per minute, and his chest rise is barely visible. What is the priority?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Let him rest and reassess in ten minutes</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Coach him to take deeper breaths into the mask</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Lower the oxygen flow so his breathing drive is not suppressed</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Begin assisting ventilations with a bag-mask device and supplemental oxygen</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> A slow, shallow breathing rate with drowsiness means breathing is now inadequate and he needs assisted ventilations right away. Withholding or cutting oxygen from a hypoxic patient is the more dangerous mistake, because the concern about suppressing his drive does not outweigh low oxygen. Waiting ten minutes wastes time he does not have. Coaching only works if he is alert enough to cooperate, and he is not.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q11">
+  <div class="qmeta"><span class="num">Q11</span><span>Oxygen delivery</span></div>
+  <div class="qtext">A patient with shortness of breath is receiving oxygen through a nonrebreather mask. Each time the patient breathes in, the reservoir bag flattens completely. What is the most likely cause?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The mask is giving too much oxygen and must come off</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>The oxygen flow is too low to keep the reservoir filled</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>The patient has recovered and no longer needs oxygen</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>The bag is supposed to flatten because the lungs are full</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> A nonrebreather works only if the reservoir stays inflated, so the patient breathes from a full bag. A bag that collapses on every breath usually means the flow is too low, so raise it (typically 10 to 15 liters per minute) and check the setup. A collapsing bag says nothing about recovery, and it is not a sign of excess oxygen or full lungs.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q12">
+  <div class="qmeta"><span class="num">Q12</span><span>Bleeding control</span></div>
+  <div class="qtext">A landscaper cuts his lower leg with a chainsaw. Blood is pulsing from the wound and soaks through the dressing you applied with firm direct pressure. What is the best next step?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Elevate the leg and keep applying direct pressure alone</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Place a cold pack over the dressing</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Apply a tourniquet above the wound and note the time</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Remove the soaked dressing and start over with a clean one</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Life-threatening extremity bleeding that direct pressure does not control calls for a tourniquet placed above the wound, tightened until bleeding stops, with the time written down. Elevation and pressure alone have already failed. Cold does not stop arterial bleeding. Removing the dressing disturbs any clot that has formed and wastes time while he keeps losing blood.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q13">
+  <div class="qmeta"><span class="num">Q13</span><span>Shock recognition</span></div>
+  <div class="qtext">A patient with suspected internal bleeding after a motorcycle crash is being transported. He is anxious and pale, and his heart rate is rising. At reassessment, which finding most strongly suggests he is getting worse?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>He becomes drowsy and his radial pulses are weak or lost</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>He is calmer and answers questions clearly</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>His heart rate settles as you talk to him</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>He says his abdominal pain is unchanged</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Falling mental status and weakening peripheral pulses are late signs that his body can no longer compensate for blood loss. Unchanged pain does not show a change in perfusion. A calmer patient who answers clearly is better, not worse, and a heart rate that settles after reassurance points away from decompensation.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q14">
+  <div class="qmeta"><span class="num">Q14</span><span>BVM effectiveness</span></div>
+  <div class="qtext">After an opioid overdose, an adult is not breathing adequately and his oxygen saturation is 85%. You start ventilating with a bag-mask and oxygen. What is the best sign that each squeeze is working?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The bag refills at once and feels very soft</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Air leaks out around the sides of the mask</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>His stomach begins to swell</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>You see the chest rise gently and equally on both sides</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Visible, even chest rise is the most reliable sign that air is reaching the lungs. Air escaping around the mask means a poor seal. A swelling abdomen means air is entering the stomach, which risks vomiting. A bag that feels soft and refills instantly usually signals a leak, not a good ventilation.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q15">
+  <div class="qmeta"><span class="num">Q15</span><span>BVM resistance</span></div>
+  <div class="qtext">You are ventilating a patient in severe respiratory distress with a bag-mask device and oxygen. Over several minutes the bag becomes harder to squeeze and chest rise drops, even though the mask seal and head position are good and you have suctioned the mouth. What should you suspect?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Ventilation is getting better, because resistance rises with improvement</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Worsening lower airway obstruction or reduced lung compliance</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>The oxygen cylinder is too full and is over-pressurizing the bag</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>The pulse oximeter is malfunctioning, so nothing needs to change</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> When technique is right and the airway is clear, a bag that gets harder to squeeze points to a problem in the lungs, such as bronchospasm or a stiffening lung. That is a sign of serious deterioration and needs rapid transport and updated information to the hospital. Resistance does not mean improvement. Cylinder pressure does not change how hard the bag is to squeeze, and a pulse oximeter cannot explain what you feel in your hands.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q16">
+  <div class="qmeta"><span class="num">Q16</span><span>Tracheostomy suctioning</span></div>
+  <div class="qtext">A 63-year-old man with a home tracheostomy is short of breath. Thick secretions are visible at the opening and his breathing is noisy. What is most appropriate if it is within your training and protocol?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Suction the tracheostomy tube</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Remove the tracheostomy tube</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Ventilate through the mouth only and ignore the stoma</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Cover the stoma with an occlusive dressing</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Noisy breathing with visible secretions at a tracheostomy suggests a partial blockage, and clearing it with suction is the right step. The stoma may be the patient's only airway, so sealing it or removing the tube is dangerous. Ventilating only through the mouth ignores the actual route the air takes.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q17">
+  <div class="qmeta"><span class="num">Q17</span><span>CPR</span></div>
+  <div class="qtext">During transport of a patient with chest pressure, the patient slumps, becomes unresponsive, and is not breathing normally. You cannot feel a carotid pulse within 10 seconds. What should you do next?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Keep driving as fast as possible without stopping</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Finish recording a blood pressure before you intervene</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Begin high-quality CPR immediately and use the AED as soon as it is ready</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Wait another full minute to confirm the pulse is absent</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> An unresponsive patient who is not breathing normally and has no pulse is in cardiac arrest, and every second without compressions lowers survival. Start CPR (adult compressions at 100 to 120 per minute, at least 2 inches deep, minimal pauses) and apply the AED as soon as it is available. A blood pressure is not a priority now, extra checking only delays treatment, and transport speed does not replace compressions.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q18">
+  <div class="qmeta"><span class="num">Q18</span><span>Airway burns</span></div>
+  <div class="qtext">A man is pulled from a kitchen fire with soot around his nose and mouth. He is still talking, but his voice becomes hoarse and you hear noisy breathing when he inhales. Oxygen is in place. What should you anticipate?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>That sips of cool water will soothe the swelling</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Progressive airway swelling, so be ready to assist ventilations and expedite transport</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>That oxygen alone will reverse the swelling</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>That the changes are only pain-related agitation</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Soot, a hoarse voice, and noisy inhalation suggest heat or smoke injury to the airway, where swelling can close the airway quickly even when the patient is still talking. Prepare for worse breathing and move fast. Drinking is unsafe with a threatened airway. Oxygen does not reduce swelling, and dismissing the signs as agitation misses a life threat.</div>
+  </div>
+</div>
+<div class="pk-head" id="secondary">
+  <div class="n">Section 3 of 5 · 2 questions</div>
+  <h2>Secondary Assessment</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="qcard pcard" id="q19">
+  <div class="qmeta"><span class="num">Q19</span><span>OPQRST</span></div>
+  <div class="qtext">A 61-year-old man has had chest pressure for half an hour and speaks clearly. You are gathering his symptom history with OPQRST. Which question addresses radiation?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>How would you describe the feeling?</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>When did you last eat or drink?</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>What were you doing when it began?</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Does the pressure travel to your arm, jaw, or back?</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> The R stands for radiation, so ask whether the discomfort moves anywhere, such as to the arm, jaw, or back. What he was doing when it began is Onset, what it feels like is Quality, and the time of his last meal belongs to the SAMPLE history, not to OPQRST.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q20">
+  <div class="qmeta"><span class="num">Q20</span><span>Distal circulation</span></div>
+  <div class="qtext">A stable teenager has a swollen, deformed forearm after falling from a bike. Which finding most strongly suggests compromised circulation below the injury?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The injured forearm feels warmer than the other arm</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>The patient rates the pain 9 out of 10</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>The hand is pale and cool with no radial pulse</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>The patient cannot recall the exact time of the fall</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> A pale, cool hand with no pulse means blood is not reaching the limb below the injury, which needs prompt attention. Severe pain is common with fractures and does not show what the circulation is doing. Not recalling the time of the fall is a history detail, and warmth is not a sign of lost circulation.</div>
+  </div>
+</div>
+<div class="pk-head" id="treatment">
+  <div class="n">Section 4 of 5 · 7 questions</div>
+  <h2>Patient Treatment &amp; Transport</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="qcard pcard" id="q21">
+  <div class="qmeta"><span class="num">Q21</span><span>Oral glucose</span></div>
+  <div class="qtext">A pale, sweaty, confused woman in her 70s with a history of diabetes is sitting in a chair. She can swallow safely and obeys simple commands, and you have oral glucose with you. What is your first action?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Give her oral glucose per protocol</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Offer plain water first to check her swallowing</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Lay her face down in case she vomits</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Hold the glucose, since confusion cannot come from low sugar</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> A patient with diabetes who has classic signs of low blood sugar, who is awake and able to swallow and follow commands, should receive oral glucose. Plain water first wastes time. Prone positioning is unsafe and does not help. Confusion is a common sign of low blood sugar, not a reason to rule it out.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q22">
+  <div class="qmeta"><span class="num">Q22</span><span>Nitroglycerin criteria</span></div>
+  <div class="qtext">You are evaluating a 57-year-old man with chest pressure and a nitroglycerin prescription in his pocket. He is alert. Which of these findings means you should hold the medication and call medical direction?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>The pressure started while he was shoveling snow</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>He describes the pain as 9 out of 10</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>He chewed a baby aspirin an hour ago</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Blood pressure of 84/50</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Nitroglycerin lowers blood pressure, so a low pressure such as 84/50 is a reason to hold it. Taking aspirin does not rule it out, and exertional onset and severe pain fit cardiac chest pain and support treatment, not withholding. Also confirm he has not used an erectile-dysfunction medication recently, which is another reason to withhold.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q23">
+  <div class="qmeta"><span class="num">Q23</span><span>Asthma in children</span></div>
+  <div class="qtext">A 9-year-old girl with asthma is struggling to breathe. Early on she sits upright and wheezes loudly. During transport the wheezes fade, her chest hardly rises, and she grows sleepy. How should you interpret this change?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>She is just sleepy, since children nod off easily</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>She is tiring and moving very little air, which is a dangerous sign</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>She is getting better because the wheezing is quieter</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>She is relaxing because the ride is soothing</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Quieter wheezing is only good if breathing has eased. When faint sounds come with poor chest rise and drowsiness, she is moving too little air and is heading toward respiratory failure, so prepare to assist ventilations and give the hospital an update. The other explanations mistake exhaustion for improvement or calm.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q24">
+  <div class="qmeta"><span class="num">Q24</span><span>Epinephrine reassessment</span></div>
+  <div class="qtext">A woman develops hives, wheezing, and lip swelling after a bee sting. Her epinephrine auto-injector was used before you arrived. Five minutes later she says she is breathing easier. What is the best next step?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Remove oxygen and treat her wheezing as anxiety</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Stop monitoring, because the medicine solved the problem</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Keep reassessing and transport, because symptoms can return</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Cancel transport and advise her to follow up with her doctor</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Epinephrine can wear off before the reaction is over, so an allergic reaction can worsen again. Continue oxygen, keep watching her airway and breathing, and transport for further care. Treating symptoms as anxiety, stopping monitoring, and canceling transport all assume the danger has passed.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q25">
+  <div class="qmeta"><span class="num">Q25</span><span>Stroke reassessment</span></div>
+  <div class="qtext">A 68-year-old woman with sudden facial droop and slurred speech is being transported to a stroke center. On the way she becomes more confused and vomits. What is the best interpretation?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Vomiting relieves pressure, so she is improving</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>This change is expected once oxygen is applied</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>She is only tired from the ride</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Her neurologic condition may be worsening, so reassess and keep rapid transport</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> New confusion and vomiting in a possible stroke suggest her condition is getting worse. Reassess airway and breathing, be ready to suction, keep transport rapid, and update the receiving hospital. Fatigue, improvement from vomiting, and an expected oxygen effect all downplay a possible deterioration.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q26">
+  <div class="qmeta"><span class="num">Q26</span><span>Burn care</span></div>
+  <div class="qtext">A cook has a scald burn with intact blisters on his forearm and hand from boiling water. The burn was cooled briefly at the scene. What is most appropriate during transport?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Cover the burn with a clean, dry dressing</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Apply an ice pack directly to the burn</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Break the blisters so the skin can dry out</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Apply a thick layer of ointment</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> After brief cooling, a clean, dry dressing protects the burn from contamination. Intact blisters act as a barrier, so leave them alone. Thick ointment traps heat and has to be removed later, and ice can damage tissue further and cool the patient too much.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q27">
+  <div class="qmeta"><span class="num">Q27</span><span>Newborn airway</span></div>
+  <div class="qtext">Moments after delivery, a full-term newborn is crying strongly and moving all extremities, but thick secretions are blocking the mouth and nose. What should you do for the airway?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Begin chest compressions</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">B.</span> <span>Gently suction the mouth first, then the nose</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Leave the newborn alone to clear the secretions</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Rub the back firmly for several minutes instead of suctioning</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> A newborn with a strong cry and good tone does not need compressions. The problem is blocked airways, so clear them gently with a bulb syringe, mouth first, then the nose. Waiting leaves the obstruction in place, and prolonged rubbing does not clear secretions.</div>
+  </div>
+</div>
+<div class="pk-head" id="operations">
+  <div class="n">Section 5 of 5 · 3 questions</div>
+  <h2>Operations</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="qcard pcard" id="q28">
+  <div class="qmeta"><span class="num">Q28</span><span>DNR documentation</span></div>
+  <div class="qtext">An aide at a nursing home tells you a resident being sent to the hospital "has a DNR," but the chart holds no signed form and no order can be found. The resident is awake and breathing comfortably. What should you do before leaving the facility?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Accept a relative's spoken wish as if it were the signed order</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Wait at the facility until a doctor comes in person to write an order</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">C.</span> <span>Ask for the actual DNR paperwork and, if none can be found, follow your local protocol</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Trust the aide's statement and treat the resident as DNR</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> A DNR is honored on the basis of proper documentation under local rules. Verbal reports from staff or family are not the order itself. Ask for the paperwork, and if it cannot be produced, follow your local protocol, which usually means treating the patient as a full-code patient. Refusing transport until a physician arrives delays care for a stable patient.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q29">
+  <div class="qmeta"><span class="num">Q29</span><span>Documentation</span></div>
+  <div class="qtext">The tablet you use for your patient care report stops responding en route and will not save what you typed. Your stable patient needs no urgent care. What should you do?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="1"><span class="letter">A.</span> <span>Write the findings down using an approved backup method, such as paper, and finish the electronic report as soon as you can</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Turn around and bring the patient back to where you started</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Skip documentation until the end of your shift and rely on memory</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">D.</span> <span>Keep asking the patient to restate the history until the tablet works</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Documentation must be timely and accurate, and it is part of the legal record. A backup method such as paper keeps the details from being lost, and you transfer them into the report as soon as possible. Waiting until the end of the shift risks forgetting information. Making the patient repeat details is disruptive, and ending the transport for a technical problem puts a patient's care second.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q30">
+  <div class="qmeta"><span class="num">Q30</span><span>Lifting and moving</span></div>
+  <div class="qtext">You and your partner respond to a bariatric patient with weakness who cannot walk. The patient is stable, the hallway is narrow, and you doubt two people can move him safely. What should you do first?</div>
+  <div class="opts"><button type="button" class="opt" data-correct="0"><span class="letter">A.</span> <span>Try the move slowly so transport is not delayed</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">B.</span> <span>Ask family members to lift him by the legs</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="0"><span class="letter">C.</span> <span>Have him crawl onto a stretcher placed at the doorway</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-correct="1"><span class="letter">D.</span> <span>Request additional personnel or specialized moving equipment</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> A stable patient gives you time to plan a safe move. Calling for more people or bariatric equipment protects both the patient and your backs. Attempting it alone risks dropping the patient or injuring the crew. Family members are not trained to lift, and asking a weak patient to crawl is unsafe.</div>
+  </div>
+</div>
+  
+<div class="foot">
+  <div class="copyright">© 2026 Clinical Bridge Exam Prep. All rights reserved.</div>
+  <div class="legal">Independently produced — not affiliated with, endorsed by, or sponsored by NREMT's administering organization.</div>
+</div>
+</div>
+<script>
+var answeredCount = 0, correctCount = 0;
+var TOTAL = document.querySelectorAll('.pcard').length;
+function updateScore(){
+  document.getElementById('score-readout').innerHTML =
+    '<b>' + answeredCount + '</b>/' + TOTAL + ' answered' +
+    (answeredCount ? '  ·  <b>' + correctCount + '</b> correct' : '');
+}
+document.querySelectorAll('.pcard').forEach(function(card){
+  card.querySelectorAll('button.opt').forEach(function(opt){
+    opt.addEventListener('click', function(){
+      if(card.classList.contains('answered')) return;
+      card.classList.add('answered');
+      var ok = opt.dataset.correct === '1';
+      opt.classList.add(ok ? 'correct' : 'wrong');
+      if(!ok){ var right = card.querySelector('button.opt[data-correct="1"]'); if(right) right.classList.add('correct'); }
+      var result = card.querySelector('.result'), verdict = result.querySelector('.verdict');
+      verdict.textContent = ok ? 'Correct' : 'Not quite';
+      verdict.className = 'verdict ' + (ok ? 'good' : 'bad');
+      result.hidden = false;
+      answeredCount++; if(ok) correctCount++;
+      updateScore();
+    });
+  });
+});
+updateScore();
+</script>
+</body>
+</html>
