@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>High-Yield 100 — Safety and Infection Prevention and Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F1F4FA; --surface-2:#E7ECF6; --line:#D7DFEF;
+  --navy:#0A1B3D; --navy-2:#F1F4FA; --navy-3:#E7ECF6;
+  --gold:#FFC72C; --gold-ink:#1A1200; --gold-text:#A66A00;
+  --paper:#0A1B3D; --muted:#4C5C82; --muted-2:#6B7AA1;
+  --correct:#1E7A3D; --correct-soft:#E6F4EA; --incorrect:#C22A30; --incorrect-soft:#FBE7E8;
+  --alert-soft:#FFF6E0; --alert:#FFC72C; --alert-muted:#8A6A1E;
+  --shadow: 0 10px 28px -18px rgba(10,27,61,.28);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg); color:var(--navy); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Archivo Black',Impact,sans-serif; font-weight:400; letter-spacing:.005em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:720px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600;}
+
+.page{max-width:720px; margin:0 auto; padding:0 1.25rem 5rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.75rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-text); font-weight:600;}
+.hero h1{font-size:clamp(1.9rem,6.5vw,2.7rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:480px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.75rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Archivo Black',sans-serif; font-size:1.4rem; color:var(--gold-text);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.step-list{counter-reset:step; margin:2rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.5rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{
+  font-family:'Archivo Black',sans-serif; font-size:1rem; color:var(--gold-ink); background:var(--gold);
+  width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:.1rem;
+}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0; line-height:1.6;}
+.action-block{margin-top:.9rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none;
+  padding:.85rem 1.5rem; border-radius:999px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(255,199,44,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold-text);}
+
+.subject-chip{font-family:'Karla',sans-serif; font-weight:600; font-size:.92rem; letter-spacing:.01em; background:var(--surface); border:1.5px dashed var(--gold-text); border-radius:8px; padding:.7rem 1rem; color:var(--navy); word-break:break-word;}
+.subject-chip b{color:var(--gold-text);}
+
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.6rem; box-shadow:var(--shadow); margin-top:1.75rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+
+.section-head{padding-top:2.25rem; margin-bottom:1.1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+
+.card-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); margin-top:1.25rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center;}
+.card h3{font-size:1rem; font-weight:700; font-family:'Karla',sans-serif;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{
+  font-family:'Oswald',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; text-decoration:none; flex-shrink:0;
+}
+.tag.ghost{background:var(--surface); color:var(--navy); border:1.5px solid var(--line);}
+
+.check-list{display:flex; flex-direction:column; gap:1rem; margin-top:1.25rem;}
+.check-row{display:flex; gap:.9rem; align-items:flex-start;}
+.check-row .mark{
+  flex-shrink:0; width:1.6rem; height:1.6rem; border-radius:50%; background:var(--gold); color:var(--gold-ink);
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; margin-top:.05rem;
+}
+.check-row h3{font-size:.98rem; font-weight:700; font-family:'Karla',sans-serif;}
+.check-row p{color:var(--muted); font-size:.9rem; margin:.2rem 0 0; line-height:1.5;}
+
+.how-box{margin-top:1.25rem; text-align:center;}
+.how-box p{color:var(--paper); font-size:.95rem; line-height:1.65; max-width:440px; margin:0 auto;}
+.how-box .fine{color:var(--alert-muted); font-size:.83rem; margin-top:.9rem;}
+
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+
+.how-box-manual{margin-top:0; text-align:center; background:var(--navy-3); border:1.5px solid rgba(166,106,0,.35);}
+.how-box-manual p{color:var(--paper); font-size:.9rem; line-height:1.6; max-width:420px; margin:0 auto;}
+
+.foot{max-width:720px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+
+.faq{margin-top:1.25rem;}
+.faq dt{font-weight:700; margin-top:1.1rem; font-family:'Karla',sans-serif;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem; line-height:1.6;}
+
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card > a.tag{align-self:stretch; text-align:center;}
+  .topbar .title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:55vw;}
+  .topbar-inner{padding:.6rem 1rem;}
+  .hero{padding-top:2rem;}
+}
+
+.quiz-head{display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:1.25rem;}
+.progress{font-family:'Oswald',sans-serif; font-size:.8rem; color:var(--muted);}
+.qcard{border:1px solid var(--line); border-radius:10px; padding:1.4rem; margin-top:1.25rem; background:var(--navy-2);}
+.qn{font-family:'Oswald',sans-serif; font-size:.68rem; color:var(--muted-2); display:flex; justify-content:space-between; letter-spacing:.04em; text-transform:uppercase;}
+.qtext{margin-top:.6rem; font-size:1rem; line-height:1.6; white-space:pre-wrap;}
+.domain-pill{display:inline-block; font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.04em; text-transform:uppercase; background:var(--navy); border:1px solid var(--navy); padding:.2rem .55rem; border-radius:3px; color:var(--gold);}
+.opts{display:flex; flex-direction:column; gap:.55rem; margin-top:1.1rem;}
+.opt{display:flex; gap:.7rem; align-items:flex-start; border:1.5px solid var(--line); border-radius:8px; padding:.65rem .8rem; font-size:.93rem; line-height:1.5; background:var(--bg);}
+.opt input{margin-top:.25rem;} .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold-text);}
+.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.quiz-actions{display:flex; justify-content:center; margin-top:2rem; gap:.75rem;}
+.score-panel{border:1px solid var(--line); border-radius:10px; padding:1.5rem; background:var(--navy-2); margin-top:1.25rem;}
+.score-big{font-family:'Archivo Black',sans-serif; font-size:2rem; color:var(--gold-text);}
+.domain-bars{display:flex; flex-direction:column; gap:.55rem; margin-top:1.25rem;}
+.dbar-row{display:grid; grid-template-columns:minmax(110px,170px) 1fr 3.2rem; gap:.6rem; align-items:center; font-size:.82rem;}
+.dbar-track{height:8px; background:var(--surface-2); border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+.dbar-fill{height:100%; background:var(--correct);}
+.dname{color:var(--muted);} .dpct{font-family:'Oswald',sans-serif; text-align:right; color:var(--muted-2);}
+
+.briefing{padding-top:1.5rem;}
+.briefing h1{font-size:1.5rem; font-family:'Oswald',sans-serif; text-transform:uppercase; font-weight:700;}
+.briefing p{color:var(--muted); font-size:.96rem; line-height:1.65; margin-top:1rem;}
+.briefing ul{color:var(--muted); font-size:.94rem; line-height:1.8; margin:1.1rem 0 0; padding-left:1.3rem;}
+.briefing ul li::marker{color:var(--gold-text);}
+.check-gate{display:flex; gap:.75rem; align-items:flex-start; margin-top:1.75rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.25rem;}
+.check-gate input{margin-top:.2rem; width:1.05rem; height:1.05rem; accent-color:var(--gold-text); flex-shrink:0;}
+.check-gate label{font-size:.93rem; line-height:1.5;}
+#btn-start-test{margin-top:1.5rem; width:100%; justify-content:center; opacity:.4; pointer-events:none;}
+#btn-start-test.enabled{opacity:1; pointer-events:auto;}
+.section-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.75rem; gap:.75rem; flex-wrap:wrap; row-gap:.75rem;}
+.section-nav .mid{font-family:'Oswald',sans-serif; font-size:.78rem; color:var(--muted); order:-1; width:100%; text-align:center;}
+.section-nav .btn{flex:1;}
+
+@media (max-width:480px){
+  .section-nav .btn{padding:.7rem .9rem; font-size:.7rem; white-space:normal; text-align:center;}
+  .qcard{padding:1.1rem;}
+  .briefing h1{font-size:1.25rem;}
+}
+
+.stat-row.three{grid-template-columns:repeat(3,1fr);} .stat-row.three .stat{padding:1rem .4rem;} .stat-row.three .l{font-size:.56rem;}
+.pk-hero .lede{max-width:520px;}
+.pk-head{padding-top:1.5rem; margin-bottom:1.1rem; scroll-margin-top:4.5rem;}
+.pk-head .n{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.1em; color:var(--gold-text); text-transform:uppercase; font-weight:600;}
+.pk-head h2{font-family:'Oswald',sans-serif; font-size:1.5rem; font-weight:700; text-transform:uppercase; margin-top:.2rem;}
+.pk-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+.pcard{scroll-margin-top:4.5rem; margin-top:0; margin-bottom:1.1rem;}
+.pcard .qmeta{display:flex; gap:.6rem; align-items:baseline; font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-bottom:.6rem;}
+.pcard .qmeta .num{color:var(--gold-text); font-weight:700;}
+.pcard .qtext{font-weight:700; font-size:1.02rem; margin-top:0;}
+button.opt{width:100%; text-align:left; font-family:'Karla',sans-serif; color:var(--navy); cursor:pointer;}
+button.opt:hover{border-color:var(--gold-text);}
+button.opt .mark{margin-left:auto; font-weight:700; display:none; flex-shrink:0;}
+.pcard.answered button.opt{cursor:default;}
+.pcard.answered button.opt:hover{border-color:var(--line);}
+.pcard.answered button.opt.correct .mark{display:inline; color:var(--correct);}
+.pcard.answered button.opt.wrong .mark{display:inline; color:var(--incorrect);}
+.pcard.answered button.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.pcard.answered button.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.result{margin-top:1.1rem; padding-top:1.1rem; border-top:1px dashed var(--line);}
+.result .verdict{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; margin-bottom:.5rem;}
+.result .verdict.good{color:var(--correct);} .result .verdict.bad{color:var(--incorrect);}
+.result .exp{color:var(--muted); font-size:.92rem; line-height:1.65;}
+.result .exp b{color:var(--navy);}
+#score-readout{margin-left:auto; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; color:var(--muted); white-space:nowrap;}
+#score-readout b{color:var(--gold-text);}
+.area-nav{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:2rem;}
+.area-nav .btn{flex:1 1 30%; justify-content:center; text-align:center; white-space:normal; padding:.75rem .8rem; font-size:.74rem;}
+.area-card .prog{font-family:'Oswald',sans-serif; font-size:.7rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted-2); margin-top:.35rem;}
+.area-card .prog b{color:var(--gold-text);}
+.start-over{background:none; border:none; padding:0; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:underline; cursor:pointer;}
+@media (max-width:560px){ #score-readout{font-size:.66rem;} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <img class="logo" src="../assets/clinical-bridge-logo-white.png" alt="Clinical Bridge Exam Prep">
+    <span class="title">High-Yield 100</span>
+    <span id="score-readout"></span>
+  </div>
+</div>
+<div class="page">
+  <a href="./" class="back-link">← All content areas</a>
+  <div class="pk-head">
+    <div class="n">Area 2 of 8 · 13 questions</div>
+    <h2>Safety and Infection Prevention and Control</h2>
+    <div class="rule"></div>
+  </div>
+  
+<div class="qcard pcard" id="q22" data-q="22">
+  <div class="qmeta"><span class="num">Q22</span><span>Client identification</span></div>
+  <div class="qtext">A confused client's identification band was removed when an IV was restarted, and a new band has not been applied. The nurse must give the 0900 medications. What should the nurse do first?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Give the medications now because they are due, and apply the new band as soon as it arrives from the unit desk</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Check the name on the door and on the bed sign against the medication record and then give the medications</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Verify identity per facility policy with a second staff member, replace the band, then give the medications</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Ask the client to state his name and give the medications if he answers correctly, then apply the band</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> A confused client cannot reliably state identifiers, and a room or bed sign is not an identifier. Without a band, the nurse confirms identity through the method in policy, usually involving another staff member, and applies a new band before any medication is given. Giving the medications first defeats the purpose of identification.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q23" data-q="23">
+  <div class="qmeta"><span class="num">Q23</span><span>Safe equipment use</span></div>
+  <div class="qtext">While setting up an electric bed for a client, a practical nurse notices a frayed power cord. What is the best action?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Keep using the bed but avoid touching the cord while adjusting it</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Wrap the frayed area with electrical tape and continue using the bed</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Remove the bed from use, tag it as defective, and report it to maintenance</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Use the bed with the rails raised until the end of the shift and report it then</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> A frayed cord is an electrical shock and fire hazard. Damaged equipment is taken out of service, tagged so no one else uses it, and reported for repair. Taping the cord, avoiding contact, or delaying the report all leave a hazardous device in use.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q24" data-q="24">
+  <div class="qmeta"><span class="num">Q24</span><span>Allergy checks</span></div>
+  <div class="qtext">A client who had anaphylaxis after taking penicillin last year is prescribed IV cefazolin, a cephalosporin. What should the practical nurse do before giving the first dose?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Give the dose after documenting the reaction history in the allergy section</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Give the dose slowly and stay with the client to observe for a reaction for 15 minutes</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Give the dose because cephalosporins belong to a different class of antibiotics</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>Hold the dose and ask the provider to clarify the order because of cross-sensitivity</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Clients with a history of penicillin allergy can react to cephalosporins because of similar chemical structure. A history of anaphylaxis makes this especially serious, so the nurse withholds the dose and clarifies with the provider first. Giving the drug slowly or only documenting the allergy still exposes the client to a possibly life-threatening reaction.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q25" data-q="25">
+  <div class="qmeta"><span class="num">Q25</span><span>Environmental and disaster safety</span></div>
+  <div class="qtext">A fire starts in a wastebasket in the room of a client who is in bed receiving oxygen. Which action should the nurse take first?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Close the door to the room and nearby doors to contain the fire</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>Move the client out of the room and away from the fire</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Use the nearest fire extinguisher to put out the wastebasket fire</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Pull the nearest fire alarm to alert the other staff</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The first step in fire response is rescue: remove anyone in immediate danger, especially a client with oxygen in the room. After that the nurse activates the alarm, contains the fire by closing doors, and extinguishes it if it is small and safe to do so.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q26" data-q="26">
+  <div class="qmeta"><span class="num">Q26</span><span>Least-restrictive restraints</span></div>
+  <div class="qtext">A client with dementia keeps pulling at an indwelling urinary catheter, and the nurse is considering restraints. Which action reflects the least restrictive approach?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Apply soft wrist restraints and check the client's skin and circulation every 2 hours</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Apply mittens to both hands and tuck the catheter tubing under the sheet</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Assess for discomfort and ask the provider whether the catheter is still needed</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Place the client in an enclosure bed so the client cannot reach the tubing</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Restraints are a last resort after less restrictive measures fail. The best first step is to find and remove the cause, and a catheter that is no longer needed can be removed, which ends the behavior. Wrist restraints, mittens, and enclosure beds all limit the client's movement and carry their own risks.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q27" data-q="27">
+  <div class="qmeta"><span class="num">Q27</span><span>Incident and near-miss awareness</span></div>
+  <div class="qtext">A practical nurse takes the wrong insulin vial from the medication cart, notices the mistake before drawing up any insulin, and puts the vial back. No dose was given. Which action is most appropriate?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Write in the client's chart that an insulin error nearly occurred and was caught</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>File an event report about the near miss through the facility system</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Take no action because the vial was returned and the client was not affected</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Tell the pharmacist verbally and skip any written report to avoid blame</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Near misses show weaknesses in the system, such as look-alike labels or cart layout, and should be reported through the facility's event-reporting system even though no harm occurred. Event reports are not part of the client's medical record, so the chart is not the place for them. Ignoring the event or reporting only verbally prevents the facility from finding and fixing the problem.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q28" data-q="28">
+  <div class="qmeta"><span class="num">Q28</span><span>Transfer devices</span></div>
+  <div class="qtext">A client who weighs 145 kg (320 lb) cannot bear weight on either leg and needs to move from the bed to a chair. Which device should the nurse use?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>A transfer board with one nurse assisting from the bedside</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>A gait belt with one nurse assisting and the bed lowered</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>A full-body mechanical lift with two staff members</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>A sit-to-stand lift with one nurse guiding the client</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> A client who cannot bear weight needs a full-body lift, and a person of this size requires more than one staff member for safe handling. A gait belt and a sit-to-stand lift both require the client to bear weight through the legs. A transfer board requires the client to help with the slide and is unsafe without adequate help for a client of this size.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q29" data-q="29">
+  <div class="qmeta"><span class="num">Q29</span><span>Infection-control practices</span></div>
+  <div class="qtext">After removing gloves following care of a client with Clostridioides difficile infection, which hand hygiene method should the nurse use?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Rinse the hands under running water for 1 minute without soap</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Apply alcohol-based sanitizer and then put on a fresh pair of gloves</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Rub the hands with an alcohol-based sanitizer until they are dry</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>Wash the hands with soap and water for at least 20 seconds</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Alcohol-based sanitizers do not kill C. difficile spores. Washing with soap and water removes the spores by friction. Sanitizer, with or without new gloves, will not remove them, and rinsing with water alone without soap is not effective.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q30" data-q="30">
+  <div class="qmeta"><span class="num">Q30</span><span>PPE</span></div>
+  <div class="qtext">A nurse is leaving the room of a client on contact and droplet precautions. Which sequence for removing personal protective equipment is correct?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Mask, goggles, gown, gloves</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Goggles, mask, gloves, gown</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Gloves, goggles, gown, mask</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Gown, mask, gloves, goggles</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> PPE is removed from most contaminated to least contaminated: gloves first, then the goggles or face shield, then the gown, and the mask last, after leaving the room, followed by hand hygiene. Removing the mask or gown early exposes the nurse's face and clothing to contaminated surfaces.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q31" data-q="31">
+  <div class="qmeta"><span class="num">Q31</span><span>Asepsis</span></div>
+  <div class="qtext">A practical nurse is setting up a sterile field for a dressing change. Which action indicates a break in sterile technique?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Keeping the sterile field at or above waist level and in view</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>Reaching across the sterile field to place an item on the far side</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Treating a 1-inch (2.5-cm) border around the edge of the field as contaminated</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Opening the outermost flap of the sterile package away from the body first</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Reaching across a sterile field can drop contaminated particles onto it and brushes clothing against it, so it breaks technique. Keeping the field at waist level and in sight, opening the far flap away from the body first, and treating the outer 1 inch (2.5 cm) as contaminated are all correct.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q32" data-q="32">
+  <div class="qmeta"><span class="num">Q32</span><span>Isolation precautions</span></div>
+  <div class="qtext">A client is admitted with suspected meningococcal meningitis. Which protective equipment is required for close contact with this client?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>A gown and gloves worn for all contact with the client</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Hand hygiene only, because meningitis is not spread through respiratory secretions</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>An N95 respirator worn in a negative-pressure room</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>A surgical mask worn in addition to standard precautions</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Meningococcal meningitis spreads through large respiratory droplets, so droplet precautions with a surgical mask are used until the client has received 24 hours of effective antibiotic therapy. An N95 and a negative-pressure room are for airborne diseases such as tuberculosis, measles, and chickenpox. Gown and gloves are contact precautions.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q33" data-q="33">
+  <div class="qmeta"><span class="num">Q33</span><span>Isolation precautions</span></div>
+  <div class="qtext">A client is admitted with chickenpox (varicella), and airborne and contact precautions are started. Which nurse should not be assigned to this client?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>A nurse who is 12 weeks pregnant and has documented immunity to varicella</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>A nurse who received two doses of the varicella vaccine</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>A nurse who had chickenpox as a child</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>A nurse who has never had chickenpox or the varicella vaccine</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> A nurse with no immunity can catch chickenpox and should not care for the client. Immunity comes from having had the disease or from two doses of the vaccine. A pregnant nurse with documented immunity is protected, so pregnancy alone is not a reason to exclude her.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q34" data-q="34">
+  <div class="qmeta"><span class="num">Q34</span><span>Standard precautions</span></div>
+  <div class="qtext">A practical nurse has just given a subcutaneous injection with a safety needle. What is the correct next action?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="1"><span class="letter">A.</span> <span>Activate the safety device and discard the needle in the nearby sharps container</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Bend the needle so it cannot be reused and place it in the regular trash</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Recap the needle with both hands to prevent an accidental stick during disposal</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Carry the uncapped syringe to the utility room and discard it in the sharps container there</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Used needles are never recapped, bent, or carried. The safety device is activated and the needle is placed in the puncture-resistant sharps container immediately, where it was used. Recapping, bending, and carrying used needles are the main causes of needlestick injuries.</div>
+  </div>
+</div>
+  <div class="area-nav"><a class="btn btn-ghost" href="coordinated-care.html">← Coordinated Care</a><a class="btn btn-ghost" href="./">All areas</a><a class="btn btn-gold" href="health-promotion.html">Health Promotion →</a></div>
+  
+<div class="foot">
+  <div class="copyright">© 2026 Clinical Bridge Exam Prep. All rights reserved.</div>
+  <div class="legal">Independently produced — not affiliated with, endorsed by, or sponsored by NCSBN, the owner of the NCLEX-PN exam. NCLEX-PN® is a registered trademark of NCSBN.</div>
+</div>
+</div>
+<script>
+var AREA = "safety-infection-control";
+var KEY = "hy100:" + AREA;
+var saved = {};
+try { saved = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { saved = {}; }
+var TOTAL = document.querySelectorAll('.pcard').length;
+function updateScore(){
+  var a = 0, c = 0;
+  document.querySelectorAll('.pcard.answered').forEach(function(card){ a++; if(card.dataset.ok === '1') c++; });
+  document.getElementById('score-readout').innerHTML = '<b>' + a + '</b>/' + TOTAL + ' answered' + (a ? '  ·  <b>' + c + '</b> correct' : '');
+}
+function reveal(card, letter, persist){
+  if(card.classList.contains('answered')) return;
+  var opt = card.querySelector('button.opt[data-letter="' + letter + '"]');
+  if(!opt) return;
+  card.classList.add('answered');
+  var ok = opt.dataset.correct === '1';
+  card.dataset.ok = ok ? '1' : '0';
+  opt.classList.add(ok ? 'correct' : 'wrong');
+  if(!ok){ var mk = opt.querySelector('.mark'); if(mk) mk.textContent = '✗'; }
+  if(!ok){ var right = card.querySelector('button.opt[data-correct="1"]'); if(right) right.classList.add('correct'); }
+  var result = card.querySelector('.result'), verdict = result.querySelector('.verdict');
+  verdict.textContent = ok ? 'Correct' : 'Not quite';
+  verdict.className = 'verdict ' + (ok ? 'good' : 'bad');
+  result.hidden = false;
+  if(persist){ saved[card.dataset.q] = [letter, ok ? 1 : 0]; try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e) {} }
+}
+document.querySelectorAll('.pcard').forEach(function(card){
+  card.querySelectorAll('button.opt').forEach(function(opt){
+    opt.addEventListener('click', function(){ reveal(card, opt.dataset.letter, true); updateScore(); });
+  });
+  var s = saved[card.dataset.q];
+  if(s) reveal(card, s[0], false);
+});
+updateScore();
+</script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>High-Yield 100 — Basic Care and Comfort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F1F4FA; --surface-2:#E7ECF6; --line:#D7DFEF;
+  --navy:#0A1B3D; --navy-2:#F1F4FA; --navy-3:#E7ECF6;
+  --gold:#FFC72C; --gold-ink:#1A1200; --gold-text:#A66A00;
+  --paper:#0A1B3D; --muted:#4C5C82; --muted-2:#6B7AA1;
+  --correct:#1E7A3D; --correct-soft:#E6F4EA; --incorrect:#C22A30; --incorrect-soft:#FBE7E8;
+  --alert-soft:#FFF6E0; --alert:#FFC72C; --alert-muted:#8A6A1E;
+  --shadow: 0 10px 28px -18px rgba(10,27,61,.28);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg); color:var(--navy); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Archivo Black',Impact,sans-serif; font-weight:400; letter-spacing:.005em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:720px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600;}
+
+.page{max-width:720px; margin:0 auto; padding:0 1.25rem 5rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.75rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-text); font-weight:600;}
+.hero h1{font-size:clamp(1.9rem,6.5vw,2.7rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:480px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.75rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Archivo Black',sans-serif; font-size:1.4rem; color:var(--gold-text);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.step-list{counter-reset:step; margin:2rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.5rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{
+  font-family:'Archivo Black',sans-serif; font-size:1rem; color:var(--gold-ink); background:var(--gold);
+  width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:.1rem;
+}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0; line-height:1.6;}
+.action-block{margin-top:.9rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none;
+  padding:.85rem 1.5rem; border-radius:999px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(255,199,44,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold-text);}
+
+.subject-chip{font-family:'Karla',sans-serif; font-weight:600; font-size:.92rem; letter-spacing:.01em; background:var(--surface); border:1.5px dashed var(--gold-text); border-radius:8px; padding:.7rem 1rem; color:var(--navy); word-break:break-word;}
+.subject-chip b{color:var(--gold-text);}
+
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.6rem; box-shadow:var(--shadow); margin-top:1.75rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+
+.section-head{padding-top:2.25rem; margin-bottom:1.1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+
+.card-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); margin-top:1.25rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center;}
+.card h3{font-size:1rem; font-weight:700; font-family:'Karla',sans-serif;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{
+  font-family:'Oswald',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; text-decoration:none; flex-shrink:0;
+}
+.tag.ghost{background:var(--surface); color:var(--navy); border:1.5px solid var(--line);}
+
+.check-list{display:flex; flex-direction:column; gap:1rem; margin-top:1.25rem;}
+.check-row{display:flex; gap:.9rem; align-items:flex-start;}
+.check-row .mark{
+  flex-shrink:0; width:1.6rem; height:1.6rem; border-radius:50%; background:var(--gold); color:var(--gold-ink);
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; margin-top:.05rem;
+}
+.check-row h3{font-size:.98rem; font-weight:700; font-family:'Karla',sans-serif;}
+.check-row p{color:var(--muted); font-size:.9rem; margin:.2rem 0 0; line-height:1.5;}
+
+.how-box{margin-top:1.25rem; text-align:center;}
+.how-box p{color:var(--paper); font-size:.95rem; line-height:1.65; max-width:440px; margin:0 auto;}
+.how-box .fine{color:var(--alert-muted); font-size:.83rem; margin-top:.9rem;}
+
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+
+.how-box-manual{margin-top:0; text-align:center; background:var(--navy-3); border:1.5px solid rgba(166,106,0,.35);}
+.how-box-manual p{color:var(--paper); font-size:.9rem; line-height:1.6; max-width:420px; margin:0 auto;}
+
+.foot{max-width:720px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+
+.faq{margin-top:1.25rem;}
+.faq dt{font-weight:700; margin-top:1.1rem; font-family:'Karla',sans-serif;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem; line-height:1.6;}
+
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card > a.tag{align-self:stretch; text-align:center;}
+  .topbar .title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:55vw;}
+  .topbar-inner{padding:.6rem 1rem;}
+  .hero{padding-top:2rem;}
+}
+
+.quiz-head{display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:1.25rem;}
+.progress{font-family:'Oswald',sans-serif; font-size:.8rem; color:var(--muted);}
+.qcard{border:1px solid var(--line); border-radius:10px; padding:1.4rem; margin-top:1.25rem; background:var(--navy-2);}
+.qn{font-family:'Oswald',sans-serif; font-size:.68rem; color:var(--muted-2); display:flex; justify-content:space-between; letter-spacing:.04em; text-transform:uppercase;}
+.qtext{margin-top:.6rem; font-size:1rem; line-height:1.6; white-space:pre-wrap;}
+.domain-pill{display:inline-block; font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.04em; text-transform:uppercase; background:var(--navy); border:1px solid var(--navy); padding:.2rem .55rem; border-radius:3px; color:var(--gold);}
+.opts{display:flex; flex-direction:column; gap:.55rem; margin-top:1.1rem;}
+.opt{display:flex; gap:.7rem; align-items:flex-start; border:1.5px solid var(--line); border-radius:8px; padding:.65rem .8rem; font-size:.93rem; line-height:1.5; background:var(--bg);}
+.opt input{margin-top:.25rem;} .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold-text);}
+.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.quiz-actions{display:flex; justify-content:center; margin-top:2rem; gap:.75rem;}
+.score-panel{border:1px solid var(--line); border-radius:10px; padding:1.5rem; background:var(--navy-2); margin-top:1.25rem;}
+.score-big{font-family:'Archivo Black',sans-serif; font-size:2rem; color:var(--gold-text);}
+.domain-bars{display:flex; flex-direction:column; gap:.55rem; margin-top:1.25rem;}
+.dbar-row{display:grid; grid-template-columns:minmax(110px,170px) 1fr 3.2rem; gap:.6rem; align-items:center; font-size:.82rem;}
+.dbar-track{height:8px; background:var(--surface-2); border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+.dbar-fill{height:100%; background:var(--correct);}
+.dname{color:var(--muted);} .dpct{font-family:'Oswald',sans-serif; text-align:right; color:var(--muted-2);}
+
+.briefing{padding-top:1.5rem;}
+.briefing h1{font-size:1.5rem; font-family:'Oswald',sans-serif; text-transform:uppercase; font-weight:700;}
+.briefing p{color:var(--muted); font-size:.96rem; line-height:1.65; margin-top:1rem;}
+.briefing ul{color:var(--muted); font-size:.94rem; line-height:1.8; margin:1.1rem 0 0; padding-left:1.3rem;}
+.briefing ul li::marker{color:var(--gold-text);}
+.check-gate{display:flex; gap:.75rem; align-items:flex-start; margin-top:1.75rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.25rem;}
+.check-gate input{margin-top:.2rem; width:1.05rem; height:1.05rem; accent-color:var(--gold-text); flex-shrink:0;}
+.check-gate label{font-size:.93rem; line-height:1.5;}
+#btn-start-test{margin-top:1.5rem; width:100%; justify-content:center; opacity:.4; pointer-events:none;}
+#btn-start-test.enabled{opacity:1; pointer-events:auto;}
+.section-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.75rem; gap:.75rem; flex-wrap:wrap; row-gap:.75rem;}
+.section-nav .mid{font-family:'Oswald',sans-serif; font-size:.78rem; color:var(--muted); order:-1; width:100%; text-align:center;}
+.section-nav .btn{flex:1;}
+
+@media (max-width:480px){
+  .section-nav .btn{padding:.7rem .9rem; font-size:.7rem; white-space:normal; text-align:center;}
+  .qcard{padding:1.1rem;}
+  .briefing h1{font-size:1.25rem;}
+}
+
+.stat-row.three{grid-template-columns:repeat(3,1fr);} .stat-row.three .stat{padding:1rem .4rem;} .stat-row.three .l{font-size:.56rem;}
+.pk-hero .lede{max-width:520px;}
+.pk-head{padding-top:1.5rem; margin-bottom:1.1rem; scroll-margin-top:4.5rem;}
+.pk-head .n{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.1em; color:var(--gold-text); text-transform:uppercase; font-weight:600;}
+.pk-head h2{font-family:'Oswald',sans-serif; font-size:1.5rem; font-weight:700; text-transform:uppercase; margin-top:.2rem;}
+.pk-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+.pcard{scroll-margin-top:4.5rem; margin-top:0; margin-bottom:1.1rem;}
+.pcard .qmeta{display:flex; gap:.6rem; align-items:baseline; font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-bottom:.6rem;}
+.pcard .qmeta .num{color:var(--gold-text); font-weight:700;}
+.pcard .qtext{font-weight:700; font-size:1.02rem; margin-top:0;}
+button.opt{width:100%; text-align:left; font-family:'Karla',sans-serif; color:var(--navy); cursor:pointer;}
+button.opt:hover{border-color:var(--gold-text);}
+button.opt .mark{margin-left:auto; font-weight:700; display:none; flex-shrink:0;}
+.pcard.answered button.opt{cursor:default;}
+.pcard.answered button.opt:hover{border-color:var(--line);}
+.pcard.answered button.opt.correct .mark{display:inline; color:var(--correct);}
+.pcard.answered button.opt.wrong .mark{display:inline; color:var(--incorrect);}
+.pcard.answered button.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.pcard.answered button.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.result{margin-top:1.1rem; padding-top:1.1rem; border-top:1px dashed var(--line);}
+.result .verdict{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; margin-bottom:.5rem;}
+.result .verdict.good{color:var(--correct);} .result .verdict.bad{color:var(--incorrect);}
+.result .exp{color:var(--muted); font-size:.92rem; line-height:1.65;}
+.result .exp b{color:var(--navy);}
+#score-readout{margin-left:auto; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; color:var(--muted); white-space:nowrap;}
+#score-readout b{color:var(--gold-text);}
+.area-nav{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:2rem;}
+.area-nav .btn{flex:1 1 30%; justify-content:center; text-align:center; white-space:normal; padding:.75rem .8rem; font-size:.74rem;}
+.area-card .prog{font-family:'Oswald',sans-serif; font-size:.7rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted-2); margin-top:.35rem;}
+.area-card .prog b{color:var(--gold-text);}
+.start-over{background:none; border:none; padding:0; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:underline; cursor:pointer;}
+@media (max-width:560px){ #score-readout{font-size:.66rem;} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <img class="logo" src="../assets/clinical-bridge-logo-white.png" alt="Clinical Bridge Exam Prep">
+    <span class="title">High-Yield 100</span>
+    <span id="score-readout"></span>
+  </div>
+</div>
+<div class="page">
+  <a href="./" class="back-link">← All content areas</a>
+  <div class="pk-head">
+    <div class="n">Area 5 of 8 · 10 questions</div>
+    <h2>Basic Care and Comfort</h2>
+    <div class="rule"></div>
+  </div>
+  
+<div class="qcard pcard" id="q56" data-q="56">
+  <div class="qmeta"><span class="num">Q56</span><span>Enteral feeding and site care</span></div>
+  <div class="qtext">A practical nurse is giving a bolus feeding through a nasogastric tube. Which action reduces the risk of aspiration?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Lower the head of the bed flat after starting the feeding so air cannot enter the tube</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Lay the client on the back for 15 minutes after the feeding to help digestion</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Push the formula quickly with the plunger to shorten the time the tube stays open</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>Keep the head of the bed raised 30 to 45 degrees during and for an hour after the feeding</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> An upright position uses gravity to keep formula in the stomach and lowers the risk of reflux and aspiration, so the head of the bed stays raised during the feeding and for a period afterward. Lying flat, pushing formula quickly, and reclining after the feeding all promote reflux.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q57" data-q="57">
+  <div class="qmeta"><span class="num">Q57</span><span>Mobility</span></div>
+  <div class="qtext">A client with a fractured left leg who is non-weight-bearing is learning to climb stairs with crutches. Which instruction is correct?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Step up with the left leg first, then bring the right leg and crutches up</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Move the crutches up first, then step up with the right leg</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Step up with the right leg first, then bring the crutches and left leg up together</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Move the left leg and both crutches up together, then step up with the right leg</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> When going up stairs the stronger leg leads, then the crutches and the injured leg follow ('up with the good'). When going down, the crutches and injured leg go first ('down with the bad'). Leading with the injured leg or the crutches first is unstable and can cause a fall.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q58" data-q="58">
+  <div class="qmeta"><span class="num">Q58</span><span>Nutrition</span></div>
+  <div class="qtext">A client with iron-deficiency anemia is prescribed oral ferrous sulfate. Which instruction best improves absorption of the iron?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Take the tablet with a glass of milk to prevent stomach upset</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Take the tablet with a cup of coffee to help the client stay awake</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Take the tablet with an antacid to prevent stomach irritation</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>Take the tablet with orange juice, on an empty stomach if tolerated</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Vitamin C increases iron absorption, so taking iron with orange juice on an empty stomach is best. Calcium in milk and antacids binds iron and reduces absorption, and the tannins in coffee also interfere with it.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q59" data-q="59">
+  <div class="qmeta"><span class="num">Q59</span><span>Nonpharmacologic pain relief</span></div>
+  <div class="qtext">A client twisted an ankle 2 hours ago, and the ankle is swollen and painful. Which nonpharmacologic measure should the nurse teach?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="1"><span class="letter">A.</span> <span>Elevate the ankle and apply a cold pack wrapped in a cloth for 20 minutes</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Soak the ankle in a warm bath and gently exercise it</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Wrap the ankle tightly and keep it lower than the heart to reduce swelling</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Apply a heating pad for 30 minutes at a time to increase circulation</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> In the first 24 to 48 hours after an injury, cold and elevation reduce swelling and pain. Heat and warm soaks increase blood flow and swelling early on, and keeping the ankle below the heart while wrapped tightly increases swelling and can impair circulation.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q60" data-q="60">
+  <div class="qmeta"><span class="num">Q60</span><span>Activities of daily living</span></div>
+  <div class="qtext">A client has weakness of the left arm after a stroke. Which technique is correct when helping the client dress?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Pull the sleeve over the weak arm quickly while the client is standing</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Have the client hold the garment with the weak hand while putting on the other sleeve</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Put the garment on the strong right arm first because it moves more easily</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>Put the garment on the weak left arm first, then on the strong arm</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> When dressing, the affected limb goes in first while there is the most room to move it, and when undressing, the unaffected side comes off first. Doing the strong side first makes the weak arm harder to dress. Rushing the weak arm risks injury, and the weak hand cannot hold the garment reliably.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q61" data-q="61">
+  <div class="qmeta"><span class="num">Q61</span><span>Bowel and bladder protocols</span></div>
+  <div class="qtext">A nurse is about to remove stool digitally from a client with a fecal impaction. Which finding should cause the nurse to stop the procedure?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>The client has mild abdominal cramping</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>The client passes a small amount of liquid stool</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>The pulse decreases from 78/min to 52/min</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>The client reports mild rectal discomfort</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Digital stimulation of the rectum can stimulate the vagus nerve, causing bradycardia and a drop in blood pressure. A pulse falling to 52/min is a sign to stop and notify the provider. Mild discomfort, some liquid stool, and mild cramping are expected during the procedure.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q62" data-q="62">
+  <div class="qmeta"><span class="num">Q62</span><span>Skin and tissue integrity</span></div>
+  <div class="qtext">A client at high risk for pressure injuries is on bed rest. Which position best reduces pressure over bony areas?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Head of the bed raised to 60 degrees for most of the day to improve breathing and comfort</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Side-lying at 90 degrees, resting directly on the hip bone, to allow the back to relax</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Sitting on a donut-shaped cushion in a chair for most of the day to relieve sacral pressure</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>Side-lying at about 30 degrees on pillows, with the head of the bed at 30 degrees or lower</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> A 30-degree tilt keeps weight off the bony trochanter and sacrum, and keeping the head of the bed low reduces shearing. A 90-degree side-lying position puts full pressure on the hip bone, a high head of bed increases pressure and shear over the sacrum, and donut cushions concentrate pressure around the ring and reduce blood flow.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q63" data-q="63">
+  <div class="qmeta"><span class="num">Q63</span><span>Intake and output</span></div>
+  <div class="qtext">A client ate 1 cup (240 mL) of ice chips and 4 oz (120 mL) of gelatin. How much should the nurse record as oral intake?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>120 mL</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>240 mL</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>360 mL</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>480 mL</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Ice chips are counted as half their volume, so 240 mL of ice chips equals 120 mL of fluid. Gelatin turns to liquid at body temperature and is counted at full volume, 120 mL. The total is 120 mL plus 120 mL, or 240 mL. Counting ice at full volume gives 360 mL, and counting only one item or doubling the total gives the other values.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q64" data-q="64">
+  <div class="qmeta"><span class="num">Q64</span><span>Care of immobilized clients</span></div>
+  <div class="qtext">A client is in Buck's skin traction for a hip fracture. Which observation by the nurse indicates correct care?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="1"><span class="letter">A.</span> <span>The weights are hanging freely, not touching the floor or the bed</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>The weights are resting on the floor to keep them from swinging</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>The weights were removed while the client was turned</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>The client's heel is pressed firmly against the foot of the bed</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Traction works only when weights hang freely, creating a constant pull. Weights that rest on the floor or bed, weights removed for turning, and a heel pressed against the footboard all reduce the pull and can cause misalignment, pain, or pressure injury.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q65" data-q="65">
+  <div class="qmeta"><span class="num">Q65</span><span>Sleep and rest</span></div>
+  <div class="qtext">An older client reports trouble falling asleep. Which teaching is most likely to help?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="1"><span class="letter">A.</span> <span>Keep a regular bedtime and wake time, and limit daytime naps to 30 minutes early in the day</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Have a glass of wine before bed to help you relax and fall asleep faster</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Take a long nap in the late afternoon to make up for the sleep you lost the night before</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Exercise vigorously in the hour before bedtime to tire yourself out and sleep deeper</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> A consistent schedule and limited, early naps support the body's sleep-wake rhythm. Alcohol may cause drowsiness but disrupts sleep later in the night, vigorous exercise close to bedtime is stimulating, and a long late nap makes it harder to fall asleep at night.</div>
+  </div>
+</div>
+  <div class="area-nav"><a class="btn btn-ghost" href="psychosocial-integrity.html">← Psychosocial Integrity</a><a class="btn btn-ghost" href="./">All areas</a><a class="btn btn-gold" href="pharmacological-therapies.html">Pharmacology →</a></div>
+  
+<div class="foot">
+  <div class="copyright">© 2026 Clinical Bridge Exam Prep. All rights reserved.</div>
+  <div class="legal">Independently produced — not affiliated with, endorsed by, or sponsored by NCSBN, the owner of the NCLEX-PN exam. NCLEX-PN® is a registered trademark of NCSBN.</div>
+</div>
+</div>
+<script>
+var AREA = "basic-care-comfort";
+var KEY = "hy100:" + AREA;
+var saved = {};
+try { saved = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { saved = {}; }
+var TOTAL = document.querySelectorAll('.pcard').length;
+function updateScore(){
+  var a = 0, c = 0;
+  document.querySelectorAll('.pcard.answered').forEach(function(card){ a++; if(card.dataset.ok === '1') c++; });
+  document.getElementById('score-readout').innerHTML = '<b>' + a + '</b>/' + TOTAL + ' answered' + (a ? '  ·  <b>' + c + '</b> correct' : '');
+}
+function reveal(card, letter, persist){
+  if(card.classList.contains('answered')) return;
+  var opt = card.querySelector('button.opt[data-letter="' + letter + '"]');
+  if(!opt) return;
+  card.classList.add('answered');
+  var ok = opt.dataset.correct === '1';
+  card.dataset.ok = ok ? '1' : '0';
+  opt.classList.add(ok ? 'correct' : 'wrong');
+  if(!ok){ var mk = opt.querySelector('.mark'); if(mk) mk.textContent = '✗'; }
+  if(!ok){ var right = card.querySelector('button.opt[data-correct="1"]'); if(right) right.classList.add('correct'); }
+  var result = card.querySelector('.result'), verdict = result.querySelector('.verdict');
+  verdict.textContent = ok ? 'Correct' : 'Not quite';
+  verdict.className = 'verdict ' + (ok ? 'good' : 'bad');
+  result.hidden = false;
+  if(persist){ saved[card.dataset.q] = [letter, ok ? 1 : 0]; try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e) {} }
+}
+document.querySelectorAll('.pcard').forEach(function(card){
+  card.querySelectorAll('button.opt').forEach(function(opt){
+    opt.addEventListener('click', function(){ reveal(card, opt.dataset.letter, true); updateScore(); });
+  });
+  var s = saved[card.dataset.q];
+  if(s) reveal(card, s[0], false);
+});
+updateScore();
+</script>
+</body>
+</html>

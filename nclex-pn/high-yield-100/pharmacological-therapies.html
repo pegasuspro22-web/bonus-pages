@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>High-Yield 100 — Pharmacological Therapies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F1F4FA; --surface-2:#E7ECF6; --line:#D7DFEF;
+  --navy:#0A1B3D; --navy-2:#F1F4FA; --navy-3:#E7ECF6;
+  --gold:#FFC72C; --gold-ink:#1A1200; --gold-text:#A66A00;
+  --paper:#0A1B3D; --muted:#4C5C82; --muted-2:#6B7AA1;
+  --correct:#1E7A3D; --correct-soft:#E6F4EA; --incorrect:#C22A30; --incorrect-soft:#FBE7E8;
+  --alert-soft:#FFF6E0; --alert:#FFC72C; --alert-muted:#8A6A1E;
+  --shadow: 0 10px 28px -18px rgba(10,27,61,.28);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg); color:var(--navy); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Archivo Black',Impact,sans-serif; font-weight:400; letter-spacing:.005em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:720px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600;}
+
+.page{max-width:720px; margin:0 auto; padding:0 1.25rem 5rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.75rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-text); font-weight:600;}
+.hero h1{font-size:clamp(1.9rem,6.5vw,2.7rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:480px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.75rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Archivo Black',sans-serif; font-size:1.4rem; color:var(--gold-text);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.step-list{counter-reset:step; margin:2rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.5rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{
+  font-family:'Archivo Black',sans-serif; font-size:1rem; color:var(--gold-ink); background:var(--gold);
+  width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:.1rem;
+}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0; line-height:1.6;}
+.action-block{margin-top:.9rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none;
+  padding:.85rem 1.5rem; border-radius:999px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(255,199,44,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold-text);}
+
+.subject-chip{font-family:'Karla',sans-serif; font-weight:600; font-size:.92rem; letter-spacing:.01em; background:var(--surface); border:1.5px dashed var(--gold-text); border-radius:8px; padding:.7rem 1rem; color:var(--navy); word-break:break-word;}
+.subject-chip b{color:var(--gold-text);}
+
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.6rem; box-shadow:var(--shadow); margin-top:1.75rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+
+.section-head{padding-top:2.25rem; margin-bottom:1.1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+
+.card-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); margin-top:1.25rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center;}
+.card h3{font-size:1rem; font-weight:700; font-family:'Karla',sans-serif;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{
+  font-family:'Oswald',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; text-decoration:none; flex-shrink:0;
+}
+.tag.ghost{background:var(--surface); color:var(--navy); border:1.5px solid var(--line);}
+
+.check-list{display:flex; flex-direction:column; gap:1rem; margin-top:1.25rem;}
+.check-row{display:flex; gap:.9rem; align-items:flex-start;}
+.check-row .mark{
+  flex-shrink:0; width:1.6rem; height:1.6rem; border-radius:50%; background:var(--gold); color:var(--gold-ink);
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; margin-top:.05rem;
+}
+.check-row h3{font-size:.98rem; font-weight:700; font-family:'Karla',sans-serif;}
+.check-row p{color:var(--muted); font-size:.9rem; margin:.2rem 0 0; line-height:1.5;}
+
+.how-box{margin-top:1.25rem; text-align:center;}
+.how-box p{color:var(--paper); font-size:.95rem; line-height:1.65; max-width:440px; margin:0 auto;}
+.how-box .fine{color:var(--alert-muted); font-size:.83rem; margin-top:.9rem;}
+
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+
+.how-box-manual{margin-top:0; text-align:center; background:var(--navy-3); border:1.5px solid rgba(166,106,0,.35);}
+.how-box-manual p{color:var(--paper); font-size:.9rem; line-height:1.6; max-width:420px; margin:0 auto;}
+
+.foot{max-width:720px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+
+.faq{margin-top:1.25rem;}
+.faq dt{font-weight:700; margin-top:1.1rem; font-family:'Karla',sans-serif;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem; line-height:1.6;}
+
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card > a.tag{align-self:stretch; text-align:center;}
+  .topbar .title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:55vw;}
+  .topbar-inner{padding:.6rem 1rem;}
+  .hero{padding-top:2rem;}
+}
+
+.quiz-head{display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:1.25rem;}
+.progress{font-family:'Oswald',sans-serif; font-size:.8rem; color:var(--muted);}
+.qcard{border:1px solid var(--line); border-radius:10px; padding:1.4rem; margin-top:1.25rem; background:var(--navy-2);}
+.qn{font-family:'Oswald',sans-serif; font-size:.68rem; color:var(--muted-2); display:flex; justify-content:space-between; letter-spacing:.04em; text-transform:uppercase;}
+.qtext{margin-top:.6rem; font-size:1rem; line-height:1.6; white-space:pre-wrap;}
+.domain-pill{display:inline-block; font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.04em; text-transform:uppercase; background:var(--navy); border:1px solid var(--navy); padding:.2rem .55rem; border-radius:3px; color:var(--gold);}
+.opts{display:flex; flex-direction:column; gap:.55rem; margin-top:1.1rem;}
+.opt{display:flex; gap:.7rem; align-items:flex-start; border:1.5px solid var(--line); border-radius:8px; padding:.65rem .8rem; font-size:.93rem; line-height:1.5; background:var(--bg);}
+.opt input{margin-top:.25rem;} .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold-text);}
+.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.quiz-actions{display:flex; justify-content:center; margin-top:2rem; gap:.75rem;}
+.score-panel{border:1px solid var(--line); border-radius:10px; padding:1.5rem; background:var(--navy-2); margin-top:1.25rem;}
+.score-big{font-family:'Archivo Black',sans-serif; font-size:2rem; color:var(--gold-text);}
+.domain-bars{display:flex; flex-direction:column; gap:.55rem; margin-top:1.25rem;}
+.dbar-row{display:grid; grid-template-columns:minmax(110px,170px) 1fr 3.2rem; gap:.6rem; align-items:center; font-size:.82rem;}
+.dbar-track{height:8px; background:var(--surface-2); border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+.dbar-fill{height:100%; background:var(--correct);}
+.dname{color:var(--muted);} .dpct{font-family:'Oswald',sans-serif; text-align:right; color:var(--muted-2);}
+
+.briefing{padding-top:1.5rem;}
+.briefing h1{font-size:1.5rem; font-family:'Oswald',sans-serif; text-transform:uppercase; font-weight:700;}
+.briefing p{color:var(--muted); font-size:.96rem; line-height:1.65; margin-top:1rem;}
+.briefing ul{color:var(--muted); font-size:.94rem; line-height:1.8; margin:1.1rem 0 0; padding-left:1.3rem;}
+.briefing ul li::marker{color:var(--gold-text);}
+.check-gate{display:flex; gap:.75rem; align-items:flex-start; margin-top:1.75rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.25rem;}
+.check-gate input{margin-top:.2rem; width:1.05rem; height:1.05rem; accent-color:var(--gold-text); flex-shrink:0;}
+.check-gate label{font-size:.93rem; line-height:1.5;}
+#btn-start-test{margin-top:1.5rem; width:100%; justify-content:center; opacity:.4; pointer-events:none;}
+#btn-start-test.enabled{opacity:1; pointer-events:auto;}
+.section-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.75rem; gap:.75rem; flex-wrap:wrap; row-gap:.75rem;}
+.section-nav .mid{font-family:'Oswald',sans-serif; font-size:.78rem; color:var(--muted); order:-1; width:100%; text-align:center;}
+.section-nav .btn{flex:1;}
+
+@media (max-width:480px){
+  .section-nav .btn{padding:.7rem .9rem; font-size:.7rem; white-space:normal; text-align:center;}
+  .qcard{padding:1.1rem;}
+  .briefing h1{font-size:1.25rem;}
+}
+
+.stat-row.three{grid-template-columns:repeat(3,1fr);} .stat-row.three .stat{padding:1rem .4rem;} .stat-row.three .l{font-size:.56rem;}
+.pk-hero .lede{max-width:520px;}
+.pk-head{padding-top:1.5rem; margin-bottom:1.1rem; scroll-margin-top:4.5rem;}
+.pk-head .n{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.1em; color:var(--gold-text); text-transform:uppercase; font-weight:600;}
+.pk-head h2{font-family:'Oswald',sans-serif; font-size:1.5rem; font-weight:700; text-transform:uppercase; margin-top:.2rem;}
+.pk-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+.pcard{scroll-margin-top:4.5rem; margin-top:0; margin-bottom:1.1rem;}
+.pcard .qmeta{display:flex; gap:.6rem; align-items:baseline; font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-bottom:.6rem;}
+.pcard .qmeta .num{color:var(--gold-text); font-weight:700;}
+.pcard .qtext{font-weight:700; font-size:1.02rem; margin-top:0;}
+button.opt{width:100%; text-align:left; font-family:'Karla',sans-serif; color:var(--navy); cursor:pointer;}
+button.opt:hover{border-color:var(--gold-text);}
+button.opt .mark{margin-left:auto; font-weight:700; display:none; flex-shrink:0;}
+.pcard.answered button.opt{cursor:default;}
+.pcard.answered button.opt:hover{border-color:var(--line);}
+.pcard.answered button.opt.correct .mark{display:inline; color:var(--correct);}
+.pcard.answered button.opt.wrong .mark{display:inline; color:var(--incorrect);}
+.pcard.answered button.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.pcard.answered button.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.result{margin-top:1.1rem; padding-top:1.1rem; border-top:1px dashed var(--line);}
+.result .verdict{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; margin-bottom:.5rem;}
+.result .verdict.good{color:var(--correct);} .result .verdict.bad{color:var(--incorrect);}
+.result .exp{color:var(--muted); font-size:.92rem; line-height:1.65;}
+.result .exp b{color:var(--navy);}
+#score-readout{margin-left:auto; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; color:var(--muted); white-space:nowrap;}
+#score-readout b{color:var(--gold-text);}
+.area-nav{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:2rem;}
+.area-nav .btn{flex:1 1 30%; justify-content:center; text-align:center; white-space:normal; padding:.75rem .8rem; font-size:.74rem;}
+.area-card .prog{font-family:'Oswald',sans-serif; font-size:.7rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted-2); margin-top:.35rem;}
+.area-card .prog b{color:var(--gold-text);}
+.start-over{background:none; border:none; padding:0; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:underline; cursor:pointer;}
+@media (max-width:560px){ #score-readout{font-size:.66rem;} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <img class="logo" src="../assets/clinical-bridge-logo-white.png" alt="Clinical Bridge Exam Prep">
+    <span class="title">High-Yield 100</span>
+    <span id="score-readout"></span>
+  </div>
+</div>
+<div class="page">
+  <a href="./" class="back-link">← All content areas</a>
+  <div class="pk-head">
+    <div class="n">Area 6 of 8 · 13 questions</div>
+    <h2>Pharmacological Therapies</h2>
+    <div class="rule"></div>
+  </div>
+  
+<div class="qcard pcard" id="q66" data-q="66">
+  <div class="qmeta"><span class="num">Q66</span><span>Medication rights</span></div>
+  <div class="qtext">A practical nurse finds a labeled syringe of insulin on the counter, drawn up by a nurse who left for lunch, with the client's name and today's date on the label. What should the nurse do?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Give it after asking the client to confirm the name on the label</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>Discard it according to policy, verify the order, and draw up a new dose</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Give it because the syringe is labeled with the client's name and today's date</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Hold it until the other nurse returns from lunch to confirm the dose</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> A nurse should give only medications that the nurse prepared, because the contents, dose, and time cannot be verified otherwise. The unverified syringe is discarded per policy and a new dose is prepared after checking the order. A label with the client's name does not prove what is in the syringe, and holding it for later adds delay and risk.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q67" data-q="67">
+  <div class="qmeta"><span class="num">Q67</span><span>Medication reconciliation and MAR use</span></div>
+  <div class="qtext">A newly admitted client's home medication list includes metoprolol, but no beta-blocker was ordered on admission. What should the nurse do?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Give the metoprolol from the client's own supply at the usual time each morning</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Add metoprolol to the medication administration record from the home list</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Contact the provider to ask whether the omission was intentional</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Assume the provider stopped it on purpose and take no further action</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Any difference between home medications and admission orders must be resolved by the prescriber. Abruptly stopping a beta-blocker can cause rebound tachycardia and hypertension, but the nurse cannot start a medication without an order. Using the client's own supply, assuming the omission was intended, or adding it without an order all bypass the required clarification.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q68" data-q="68">
+  <div class="qmeta"><span class="num">Q68</span><span>Routes of administration</span></div>
+  <div class="qtext">A client with a nasogastric tube is prescribed several oral medications. Which medication should the nurse question before crushing it?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="1"><span class="letter">A.</span> <span>Metoprolol succinate extended-release tablets</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Furosemide 40 mg immediate-release tablets</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Lisinopril 10 mg immediate-release tablets</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Acetaminophen 500 mg immediate-release tablets</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Extended-release tablets are designed to release the drug slowly, and crushing them delivers the whole dose at once, which can cause toxicity. The nurse should ask the provider or pharmacist for a liquid or immediate-release alternative. The three immediate-release tablets can be crushed and given through the tube.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q69" data-q="69">
+  <div class="qmeta"><span class="num">Q69</span><span>Blood products</span></div>
+  <div class="qtext">Ten minutes into a transfusion of red blood cells, a client reports low back pain and chills and has dark urine and a falling blood pressure. What should the nurse do first?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Stop the transfusion and flush the blood tubing with normal saline</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Slow the transfusion rate and recheck the vital signs in 5 minutes</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Stop the transfusion and infuse normal saline through new IV tubing</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Give a prescribed acetaminophen and continue the transfusion</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Back pain, chills, hypotension, and dark urine suggest an acute hemolytic reaction, a life-threatening emergency. The transfusion is stopped immediately, and normal saline is run through new tubing to keep the vein open without pushing more blood into the client. Slowing or continuing the blood delays treatment, and flushing the same tubing sends the remaining incompatible blood to the client.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q70" data-q="70">
+  <div class="qmeta"><span class="num">Q70</span><span>Blood products</span></div>
+  <div class="qtext">A client receiving a red blood cell transfusion develops cough, dyspnea, crackles, and a rising blood pressure. After stopping the transfusion, which action should the nurse take next?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Restart the transfusion at a slower rate once the cough has settled and vital signs improve</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>Raise the head of the bed to high Fowler and prepare to give oxygen and a diuretic</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Increase the IV fluid rate to flush the remaining blood through the tubing quickly</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Lay the client flat and elevate the legs to improve circulation to the heart</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> These findings point to transfusion-associated circulatory overload. Sitting the client upright eases breathing, and oxygen and a diuretic treat the fluid overload. Lying flat worsens breathing, increasing IV fluids adds to the overload, and restarting the transfusion without provider direction adds more volume.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q71" data-q="71">
+  <div class="qmeta"><span class="num">Q71</span><span>IV flow</span></div>
+  <div class="qtext">A provider orders 1,000 mL of IV fluid to infuse over 8 hours. The tubing delivers 15 drops per mL. At how many drops per minute should the nurse set the infusion?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>21 drops/min</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>31 drops/min</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>42 drops/min</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>125 drops/min</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Drops per minute equals volume times drop factor divided by time in minutes: 1,000 mL × 15 drops/mL ÷ 480 minutes = 31.25, which rounds to 31 drops/min. Using a 10 drops/mL set gives 21, using 20 drops/mL gives 42, and 125 is the rate in mL per hour, not drops per minute.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q72" data-q="72">
+  <div class="qmeta"><span class="num">Q72</span><span>Controlled substances</span></div>
+  <div class="qtext">A practical nurse prepared 10 mg of morphine from a vial, but the order is for 6 mg. What is the correct way to handle the remaining 4 mg?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Return the remaining 4 mg to the vial so that the drug is not lost</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>Waste the remaining 4 mg with a licensed nurse witness and have both sign the record</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Give the full 10 mg so that no controlled medication is wasted and the count stays correct</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Discard the remaining 4 mg in the sink and document that it was wasted</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Wasting a controlled substance requires a witness, and both nurses document and sign it so the narcotic count stays accurate. Returning drug to a vial contaminates it, wasting alone leaves no verification, and giving more than the ordered dose is a medication error.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q73" data-q="73">
+  <div class="qmeta"><span class="num">Q73</span><span>Pre-administration data review</span></div>
+  <div class="qtext">Before giving digoxin to a client with heart failure, the nurse reviews the client's data. Which finding should cause the nurse to hold the dose and notify the provider?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>An apical pulse of 62/min</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>A blood pressure of 118/74 mm Hg</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Mild bilateral ankle edema</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>A serum potassium level of 3.0 mEq/L</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Low potassium increases the heart's sensitivity to digoxin and raises the risk of digoxin toxicity and dysrhythmias. A pulse of 62/min is above the usual hold threshold of 60/min, the blood pressure is acceptable, and mild ankle edema is common in heart failure and is not a reason to hold the drug.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q74" data-q="74">
+  <div class="qmeta"><span class="num">Q74</span><span>Therapeutic response monitoring</span></div>
+  <div class="qtext">One hour after a client receives IV morphine for postoperative pain, which finding best shows a therapeutic response with a safe effect?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="1"><span class="letter">A.</span> <span>Pain dropped from 8/10 to 3/10, respirations are 16/min, and the client is easily awakened</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Pain is still 8/10, and the client is talking and asking for the next dose</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Pain is 0/10, respirations are 8/min, and the client is very difficult to arouse</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Pain is 5/10, and the client has a respiratory rate of 26/min and a heart rate of 110/min</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> A good response is meaningful pain relief with a normal respiratory rate and alertness. Complete pain relief with slow respirations and difficulty waking signals oversedation and respiratory depression. Unchanged pain means the drug is not effective, and a fast respiratory rate with moderate pain may signal another problem.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q75" data-q="75">
+  <div class="qmeta"><span class="num">Q75</span><span>Adverse response monitoring</span></div>
+  <div class="qtext">A client taking lisinopril reports sudden swelling of the lips and tongue. Which action should the nurse take first?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Reassure the client that a dry cough is a common side effect</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Elevate the legs and check the blood pressure in 15 minutes</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Give a prescribed antihistamine and reassess in 30 minutes</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>Assess the airway and call for emergency help</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Angioedema is a serious adverse effect of ACE inhibitors and can rapidly close the airway. The airway is the priority, and emergency help is called at once. Waiting after an antihistamine delays treatment, the dry cough is a different and less dangerous effect, and elevating the legs does not address the airway.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q76" data-q="76">
+  <div class="qmeta"><span class="num">Q76</span><span>Drug interactions</span></div>
+  <div class="qtext">A client taking sertraline says she has started taking St. John's wort for low mood. Which response by the nurse is best?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Suggest taking the two products at different times of the day</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>Tell the provider, because the combination can cause serotonin syndrome</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Reassure her that herbal products are natural and safe with prescription drugs</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Encourage her to increase the sertraline dose if she continues the herb</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> St. John's wort increases serotonin activity, and combining it with an SSRI can cause serotonin syndrome, a dangerous condition. The provider must be told so the combination can be reviewed. Herbal products are not automatically safe, spacing the doses does not remove the interaction, and increasing the SSRI dose raises the risk.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q77" data-q="77">
+  <div class="qmeta"><span class="num">Q77</span><span>Critical labs</span></div>
+  <div class="qtext">Which laboratory result should the nurse report to the provider first?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Sodium 133 mEq/L in a client with mild nausea and no neurologic changes</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Blood urea nitrogen 24 mg/dL in a client who is well hydrated and eating</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Potassium 6.4 mEq/L in a client with peaked T waves on the monitor</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Hemoglobin 10.8 g/dL in a client with chronic kidney disease who feels well</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> A potassium of 6.4 mEq/L with peaked T waves is a life-threatening hyperkalemia that can cause fatal dysrhythmias. Mildly low sodium, the mild anemia expected in chronic kidney disease, and a slightly high BUN are abnormal but not immediately dangerous.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q78" data-q="78">
+  <div class="qmeta"><span class="num">Q78</span><span>Medication calculations</span></div>
+  <div class="qtext">A provider orders acetaminophen 15 mg/kg by mouth for a child who weighs 44 lb. The suspension contains 160 mg per 5 mL. How many mL should the nurse give?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>1.9 mL</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>4.7 mL</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>9.4 mL</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>20.6 mL</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> The child weighs 44 ÷ 2.2 = 20 kg. The dose is 15 mg/kg × 20 kg = 300 mg. With a concentration of 160 mg per 5 mL, the volume is 300 ÷ 160 × 5 = 9.4 mL. Forgetting to multiply by 5 mL gives 1.9 mL, using half the weight gives 4.7 mL, and using pounds instead of kilograms gives 20.6 mL.</div>
+  </div>
+</div>
+  <div class="area-nav"><a class="btn btn-ghost" href="basic-care-comfort.html">← Basic Care &amp; Comfort</a><a class="btn btn-ghost" href="./">All areas</a><a class="btn btn-gold" href="risk-reduction.html">Risk Reduction →</a></div>
+  
+<div class="foot">
+  <div class="copyright">© 2026 Clinical Bridge Exam Prep. All rights reserved.</div>
+  <div class="legal">Independently produced — not affiliated with, endorsed by, or sponsored by NCSBN, the owner of the NCLEX-PN exam. NCLEX-PN® is a registered trademark of NCSBN.</div>
+</div>
+</div>
+<script>
+var AREA = "pharmacological-therapies";
+var KEY = "hy100:" + AREA;
+var saved = {};
+try { saved = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { saved = {}; }
+var TOTAL = document.querySelectorAll('.pcard').length;
+function updateScore(){
+  var a = 0, c = 0;
+  document.querySelectorAll('.pcard.answered').forEach(function(card){ a++; if(card.dataset.ok === '1') c++; });
+  document.getElementById('score-readout').innerHTML = '<b>' + a + '</b>/' + TOTAL + ' answered' + (a ? '  ·  <b>' + c + '</b> correct' : '');
+}
+function reveal(card, letter, persist){
+  if(card.classList.contains('answered')) return;
+  var opt = card.querySelector('button.opt[data-letter="' + letter + '"]');
+  if(!opt) return;
+  card.classList.add('answered');
+  var ok = opt.dataset.correct === '1';
+  card.dataset.ok = ok ? '1' : '0';
+  opt.classList.add(ok ? 'correct' : 'wrong');
+  if(!ok){ var mk = opt.querySelector('.mark'); if(mk) mk.textContent = '✗'; }
+  if(!ok){ var right = card.querySelector('button.opt[data-correct="1"]'); if(right) right.classList.add('correct'); }
+  var result = card.querySelector('.result'), verdict = result.querySelector('.verdict');
+  verdict.textContent = ok ? 'Correct' : 'Not quite';
+  verdict.className = 'verdict ' + (ok ? 'good' : 'bad');
+  result.hidden = false;
+  if(persist){ saved[card.dataset.q] = [letter, ok ? 1 : 0]; try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e) {} }
+}
+document.querySelectorAll('.pcard').forEach(function(card){
+  card.querySelectorAll('button.opt').forEach(function(opt){
+    opt.addEventListener('click', function(){ reveal(card, opt.dataset.letter, true); updateScore(); });
+  });
+  var s = saved[card.dataset.q];
+  if(s) reveal(card, s[0], false);
+});
+updateScore();
+</script>
+</body>
+</html>

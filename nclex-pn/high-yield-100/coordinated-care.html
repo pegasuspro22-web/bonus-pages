@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>High-Yield 100 — Coordinated Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F1F4FA; --surface-2:#E7ECF6; --line:#D7DFEF;
+  --navy:#0A1B3D; --navy-2:#F1F4FA; --navy-3:#E7ECF6;
+  --gold:#FFC72C; --gold-ink:#1A1200; --gold-text:#A66A00;
+  --paper:#0A1B3D; --muted:#4C5C82; --muted-2:#6B7AA1;
+  --correct:#1E7A3D; --correct-soft:#E6F4EA; --incorrect:#C22A30; --incorrect-soft:#FBE7E8;
+  --alert-soft:#FFF6E0; --alert:#FFC72C; --alert-muted:#8A6A1E;
+  --shadow: 0 10px 28px -18px rgba(10,27,61,.28);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg); color:var(--navy); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+.disp{font-family:'Archivo Black',Impact,sans-serif; font-weight:400; letter-spacing:.005em;}
+a{color:inherit;}
+img{max-width:100%;}
+
+.topbar{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:720px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600;}
+
+.page{max-width:720px; margin:0 auto; padding:0 1.25rem 5rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.75rem 0 1.5rem;}
+.hero .eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-text); font-weight:600;}
+.hero h1{font-size:clamp(1.9rem,6.5vw,2.7rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:480px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.75rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Archivo Black',sans-serif; font-size:1.4rem; color:var(--gold-text);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+
+.step-list{counter-reset:step; margin:2rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.5rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{
+  font-family:'Archivo Black',sans-serif; font-size:1rem; color:var(--gold-ink); background:var(--gold);
+  width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:.1rem;
+}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0; line-height:1.6;}
+.action-block{margin-top:.9rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none;
+  padding:.85rem 1.5rem; border-radius:999px; white-space:nowrap; border:1.5px solid transparent;
+}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(255,199,44,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold-text);}
+
+.subject-chip{font-family:'Karla',sans-serif; font-weight:600; font-size:.92rem; letter-spacing:.01em; background:var(--surface); border:1.5px dashed var(--gold-text); border-radius:8px; padding:.7rem 1rem; color:var(--navy); word-break:break-word;}
+.subject-chip b{color:var(--gold-text);}
+
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.6rem; box-shadow:var(--shadow); margin-top:1.75rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+
+.section-head{padding-top:2.25rem; margin-bottom:1.1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+
+.card-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); margin-top:1.25rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center;}
+.card h3{font-size:1rem; font-weight:700; font-family:'Karla',sans-serif;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{
+  font-family:'Oswald',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; text-decoration:none; flex-shrink:0;
+}
+.tag.ghost{background:var(--surface); color:var(--navy); border:1.5px solid var(--line);}
+
+.check-list{display:flex; flex-direction:column; gap:1rem; margin-top:1.25rem;}
+.check-row{display:flex; gap:.9rem; align-items:flex-start;}
+.check-row .mark{
+  flex-shrink:0; width:1.6rem; height:1.6rem; border-radius:50%; background:var(--gold); color:var(--gold-ink);
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; margin-top:.05rem;
+}
+.check-row h3{font-size:.98rem; font-weight:700; font-family:'Karla',sans-serif;}
+.check-row p{color:var(--muted); font-size:.9rem; margin:.2rem 0 0; line-height:1.5;}
+
+.how-box{margin-top:1.25rem; text-align:center;}
+.how-box p{color:var(--paper); font-size:.95rem; line-height:1.65; max-width:440px; margin:0 auto;}
+.how-box .fine{color:var(--alert-muted); font-size:.83rem; margin-top:.9rem;}
+
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+
+.how-box-manual{margin-top:0; text-align:center; background:var(--navy-3); border:1.5px solid rgba(166,106,0,.35);}
+.how-box-manual p{color:var(--paper); font-size:.9rem; line-height:1.6; max-width:420px; margin:0 auto;}
+
+.foot{max-width:720px; margin:2rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em; color:var(--paper);}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+
+.faq{margin-top:1.25rem;}
+.faq dt{font-weight:700; margin-top:1.1rem; font-family:'Karla',sans-serif;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem; line-height:1.6;}
+
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card > a.tag{align-self:stretch; text-align:center;}
+  .topbar .title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:55vw;}
+  .topbar-inner{padding:.6rem 1rem;}
+  .hero{padding-top:2rem;}
+}
+
+.quiz-head{display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:1.25rem;}
+.progress{font-family:'Oswald',sans-serif; font-size:.8rem; color:var(--muted);}
+.qcard{border:1px solid var(--line); border-radius:10px; padding:1.4rem; margin-top:1.25rem; background:var(--navy-2);}
+.qn{font-family:'Oswald',sans-serif; font-size:.68rem; color:var(--muted-2); display:flex; justify-content:space-between; letter-spacing:.04em; text-transform:uppercase;}
+.qtext{margin-top:.6rem; font-size:1rem; line-height:1.6; white-space:pre-wrap;}
+.domain-pill{display:inline-block; font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.04em; text-transform:uppercase; background:var(--navy); border:1px solid var(--navy); padding:.2rem .55rem; border-radius:3px; color:var(--gold);}
+.opts{display:flex; flex-direction:column; gap:.55rem; margin-top:1.1rem;}
+.opt{display:flex; gap:.7rem; align-items:flex-start; border:1.5px solid var(--line); border-radius:8px; padding:.65rem .8rem; font-size:.93rem; line-height:1.5; background:var(--bg);}
+.opt input{margin-top:.25rem;} .letter{font-family:'Oswald',sans-serif; font-weight:700; color:var(--gold-text);}
+.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.quiz-actions{display:flex; justify-content:center; margin-top:2rem; gap:.75rem;}
+.score-panel{border:1px solid var(--line); border-radius:10px; padding:1.5rem; background:var(--navy-2); margin-top:1.25rem;}
+.score-big{font-family:'Archivo Black',sans-serif; font-size:2rem; color:var(--gold-text);}
+.domain-bars{display:flex; flex-direction:column; gap:.55rem; margin-top:1.25rem;}
+.dbar-row{display:grid; grid-template-columns:minmax(110px,170px) 1fr 3.2rem; gap:.6rem; align-items:center; font-size:.82rem;}
+.dbar-track{height:8px; background:var(--surface-2); border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+.dbar-fill{height:100%; background:var(--correct);}
+.dname{color:var(--muted);} .dpct{font-family:'Oswald',sans-serif; text-align:right; color:var(--muted-2);}
+
+.briefing{padding-top:1.5rem;}
+.briefing h1{font-size:1.5rem; font-family:'Oswald',sans-serif; text-transform:uppercase; font-weight:700;}
+.briefing p{color:var(--muted); font-size:.96rem; line-height:1.65; margin-top:1rem;}
+.briefing ul{color:var(--muted); font-size:.94rem; line-height:1.8; margin:1.1rem 0 0; padding-left:1.3rem;}
+.briefing ul li::marker{color:var(--gold-text);}
+.check-gate{display:flex; gap:.75rem; align-items:flex-start; margin-top:1.75rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.25rem;}
+.check-gate input{margin-top:.2rem; width:1.05rem; height:1.05rem; accent-color:var(--gold-text); flex-shrink:0;}
+.check-gate label{font-size:.93rem; line-height:1.5;}
+#btn-start-test{margin-top:1.5rem; width:100%; justify-content:center; opacity:.4; pointer-events:none;}
+#btn-start-test.enabled{opacity:1; pointer-events:auto;}
+.section-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.75rem; gap:.75rem; flex-wrap:wrap; row-gap:.75rem;}
+.section-nav .mid{font-family:'Oswald',sans-serif; font-size:.78rem; color:var(--muted); order:-1; width:100%; text-align:center;}
+.section-nav .btn{flex:1;}
+
+@media (max-width:480px){
+  .section-nav .btn{padding:.7rem .9rem; font-size:.7rem; white-space:normal; text-align:center;}
+  .qcard{padding:1.1rem;}
+  .briefing h1{font-size:1.25rem;}
+}
+
+.stat-row.three{grid-template-columns:repeat(3,1fr);} .stat-row.three .stat{padding:1rem .4rem;} .stat-row.three .l{font-size:.56rem;}
+.pk-hero .lede{max-width:520px;}
+.pk-head{padding-top:1.5rem; margin-bottom:1.1rem; scroll-margin-top:4.5rem;}
+.pk-head .n{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.1em; color:var(--gold-text); text-transform:uppercase; font-weight:600;}
+.pk-head h2{font-family:'Oswald',sans-serif; font-size:1.5rem; font-weight:700; text-transform:uppercase; margin-top:.2rem;}
+.pk-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+.pcard{scroll-margin-top:4.5rem; margin-top:0; margin-bottom:1.1rem;}
+.pcard .qmeta{display:flex; gap:.6rem; align-items:baseline; font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-bottom:.6rem;}
+.pcard .qmeta .num{color:var(--gold-text); font-weight:700;}
+.pcard .qtext{font-weight:700; font-size:1.02rem; margin-top:0;}
+button.opt{width:100%; text-align:left; font-family:'Karla',sans-serif; color:var(--navy); cursor:pointer;}
+button.opt:hover{border-color:var(--gold-text);}
+button.opt .mark{margin-left:auto; font-weight:700; display:none; flex-shrink:0;}
+.pcard.answered button.opt{cursor:default;}
+.pcard.answered button.opt:hover{border-color:var(--line);}
+.pcard.answered button.opt.correct .mark{display:inline; color:var(--correct);}
+.pcard.answered button.opt.wrong .mark{display:inline; color:var(--incorrect);}
+.pcard.answered button.opt.correct{border-color:var(--correct); background:var(--correct-soft);}
+.pcard.answered button.opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.result{margin-top:1.1rem; padding-top:1.1rem; border-top:1px dashed var(--line);}
+.result .verdict{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; margin-bottom:.5rem;}
+.result .verdict.good{color:var(--correct);} .result .verdict.bad{color:var(--incorrect);}
+.result .exp{color:var(--muted); font-size:.92rem; line-height:1.65;}
+.result .exp b{color:var(--navy);}
+#score-readout{margin-left:auto; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; color:var(--muted); white-space:nowrap;}
+#score-readout b{color:var(--gold-text);}
+.area-nav{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:2rem;}
+.area-nav .btn{flex:1 1 30%; justify-content:center; text-align:center; white-space:normal; padding:.75rem .8rem; font-size:.74rem;}
+.area-card .prog{font-family:'Oswald',sans-serif; font-size:.7rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted-2); margin-top:.35rem;}
+.area-card .prog b{color:var(--gold-text);}
+.start-over{background:none; border:none; padding:0; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:underline; cursor:pointer;}
+@media (max-width:560px){ #score-readout{font-size:.66rem;} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <img class="logo" src="../assets/clinical-bridge-logo-white.png" alt="Clinical Bridge Exam Prep">
+    <span class="title">High-Yield 100</span>
+    <span id="score-readout"></span>
+  </div>
+</div>
+<div class="page">
+  <a href="./" class="back-link">← All content areas</a>
+  <div class="pk-head">
+    <div class="n">Area 1 of 8 · 21 questions</div>
+    <h2>Coordinated Care</h2>
+    <div class="rule"></div>
+  </div>
+  
+<div class="qcard pcard" id="q1" data-q="1">
+  <div class="qmeta"><span class="num">Q1</span><span>Prioritization</span></div>
+  <div class="qtext">At change of shift, a practical nurse on a surgical unit is told about four clients. Which client should the nurse assess first?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>A client with a new colostomy whose stoma is dark pink and moist, with a small amount of serous drainage on the pouch</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>A client with acute pancreatitis who rates abdominal pain 8/10, is grimacing, and is due for scheduled pain medication</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>A client with heart failure who received IV furosemide 30 minutes ago and now urgently asks for the bathroom and a bedpan</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>A client 6 hours after knee replacement who is suddenly confused, breathing at 28/min, with an SpO2 of 89% on room air</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> New confusion with fast breathing and a low oxygen saturation soon after orthopedic surgery suggests a pulmonary or fat embolism, which threatens airway, breathing, and circulation and needs assessment right away. Severe pancreatitis pain is important but is an expected, treatable problem. Urgency to void after furosemide is an expected drug effect. A dark pink, moist stoma with serous drainage is a normal finding in a new colostomy.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q2" data-q="2">
+  <div class="qmeta"><span class="num">Q2</span><span>Prioritization</span></div>
+  <div class="qtext">Four clients are assigned to a practical nurse. Which client's finding requires the nurse's immediate follow-up?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>A client with type 1 diabetes whose glucose is 210 mg/dL before lunch and who is due for scheduled insulin</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>A client 2 hours after cardiac catheterization through the right femoral artery who reports a cold, numb right foot</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>A client 3 days after an appendectomy who has an oral temperature of 99.8°F (37.7°C) and mild incisional tenderness</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>A client with COPD whose oxygen saturation is 91% on 2 L/min by nasal cannula, matching the baseline in the chart</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> A cold, numb foot after femoral artery access suggests arterial occlusion or a clot in the affected limb, which can cause tissue loss within hours, so it is the only unexpected, limb-threatening finding. A low-grade temperature and mild tenderness on postoperative day 3 are expected. A saturation at a documented COPD baseline is expected. A glucose of 210 mg/dL needs treatment at the scheduled time but is not an immediate threat.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q3" data-q="3">
+  <div class="qmeta"><span class="num">Q3</span><span>Assignment and delegation</span></div>
+  <div class="qtext">A practical nurse is deciding which vital-sign checks to assign to an assistive personnel (AP). Which client's vital signs should the nurse keep rather than delegate?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>A client with a healing hip fracture who is stable and scheduled for routine morning vital signs</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>A client with hypertension whose blood pressure has stayed between 128/78 and 134/82 mm Hg for 3 days</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>A client with pneumonia who is improving, has been afebrile for 24 hours, and is waiting for a discharge order</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>A client who returned from abdominal surgery 40 minutes ago and had a blood pressure of 92/58 mm Hg on arrival</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> A client shortly after surgery with a low blood pressure is unstable. Interpreting the trend and deciding what to do next requires nursing assessment, so the nurse keeps this task. Routine vital signs on stable, predictable clients, such as steady hypertension, a healing fracture, or improving pneumonia, can be delegated with clear instructions about which values to report.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q4" data-q="4">
+  <div class="qmeta"><span class="num">Q4</span><span>Assignment and delegation</span></div>
+  <div class="qtext">Which task is most appropriate for a practical nurse to assign to an assistive personnel (AP)?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Teach a client who had a knee replacement how to use a walker safely for the first time on the unit</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>Reposition a stable client with a sacral pressure injury every 2 hours as listed in the care plan</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Assess the skin around a new tracheostomy stoma for redness, swelling, and drainage each shift</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Monitor a client's response for allergic reactions during the first hour after a new antibiotic is started</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Repositioning on a schedule set by the care plan is a routine, predictable task within the AP's training. Assessing the skin around a tracheostomy, giving initial teaching, and monitoring the response to a new medication all require nursing knowledge and judgment, so they cannot be delegated to an AP.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q5" data-q="5">
+  <div class="qmeta"><span class="num">Q5</span><span>Client rights and advocacy</span></div>
+  <div class="qtext">A client who is deaf communicates in American Sign Language and needs wound-care teaching before discharge. The client's teenage daughter says she can sign for the client. What should the practical nurse do?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Use the daughter as the interpreter because she knows how the client communicates best</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Give the client a pamphlet and ask the daughter to review it with the client at home</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Arrange a qualified sign language interpreter and teach the client through the interpreter</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Write the teaching on paper and ask the client to sign the page to show understanding</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Clients have the right to accurate communication in their own language, which for many deaf clients is sign language rather than written English. A qualified interpreter keeps the teaching complete and confidential. A family member, especially a minor, may filter or leave out information and should not interpret medical content. Written notes alone may not match the client's reading level, and a signature does not prove understanding.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q6" data-q="6">
+  <div class="qmeta"><span class="num">Q6</span><span>Client rights and advocacy</span></div>
+  <div class="qtext">An alert, oriented client refuses a scheduled oral antihypertensive, saying, 'I don't want that one anymore.' Which action should the practical nurse take?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Tell the client that discharge will be delayed until the prescribed dose has been taken</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Ask a second nurse to stand in the room while the tablet is given so the client cooperates</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Explore the reason for the refusal, explain the risks, document it, and notify the provider</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Crush the tablet and mix it into applesauce so the client receives the dose without conflict</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> A client with decision-making capacity has the right to refuse treatment. The nurse's role is to find out why, make sure the client understands the risks, document the refusal, and notify the provider so the plan can be reviewed. Hiding the medication in food, pressuring the client with a witness, or threatening a delayed discharge all override the client's right to make the decision.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q7" data-q="7">
+  <div class="qmeta"><span class="num">Q7</span><span>Confidentiality and privacy</span></div>
+  <div class="qtext">A practical nurse notices a coworker from another unit opening the electronic record of a well-known local athlete who is not in the coworker's assignment. What should the nurse do?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="1"><span class="letter">A.</span> <span>Report it to the nurse manager or privacy officer according to facility policy</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Ask the coworker to explain and take no further action if the answer seems reasonable</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Assume the access is acceptable because staff can open any record in the system</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Open the athlete's record to check whether the coworker is part of the care team</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> Opening a record without a work-related need violates client privacy even if nothing is shared afterward. The nurse reports it through the channel set by policy. Questioning the coworker alone can compromise an investigation, opening the record adds a second unnecessary access, and having system access does not give staff the right to view any client's record.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q8" data-q="8">
+  <div class="qmeta"><span class="num">Q8</span><span>Confidentiality and privacy</span></div>
+  <div class="qtext">A practical nurse wants a colleague's opinion about a client's wound and considers taking a photo with a personal phone. Which action best protects the client's privacy?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="1"><span class="letter">A.</span> <span>Follow facility policy: use only an approved device or system for wound images, with consent</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Take the photo without the client's face in it and delete it from the phone after sending it</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Take the photo and ask the colleague to keep the client's information confidential</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Send the photo through a private messaging app that requires a password to open</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> A wound image is part of the client's health information. Personal phones and consumer apps are not secure and cannot be audited. Only approved devices and systems, with consent when policy requires it, protect privacy. Leaving out the face or deleting the photo later does not make a personal device acceptable, and a verbal request for confidentiality is not a safeguard.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q9" data-q="9">
+  <div class="qmeta"><span class="num">Q9</span><span>Advance directives</span></div>
+  <div class="qtext">A client with a valid do-not-resuscitate (DNR) order and a signed advance directive becomes unresponsive. The client's daughter arrives and demands, 'Do everything to save my mother.' What should the practical nurse do?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Start CPR to honor the daughter's request until the provider arrives</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Tell the daughter that the order cannot be discussed and refer her to the hospital's legal department</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Follow the valid DNR order and notify the charge nurse and provider so they can meet with the daughter</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Ask the daughter to sign a form that cancels the DNR order</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> A valid DNR order and advance directive record the client's own wishes and stay in effect when the client cannot speak. The nurse follows them and involves the charge nurse and provider so the daughter receives explanation and support. Starting CPR contradicts the client's wishes. A family member cannot cancel a DNR by signing a form; only the provider can revise the order, based on the client's or a legally authorized decision-maker's wishes. Refusing to discuss it leaves the daughter unsupported and does not resolve the conflict.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q10" data-q="10">
+  <div class="qmeta"><span class="num">Q10</span><span>Informed consent</span></div>
+  <div class="qtext">A Spanish-speaking client is handed an English surgical consent form and says, 'The doctor said it was fine,' then starts to sign. What should the practical nurse do?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Explain the risks of the surgery in simple English and then witness the signature</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Ask a bilingual housekeeper to translate the form while the client signs it</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Stop the signing, notify the provider, and arrange for a qualified Spanish interpreter</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Witness the signature because the client states that the provider discussed the surgery</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Consent must be informed and voluntary, which requires the provider's explanation in a language the client understands. Witnessing a signature on a form the client cannot read confirms nothing. An untrained interpreter can introduce errors, and explaining surgical risks is the provider's responsibility, not the nurse's.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q11" data-q="11">
+  <div class="qmeta"><span class="num">Q11</span><span>Informed consent</span></div>
+  <div class="qtext">A practical nurse is asked to witness a client's signature on a surgical consent form. Which statement best describes what the nurse is confirming?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>The client understands every risk, benefit, and alternative of the operation</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>The surgery is medically necessary and appropriate for the client's diagnosis</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>The nurse has personally explained the procedure to the client in detail</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>The client signed the form willingly and the signature is the client's own</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> A witness attests that the person who signed is the client and that the signature was given voluntarily, without pressure. The provider is responsible for explaining risks, benefits, and alternatives and for deciding that surgery is indicated. If the client seems confused or asks questions during the signing, the nurse should stop and notify the provider.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q12" data-q="12">
+  <div class="qmeta"><span class="num">Q12</span><span>Discharge and referrals</span></div>
+  <div class="qtext">A client recovering from a stroke coughs when drinking thin liquids and has slurred speech. Which referral is most appropriate for the swallowing problem?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>An occupational therapist for dressing, bathing, and grooming retraining</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>A speech-language pathologist for swallowing evaluation and therapy</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>A respiratory therapist for scheduled breathing treatments and oxygen titration</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>A physical therapist for gait, balance, and strength training</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> The speech-language pathologist evaluates swallowing, recommends food and liquid consistencies, and teaches safe swallowing techniques, which is what a client who coughs with thin liquids needs. Occupational therapy focuses on daily activities such as dressing and bathing, physical therapy on walking and balance, and respiratory therapy on breathing treatments. None of these is the specialist for evaluating and treating a swallowing disorder.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q13" data-q="13">
+  <div class="qmeta"><span class="num">Q13</span><span>Discharge and referrals</span></div>
+  <div class="qtext">A 78-year-old client with heart failure who lives alone has been admitted twice this month after missing medication doses and not reporting weight gain. Which referral is best to reduce readmission?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="1"><span class="letter">A.</span> <span>Home health nursing for medication management and symptom monitoring</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Pastoral care visits to provide emotional and spiritual support during recovery</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Outpatient physical therapy to build endurance and strength three times a week</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>A meal-delivery program that provides low-sodium meals to the client's home</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> The readmissions came from missed medications and unreported weight gain, so the referral that directly addresses those gaps is home health nursing, which can set up medication routines and watch weights and symptoms. Physical therapy, low-sodium meals, and pastoral care may help in other ways but do not address the causes named in the question.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q14" data-q="14">
+  <div class="qmeta"><span class="num">Q14</span><span>Quality improvement</span></div>
+  <div class="qtext">A unit is working to reduce client falls. Which measure is an outcome measure for this project?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="1"><span class="letter">A.</span> <span>The number of client falls per 1,000 client-days</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>The percentage of clients with a fall-risk assessment completed within 8 hours of admission</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>The percentage of staff who completed fall-prevention education this quarter</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>The percentage of scheduled hourly rounds completed on the unit</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> An outcome measure shows the result the project is trying to change, here how often clients actually fall. The other three measure whether steps in the process were carried out (assessments, education, rounds) and are process measures. Improving them may reduce falls, but they do not show the result itself.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q15" data-q="15">
+  <div class="qmeta"><span class="num">Q15</span><span>Interdisciplinary information sharing</span></div>
+  <div class="qtext">A practical nurse calls a provider about a client with new chest pain. Which statement is the best example of the recommendation portion of SBAR?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="1"><span class="letter">A.</span> <span>I would like you to come see the client now. Do you want an ECG and oxygen started before you arrive?</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>I am worried that the client may be having a heart attack because the pain is so severe</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>The client was admitted yesterday with pneumonia and has no known cardiac history or allergies</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>The client's blood pressure is 88/50 mm Hg, the heart rate is 118/min, and the client is diaphoretic</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: A.</b> In SBAR, the recommendation states what the nurse wants or suggests, such as an evaluation, a test, or an order. Current vital signs belong to the situation, the admission history is the background, and the nurse's concern about a heart attack is the assessment.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q16" data-q="16">
+  <div class="qmeta"><span class="num">Q16</span><span>Legal and ethical scope</span></div>
+  <div class="qtext">Which action is within the scope of practice of a practical nurse?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Perform the comprehensive admission assessment and write the initial plan of care</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Provide initial teaching about a newly prescribed anticoagulant</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Collect data on a stable client and report changes to the RN or provider</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Evaluate the client's response to the plan of care and revise it independently</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Practical nurses collect data, report findings, perform care under supervision, and reinforce teaching that a registered nurse or provider began. The comprehensive assessment, developing the plan of care, initial teaching about a new medication, and independent evaluation and revision of the plan are registered nurse or provider responsibilities.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q17" data-q="17">
+  <div class="qmeta"><span class="num">Q17</span><span>Legal and ethical scope</span></div>
+  <div class="qtext">A practical nurse floated to another unit is assigned a client on a ventilator and has never received training to care for ventilated clients. What is the best action?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Refuse to work on the unit for the rest of the shift without telling anyone</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>Tell the charge nurse about the lack of training and ask for another assignment or supervision</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Accept the assignment and rely on the ventilator alarms to signal any problem</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Accept the assignment and ask the respiratory therapist to manage all of the client's care</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Nurses are accountable for working within their competence. The safe response is to state the limitation to the charge nurse and request an appropriate assignment or supervision. Relying on alarms or handing nursing care to another discipline does not meet the nurse's obligations, and leaving without notice risks abandonment of the assignment.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q18" data-q="18">
+  <div class="qmeta"><span class="num">Q18</span><span>Mandatory reporting</span></div>
+  <div class="qtext">During a home visit, a practical nurse finds an older adult with bruises in different stages of healing, poor hygiene, and no food in the house. The caregiver says the client 'falls a lot.' What should the nurse do?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Leave and revisit next week to see whether the bruising gets worse or the food supply improves</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Confront the caregiver and demand an explanation for the bruises before contacting anyone</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="1"><span class="letter">C.</span> <span>Document objective findings and report the suspected abuse to the designated agency</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Wait until the client confirms the abuse and the caregiver admits it before reporting</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: C.</b> Nurses are mandated reporters and must report reasonable suspicion, not proof. The nurse documents what was seen and heard objectively and reports to the designated agency. Waiting for confirmation or another visit delays protection, and confronting the caregiver can endanger the client and interfere with an investigation.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q19" data-q="19">
+  <div class="qmeta"><span class="num">Q19</span><span>Management of assistive personnel</span></div>
+  <div class="qtext">A practical nurse assigns an assistive personnel (AP) to feed a client who has mild dysphagia and is on aspiration precautions. Which instruction is most important?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Give sips of thin liquid first to help the food go down more easily and reduce coughing</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="1"><span class="letter">B.</span> <span>Sit the client upright, give small bites slowly, and call me if the client coughs or sounds wet</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Encourage the client to finish the whole tray within 15 minutes so the food stays warm and nutrition is adequate</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="0"><span class="letter">D.</span> <span>Allow the client to lean back and rest between bites to avoid fatigue during the meal</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: B.</b> Feeding a stable client with known precautions can be delegated if the AP knows the safe technique and exactly what to report. Upright positioning and small, slow bites reduce aspiration, and coughing or a wet voice are signs of aspiration that need nursing assessment. Rushing, giving thin liquids first, and reclining between bites all increase aspiration risk.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q20" data-q="20">
+  <div class="qmeta"><span class="num">Q20</span><span>Management of assistive personnel</span></div>
+  <div class="qtext">A practical nurse is observing an assistive personnel (AP) care for a client with right-sided weakness. Which action requires the nurse to intervene?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>The AP places a gait belt around the client's waist before helping the client walk</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>The AP stands slightly behind and beside the client's weaker side while walking</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>The AP places the cane on the client's stronger left side during walking</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>The AP pulls on the client's weak right arm to help the client slide up in bed</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Pulling on a weak or paralyzed arm can injure or dislocate the shoulder. The client should be moved with a draw sheet or lift device and support under the shoulders. Using a gait belt, holding the cane on the stronger left side, and standing at the weaker side while walking are all correct techniques.</div>
+  </div>
+</div>
+<div class="qcard pcard" id="q21" data-q="21">
+  <div class="qmeta"><span class="num">Q21</span><span>Equitable access to care</span></div>
+  <div class="qtext">A client with end-stage kidney disease misses hemodialysis sessions because the client cannot afford transportation. Which nursing action best promotes equitable access to care?</div>
+  <div class="opts"><button type="button" class="opt" data-letter="A" data-correct="0"><span class="letter">A.</span> <span>Tell the client that missed sessions will be documented as noncompliance</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="B" data-correct="0"><span class="letter">B.</span> <span>Encourage the client to reschedule sessions whenever transportation is available</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="C" data-correct="0"><span class="letter">C.</span> <span>Give the client a list of dialysis centers in other cities to choose from</span><span class="mark">✓</span></button>
+<button type="button" class="opt" data-letter="D" data-correct="1"><span class="letter">D.</span> <span>Refer the client to case management to identify transportation assistance programs</span><span class="mark">✓</span></button></div>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="exp"><b>Correct answer: D.</b> Equitable access means removing the barriers that keep clients from care. Social services or case management can connect the client with transportation resources. Labeling the client noncompliant blames the client for a system barrier, a list of distant centers does not solve the transportation problem, and skipping or randomly rescheduling dialysis is unsafe.</div>
+  </div>
+</div>
+  <div class="area-nav"><a class="btn btn-ghost" href="./">← All areas</a><a class="btn btn-ghost" href="./">All areas</a><a class="btn btn-gold" href="safety-infection-control.html">Safety &amp; Infection Control →</a></div>
+  
+<div class="foot">
+  <div class="copyright">© 2026 Clinical Bridge Exam Prep. All rights reserved.</div>
+  <div class="legal">Independently produced — not affiliated with, endorsed by, or sponsored by NCSBN, the owner of the NCLEX-PN exam. NCLEX-PN® is a registered trademark of NCSBN.</div>
+</div>
+</div>
+<script>
+var AREA = "coordinated-care";
+var KEY = "hy100:" + AREA;
+var saved = {};
+try { saved = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { saved = {}; }
+var TOTAL = document.querySelectorAll('.pcard').length;
+function updateScore(){
+  var a = 0, c = 0;
+  document.querySelectorAll('.pcard.answered').forEach(function(card){ a++; if(card.dataset.ok === '1') c++; });
+  document.getElementById('score-readout').innerHTML = '<b>' + a + '</b>/' + TOTAL + ' answered' + (a ? '  ·  <b>' + c + '</b> correct' : '');
+}
+function reveal(card, letter, persist){
+  if(card.classList.contains('answered')) return;
+  var opt = card.querySelector('button.opt[data-letter="' + letter + '"]');
+  if(!opt) return;
+  card.classList.add('answered');
+  var ok = opt.dataset.correct === '1';
+  card.dataset.ok = ok ? '1' : '0';
+  opt.classList.add(ok ? 'correct' : 'wrong');
+  if(!ok){ var mk = opt.querySelector('.mark'); if(mk) mk.textContent = '✗'; }
+  if(!ok){ var right = card.querySelector('button.opt[data-correct="1"]'); if(right) right.classList.add('correct'); }
+  var result = card.querySelector('.result'), verdict = result.querySelector('.verdict');
+  verdict.textContent = ok ? 'Correct' : 'Not quite';
+  verdict.className = 'verdict ' + (ok ? 'good' : 'bad');
+  result.hidden = false;
+  if(persist){ saved[card.dataset.q] = [letter, ok ? 1 : 0]; try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e) {} }
+}
+document.querySelectorAll('.pcard').forEach(function(card){
+  card.querySelectorAll('button.opt').forEach(function(opt){
+    opt.addEventListener('click', function(){ reveal(card, opt.dataset.letter, true); updateScore(); });
+  });
+  var s = saved[card.dataset.q];
+  if(s) reveal(card, s[0], false);
+});
+updateScore();
+</script>
+</body>
+</html>
