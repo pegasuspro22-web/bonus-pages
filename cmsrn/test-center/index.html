@@ -71,6 +71,73 @@ footer p{margin:.25em 0;}
   .vitals-grid .cell:nth-child(3),.vitals-grid .cell:nth-child(4){border-top:1px solid var(--line);}
   .chart-row{grid-template-columns:32px 1fr;}
 }
+
+:root{--ok:#1F7A4D; --ok-soft:#E4F2EA; --bad:#B3402A; --bad-soft:#FBE9E4;}
+.shell.wide{max-width:760px;}
+.card-list{display:flex; flex-direction:column; gap:12px; margin-top:18px;}
+.tcard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); text-decoration:none;}
+.tcard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.tcard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.tcard .go{flex:none; font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:.8rem; letter-spacing:.06em; color:var(--teal-ink); background:var(--teal); padding:.6em .95em; border-radius:6px;}
+.note{margin-top:22px; padding:14px 16px; border-left:3px solid var(--line-strong); background:var(--surface); border-radius:0 var(--radius) var(--radius) 0; color:var(--muted); font-size:.92rem;}
+.btn[disabled]{opacity:.45; cursor:not-allowed;}
+button.btn{cursor:pointer; font-family:"IBM Plex Sans",system-ui,sans-serif;}
+.panel{margin-top:22px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.panel h2{font-family:"IBM Plex Sans",sans-serif; font-size:1.05rem; margin:0 0 .6rem;}
+.panel p{margin:.5rem 0; color:var(--muted);}
+.panel ul{margin:.5rem 0 1rem; padding-left:1.2rem; color:var(--muted);}
+.gate{display:flex; gap:.7rem; align-items:flex-start; margin:14px 0 16px; font-size:.95rem;}
+.gate input{margin-top:.25rem; width:18px; height:18px; accent-color:var(--teal); flex:none;}
+.runbar{position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; margin-top:16px; background:var(--teal); color:var(--teal-ink); border-radius:var(--radius); font-family:"IBM Plex Sans",sans-serif; font-size:.82rem; font-weight:600;}
+.runbar .mono{font-size:.9rem;}
+.bar{height:6px; border-radius:3px; background:var(--line); overflow:hidden;}
+.bar > i{display:block; height:100%; background:var(--sage);}
+.q{margin-top:18px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.q .qno{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--sage); font-weight:600; letter-spacing:.04em;}
+.q .qdom{font-family:"IBM Plex Sans",sans-serif; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-left:.6rem;}
+.q .stem{margin:.6rem 0 .9rem; font-size:1.02rem; line-height:1.5;}
+.opt{display:flex; gap:.8rem; width:100%; text-align:left; align-items:flex-start; padding:.75rem .85rem; margin-top:.5rem; background:var(--paper); border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--ink); cursor:pointer;}
+.opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line-strong); display:grid; place-items:center; font-family:"IBM Plex Mono",monospace; font-size:.8rem; font-weight:600; color:var(--muted);}
+.opt .t{min-width:0; padding-top:.1rem; line-height:1.45;}
+.opt.sel{border-color:var(--teal); background:#EAF3F0;}
+.opt.sel .l{background:var(--teal); border-color:var(--teal); color:#fff;}
+.opt:focus-visible{outline:2px solid var(--vital); outline-offset:2px;}
+.secnav{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:22px; flex-wrap:wrap;}
+.secnav .mid{font-size:.82rem; color:var(--muted); font-family:"IBM Plex Mono",monospace;}
+.dots{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+.dots button{width:2rem; height:2rem; border-radius:6px; border:1px solid var(--line-strong); background:var(--surface); font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--muted); cursor:pointer;}
+.dots button.done{background:var(--teal); border-color:var(--teal); color:#fff;}
+.dots button.cur{outline:2px solid var(--vital); outline-offset:1px;}
+.score{margin-top:26px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.score-top{padding:22px 20px; display:flex; gap:18px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--line);}
+.score-top .big{font-family:"IBM Plex Mono",monospace; font-size:2.6rem; font-weight:600; color:var(--teal); line-height:1;}
+.score-top .sub{color:var(--muted); font-size:.95rem; min-width:0;}
+.refline{position:relative; margin:18px 20px 6px; height:10px; border-radius:5px; background:var(--line);}
+.refline i{position:absolute; left:0; top:0; bottom:0; border-radius:5px; background:var(--sage);}
+.refline b{position:absolute; top:-5px; width:2px; height:20px; background:var(--vital);}
+.reflabel{margin:0 20px 18px; font-size:.78rem; color:var(--muted-2);}
+.dom{padding:0 20px 18px;}
+.dom-row{display:grid; grid-template-columns:minmax(0,1fr) 3.4rem; gap:4px 12px; margin-top:12px; font-size:.88rem;}
+.dom-row .n{font-family:"IBM Plex Mono",monospace; text-align:right; color:var(--teal); font-weight:600;}
+.dom-row .bar{grid-column:1 / -1;}
+.actions{display:flex; gap:10px; flex-wrap:wrap; padding:0 20px 22px;}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px;}
+.tabs button{padding:.5em .9em; border-radius:999px; border:1px solid var(--line-strong); background:var(--surface); color:var(--muted); font:600 .82rem "IBM Plex Sans",sans-serif; cursor:pointer;}
+.tabs button[aria-pressed="true"]{background:var(--teal); color:#fff; border-color:var(--teal);}
+.rev .opt{cursor:default;}
+.rev .opt.right{border-color:var(--ok); background:var(--ok-soft);}
+.rev .opt.right .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.rev .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.rev .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.tag{display:inline-block; margin-left:.5rem; font:600 .68rem "IBM Plex Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase;}
+.tag.ok{color:var(--ok);} .tag.bad{color:var(--bad);} .tag.skip{color:var(--muted-2);}
+.why{margin-top:14px; padding:14px 16px; border-radius:8px; background:var(--vital-soft); border:1px solid #EBD6AE; font-size:.93rem;}
+.why h4{margin:0 0 .35rem; font:700 .72rem "IBM Plex Sans",sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--vital);}
+.why p{margin:.3rem 0; color:var(--ink);}
+.why .others{margin-top:.6rem; padding-top:.6rem; border-top:1px dashed #E1C58E;}
+.why .others p{font-size:.9rem; color:var(--muted);}
+.why .others b{font-family:"IBM Plex Mono",monospace; color:var(--ink);}
+@media (max-width:520px){.q{padding:14px;} .runbar{font-size:.76rem;}}
 </style>
 </head>
 <body>
@@ -84,22 +151,50 @@ footer p{margin:.25em 0;}
     <span class="brand">CMSRN Study Suite</span>
     <span class="brand-sub">— Digital Companion</span>
   </div>
-<a href="../welcome/" class="back-link">← Back to welcome</a>
 
+  <a href="../hub/" class="back-link">← Back to resource center</a>
   <div class="hero">
-    <span class="eyebrow">Coming soon</span>
+    <span class="eyebrow">On screen · full-length</span>
     <h1>CMSRN Online Test Center</h1>
-    <p class="lede">This part of the study suite is still being built — the bonus simulations and question bank are in production now.</p>
+    <p class="lede">Full-length simulations that mirror the blueprint. Each one opens on its own page, and you see the full explanation of every question when you finish.</p>
   </div>
-  <div class="soon">
-    <b>Not ready yet</b>
-    Check back soon, or reply to your unlock email and we'll let you know the moment it's live.
+  <div class="vitals">
+    <div class="vitals-head"><span class="label">What to expect</span></div>
+    <div class="vitals-grid">
+      <div class="cell"><span class="stat-num">4</span><span class="stat-label">Online simulations</span></div>
+      <div class="cell"><span class="stat-num">150</span><span class="stat-label">Items per test</span></div>
+      <div class="cell"><span class="stat-num">5</span><span class="stat-label">MSNCB domains</span></div>
+      <div class="cell"><span class="stat-num">180</span><span class="stat-label">Minutes on the real exam</span></div>
+    </div>
   </div>
+  <h2 class="section-title"><span class="chart-no">R×</span> Choose a simulation</h2>
+  <div class="card-list">
+    <a class="tcard" href="test-1.html" target="_blank" rel="noopener">
+      <div><h3>Simulation Test 1</h3><p>150 questions · all 5 MSNCB domains · full review at the end</p></div>
+      <span class="go">START ↗</span>
+    </a>
+    <a class="tcard" href="test-2.html" target="_blank" rel="noopener">
+      <div><h3>Simulation Test 2</h3><p>150 questions · all 5 MSNCB domains · full review at the end</p></div>
+      <span class="go">START ↗</span>
+    </a>
+    <a class="tcard" href="test-3.html" target="_blank" rel="noopener">
+      <div><h3>Simulation Test 3</h3><p>150 questions · all 5 MSNCB domains · full review at the end</p></div>
+      <span class="go">START ↗</span>
+    </a>
+    <a class="tcard" href="test-4.html" target="_blank" rel="noopener">
+      <div><h3>Simulation Test 4</h3><p>150 questions · all 5 MSNCB domains · full review at the end</p></div>
+      <span class="go">START ↗</span>
+    </a></div>
+  <div class="note"><b>How the review works.</b> No feedback while you test, so you get a true readiness check. When you finish, you get your score, a breakdown by domain, and every question with the reason the right answer is right and why each other option is wrong.</div>
+  <h2 class="section-title"><span class="chart-no">R×</span> Need help?</h2>
+  <p style="color:var(--muted);">If a test will not load or you have a question about the material, email us. We usually answer within 24–48 hours.</p>
+  <div class="cta-row" style="margin:12px 0 0;"><a href="mailto:info@neurosciencepress.com" class="btn btn-ghost">✉ info@neurosciencepress.com</a></div>
 
   <footer>
     <p>Not affiliated with, endorsed by, or sponsored by MSNCB, the owner of the CMSRN® certification.</p>
     <p>© 2026 Evan Marston. All rights reserved.</p>
   </footer>
 </div>
+
 </body>
 </html>
