@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<title>CMSRN High-Yield 100, Holistic Patient Care — CMSRN Study Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F1B18; --paper:#F6FAF9; --surface:#FFFFFF;
+  --teal:#1F5C4F; --teal-ink:#ffffff; --sage:#3E8E7E;
+  --line:#D9E4E0; --line-strong:#C3D3CD;
+  --muted:#54635E; --muted-2:#7C8B86;
+  --vital:#B8791F; --vital-soft:#F8EEDC;
+  --shadow: 0 1px 2px rgba(15,27,24,.04), 0 12px 28px -16px rgba(15,27,24,.14);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Serif",Georgia,serif; font-size:16px; line-height:1.55; padding-inline:20px;}
+h1,h2,h3,.eyebrow,.btn,.stat-num,.step-label{font-family:"IBM Plex Sans",system-ui,sans-serif;}
+.mono,.stat-num,.subject-chip b{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
+h1,h2,h3{text-wrap:balance; margin:0; color:var(--ink);}
+a{color:inherit;}
+.shell{max-width:640px; margin:0 auto; padding-block:28px 56px;}
+.topbar{display:flex; align-items:center; gap:10px; padding-block:14px; border-bottom:1px solid var(--line); margin-bottom:34px;}
+.topbar .mark{width:26px; height:16px; flex:none;}
+.topbar .brand{font-weight:700; font-size:.82rem; letter-spacing:.06em; text-transform:uppercase; color:var(--teal);}
+.topbar .brand-sub{font-family:"IBM Plex Serif",serif; font-size:.82rem; color:var(--muted-2); font-style:italic;}
+.back-link{display:inline-block; margin-bottom:18px; font-size:.85rem; color:var(--sage); text-decoration:none;}
+.eyebrow{display:inline-flex; align-items:center; gap:.5em; font-size:.72rem; font-weight:600; letter-spacing:.11em; text-transform:uppercase; color:var(--sage);}
+.eyebrow::before{content:""; width:16px; height:1px; background:var(--sage);}
+.hero{margin-top:14px;}
+.hero h1{font-size:clamp(1.9rem,6vw,2.5rem); font-weight:700; letter-spacing:-.01em; margin-top:.6rem; max-width:18ch;}
+.hero p.lede{margin-top:.9rem; color:var(--muted); font-size:1.08rem; max-width:42ch;}
+.vitals{margin-top:32px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.vitals-head{display:flex; align-items:center; justify-content:space-between; padding:12px 18px; background:var(--teal); color:var(--teal-ink);}
+.vitals-head .label{font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;}
+.vitals-head svg{display:block; height:14px; width:90px; opacity:.9;}
+.vitals-grid{display:grid; grid-template-columns:repeat(4,1fr);}
+.vitals-grid .cell{padding:16px 14px; border-right:1px solid var(--line); border-top:1px solid var(--line);}
+.vitals-grid .cell:nth-child(4n){border-right:none;}
+.vitals-grid .cell:nth-child(-n+4){border-top:none;}
+.stat-num{font-size:1.5rem; font-weight:600; color:var(--teal); line-height:1; display:block;}
+.stat-label{margin-top:6px; font-size:.72rem; color:var(--muted); line-height:1.35; text-transform:uppercase; letter-spacing:.03em;}
+h2.section-title{margin-top:44px; font-size:1.15rem; font-weight:700; display:flex; align-items:baseline; gap:.6em;}
+h2.section-title .chart-no{font-family:"IBM Plex Mono",monospace; font-size:.85rem; font-weight:600; color:var(--sage);}
+.chart{margin-top:18px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);}
+.chart-row{display:grid; grid-template-columns:56px 1fr; padding:20px 20px;}
+.chart-row + .chart-row{border-top:1px solid var(--line);}
+.chart-row .idx{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--sage); font-size:.95rem; padding-top:.15em;}
+.chart-row .step-label{font-weight:600; font-size:1.02rem; margin:0 0 .35rem;}
+.chart-row p{margin:0; color:var(--muted); font-size:.96rem;}
+.cta-row{margin:14px 20px 20px; display:flex; flex-wrap:wrap; gap:10px;}
+.btn{display:inline-flex; align-items:center; gap:.55em; font-weight:600; font-size:.92rem; padding:.75em 1.15em; border-radius:6px; text-decoration:none; border:1px solid transparent;}
+.btn-teal{background:var(--teal); color:var(--teal-ink);}
+.btn-vital{background:var(--vital); color:#fff;}
+.btn-ghost{background:transparent; color:var(--teal); border-color:var(--line-strong);}
+.subject-chip{margin:0 20px 20px; display:inline-block; font-size:.82rem; color:var(--muted); background:var(--vital-soft); border:1px dashed var(--vital); border-radius:6px; padding:.55em .8em;}
+.alt-path{margin-top:22px; padding:16px 18px; border-left:3px solid var(--line-strong); color:var(--muted); font-size:.92rem; background:var(--surface); border-radius:0 var(--radius) var(--radius) 0;}
+.alt-path b{color:var(--ink);}
+.todo{display:inline-block; margin:0 20px 14px; font-size:.78rem; font-weight:600; color:var(--vital); font-family:"IBM Plex Mono",monospace;}
+.soon{margin-top:28px; padding:28px 22px; text-align:center; border:1px dashed var(--line-strong); border-radius:var(--radius); background:var(--surface); color:var(--muted);}
+.soon b{color:var(--ink); display:block; margin-bottom:.4em; font-family:"IBM Plex Sans",sans-serif;}
+footer{margin-top:52px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted-2); font-size:.8rem;}
+footer p{margin:.25em 0;}
+@media (max-width:520px){
+  .vitals-grid{grid-template-columns:repeat(2,1fr);}
+  .vitals-grid .cell:nth-child(2n){border-right:none;}
+  .vitals-grid .cell:nth-child(-n+2){border-top:none;}
+  .vitals-grid .cell:nth-child(3),.vitals-grid .cell:nth-child(4){border-top:1px solid var(--line);}
+  .chart-row{grid-template-columns:32px 1fr;}
+}
+
+:root{--ok:#1F7A4D; --ok-soft:#E4F2EA; --bad:#B3402A; --bad-soft:#FBE9E4;}
+.shell.wide{max-width:760px;}
+.card-list{display:flex; flex-direction:column; gap:12px; margin-top:18px;}
+.tcard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); text-decoration:none;}
+.tcard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.tcard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.tcard .go{flex:none; font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:.8rem; letter-spacing:.06em; color:var(--teal-ink); background:var(--teal); padding:.6em .95em; border-radius:6px;}
+.note{margin-top:22px; padding:14px 16px; border-left:3px solid var(--line-strong); background:var(--surface); border-radius:0 var(--radius) var(--radius) 0; color:var(--muted); font-size:.92rem;}
+.btn[disabled]{opacity:.45; cursor:not-allowed;}
+button.btn{cursor:pointer; font-family:"IBM Plex Sans",system-ui,sans-serif;}
+.panel{margin-top:22px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.panel h2{font-family:"IBM Plex Sans",sans-serif; font-size:1.05rem; margin:0 0 .6rem;}
+.panel p{margin:.5rem 0; color:var(--muted);}
+.panel ul{margin:.5rem 0 1rem; padding-left:1.2rem; color:var(--muted);}
+.gate{display:flex; gap:.7rem; align-items:flex-start; margin:14px 0 16px; font-size:.95rem;}
+.gate input{margin-top:.25rem; width:18px; height:18px; accent-color:var(--teal); flex:none;}
+.runbar{position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; margin-top:16px; background:var(--teal); color:var(--teal-ink); border-radius:var(--radius); font-family:"IBM Plex Sans",sans-serif; font-size:.82rem; font-weight:600;}
+.runbar .mono{font-size:.9rem;}
+.bar{height:6px; border-radius:3px; background:var(--line); overflow:hidden;}
+.bar > i{display:block; height:100%; background:var(--sage);}
+.q{margin-top:18px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.q .qno{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--sage); font-weight:600; letter-spacing:.04em;}
+.q .qdom{font-family:"IBM Plex Sans",sans-serif; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-left:.6rem;}
+.q .stem{margin:.6rem 0 .9rem; font-size:1.02rem; line-height:1.5;}
+.opt{display:flex; gap:.8rem; width:100%; text-align:left; align-items:flex-start; padding:.75rem .85rem; margin-top:.5rem; background:var(--paper); border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--ink); cursor:pointer;}
+.opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line-strong); display:grid; place-items:center; font-family:"IBM Plex Mono",monospace; font-size:.8rem; font-weight:600; color:var(--muted);}
+.opt .t{min-width:0; padding-top:.1rem; line-height:1.45;}
+.opt.sel{border-color:var(--teal); background:#EAF3F0;}
+.opt.sel .l{background:var(--teal); border-color:var(--teal); color:#fff;}
+.opt:focus-visible{outline:2px solid var(--vital); outline-offset:2px;}
+.secnav{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:22px; flex-wrap:wrap;}
+.secnav .mid{font-size:.82rem; color:var(--muted); font-family:"IBM Plex Mono",monospace;}
+.dots{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+.dots button{width:2rem; height:2rem; border-radius:6px; border:1px solid var(--line-strong); background:var(--surface); font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--muted); cursor:pointer;}
+.dots button.done{background:var(--teal); border-color:var(--teal); color:#fff;}
+.dots button.cur{outline:2px solid var(--vital); outline-offset:1px;}
+.score{margin-top:26px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.score-top{padding:22px 20px; display:flex; gap:18px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--line);}
+.score-top .big{font-family:"IBM Plex Mono",monospace; font-size:2.6rem; font-weight:600; color:var(--teal); line-height:1;}
+.score-top .sub{color:var(--muted); font-size:.95rem; min-width:0;}
+.refline{position:relative; margin:18px 20px 6px; height:10px; border-radius:5px; background:var(--line);}
+.refline i{position:absolute; left:0; top:0; bottom:0; border-radius:5px; background:var(--sage);}
+.refline b{position:absolute; top:-5px; width:2px; height:20px; background:var(--vital);}
+.reflabel{margin:0 20px 18px; font-size:.78rem; color:var(--muted-2);}
+.dom{padding:0 20px 18px;}
+.dom-row{display:grid; grid-template-columns:minmax(0,1fr) 3.4rem; gap:4px 12px; margin-top:12px; font-size:.88rem;}
+.dom-row .n{font-family:"IBM Plex Mono",monospace; text-align:right; color:var(--teal); font-weight:600;}
+.dom-row .bar{grid-column:1 / -1;}
+.actions{display:flex; gap:10px; flex-wrap:wrap; padding:0 20px 22px;}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px;}
+.tabs button{padding:.5em .9em; border-radius:999px; border:1px solid var(--line-strong); background:var(--surface); color:var(--muted); font:600 .82rem "IBM Plex Sans",sans-serif; cursor:pointer;}
+.tabs button[aria-pressed="true"]{background:var(--teal); color:#fff; border-color:var(--teal);}
+.rev .opt{cursor:default;}
+.rev .opt.right{border-color:var(--ok); background:var(--ok-soft);}
+.rev .opt.right .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.rev .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.rev .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.tag{display:inline-block; margin-left:.5rem; font:600 .68rem "IBM Plex Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase;}
+.tag.ok{color:var(--ok);} .tag.bad{color:var(--bad);} .tag.skip{color:var(--muted-2);}
+.why{margin-top:14px; padding:14px 16px; border-radius:8px; background:var(--vital-soft); border:1px solid #EBD6AE; font-size:.93rem;}
+.why h4{margin:0 0 .35rem; font:700 .72rem "IBM Plex Sans",sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--vital);}
+.why p{margin:.3rem 0; color:var(--ink);}
+.why .others{margin-top:.6rem; padding-top:.6rem; border-top:1px dashed #E1C58E;}
+.why .others p{font-size:.9rem; color:var(--muted);}
+.why .others b{font-family:"IBM Plex Mono",monospace; color:var(--ink);}
+@media (max-width:520px){.q{padding:14px;} .runbar{font-size:.76rem;}}
+
+.callout{margin-top:26px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.callout.alert{border-color:var(--vital); background:var(--vital-soft);}
+.callout h3{font-family:"IBM Plex Sans",sans-serif; font-size:1.1rem; margin:.4rem 0 0;}
+.callout p{margin:.6rem 0 0; color:var(--muted);}
+.feat{display:grid; grid-template-columns:28px 1fr; gap:12px; padding:14px 0; border-top:1px solid var(--line);}
+.feat:first-child{border-top:none; padding-top:0;}
+.feat .tick{width:24px; height:24px; border-radius:6px; background:var(--teal); color:#fff; display:grid; place-items:center; font-weight:700; font-size:.85rem;}
+.feat h3{font-family:"IBM Plex Sans",sans-serif; font-size:1rem; margin:0;}
+.feat p{margin:.2rem 0 0; color:var(--muted); font-size:.95rem;}
+.or{display:flex; align-items:center; gap:12px; margin:18px 0; color:var(--muted-2); font:600 .75rem "IBM Plex Sans",sans-serif; letter-spacing:.1em; text-transform:uppercase;}
+.or::before,.or::after{content:""; flex:1; height:1px; background:var(--line-strong);}
+.how{padding:20px; border-radius:var(--radius); border:1px solid var(--line); background:var(--surface);}
+.how.main{border-color:var(--vital); background:var(--vital-soft);}
+.how p{margin:0; color:var(--muted);}
+.how .cta-row{margin:14px 0 0;}
+.faq dt{font:600 1rem "IBM Plex Sans",sans-serif; margin-top:16px;}
+.faq dd{margin:.25rem 0 0; color:var(--muted);}
+.pk-head{margin-top:22px;}
+.pk-head .n{font:600 .72rem "IBM Plex Mono",monospace; letter-spacing:.06em; color:var(--sage); text-transform:uppercase;}
+.pk-head h2{font-family:"IBM Plex Sans",sans-serif; font-size:1.6rem; margin:.3rem 0 0;}
+.pcard{margin-top:16px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.pcard .qmeta{display:flex; gap:.7rem; align-items:baseline; font:600 .72rem "IBM Plex Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase; color:var(--muted-2);}
+.pcard .qmeta .num{font-family:"IBM Plex Mono",monospace; color:var(--sage);}
+.pcard .qtext{margin:.6rem 0 .8rem; font-size:1.02rem; line-height:1.5;}
+.pcard .opt{cursor:pointer;}
+.pcard.answered .opt{cursor:default;}
+.pcard.answered .opt.correct{border-color:var(--ok); background:var(--ok-soft);}
+.pcard.answered .opt.correct .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.pcard.answered .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.pcard.answered .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.verdict{font:700 .78rem "IBM Plex Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; margin-top:14px;}
+.verdict.good{color:var(--ok);} .verdict.bad{color:var(--bad);}
+.area-nav{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;}
+.area-nav .btn{flex:1 1 30%; justify-content:center; text-align:center;}
+#score-readout{margin-left:auto; font:600 .75rem "IBM Plex Mono",monospace;}
+.acard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.acard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.acard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.acard .prog{font:600 .75rem "IBM Plex Mono",monospace; color:var(--sage);}
+.acard .go{flex:none; font:600 .8rem "IBM Plex Sans",sans-serif; letter-spacing:.06em; color:#fff; background:var(--teal); padding:.6em .95em; border-radius:6px; text-decoration:none;}
+.linkbtn{background:none; border:none; padding:0; font:600 .78rem "IBM Plex Sans",sans-serif; letter-spacing:.04em; color:var(--muted); text-decoration:underline; cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="shell wide">
+
+  <div class="topbar">
+    <svg class="mark" viewBox="0 0 26 16" fill="none" aria-hidden="true">
+      <rect width="26" height="16" rx="2" fill="#1F5C4F"/>
+      <path d="M3 8H7L9 4L12 12L14 8H23" stroke="#3E8E7E" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="brand">CMSRN Study Suite</span>
+    <span class="brand-sub">— Digital Companion</span>
+  </div>
+
+  <a href="./" class="back-link">← All domains</a>
+  <div class="runbar"><span>CMSRN HIGH-YIELD 100</span><span id="score-readout"></span></div>
+  <div class="pk-head"><div class="n">Domain 2 of 5 · 15 questions</div><h2>Holistic Patient Care</h2></div>
+  
+<div class="pcard" data-q="33">
+  <div class="qmeta"><span class="num">Q33</span><span>Spiritual distress</span></div>
+  <div class="qtext">A patient with newly diagnosed pancreatic cancer says, "I wonder why God is punishing me." Which response by the RN is most therapeutic?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">"Let us talk about your treatment options and the next steps instead of dwelling on that right now."</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">"You should not think that way, because God does not punish people for the illnesses that they develop."</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">"That sounds very painful. Would you like to tell me more about what you are feeling?"</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">"Many patients feel like this after a diagnosis, and it usually passes after a few days of treatment."</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Open reflection invites the patient to share spiritual distress and shows presence without judging beliefs.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Redirecting avoids the patient's expressed need.</p><p><b>B. </b>Correcting the patient's belief closes communication and dismisses the concern.</p><p><b>D. </b>A generic reassurance minimizes a genuine spiritual crisis.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="34">
+  <div class="qmeta"><span class="num">Q34</span><span>End-of-life communication</span></div>
+  <div class="qtext">A patient with end-stage heart failure who is comfort-focused asks quietly, "Am I dying?" Which response is best?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">"You are doing fine, so please do not worry about that today and try to rest and think about something pleasant."</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">"I cannot discuss that with you directly. You should ask your family or your provider when they come to see you."</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">"Yes, you only have a few days left, so you should call your relatives now and make your final arrangements."</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">"I hear that you are worried. What have you been thinking and what would help you most right now?"</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Exploring the question honors the patient's readiness for information before the RN or team gives details.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>False reassurance undermines trust at the end of life.</p><p><b>B. </b>Deflecting leaves the patient alone with a direct and important question.</p><p><b>C. </b>A blunt prognosis without exploring readiness or involving the provider is not appropriate.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="35">
+  <div class="qmeta"><span class="num">Q35</span><span>Refusal of blood products</span></div>
+  <div class="qtext">A competent adult who is a Jehovah's Witness is scheduled for surgery and signs a refusal of blood transfusion. Which nursing action is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Tell the patient that surgery will be cancelled unless blood is accepted as a possible lifesaving option</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Plan to give blood quietly if bleeding occurs, since it is lifesaving and the surgeon would want it</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Respect the decision, ensure the refusal is documented, and communicate it to the surgical team</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Ask the family to override the patient's choice once surgery begins and the patient is under anesthesia</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>A competent adult has the right to refuse treatment, and the team must know to plan alternatives.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Coercion violates the patient's autonomy.</p><p><b>B. </b>Giving blood against a valid refusal is a serious ethical and legal violation.</p><p><b>D. </b>The patient's own informed decision cannot be overridden by relatives.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="36">
+  <div class="qmeta"><span class="num">Q36</span><span>Interpreter use</span></div>
+  <div class="qtext">A patient who speaks very little English needs discharge teaching about anticoagulants. The patient's 12-year-old child offers to translate. What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Accept the child's help because the child knows the family well</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Use gestures and a single page of written English instructions</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Arrange a qualified medical interpreter and use teach-back through the interpreter</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Delay the teaching until the next clinic visit</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Trained interpreters give accurate medical translation and protect confidentiality, and teach-back confirms understanding.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>A child cannot reliably interpret medical terms and should not carry this burden.</p><p><b>B. </b>Written English does not help a patient with limited English.</p><p><b>D. </b>A new anticoagulant requires teaching before the patient goes home.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="37">
+  <div class="qmeta"><span class="num">Q37</span><span>Health literacy</span></div>
+  <div class="qtext">A patient nods during teaching about a new inhaler but looks confused when asked to repeat the steps. What is the best next action?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Document that teaching was completed because the patient nodded</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Give a longer pamphlet to read at home with all the details</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Ask a family member to take over the medication from now on</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Use plain language and have the patient demonstrate the inhaler technique</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>A return demonstration shows what the patient can truly do and reveals knowledge gaps.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Nodding is not evidence of understanding.</p><p><b>B. </b>More text does not solve a comprehension problem.</p><p><b>C. </b>The patient should be supported to learn, and the decision is not the nurse's alone.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="38">
+  <div class="qmeta"><span class="num">Q38</span><span>Pain in dementia</span></div>
+  <div class="qtext">A patient with advanced dementia cannot report pain but is grimacing, guarding the hip, and moaning during turns. Which action is best?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Assume the behavior is agitation from dementia and offer a prescribed sedative to help the patient settle and rest comfortably</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Wait for the patient to ask for pain medication before acting, since the patient has not requested any so far</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Ask the patient to rate pain from zero to ten on a numeric scale and chart the answer as given</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Use a behavioral pain scale such as PAINAD and report the findings so pain treatment can be started</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Behavior is the most reliable indicator of pain in patients who cannot self-report.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Sedating untreated pain hides the cause and harms the patient.</p><p><b>B. </b>Patients with advanced dementia often cannot ask.</p><p><b>C. </b>A numeric self-report is not usable when the patient cannot answer reliably.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="39">
+  <div class="qmeta"><span class="num">Q39</span><span>Intimate partner violence</span></div>
+  <div class="qtext">An RN notices bruises in different stages of healing on a patient's arms and a partner who answers every question. Which approach to screening is best?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Ask the partner about the bruises while the patient is present, so that both can explain the injuries</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Ask about safety privately, away from the partner, using direct and nonjudgmental questions</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Avoid the topic for now and document that the bruises were seen during the physical assessment</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Confront the partner about the suspected abuse in the room and warn that it will be reported</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Privacy protects the patient and increases honesty, and the safety screen should follow policy.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>This may endanger the patient and obtain a false account.</p><p><b>C. </b>Documentation without screening ignores an opportunity to protect the patient.</p><p><b>D. </b>Confrontation can escalate the risk to the patient.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="40">
+  <div class="qmeta"><span class="num">Q40</span><span>Fasting and medications</span></div>
+  <div class="qtext">A patient who takes twice-daily oral medication says, "I will fast from dawn to sunset for Ramadan and will not take pills in the daytime." What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Suggest taking both doses together in the evening without checking with the prescriber or pharmacist first</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Report the patient as noncompliant in the record and notify the unit manager about the refusal</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Discuss the plan with the prescriber and pharmacist to adjust the schedule or timing safely</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Tell the patient that medications must never be adjusted for religious reasons because the schedule is fixed</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Respecting religious practice while ensuring safe therapy is the best balance, and a timing change may satisfy both.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Doubling doses can be unsafe for many drugs.</p><p><b>B. </b>A planned change is not noncompliance and labeling is inappropriate.</p><p><b>D. </b>This dismisses the patient's values and may lead to nonadherence.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="41">
+  <div class="qmeta"><span class="num">Q41</span><span>Comfort care dyspnea</span></div>
+  <div class="qtext">A patient with end-stage COPD on comfort-focused care has distressing shortness of breath. Which intervention is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Restrict all opioids because of the risk of respiratory depression and use only nonpharmacologic measures</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Encourage vigorous coughing and deep breathing exercises every hour to clear secretions and improve oxygenation</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Begin intubation and mechanical ventilation to correct the carbon dioxide level and relieve dyspnea</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Give the prescribed low-dose opioid, use a fan, and position upright</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Opioids relieve the sensation of dyspnea, and a fan and positioning help comfort without aggressive intervention.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Withholding appropriate opioids causes needless suffering.</p><p><b>B. </b>Intense exercise exhausts a patient at the end of life.</p><p><b>C. </b>Intubation is not part of comfort-focused care.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="42">
+  <div class="qmeta"><span class="num">Q42</span><span>Grief</span></div>
+  <div class="qtext">After an expected death, the patient's spouse states, "He is just sleeping," and refuses to leave. Which RN response is best?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Stay with the spouse, acknowledge the loss gently, and offer time at the bedside with support</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Insist the spouse accept the death right away, say goodbye, and go home to rest and be with family</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Offer a sedative to calm the spouse and ask the spouse to wait in the hallway while the body is prepared</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Tell the spouse that denial will make things worse and that accepting the loss is the healthiest option</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Grief takes many forms, and compassionate presence allows the spouse to move toward acceptance.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Pressuring someone in shock harms the relationship and the grieving process.</p><p><b>C. </b>Sedation is not routine and delays natural grieving.</p><p><b>D. </b>This criticizes a normal reaction.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="43">
+  <div class="qmeta"><span class="num">Q43</span><span>Portable medical orders</span></div>
+  <div class="qtext">A patient with advanced lung disease wants their wishes about resuscitation to be followed by emergency personnel at home. Which document is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">A verbal statement to a family member</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">A living will kept in a safe at home</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">A signed POLST form completed with the provider</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">A note written in the patient's own words and placed in a drawer</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>A POLST is a portable medical order for seriously ill patients that emergency staff follow.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Verbal statements are not enforceable instructions for responders.</p><p><b>B. </b>A living will gives guidance but is not an immediate medical order for emergency crews.</p><p><b>D. </b>An informal note is not a recognized medical order.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="44">
+  <div class="qmeta"><span class="num">Q44</span><span>Organ donation</span></div>
+  <div class="qtext">A family member of a patient with brain death asks the RN whether organ donation is possible. What is the RN's best response?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Wait until the family brings it up a second time before acting</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Tell the family that the question is inappropriate at this time</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Explain the donation process and obtain consent at the bedside</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Notify the organ procurement organization per policy and let its trained staff discuss donation</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Trained requesters speak with families to avoid conflict of interest and ensure informed choices.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Notification of the organization is required by policy and should not wait.</p><p><b>B. </b>Dismissing the question leaves the family without information.</p><p><b>C. </b>The bedside nurse should not request consent.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="45">
+  <div class="qmeta"><span class="num">Q45</span><span>Inclusive care</span></div>
+  <div class="qtext">A patient admitted for heart failure introduces their same-sex spouse and asks that the spouse stay for all discussions. What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Respect the patient's wishes, use the chosen names and terms, and document the spouse as the support person</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Ask for legal proof of the relationship before including the spouse</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Speak only with the patient's biological relatives about the plan</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Limit the spouse's visits to the standard visiting hours only</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Patient-centered care honors identity and the patient's choice of who is involved.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Requiring proof is discriminatory and unnecessary.</p><p><b>C. </b>This ignores the patient's own designation.</p><p><b>D. </b>A different visitor policy for this couple is unjustified.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="46">
+  <div class="qmeta"><span class="num">Q46</span><span>Motivational interviewing</span></div>
+  <div class="qtext">A patient admitted with pancreatitis says, "I know I drink too much, but I do not think I can stop." Which response best uses motivational interviewing?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">"If you do not stop drinking right now, you will damage your pancreas and you will die early."</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">"I will arrange a rehabilitation admission for you starting tomorrow, because that is the best option for you."</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">"Everyone says that at first. You have to stop on your own because nobody else can do it for you."</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">"You see that drinking is a concern. What would make a change feel possible for you?"</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Open questions elicit the patient's own reasons for change and support readiness.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Scare tactics increase defensiveness.</p><p><b>B. </b>Imposing a plan skips the patient's readiness.</p><p><b>C. </b>A dismissive reply discourages honesty.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="47">
+  <div class="qmeta"><span class="num">Q47</span><span>Anger</span></div>
+  <div class="qtext">A patient who has waited a long time for pain medication shouts at the RN and demands another nurse. Which response is most effective?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Give the medication immediately without assessing the pain</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Stay calm, acknowledge the frustration, and explain the plan to address the pain promptly</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Argue that the delay was not the nurse's fault</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Tell the patient that shouting is not acceptable and walk out of the room</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Acknowledging feelings lowers tension and keeps the focus on solving the problem.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Skipping assessment ignores a safety standard.</p><p><b>C. </b>Defensiveness escalates the conflict.</p><p><b>D. </b>Leaving without a plan increases anger and delays care.</p></div></div>
+  </div>
+</div>
+  <div class="area-nav"><a class="btn btn-ghost" href="patient-care-management.html">← Patient/Care</a><a class="btn btn-ghost" href="./">All domains</a><a class="btn btn-teal" href="interprofessional-care.html">Interprofessional →</a></div>
+
+  <footer>
+    <p>Not affiliated with, endorsed by, or sponsored by MSNCB, the owner of the CMSRN® certification.</p>
+    <p>© 2026 Evan Marston. All rights reserved.</p>
+  </footer>
+</div>
+<script>
+(function(){
+var KEY="hy100:holistic-patient-care", saved={};
+try{ saved=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ saved={}; }
+var cards=document.querySelectorAll('.pcard'), TOTAL=cards.length;
+function score(){ var a=0,c=0; cards.forEach(function(k){ if(k.classList.contains('answered')){a++; if(k.dataset.ok==='1')c++;} });
+  document.getElementById('score-readout').textContent=a+' / '+TOTAL+' answered'+(a?'  ·  '+c+' correct':''); }
+function reveal(card,letter,persist){
+  if(card.classList.contains('answered')) return;
+  var opt=card.querySelector('button.opt[data-letter="'+letter+'"]'); if(!opt) return;
+  card.classList.add('answered'); var ok=opt.dataset.correct==='1'; card.dataset.ok=ok?'1':'0';
+  opt.classList.add(ok?'correct':'wrong');
+  if(!ok){ var r=card.querySelector('button.opt[data-correct="1"]'); if(r) r.classList.add('correct'); }
+  var res=card.querySelector('.result'); res.hidden=false;
+  var v=res.querySelector('.verdict'); v.textContent=ok?'Correct':'Not quite'; v.className='verdict '+(ok?'good':'bad');
+  if(persist){ saved[card.dataset.q]=[letter,ok?1:0]; try{ localStorage.setItem(KEY,JSON.stringify(saved)); }catch(e){} }
+}
+cards.forEach(function(card){
+  card.querySelectorAll('button.opt').forEach(function(b){ b.addEventListener('click',function(){ reveal(card,b.dataset.letter,true); score(); }); });
+  var s=saved[card.dataset.q]; if(s) reveal(card,s[0],false);
+});
+score();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<title>CMSRN High-Yield 100, Professional Concepts — CMSRN Study Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F1B18; --paper:#F6FAF9; --surface:#FFFFFF;
+  --teal:#1F5C4F; --teal-ink:#ffffff; --sage:#3E8E7E;
+  --line:#D9E4E0; --line-strong:#C3D3CD;
+  --muted:#54635E; --muted-2:#7C8B86;
+  --vital:#B8791F; --vital-soft:#F8EEDC;
+  --shadow: 0 1px 2px rgba(15,27,24,.04), 0 12px 28px -16px rgba(15,27,24,.14);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Serif",Georgia,serif; font-size:16px; line-height:1.55; padding-inline:20px;}
+h1,h2,h3,.eyebrow,.btn,.stat-num,.step-label{font-family:"IBM Plex Sans",system-ui,sans-serif;}
+.mono,.stat-num,.subject-chip b{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
+h1,h2,h3{text-wrap:balance; margin:0; color:var(--ink);}
+a{color:inherit;}
+.shell{max-width:640px; margin:0 auto; padding-block:28px 56px;}
+.topbar{display:flex; align-items:center; gap:10px; padding-block:14px; border-bottom:1px solid var(--line); margin-bottom:34px;}
+.topbar .mark{width:26px; height:16px; flex:none;}
+.topbar .brand{font-weight:700; font-size:.82rem; letter-spacing:.06em; text-transform:uppercase; color:var(--teal);}
+.topbar .brand-sub{font-family:"IBM Plex Serif",serif; font-size:.82rem; color:var(--muted-2); font-style:italic;}
+.back-link{display:inline-block; margin-bottom:18px; font-size:.85rem; color:var(--sage); text-decoration:none;}
+.eyebrow{display:inline-flex; align-items:center; gap:.5em; font-size:.72rem; font-weight:600; letter-spacing:.11em; text-transform:uppercase; color:var(--sage);}
+.eyebrow::before{content:""; width:16px; height:1px; background:var(--sage);}
+.hero{margin-top:14px;}
+.hero h1{font-size:clamp(1.9rem,6vw,2.5rem); font-weight:700; letter-spacing:-.01em; margin-top:.6rem; max-width:18ch;}
+.hero p.lede{margin-top:.9rem; color:var(--muted); font-size:1.08rem; max-width:42ch;}
+.vitals{margin-top:32px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.vitals-head{display:flex; align-items:center; justify-content:space-between; padding:12px 18px; background:var(--teal); color:var(--teal-ink);}
+.vitals-head .label{font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;}
+.vitals-head svg{display:block; height:14px; width:90px; opacity:.9;}
+.vitals-grid{display:grid; grid-template-columns:repeat(4,1fr);}
+.vitals-grid .cell{padding:16px 14px; border-right:1px solid var(--line); border-top:1px solid var(--line);}
+.vitals-grid .cell:nth-child(4n){border-right:none;}
+.vitals-grid .cell:nth-child(-n+4){border-top:none;}
+.stat-num{font-size:1.5rem; font-weight:600; color:var(--teal); line-height:1; display:block;}
+.stat-label{margin-top:6px; font-size:.72rem; color:var(--muted); line-height:1.35; text-transform:uppercase; letter-spacing:.03em;}
+h2.section-title{margin-top:44px; font-size:1.15rem; font-weight:700; display:flex; align-items:baseline; gap:.6em;}
+h2.section-title .chart-no{font-family:"IBM Plex Mono",monospace; font-size:.85rem; font-weight:600; color:var(--sage);}
+.chart{margin-top:18px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);}
+.chart-row{display:grid; grid-template-columns:56px 1fr; padding:20px 20px;}
+.chart-row + .chart-row{border-top:1px solid var(--line);}
+.chart-row .idx{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--sage); font-size:.95rem; padding-top:.15em;}
+.chart-row .step-label{font-weight:600; font-size:1.02rem; margin:0 0 .35rem;}
+.chart-row p{margin:0; color:var(--muted); font-size:.96rem;}
+.cta-row{margin:14px 20px 20px; display:flex; flex-wrap:wrap; gap:10px;}
+.btn{display:inline-flex; align-items:center; gap:.55em; font-weight:600; font-size:.92rem; padding:.75em 1.15em; border-radius:6px; text-decoration:none; border:1px solid transparent;}
+.btn-teal{background:var(--teal); color:var(--teal-ink);}
+.btn-vital{background:var(--vital); color:#fff;}
+.btn-ghost{background:transparent; color:var(--teal); border-color:var(--line-strong);}
+.subject-chip{margin:0 20px 20px; display:inline-block; font-size:.82rem; color:var(--muted); background:var(--vital-soft); border:1px dashed var(--vital); border-radius:6px; padding:.55em .8em;}
+.alt-path{margin-top:22px; padding:16px 18px; border-left:3px solid var(--line-strong); color:var(--muted); font-size:.92rem; background:var(--surface); border-radius:0 var(--radius) var(--radius) 0;}
+.alt-path b{color:var(--ink);}
+.todo{display:inline-block; margin:0 20px 14px; font-size:.78rem; font-weight:600; color:var(--vital); font-family:"IBM Plex Mono",monospace;}
+.soon{margin-top:28px; padding:28px 22px; text-align:center; border:1px dashed var(--line-strong); border-radius:var(--radius); background:var(--surface); color:var(--muted);}
+.soon b{color:var(--ink); display:block; margin-bottom:.4em; font-family:"IBM Plex Sans",sans-serif;}
+footer{margin-top:52px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted-2); font-size:.8rem;}
+footer p{margin:.25em 0;}
+@media (max-width:520px){
+  .vitals-grid{grid-template-columns:repeat(2,1fr);}
+  .vitals-grid .cell:nth-child(2n){border-right:none;}
+  .vitals-grid .cell:nth-child(-n+2){border-top:none;}
+  .vitals-grid .cell:nth-child(3),.vitals-grid .cell:nth-child(4){border-top:1px solid var(--line);}
+  .chart-row{grid-template-columns:32px 1fr;}
+}
+
+:root{--ok:#1F7A4D; --ok-soft:#E4F2EA; --bad:#B3402A; --bad-soft:#FBE9E4;}
+.shell.wide{max-width:760px;}
+.card-list{display:flex; flex-direction:column; gap:12px; margin-top:18px;}
+.tcard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); text-decoration:none;}
+.tcard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.tcard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.tcard .go{flex:none; font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:.8rem; letter-spacing:.06em; color:var(--teal-ink); background:var(--teal); padding:.6em .95em; border-radius:6px;}
+.note{margin-top:22px; padding:14px 16px; border-left:3px solid var(--line-strong); background:var(--surface); border-radius:0 var(--radius) var(--radius) 0; color:var(--muted); font-size:.92rem;}
+.btn[disabled]{opacity:.45; cursor:not-allowed;}
+button.btn{cursor:pointer; font-family:"IBM Plex Sans",system-ui,sans-serif;}
+.panel{margin-top:22px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.panel h2{font-family:"IBM Plex Sans",sans-serif; font-size:1.05rem; margin:0 0 .6rem;}
+.panel p{margin:.5rem 0; color:var(--muted);}
+.panel ul{margin:.5rem 0 1rem; padding-left:1.2rem; color:var(--muted);}
+.gate{display:flex; gap:.7rem; align-items:flex-start; margin:14px 0 16px; font-size:.95rem;}
+.gate input{margin-top:.25rem; width:18px; height:18px; accent-color:var(--teal); flex:none;}
+.runbar{position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; margin-top:16px; background:var(--teal); color:var(--teal-ink); border-radius:var(--radius); font-family:"IBM Plex Sans",sans-serif; font-size:.82rem; font-weight:600;}
+.runbar .mono{font-size:.9rem;}
+.bar{height:6px; border-radius:3px; background:var(--line); overflow:hidden;}
+.bar > i{display:block; height:100%; background:var(--sage);}
+.q{margin-top:18px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.q .qno{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--sage); font-weight:600; letter-spacing:.04em;}
+.q .qdom{font-family:"IBM Plex Sans",sans-serif; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-left:.6rem;}
+.q .stem{margin:.6rem 0 .9rem; font-size:1.02rem; line-height:1.5;}
+.opt{display:flex; gap:.8rem; width:100%; text-align:left; align-items:flex-start; padding:.75rem .85rem; margin-top:.5rem; background:var(--paper); border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--ink); cursor:pointer;}
+.opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line-strong); display:grid; place-items:center; font-family:"IBM Plex Mono",monospace; font-size:.8rem; font-weight:600; color:var(--muted);}
+.opt .t{min-width:0; padding-top:.1rem; line-height:1.45;}
+.opt.sel{border-color:var(--teal); background:#EAF3F0;}
+.opt.sel .l{background:var(--teal); border-color:var(--teal); color:#fff;}
+.opt:focus-visible{outline:2px solid var(--vital); outline-offset:2px;}
+.secnav{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:22px; flex-wrap:wrap;}
+.secnav .mid{font-size:.82rem; color:var(--muted); font-family:"IBM Plex Mono",monospace;}
+.dots{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+.dots button{width:2rem; height:2rem; border-radius:6px; border:1px solid var(--line-strong); background:var(--surface); font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--muted); cursor:pointer;}
+.dots button.done{background:var(--teal); border-color:var(--teal); color:#fff;}
+.dots button.cur{outline:2px solid var(--vital); outline-offset:1px;}
+.score{margin-top:26px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.score-top{padding:22px 20px; display:flex; gap:18px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--line);}
+.score-top .big{font-family:"IBM Plex Mono",monospace; font-size:2.6rem; font-weight:600; color:var(--teal); line-height:1;}
+.score-top .sub{color:var(--muted); font-size:.95rem; min-width:0;}
+.refline{position:relative; margin:18px 20px 6px; height:10px; border-radius:5px; background:var(--line);}
+.refline i{position:absolute; left:0; top:0; bottom:0; border-radius:5px; background:var(--sage);}
+.refline b{position:absolute; top:-5px; width:2px; height:20px; background:var(--vital);}
+.reflabel{margin:0 20px 18px; font-size:.78rem; color:var(--muted-2);}
+.dom{padding:0 20px 18px;}
+.dom-row{display:grid; grid-template-columns:minmax(0,1fr) 3.4rem; gap:4px 12px; margin-top:12px; font-size:.88rem;}
+.dom-row .n{font-family:"IBM Plex Mono",monospace; text-align:right; color:var(--teal); font-weight:600;}
+.dom-row .bar{grid-column:1 / -1;}
+.actions{display:flex; gap:10px; flex-wrap:wrap; padding:0 20px 22px;}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px;}
+.tabs button{padding:.5em .9em; border-radius:999px; border:1px solid var(--line-strong); background:var(--surface); color:var(--muted); font:600 .82rem "IBM Plex Sans",sans-serif; cursor:pointer;}
+.tabs button[aria-pressed="true"]{background:var(--teal); color:#fff; border-color:var(--teal);}
+.rev .opt{cursor:default;}
+.rev .opt.right{border-color:var(--ok); background:var(--ok-soft);}
+.rev .opt.right .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.rev .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.rev .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.tag{display:inline-block; margin-left:.5rem; font:600 .68rem "IBM Plex Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase;}
+.tag.ok{color:var(--ok);} .tag.bad{color:var(--bad);} .tag.skip{color:var(--muted-2);}
+.why{margin-top:14px; padding:14px 16px; border-radius:8px; background:var(--vital-soft); border:1px solid #EBD6AE; font-size:.93rem;}
+.why h4{margin:0 0 .35rem; font:700 .72rem "IBM Plex Sans",sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--vital);}
+.why p{margin:.3rem 0; color:var(--ink);}
+.why .others{margin-top:.6rem; padding-top:.6rem; border-top:1px dashed #E1C58E;}
+.why .others p{font-size:.9rem; color:var(--muted);}
+.why .others b{font-family:"IBM Plex Mono",monospace; color:var(--ink);}
+@media (max-width:520px){.q{padding:14px;} .runbar{font-size:.76rem;}}
+
+.callout{margin-top:26px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.callout.alert{border-color:var(--vital); background:var(--vital-soft);}
+.callout h3{font-family:"IBM Plex Sans",sans-serif; font-size:1.1rem; margin:.4rem 0 0;}
+.callout p{margin:.6rem 0 0; color:var(--muted);}
+.feat{display:grid; grid-template-columns:28px 1fr; gap:12px; padding:14px 0; border-top:1px solid var(--line);}
+.feat:first-child{border-top:none; padding-top:0;}
+.feat .tick{width:24px; height:24px; border-radius:6px; background:var(--teal); color:#fff; display:grid; place-items:center; font-weight:700; font-size:.85rem;}
+.feat h3{font-family:"IBM Plex Sans",sans-serif; font-size:1rem; margin:0;}
+.feat p{margin:.2rem 0 0; color:var(--muted); font-size:.95rem;}
+.or{display:flex; align-items:center; gap:12px; margin:18px 0; color:var(--muted-2); font:600 .75rem "IBM Plex Sans",sans-serif; letter-spacing:.1em; text-transform:uppercase;}
+.or::before,.or::after{content:""; flex:1; height:1px; background:var(--line-strong);}
+.how{padding:20px; border-radius:var(--radius); border:1px solid var(--line); background:var(--surface);}
+.how.main{border-color:var(--vital); background:var(--vital-soft);}
+.how p{margin:0; color:var(--muted);}
+.how .cta-row{margin:14px 0 0;}
+.faq dt{font:600 1rem "IBM Plex Sans",sans-serif; margin-top:16px;}
+.faq dd{margin:.25rem 0 0; color:var(--muted);}
+.pk-head{margin-top:22px;}
+.pk-head .n{font:600 .72rem "IBM Plex Mono",monospace; letter-spacing:.06em; color:var(--sage); text-transform:uppercase;}
+.pk-head h2{font-family:"IBM Plex Sans",sans-serif; font-size:1.6rem; margin:.3rem 0 0;}
+.pcard{margin-top:16px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.pcard .qmeta{display:flex; gap:.7rem; align-items:baseline; font:600 .72rem "IBM Plex Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase; color:var(--muted-2);}
+.pcard .qmeta .num{font-family:"IBM Plex Mono",monospace; color:var(--sage);}
+.pcard .qtext{margin:.6rem 0 .8rem; font-size:1.02rem; line-height:1.5;}
+.pcard .opt{cursor:pointer;}
+.pcard.answered .opt{cursor:default;}
+.pcard.answered .opt.correct{border-color:var(--ok); background:var(--ok-soft);}
+.pcard.answered .opt.correct .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.pcard.answered .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.pcard.answered .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.verdict{font:700 .78rem "IBM Plex Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; margin-top:14px;}
+.verdict.good{color:var(--ok);} .verdict.bad{color:var(--bad);}
+.area-nav{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;}
+.area-nav .btn{flex:1 1 30%; justify-content:center; text-align:center;}
+#score-readout{margin-left:auto; font:600 .75rem "IBM Plex Mono",monospace;}
+.acard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.acard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.acard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.acard .prog{font:600 .75rem "IBM Plex Mono",monospace; color:var(--sage);}
+.acard .go{flex:none; font:600 .8rem "IBM Plex Sans",sans-serif; letter-spacing:.06em; color:#fff; background:var(--teal); padding:.6em .95em; border-radius:6px; text-decoration:none;}
+.linkbtn{background:none; border:none; padding:0; font:600 .78rem "IBM Plex Sans",sans-serif; letter-spacing:.04em; color:var(--muted); text-decoration:underline; cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="shell wide">
+
+  <div class="topbar">
+    <svg class="mark" viewBox="0 0 26 16" fill="none" aria-hidden="true">
+      <rect width="26" height="16" rx="2" fill="#1F5C4F"/>
+      <path d="M3 8H7L9 4L12 12L14 8H23" stroke="#3E8E7E" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="brand">CMSRN Study Suite</span>
+    <span class="brand-sub">— Digital Companion</span>
+  </div>
+
+  <a href="./" class="back-link">← All domains</a>
+  <div class="runbar"><span>CMSRN HIGH-YIELD 100</span><span id="score-readout"></span></div>
+  <div class="pk-head"><div class="n">Domain 4 of 5 · 15 questions</div><h2>Professional Concepts</h2></div>
+  
+<div class="pcard" data-q="65">
+  <div class="qmeta"><span class="num">Q65</span><span>Privacy</span></div>
+  <div class="qtext">Two RNs discuss a patient's diagnosis in a hospital elevator crowded with visitors. Which action by a nearby RN is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Wait until the end of the shift and mention it to the unit manager</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Say nothing, since both colleagues are more experienced</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Ignore it, since the patient's name was not used</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Remind the colleagues to move the discussion to a private area</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Protected health information must not be discussed where others can hear.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Waiting leaves the privacy breach to continue in the meantime.</p><p><b>B. </b>Silence allows the breach to continue and models poor practice.</p><p><b>C. </b>Details can still identify the patient.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="66">
+  <div class="qmeta"><span class="num">Q66</span><span>Scope of practice</span></div>
+  <div class="qtext">A charge nurse asks an RN to perform a procedure the RN has never been trained to do and is not credentialed to perform. What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Perform the procedure to avoid conflict</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Delegate it to an assistive staff member</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Watch a video and perform it that same shift</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Decline politely, explain the limit of competency, and ask for supervision or training</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Nurses are accountable for practicing within competence and scope.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Acting outside competence puts patients at risk.</p><p><b>B. </b>Delegating an unsafe task is also unsafe.</p><p><b>C. </b>Self-teaching does not establish validated competence.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="67">
+  <div class="qmeta"><span class="num">Q67</span><span>Incident reports</span></div>
+  <div class="qtext">A patient falls but is unharmed. How should the RN handle documentation?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Include your opinion about who was at fault and what the staff should have done differently</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Chart the objective facts in the record and file an incident report separately</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Write in the chart that an incident report was completed and who was notified about the event</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Leave it undocumented because no injury occurred and the patient was not harmed by the fall</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>The record states facts, and the incident report is an internal quality tool not referenced in the chart.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Reports should contain facts, not opinions or assigned fault.</p><p><b>C. </b>Referencing the report in the chart is discouraged.</p><p><b>D. </b>All events need documentation.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="68">
+  <div class="qmeta"><span class="num">Q68</span><span>Impaired colleague</span></div>
+  <div class="qtext">An RN smells alcohol on a coworker who is slurring speech before medication administration. What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Remove the coworker from patient care and report to the supervisor per policy</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Wait to see whether the problem continues tomorrow before deciding whether to say anything to anyone</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Cover for the colleague for the rest of the shift and speak with the colleague privately afterward</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Confront the coworker about the odor and slurred speech in front of the patients and visitors</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Patient safety comes first, and impaired practice must be reported through proper channels.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Waiting allows possible errors to occur.</p><p><b>C. </b>Covering up risks harm to patients.</p><p><b>D. </b>Public confrontation is unprofessional and unsafe.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="69">
+  <div class="qmeta"><span class="num">Q69</span><span>Social media</span></div>
+  <div class="qtext">An RN wants to post a photo of a rare wound on social media without a name or face visible. What is the best response?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Post it in a private group of friends who are also nurses and who work at other hospitals</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Post it because no name or face is shown and the wound is rare and educational for other nurses</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Post it after the patient is discharged and no longer receiving care from the hospital</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Do not post, because images of patients can identify them and require authorization</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Patient images are protected, and even unnamed photos can lead to identification.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Private groups still breach privacy.</p><p><b>B. </b>Details alone may allow recognition.</p><p><b>C. </b>Discharge does not remove the duty of confidentiality.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="70">
+  <div class="qmeta"><span class="num">Q70</span><span>Mandated reporting</span></div>
+  <div class="qtext">During a home visit, an RN suspects that a dependent older adult is being neglected by a caregiver. What is the RN's duty?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Confront the caregiver and demand an explanation for the condition of the older adult at home</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Wait for proof of neglect before telling anyone, to avoid making a false accusation against the caregiver</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Report the suspicion to the appropriate adult protective services agency as required by law</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Document it only in the nursing note and discuss it at the next team meeting</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Nurses are mandated reporters and need reasonable suspicion, not proof.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Confrontation can endanger the patient.</p><p><b>B. </b>Waiting delays protection.</p><p><b>D. </b>Documentation alone does not meet the legal duty.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="71">
+  <div class="qmeta"><span class="num">Q71</span><span>Informed consent</span></div>
+  <div class="qtext">A patient asks the RN to explain the risks of a procedure before signing the consent form. What is the RN's best action?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Ask a relative who is present at the bedside to sign the consent form instead of the patient</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Tell the patient to sign now and ask the questions of the provider later, after the procedure</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Notify the provider so the risks and alternatives can be explained before the patient signs</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Explain the risks and alternatives yourself and then have the patient sign the consent form</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>The provider is responsible for informing, while the RN verifies understanding and advocates.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>A competent patient signs for themselves.</p><p><b>B. </b>Consent must be informed and voluntary.</p><p><b>D. </b>Informing is the provider's role.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="72">
+  <div class="qmeta"><span class="num">Q72</span><span>Restraints</span></div>
+  <div class="qtext">A confused patient keeps pulling at a urinary catheter. The RN has tried reorientation and a family sitter. What must happen before using a restraint?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Tie both wrists firmly to the bed rails to prevent any movement and keep the catheter safe overnight</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Leave the restraints in place all night without checking, so that the patient can sleep undisturbed</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Obtain a prescriber order, use the least restrictive option, and monitor and reassess frequently</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Apply them first to protect the catheter and get an order from the prescriber the next morning</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Restraints are a last resort with orders and close monitoring.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>That is excessive and unsafe.</p><p><b>B. </b>Patients in restraints need regular checks.</p><p><b>D. </b>Restraints need an order and proper assessment.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="73">
+  <div class="qmeta"><span class="num">Q73</span><span>Disaster triage</span></div>
+  <div class="qtext">During a mass casualty event using START triage, a victim is breathing at 36/min. How should the victim be tagged?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Delayed (yellow), because the victim is breathing and has a pulse</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Expectant (black), because the respiratory rate is very high and survival is unlikely</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Minor (green), because the victim is breathing without any airway obstruction</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Immediate (red), because the respiratory rate is over 30</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>A rate above 30 breaths per minute indicates a life-threatening problem needing immediate care.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Delayed is for patients who can wait with a stable respiratory rate.</p><p><b>B. </b>Black is for those who are not breathing after airway repositioning.</p><p><b>C. </b>Green is for walking wounded.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="74">
+  <div class="qmeta"><span class="num">Q74</span><span>Just culture</span></div>
+  <div class="qtext">An RN makes a medication error because of a confusing label that looks like another product. Which approach reflects a just culture?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Terminate the RN immediately because the error reached a patient, and report it to the board</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Review the system issue, support the RN, and change the labeling process</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Ignore the event to avoid creating blame and to protect the morale of the unit staff</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Publicly name the RN at a staff meeting so that everyone learns from the mistake</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Just culture separates human error from reckless behavior and fixes system causes.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Punishing unintentional error discourages reporting.</p><p><b>C. </b>Ignoring prevents learning.</p><p><b>D. </b>Public shaming damages safety culture.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="75">
+  <div class="qmeta"><span class="num">Q75</span><span>Right to refuse</span></div>
+  <div class="qtext">A competent patient declines a recommended blood draw. What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Hold the arm gently while a colleague draws the blood, then explain the reason afterward</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Respect the refusal, explain the consequences, notify the provider, and document</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Perform the draw anyway for the patient's own good, since the test is important for care</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Threaten to discharge the patient if the blood draw is not allowed to proceed this morning</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Patients have the right to refuse and need information to make an informed refusal.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Forced treatment violates rights.</p><p><b>C. </b>That would be battery.</p><p><b>D. </b>Threats are coercive.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="76">
+  <div class="qmeta"><span class="num">Q76</span><span>Evidence-based question</span></div>
+  <div class="qtext">Which format best organizes a clinical question for evidence-based practice?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Situation, background, assessment, and recommendation, used for communication with providers</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Plan, do, study, and act, used to test changes in a quality improvement project</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Subjective, objective, assessment, and plan, commonly used for documentation in the record</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Population, intervention, comparison, and outcome (PICO)</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>PICO structures a searchable question about patient groups and results.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>That is a communication format.</p><p><b>B. </b>That is an improvement cycle.</p><p><b>C. </b>That is a documentation format.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="77">
+  <div class="qmeta"><span class="num">Q77</span><span>Professional boundaries</span></div>
+  <div class="qtext">A patient's family offers the RN an expensive gift certificate on the day of discharge. What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Politely decline per policy and accept a thank-you card instead</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Accept it and share it with coworkers who also helped to care for the patient</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Accept it quietly and tell no one, since the family offered it freely as a thank-you</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Accept it only because the patient is being discharged and will no longer be cared for by the unit</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Valuable gifts can blur boundaries, while a card is acceptable.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Gifts of value should not be accepted.</p><p><b>C. </b>Secrecy suggests impropriety.</p><p><b>D. </b>Discharge does not remove the boundary concern.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="78">
+  <div class="qmeta"><span class="num">Q78</span><span>Unsafe staffing</span></div>
+  <div class="qtext">An RN is assigned patients that exceed safe limits, and the manager says there is no one else. What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Leave the unit without notifying anyone because the assignment is unsafe and the manager has no solution</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Accept the assignment silently, skip breaks, and do the best possible for each patient during the shift</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Use the chain of command, document concerns objectively, and follow the policy for unsafe assignments</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Accept the assignment and skip lower-priority documentation to catch up when the unit becomes busy and the patients' needs increase</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Escalation and documentation protect patients and the nurse.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Abandonment is unsafe and illegal.</p><p><b>B. </b>Silence leaves the hazard unaddressed.</p><p><b>D. </b>Shortcuts compromise care and leave the unsafe assignment unaddressed.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="79">
+  <div class="qmeta"><span class="num">Q79</span><span>Ethical principles</span></div>
+  <div class="qtext">A competent patient chooses a treatment the care team does not prefer. The RN supports the choice. Which ethical principle is being applied?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Justice</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Beneficence</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Nonmaleficence</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Autonomy</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Autonomy is the right to make informed decisions about one's own care.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Justice concerns fair distribution of resources.</p><p><b>B. </b>Beneficence means acting for the patient's good as the team sees it.</p><p><b>C. </b>Nonmaleficence means avoiding harm.</p></div></div>
+  </div>
+</div>
+  <div class="area-nav"><a class="btn btn-ghost" href="interprofessional-care.html">← Interprofessional</a><a class="btn btn-ghost" href="./">All domains</a><a class="btn btn-teal" href="nursing-teamwork.html">Teamwork →</a></div>
+
+  <footer>
+    <p>Not affiliated with, endorsed by, or sponsored by MSNCB, the owner of the CMSRN® certification.</p>
+    <p>© 2026 Evan Marston. All rights reserved.</p>
+  </footer>
+</div>
+<script>
+(function(){
+var KEY="hy100:professional-concepts", saved={};
+try{ saved=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ saved={}; }
+var cards=document.querySelectorAll('.pcard'), TOTAL=cards.length;
+function score(){ var a=0,c=0; cards.forEach(function(k){ if(k.classList.contains('answered')){a++; if(k.dataset.ok==='1')c++;} });
+  document.getElementById('score-readout').textContent=a+' / '+TOTAL+' answered'+(a?'  ·  '+c+' correct':''); }
+function reveal(card,letter,persist){
+  if(card.classList.contains('answered')) return;
+  var opt=card.querySelector('button.opt[data-letter="'+letter+'"]'); if(!opt) return;
+  card.classList.add('answered'); var ok=opt.dataset.correct==='1'; card.dataset.ok=ok?'1':'0';
+  opt.classList.add(ok?'correct':'wrong');
+  if(!ok){ var r=card.querySelector('button.opt[data-correct="1"]'); if(r) r.classList.add('correct'); }
+  var res=card.querySelector('.result'); res.hidden=false;
+  var v=res.querySelector('.verdict'); v.textContent=ok?'Correct':'Not quite'; v.className='verdict '+(ok?'good':'bad');
+  if(persist){ saved[card.dataset.q]=[letter,ok?1:0]; try{ localStorage.setItem(KEY,JSON.stringify(saved)); }catch(e){} }
+}
+cards.forEach(function(card){
+  card.querySelectorAll('button.opt').forEach(function(b){ b.addEventListener('click',function(){ reveal(card,b.dataset.letter,true); score(); }); });
+  var s=saved[card.dataset.q]; if(s) reveal(card,s[0],false);
+});
+score();
+})();
+</script>
+</body>
+</html>

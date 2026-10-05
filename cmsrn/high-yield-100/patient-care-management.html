@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<title>CMSRN High-Yield 100, Patient/Care Management — CMSRN Study Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F1B18; --paper:#F6FAF9; --surface:#FFFFFF;
+  --teal:#1F5C4F; --teal-ink:#ffffff; --sage:#3E8E7E;
+  --line:#D9E4E0; --line-strong:#C3D3CD;
+  --muted:#54635E; --muted-2:#7C8B86;
+  --vital:#B8791F; --vital-soft:#F8EEDC;
+  --shadow: 0 1px 2px rgba(15,27,24,.04), 0 12px 28px -16px rgba(15,27,24,.14);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Serif",Georgia,serif; font-size:16px; line-height:1.55; padding-inline:20px;}
+h1,h2,h3,.eyebrow,.btn,.stat-num,.step-label{font-family:"IBM Plex Sans",system-ui,sans-serif;}
+.mono,.stat-num,.subject-chip b{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
+h1,h2,h3{text-wrap:balance; margin:0; color:var(--ink);}
+a{color:inherit;}
+.shell{max-width:640px; margin:0 auto; padding-block:28px 56px;}
+.topbar{display:flex; align-items:center; gap:10px; padding-block:14px; border-bottom:1px solid var(--line); margin-bottom:34px;}
+.topbar .mark{width:26px; height:16px; flex:none;}
+.topbar .brand{font-weight:700; font-size:.82rem; letter-spacing:.06em; text-transform:uppercase; color:var(--teal);}
+.topbar .brand-sub{font-family:"IBM Plex Serif",serif; font-size:.82rem; color:var(--muted-2); font-style:italic;}
+.back-link{display:inline-block; margin-bottom:18px; font-size:.85rem; color:var(--sage); text-decoration:none;}
+.eyebrow{display:inline-flex; align-items:center; gap:.5em; font-size:.72rem; font-weight:600; letter-spacing:.11em; text-transform:uppercase; color:var(--sage);}
+.eyebrow::before{content:""; width:16px; height:1px; background:var(--sage);}
+.hero{margin-top:14px;}
+.hero h1{font-size:clamp(1.9rem,6vw,2.5rem); font-weight:700; letter-spacing:-.01em; margin-top:.6rem; max-width:18ch;}
+.hero p.lede{margin-top:.9rem; color:var(--muted); font-size:1.08rem; max-width:42ch;}
+.vitals{margin-top:32px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.vitals-head{display:flex; align-items:center; justify-content:space-between; padding:12px 18px; background:var(--teal); color:var(--teal-ink);}
+.vitals-head .label{font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;}
+.vitals-head svg{display:block; height:14px; width:90px; opacity:.9;}
+.vitals-grid{display:grid; grid-template-columns:repeat(4,1fr);}
+.vitals-grid .cell{padding:16px 14px; border-right:1px solid var(--line); border-top:1px solid var(--line);}
+.vitals-grid .cell:nth-child(4n){border-right:none;}
+.vitals-grid .cell:nth-child(-n+4){border-top:none;}
+.stat-num{font-size:1.5rem; font-weight:600; color:var(--teal); line-height:1; display:block;}
+.stat-label{margin-top:6px; font-size:.72rem; color:var(--muted); line-height:1.35; text-transform:uppercase; letter-spacing:.03em;}
+h2.section-title{margin-top:44px; font-size:1.15rem; font-weight:700; display:flex; align-items:baseline; gap:.6em;}
+h2.section-title .chart-no{font-family:"IBM Plex Mono",monospace; font-size:.85rem; font-weight:600; color:var(--sage);}
+.chart{margin-top:18px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);}
+.chart-row{display:grid; grid-template-columns:56px 1fr; padding:20px 20px;}
+.chart-row + .chart-row{border-top:1px solid var(--line);}
+.chart-row .idx{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--sage); font-size:.95rem; padding-top:.15em;}
+.chart-row .step-label{font-weight:600; font-size:1.02rem; margin:0 0 .35rem;}
+.chart-row p{margin:0; color:var(--muted); font-size:.96rem;}
+.cta-row{margin:14px 20px 20px; display:flex; flex-wrap:wrap; gap:10px;}
+.btn{display:inline-flex; align-items:center; gap:.55em; font-weight:600; font-size:.92rem; padding:.75em 1.15em; border-radius:6px; text-decoration:none; border:1px solid transparent;}
+.btn-teal{background:var(--teal); color:var(--teal-ink);}
+.btn-vital{background:var(--vital); color:#fff;}
+.btn-ghost{background:transparent; color:var(--teal); border-color:var(--line-strong);}
+.subject-chip{margin:0 20px 20px; display:inline-block; font-size:.82rem; color:var(--muted); background:var(--vital-soft); border:1px dashed var(--vital); border-radius:6px; padding:.55em .8em;}
+.alt-path{margin-top:22px; padding:16px 18px; border-left:3px solid var(--line-strong); color:var(--muted); font-size:.92rem; background:var(--surface); border-radius:0 var(--radius) var(--radius) 0;}
+.alt-path b{color:var(--ink);}
+.todo{display:inline-block; margin:0 20px 14px; font-size:.78rem; font-weight:600; color:var(--vital); font-family:"IBM Plex Mono",monospace;}
+.soon{margin-top:28px; padding:28px 22px; text-align:center; border:1px dashed var(--line-strong); border-radius:var(--radius); background:var(--surface); color:var(--muted);}
+.soon b{color:var(--ink); display:block; margin-bottom:.4em; font-family:"IBM Plex Sans",sans-serif;}
+footer{margin-top:52px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted-2); font-size:.8rem;}
+footer p{margin:.25em 0;}
+@media (max-width:520px){
+  .vitals-grid{grid-template-columns:repeat(2,1fr);}
+  .vitals-grid .cell:nth-child(2n){border-right:none;}
+  .vitals-grid .cell:nth-child(-n+2){border-top:none;}
+  .vitals-grid .cell:nth-child(3),.vitals-grid .cell:nth-child(4){border-top:1px solid var(--line);}
+  .chart-row{grid-template-columns:32px 1fr;}
+}
+
+:root{--ok:#1F7A4D; --ok-soft:#E4F2EA; --bad:#B3402A; --bad-soft:#FBE9E4;}
+.shell.wide{max-width:760px;}
+.card-list{display:flex; flex-direction:column; gap:12px; margin-top:18px;}
+.tcard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); text-decoration:none;}
+.tcard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.tcard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.tcard .go{flex:none; font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:.8rem; letter-spacing:.06em; color:var(--teal-ink); background:var(--teal); padding:.6em .95em; border-radius:6px;}
+.note{margin-top:22px; padding:14px 16px; border-left:3px solid var(--line-strong); background:var(--surface); border-radius:0 var(--radius) var(--radius) 0; color:var(--muted); font-size:.92rem;}
+.btn[disabled]{opacity:.45; cursor:not-allowed;}
+button.btn{cursor:pointer; font-family:"IBM Plex Sans",system-ui,sans-serif;}
+.panel{margin-top:22px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.panel h2{font-family:"IBM Plex Sans",sans-serif; font-size:1.05rem; margin:0 0 .6rem;}
+.panel p{margin:.5rem 0; color:var(--muted);}
+.panel ul{margin:.5rem 0 1rem; padding-left:1.2rem; color:var(--muted);}
+.gate{display:flex; gap:.7rem; align-items:flex-start; margin:14px 0 16px; font-size:.95rem;}
+.gate input{margin-top:.25rem; width:18px; height:18px; accent-color:var(--teal); flex:none;}
+.runbar{position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; margin-top:16px; background:var(--teal); color:var(--teal-ink); border-radius:var(--radius); font-family:"IBM Plex Sans",sans-serif; font-size:.82rem; font-weight:600;}
+.runbar .mono{font-size:.9rem;}
+.bar{height:6px; border-radius:3px; background:var(--line); overflow:hidden;}
+.bar > i{display:block; height:100%; background:var(--sage);}
+.q{margin-top:18px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.q .qno{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--sage); font-weight:600; letter-spacing:.04em;}
+.q .qdom{font-family:"IBM Plex Sans",sans-serif; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-left:.6rem;}
+.q .stem{margin:.6rem 0 .9rem; font-size:1.02rem; line-height:1.5;}
+.opt{display:flex; gap:.8rem; width:100%; text-align:left; align-items:flex-start; padding:.75rem .85rem; margin-top:.5rem; background:var(--paper); border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--ink); cursor:pointer;}
+.opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line-strong); display:grid; place-items:center; font-family:"IBM Plex Mono",monospace; font-size:.8rem; font-weight:600; color:var(--muted);}
+.opt .t{min-width:0; padding-top:.1rem; line-height:1.45;}
+.opt.sel{border-color:var(--teal); background:#EAF3F0;}
+.opt.sel .l{background:var(--teal); border-color:var(--teal); color:#fff;}
+.opt:focus-visible{outline:2px solid var(--vital); outline-offset:2px;}
+.secnav{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:22px; flex-wrap:wrap;}
+.secnav .mid{font-size:.82rem; color:var(--muted); font-family:"IBM Plex Mono",monospace;}
+.dots{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+.dots button{width:2rem; height:2rem; border-radius:6px; border:1px solid var(--line-strong); background:var(--surface); font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--muted); cursor:pointer;}
+.dots button.done{background:var(--teal); border-color:var(--teal); color:#fff;}
+.dots button.cur{outline:2px solid var(--vital); outline-offset:1px;}
+.score{margin-top:26px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.score-top{padding:22px 20px; display:flex; gap:18px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--line);}
+.score-top .big{font-family:"IBM Plex Mono",monospace; font-size:2.6rem; font-weight:600; color:var(--teal); line-height:1;}
+.score-top .sub{color:var(--muted); font-size:.95rem; min-width:0;}
+.refline{position:relative; margin:18px 20px 6px; height:10px; border-radius:5px; background:var(--line);}
+.refline i{position:absolute; left:0; top:0; bottom:0; border-radius:5px; background:var(--sage);}
+.refline b{position:absolute; top:-5px; width:2px; height:20px; background:var(--vital);}
+.reflabel{margin:0 20px 18px; font-size:.78rem; color:var(--muted-2);}
+.dom{padding:0 20px 18px;}
+.dom-row{display:grid; grid-template-columns:minmax(0,1fr) 3.4rem; gap:4px 12px; margin-top:12px; font-size:.88rem;}
+.dom-row .n{font-family:"IBM Plex Mono",monospace; text-align:right; color:var(--teal); font-weight:600;}
+.dom-row .bar{grid-column:1 / -1;}
+.actions{display:flex; gap:10px; flex-wrap:wrap; padding:0 20px 22px;}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px;}
+.tabs button{padding:.5em .9em; border-radius:999px; border:1px solid var(--line-strong); background:var(--surface); color:var(--muted); font:600 .82rem "IBM Plex Sans",sans-serif; cursor:pointer;}
+.tabs button[aria-pressed="true"]{background:var(--teal); color:#fff; border-color:var(--teal);}
+.rev .opt{cursor:default;}
+.rev .opt.right{border-color:var(--ok); background:var(--ok-soft);}
+.rev .opt.right .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.rev .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.rev .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.tag{display:inline-block; margin-left:.5rem; font:600 .68rem "IBM Plex Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase;}
+.tag.ok{color:var(--ok);} .tag.bad{color:var(--bad);} .tag.skip{color:var(--muted-2);}
+.why{margin-top:14px; padding:14px 16px; border-radius:8px; background:var(--vital-soft); border:1px solid #EBD6AE; font-size:.93rem;}
+.why h4{margin:0 0 .35rem; font:700 .72rem "IBM Plex Sans",sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--vital);}
+.why p{margin:.3rem 0; color:var(--ink);}
+.why .others{margin-top:.6rem; padding-top:.6rem; border-top:1px dashed #E1C58E;}
+.why .others p{font-size:.9rem; color:var(--muted);}
+.why .others b{font-family:"IBM Plex Mono",monospace; color:var(--ink);}
+@media (max-width:520px){.q{padding:14px;} .runbar{font-size:.76rem;}}
+
+.callout{margin-top:26px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.callout.alert{border-color:var(--vital); background:var(--vital-soft);}
+.callout h3{font-family:"IBM Plex Sans",sans-serif; font-size:1.1rem; margin:.4rem 0 0;}
+.callout p{margin:.6rem 0 0; color:var(--muted);}
+.feat{display:grid; grid-template-columns:28px 1fr; gap:12px; padding:14px 0; border-top:1px solid var(--line);}
+.feat:first-child{border-top:none; padding-top:0;}
+.feat .tick{width:24px; height:24px; border-radius:6px; background:var(--teal); color:#fff; display:grid; place-items:center; font-weight:700; font-size:.85rem;}
+.feat h3{font-family:"IBM Plex Sans",sans-serif; font-size:1rem; margin:0;}
+.feat p{margin:.2rem 0 0; color:var(--muted); font-size:.95rem;}
+.or{display:flex; align-items:center; gap:12px; margin:18px 0; color:var(--muted-2); font:600 .75rem "IBM Plex Sans",sans-serif; letter-spacing:.1em; text-transform:uppercase;}
+.or::before,.or::after{content:""; flex:1; height:1px; background:var(--line-strong);}
+.how{padding:20px; border-radius:var(--radius); border:1px solid var(--line); background:var(--surface);}
+.how.main{border-color:var(--vital); background:var(--vital-soft);}
+.how p{margin:0; color:var(--muted);}
+.how .cta-row{margin:14px 0 0;}
+.faq dt{font:600 1rem "IBM Plex Sans",sans-serif; margin-top:16px;}
+.faq dd{margin:.25rem 0 0; color:var(--muted);}
+.pk-head{margin-top:22px;}
+.pk-head .n{font:600 .72rem "IBM Plex Mono",monospace; letter-spacing:.06em; color:var(--sage); text-transform:uppercase;}
+.pk-head h2{font-family:"IBM Plex Sans",sans-serif; font-size:1.6rem; margin:.3rem 0 0;}
+.pcard{margin-top:16px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.pcard .qmeta{display:flex; gap:.7rem; align-items:baseline; font:600 .72rem "IBM Plex Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase; color:var(--muted-2);}
+.pcard .qmeta .num{font-family:"IBM Plex Mono",monospace; color:var(--sage);}
+.pcard .qtext{margin:.6rem 0 .8rem; font-size:1.02rem; line-height:1.5;}
+.pcard .opt{cursor:pointer;}
+.pcard.answered .opt{cursor:default;}
+.pcard.answered .opt.correct{border-color:var(--ok); background:var(--ok-soft);}
+.pcard.answered .opt.correct .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.pcard.answered .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.pcard.answered .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.verdict{font:700 .78rem "IBM Plex Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; margin-top:14px;}
+.verdict.good{color:var(--ok);} .verdict.bad{color:var(--bad);}
+.area-nav{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;}
+.area-nav .btn{flex:1 1 30%; justify-content:center; text-align:center;}
+#score-readout{margin-left:auto; font:600 .75rem "IBM Plex Mono",monospace;}
+.acard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.acard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.acard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.acard .prog{font:600 .75rem "IBM Plex Mono",monospace; color:var(--sage);}
+.acard .go{flex:none; font:600 .8rem "IBM Plex Sans",sans-serif; letter-spacing:.06em; color:#fff; background:var(--teal); padding:.6em .95em; border-radius:6px; text-decoration:none;}
+.linkbtn{background:none; border:none; padding:0; font:600 .78rem "IBM Plex Sans",sans-serif; letter-spacing:.04em; color:var(--muted); text-decoration:underline; cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="shell wide">
+
+  <div class="topbar">
+    <svg class="mark" viewBox="0 0 26 16" fill="none" aria-hidden="true">
+      <rect width="26" height="16" rx="2" fill="#1F5C4F"/>
+      <path d="M3 8H7L9 4L12 12L14 8H23" stroke="#3E8E7E" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="brand">CMSRN Study Suite</span>
+    <span class="brand-sub">— Digital Companion</span>
+  </div>
+
+  <a href="./" class="back-link">← All domains</a>
+  <div class="runbar"><span>CMSRN HIGH-YIELD 100</span><span id="score-readout"></span></div>
+  <div class="pk-head"><div class="n">Domain 1 of 5 · 32 questions</div><h2>Patient/Care Management</h2></div>
+  
+<div class="pcard" data-q="1">
+  <div class="qmeta"><span class="num">Q1</span><span>Pulmonary embolism</span></div>
+  <div class="qtext">On postoperative day one after a total knee replacement, a patient suddenly reports sharp chest pain and shortness of breath. Heart rate is 124/min and oxygen saturation is 88% on room air. What should the RN do first?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Massage both calves gently to improve venous return and relieve the discomfort in the legs</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Stay with the patient, raise the head of the bed, apply oxygen, and activate the rapid response team</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Encourage deep breathing with the incentive spirometer and reassess in 30 minutes with the next full set of vital signs</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Give the scheduled oral analgesic, ask the patient to rest quietly in bed, and recheck the pain in an hour</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Sudden pleuritic pain, tachycardia and hypoxemia after orthopedic surgery suggest pulmonary embolism, so oxygenation and immediate help come before any other step.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Massaging a leg that may hold a clot can dislodge more emboli.</p><p><b>C. </b>Waiting half an hour leaves a possibly life-threatening hypoxemia untreated.</p><p><b>D. </b>An analgesic does not address the hypoxemia and may mask the progression of symptoms.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="2">
+  <div class="qmeta"><span class="num">Q2</span><span>Diabetic ketoacidosis</span></div>
+  <div class="qtext">A patient in diabetic ketoacidosis is receiving a continuous insulin infusion. The latest serum potassium is 3.0 mEq/L. Which action should the RN take?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Increase the insulin rate to correct the acidosis as quickly as possible</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Hold the insulin infusion and notify the prescriber so potassium can be replaced first</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Continue the infusion unchanged and recheck potassium with the next scheduled laboratory draw</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Give a bolus of sodium bicarbonate to raise the pH before any other treatment</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Insulin drives potassium into cells, so starting or continuing it with a level below 3.3 mEq/L can cause dangerous arrhythmias until potassium is replaced.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>A faster insulin rate would lower serum potassium further and raise the risk of arrhythmia.</p><p><b>C. </b>Delaying action allows a critically low potassium to fall further while insulin keeps running.</p><p><b>D. </b>Bicarbonate shifts potassium into cells and is not the first correction for hypokalemia.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="3">
+  <div class="qmeta"><span class="num">Q3</span><span>Heparin infusion</span></div>
+  <div class="qtext">A patient receiving a continuous heparin infusion has an activated partial thromboplastin time of 118 seconds, well above the therapeutic range. There is no visible bleeding. What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Repeat the laboratory test tomorrow morning with routine labs and keep the current rate until then</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Stop the infusion per protocol and notify the prescriber before restarting at an adjusted rate</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Give vitamin K intravenously to reverse the heparin effect immediately and recheck the clotting time in an hour</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Continue the infusion at the current rate because the patient has no visible signs of bleeding at present</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>A markedly prolonged aPTT means excess anticoagulation, so the infusion is paused and the dose is revised by the prescriber to prevent bleeding.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Leaving a supratherapeutic infusion running for hours puts the patient at avoidable risk.</p><p><b>C. </b>Vitamin K reverses warfarin, while protamine is the heparin antidote and is used only when ordered.</p><p><b>D. </b>Absence of bleeding does not remove the risk; levels this high can precede hemorrhage.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="4">
+  <div class="qmeta"><span class="num">Q4</span><span>Chest tube</span></div>
+  <div class="qtext">During repositioning, the tubing between a patient's chest tube and the drainage system separates. The patient is breathing comfortably. What is the priority action?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Clamp the chest tube close to the patient's chest wall until a new drainage system is brought to the bedside</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Place a sterile gauze dressing over the open end of the tubing, tape it securely, and monitor the patient</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Reconnect the tubing using a clean connection if possible, or place the end in sterile water, and notify the provider</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Leave the tube open to air, keep the patient calm and still, and recheck once the new set arrives from supply</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>The system must stay sealed or water-sealed to avoid a pneumothorax, so the open end is restored or submerged while help is called.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Clamping can trap air and fluid and lead to a tension pneumothorax.</p><p><b>B. </b>A taped dressing blocks air escape and can cause a tension pneumothorax.</p><p><b>D. </b>An open tube lets air enter the pleural space and collapse the lung.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="5">
+  <div class="qmeta"><span class="num">Q5</span><span>Autonomic dysreflexia</span></div>
+  <div class="qtext">A patient with a T4 spinal cord injury develops a pounding headache, flushing above the injury, and a blood pressure of 196/112 mm Hg. Which action should the RN take first?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Raise the head of the bed to a sitting position and check for a distended bladder or bowel</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Administer a prescribed sedative and darken the room to relieve the pounding headache and anxiety</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Lay the patient flat and elevate the legs to improve circulation to the brain while checking the pulse</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Apply a heating pad to the abdomen to relax the muscles below the injury and improve comfort</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Autonomic dysreflexia is triggered by a noxious stimulus below the injury; sitting up lowers blood pressure and removing the trigger, often bladder or bowel, resolves it.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Sedation leaves the triggering stimulus in place while the pressure stays dangerously high.</p><p><b>C. </b>Lying flat would raise blood pressure in the head and worsen the crisis.</p><p><b>D. </b>Heat on insensate skin can cause burns and may add to the noxious stimulus.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="6">
+  <div class="qmeta"><span class="num">Q6</span><span>Increased intracranial pressure</span></div>
+  <div class="qtext">A patient with a traumatic brain injury has a rising intracranial pressure reading. Which positioning is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Head turned firmly to one side with the neck flexed to protect the airway</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Trendelenburg position to improve blood flow to the brain and maintain adequate perfusion pressure</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Head of bed elevated about 30 degrees with the head in a neutral midline position</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Flat supine with a small pillow under the knees and the head kept level for comfort and spinal alignment</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Mild elevation with a midline head allows venous drainage from the brain, which lowers intracranial pressure.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Neck flexion or rotation compresses the jugular veins and blocks drainage.</p><p><b>B. </b>Head-down tilt raises intracranial pressure and risks herniation.</p><p><b>D. </b>A flat position impairs venous outflow and can increase pressure inside the skull.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="7">
+  <div class="qmeta"><span class="num">Q7</span><span>Hypoglycemia</span></div>
+  <div class="qtext">A diabetic patient is found drowsy and diaphoretic, with a glucose of 38 mg/dL. The patient cannot safely swallow and has a working IV line. What is the best action?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Offer a glass of orange juice and wait for the patient to finish it</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Offer glucose gel by mouth and wait for the patient to swallow it</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Recheck the glucose in one hour and let the patient continue to rest</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Administer IV dextrose as prescribed under the hypoglycemia protocol and recheck glucose</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>A patient who cannot swallow safely needs IV dextrose (or glucagon if no access) because oral intake risks aspiration.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Giving oral fluids to a drowsy patient who cannot swallow safely creates an aspiration risk.</p><p><b>B. </b>Oral glucose is unsafe in a drowsy patient who cannot swallow.</p><p><b>C. </b>A delay leaves severe hypoglycemia untreated and risks seizures or coma.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="8">
+  <div class="qmeta"><span class="num">Q8</span><span>Transfusion reaction</span></div>
+  <div class="qtext">Fifteen minutes into a red blood cell transfusion, a patient develops chills, flank pain, and fever. What is the RN's first action?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Flush the same tubing with saline and then restart the transfusion at a slower rate after a recheck of vitals</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Stop the transfusion and keep the vein open with normal saline using new tubing</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Slow the transfusion rate, administer an antipyretic as ordered, and continue it with close monitoring of vital signs</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Finish the unit quickly because the symptoms are likely from the cold blood and will pass</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>These signs point to an acute hemolytic reaction, so the blood is stopped immediately and access is kept open for emergency treatment.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>The remaining blood in the tubing can still deliver incompatible cells.</p><p><b>C. </b>Continuing the blood exposes the patient to more incompatible cells.</p><p><b>D. </b>Chills with flank pain and fever are warning signs, not a temperature effect.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="9">
+  <div class="qmeta"><span class="num">Q9</span><span>Parenteral nutrition</span></div>
+  <div class="qtext">A patient's total parenteral nutrition bag runs out and the next bag has not arrived. What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Hang a dextrose 10% solution as ordered or per protocol and notify the pharmacy and prescriber</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Clamp the line and wait until the new bag is delivered from the pharmacy, then restart the infusion</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Infuse normal saline at a rapid rate to keep the central line patent until the next bag arrives</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Hang 0.45% saline with potassium to maintain fluid balance until the new bag arrives from the pharmacy</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Abrupt cessation of concentrated dextrose can cause rebound hypoglycemia, so a dextrose solution bridges the gap.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Stopping suddenly can drop the glucose rapidly in a patient adapted to high dextrose.</p><p><b>C. </b>Saline keeps the line open but gives no glucose and can overload fluid.</p><p><b>D. </b>This provides no dextrose and adds potassium without an order.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="10">
+  <div class="qmeta"><span class="num">Q10</span><span>Digoxin toxicity</span></div>
+  <div class="qtext">A patient taking digoxin has nausea, new yellow-green halos in vision, and a potassium level of 3.1 mEq/L. The apical pulse is 54/min. What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Double the next dose to maintain the therapeutic level through the night</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Hold the digoxin dose and notify the prescriber about the symptoms and potassium level</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Give the dose as scheduled because the pulse is still above 50 beats per minute</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Offer a small meal to settle the stomach and give the digoxin afterward</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Low potassium increases digoxin toxicity; bradycardia, nausea and visual changes call for withholding the drug and prompt evaluation.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Increasing the dose would deepen the toxicity and could cause fatal arrhythmias.</p><p><b>C. </b>Symptoms with a low potassium indicate toxicity, regardless of a pulse above 50.</p><p><b>D. </b>Food does not correct toxicity and delays the needed provider assessment.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="11">
+  <div class="qmeta"><span class="num">Q11</span><span>Unstageable pressure injury</span></div>
+  <div class="qtext">The RN finds a sacral wound covered completely by dry, black, adherent eschar. The base cannot be seen. How should the wound be classified?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Deep tissue injury, because the surrounding skin is purple and painful and the wound is deeply discolored</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Unstageable pressure injury, because the depth cannot be determined until the eschar is removed</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Stage 2 pressure injury, because only the top layers of skin are involved and the base is not visible</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Stage 1 pressure injury, since the skin surface appears intact and the area is not open</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Full-thickness loss obscured by slough or eschar is classified as unstageable until enough tissue is removed to expose the base.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Deep tissue injury shows intact or blistered skin with persistent maroon or purple discoloration, not a covered full-thickness wound.</p><p><b>C. </b>Stage 2 has partial thickness loss with a pink wound bed, never eschar.</p><p><b>D. </b>Stage 1 shows intact skin with nonblanchable redness, not black necrotic tissue.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="12">
+  <div class="qmeta"><span class="num">Q12</span><span>Hypocalcemia after thyroidectomy</span></div>
+  <div class="qtext">Six hours after a total thyroidectomy, a patient reports tingling around the mouth and fingertips. Tapping the facial nerve causes the cheek to twitch. What should the RN anticipate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Restriction of oral intake of all dairy foods and calcium-rich fluids</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">A sodium polystyrene sulfonate enema to remove excess potassium</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Intravenous potassium chloride to correct a low serum level</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Intravenous calcium gluconate, after notifying the prescriber of the findings</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Perioral tingling and a positive Chvostek sign suggest hypocalcemia from parathyroid injury, which is treated with IV calcium.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Restricting calcium would worsen hypocalcemia.</p><p><b>B. </b>This treats hyperkalemia and would not help a calcium deficit.</p><p><b>C. </b>The findings reflect low calcium, and potassium would not treat them.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="13">
+  <div class="qmeta"><span class="num">Q13</span><span>Acute abdomen</span></div>
+  <div class="qtext">Two days after bowel surgery, a patient has a rigid, board-like abdomen, rebound tenderness, fever, and absent bowel sounds. What is the best action?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Give a laxative suppository and encourage walking to restore bowel function</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Keep the patient NPO, assess vital signs, and notify the surgical team immediately</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Apply a heating pad to the abdomen and give an additional dose of analgesic</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Offer clear liquids and recheck the abdomen at the next shift change</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>A rigid abdomen with rebound tenderness suggests peritonitis or anastomotic leak, an emergency needing urgent surgical evaluation.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Stimulating the bowel with a perforation risk can worsen contamination.</p><p><b>C. </b>Heat and analgesics can hide worsening peritonitis and delay the diagnosis.</p><p><b>D. </b>Oral intake is unsafe, and delay allows sepsis to progress.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="14">
+  <div class="qmeta"><span class="num">Q14</span><span>Warfarin teaching</span></div>
+  <div class="qtext">A patient newly prescribed warfarin asks about diet. Which statement by the RN is most accurate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">"Keep your intake of leafy green vegetables steady from week to week."</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">"Avoid all green vegetables for as long as you take this medicine."</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">"Take a vitamin K supplement daily to protect against bleeding."</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">"Eat as many leafy greens as you like, because they have no effect on dosing."</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Vitamin K affects warfarin action, so consistent intake keeps the INR stable instead of requiring complete avoidance.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Eliminating vitamin K foods entirely is unnecessary and unhealthy.</p><p><b>C. </b>A supplement would counteract the medication and weaken its benefit.</p><p><b>D. </b>Large, variable amounts of vitamin K can lower the effect of warfarin.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="15">
+  <div class="qmeta"><span class="num">Q15</span><span>Heart failure teaching</span></div>
+  <div class="qtext">A patient with heart failure is learning how to monitor for fluid retention at home. Which instruction is the most important?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Weigh every morning after voiding, and report a gain of 2 to 3 pounds in a day or 5 pounds in a week</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Take an extra dose of the diuretic whenever the shoes feel tight</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Weigh once a week on the same scale before breakfast, record it in a diary, and report any change greater than 10 pounds over several weeks</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Check the ankles for swelling each evening and report only if the shoes feel tight, ignoring small changes in weight</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Daily weights detect fluid retention early, before edema or dyspnea become obvious.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Self-adjusting diuretics can cause dehydration or electrolyte problems.</p><p><b>C. </b>Weekly weighing and a high threshold would miss early decompensation.</p><p><b>D. </b>Edema appears late, and weight changes are the earlier signal.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="16">
+  <div class="qmeta"><span class="num">Q16</span><span>Ischemic stroke</span></div>
+  <div class="qtext">A patient arrives with sudden left-sided weakness and slurred speech. The family reports that the patient was last seen well about 90 minutes ago. What is the priority?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Begin passive range of motion exercises for the affected arm and leg to prevent contractures</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Let the patient sleep in a quiet room and reassess the symptoms when the rest of the family arrives</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Give an oral aspirin and a glass of water before any imaging is done, to prevent further clotting</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Activate the stroke alert and confirm the exact time the patient was last known well</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>The time of onset determines eligibility for thrombolytic therapy, so fast activation and the last-known-well time are the top priority.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Rehabilitation is not an emergency priority and wastes critical time.</p><p><b>B. </b>Delay shortens the narrow treatment window for stroke.</p><p><b>C. </b>Oral intake is unsafe until swallowing is screened, and medication choice waits for imaging.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="17">
+  <div class="qmeta"><span class="num">Q17</span><span>Sepsis</span></div>
+  <div class="qtext">A patient has fever, heart rate of 128/min, blood pressure of 84/48 mm Hg, and a suspected urinary source of infection. Which order of actions is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Obtain blood cultures and a lactate, then start broad-spectrum antibiotics within one hour</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Give an antipyretic for the fever and recheck the temperature and blood pressure in four hours</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Wait for the urine culture results to return before giving any antibiotic to the patient</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Restrict intravenous fluids to avoid overloading the patient and recheck the blood pressure later</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Cultures before antibiotics identify the organism, while rapid antibiotics and fluids improve survival in septic shock.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Treating only the fever ignores the infection and hypotension.</p><p><b>C. </b>Delaying antibiotics increases mortality in sepsis.</p><p><b>D. </b>Hypotension in sepsis needs prompt fluid resuscitation as prescribed.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="18">
+  <div class="qmeta"><span class="num">Q18</span><span>Tension pneumothorax</span></div>
+  <div class="qtext">A patient on a ventilator suddenly has absent breath sounds on the left, tracheal deviation to the right, and falling blood pressure. What should the RN do first?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Obtain a routine chest radiograph before notifying anyone</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Call for the provider immediately and prepare for emergency needle decompression</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Increase the ventilator tidal volume to expand the collapsed lung</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Suction the endotracheal tube and reassess breath sounds in 15 minutes</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>These signs show a tension pneumothorax, a life-threatening emergency that requires prompt decompression.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>A routine film delays treatment in an unstable patient.</p><p><b>C. </b>More positive pressure worsens the tension and collapses circulation.</p><p><b>D. </b>Suctioning will not relieve trapped air, and delay can be fatal.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="19">
+  <div class="qmeta"><span class="num">Q19</span><span>Hepatic encephalopathy</span></div>
+  <div class="qtext">A patient with cirrhosis is receiving lactulose for hepatic encephalopathy. Which finding indicates the medication is effective?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">A rise in serum ammonia with increasing confusion</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Five to six watery stools a day with muscle cramping</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Two to three soft stools a day with improved alertness</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">No bowel movements for two days and persistent drowsiness</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Lactulose traps ammonia in the gut and removes it through stool, which improves mental status.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>A rising ammonia level shows worsening encephalopathy.</p><p><b>B. </b>That amount signals overdose, with dehydration and electrolyte loss.</p><p><b>D. </b>Absence of stool means ammonia is not being cleared.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="20">
+  <div class="qmeta"><span class="num">Q20</span><span>Arterial ulcer care</span></div>
+  <div class="qtext">A patient has a painful, pale ulcer with a punched-out appearance on the toes, cool skin, and absent pedal pulses. Which care is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Elevate the leg above the heart and apply firm compression wraps, then notify the provider about venous insufficiency</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Debride the necrotic edges aggressively at the bedside and cover the ulcer with a wet-to-dry dressing</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Keep the extremity in a dependent position and avoid compression, then notify the provider about arterial insufficiency</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Apply a heating pad to the toes to improve blood flow and relieve the pain and coolness</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Arterial ulcers result from poor perfusion, so dependent positioning helps flow and compression would worsen ischemia.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Elevation and compression further reduce arterial flow.</p><p><b>B. </b>Debridement of an ischemic wound can enlarge it without revascularization.</p><p><b>D. </b>Heat raises tissue demand in poorly perfused skin and can burn it.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="21">
+  <div class="qmeta"><span class="num">Q21</span><span>Airborne precautions</span></div>
+  <div class="qtext">A patient is admitted with suspected active pulmonary tuberculosis. Which precautions are appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">A positive-pressure room with the door left open for air circulation</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">A negative-pressure room, with staff wearing a fit-tested N95 respirator</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">A semi-private room with contact precautions and a gown</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">A private room with a standard surgical mask for visitors and staff</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Tuberculosis spreads by small airborne particles, which require an airborne infection isolation room and respiratory protection.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Positive pressure pushes infectious air out into the unit.</p><p><b>C. </b>Contact precautions do not address airborne spread.</p><p><b>D. </b>A surgical mask does not filter airborne droplet nuclei.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="22">
+  <div class="qmeta"><span class="num">Q22</span><span>Insulin mixing</span></div>
+  <div class="qtext">An RN is drawing up regular insulin and NPH insulin in one syringe. Which sequence is correct?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Draw up the NPH insulin first, then the regular insulin</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Draw up the regular insulin first, then the NPH insulin</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Shake the NPH vial vigorously before drawing it up to mix the suspension</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Draw both into separate syringes and inject them at the same site</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Drawing the clear, short-acting insulin first prevents contamination of the regular vial with NPH.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>That order risks contaminating the regular insulin vial with the intermediate-acting insulin.</p><p><b>C. </b>Vigorous shaking causes bubbles and inaccurate dosing, and the vial should be rolled gently.</p><p><b>D. </b>The two can be mixed in one syringe when compatible, which spares the patient an extra injection.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="23">
+  <div class="qmeta"><span class="num">Q23</span><span>Opioid respiratory depression</span></div>
+  <div class="qtext">A postoperative patient who received IV morphine is difficult to arouse, with a respiratory rate of 6/min. What should the RN do first?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Give another dose of morphine because the patient seems to be in pain</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Place the patient in a quiet room and recheck breathing in an hour</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Stimulate the patient, support ventilation, and give naloxone as prescribed</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Give flumazenil to reverse the sedation</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>A respiratory rate of 6 after an opioid indicates respiratory depression requiring airway support and the reversal agent.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>More opioid would deepen the respiratory depression.</p><p><b>B. </b>An hour of unaddressed hypoventilation can lead to arrest.</p><p><b>D. </b>Flumazenil reverses benzodiazepines, not opioids.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="24">
+  <div class="qmeta"><span class="num">Q24</span><span>Nasogastric tube placement</span></div>
+  <div class="qtext">Before giving medications through a newly placed nasogastric tube, which method most reliably confirms placement?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Radiographic confirmation of the tube tip in the stomach</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Asking the patient to hum or speak while the tube is in place</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Noting that no coughing occurred during insertion</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Listening over the stomach while injecting air through the tube</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>An X-ray is the gold standard because bedside tests can give false reassurance.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Speaking does not confirm gastric position and does not rule out airway placement.</p><p><b>C. </b>A tube can enter the lung without causing cough, particularly in sedated patients.</p><p><b>D. </b>The auscultation method is unreliable and can miss lung placement.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="25">
+  <div class="qmeta"><span class="num">Q25</span><span>Urinary retention</span></div>
+  <div class="qtext">A patient who had spinal surgery has not voided in eight hours and feels suprapubic pressure. Which action comes first?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Apply firm pressure over the lower abdomen to push urine out while the patient sits on the toilet</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Perform a bladder scan to measure the retained volume and notify the provider</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Administer a prescribed diuretic to start the flow of urine and monitor the intake and output</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Increase oral fluids to stimulate urine production and recheck for voiding in a few hours</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>A noninvasive scan quantifies urine volume and guides whether catheterization is needed.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Manual pressure can injure the bladder and is not an accepted method.</p><p><b>C. </b>A diuretic increases production without relieving the obstruction or retention.</p><p><b>D. </b>More fluid adds to a bladder that is already full.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="26">
+  <div class="qmeta"><span class="num">Q26</span><span>Femoral access site bleeding</span></div>
+  <div class="qtext">After a cardiac catheterization, blood is spreading under the dressing at the femoral site. What should the RN do first?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Apply firm, direct manual pressure just above the puncture site and call for help</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Have the patient sit up and walk to improve circulation to the leg and reduce swelling at the site</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Elevate the patient's legs, apply an ice pack, and monitor the site every hour for further bleeding</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Remove the dressing and clean the area with antiseptic solution before applying a new pressure dressing</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Direct pressure over the vessel stops arterial bleeding and prevents hematoma or hemorrhage.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Moving the leg increases bleeding from the access site.</p><p><b>C. </b>Elevation alone does not control active bleeding.</p><p><b>D. </b>Cleaning wastes time while the bleeding continues.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="27">
+  <div class="qmeta"><span class="num">Q27</span><span>Patient-controlled analgesia</span></div>
+  <div class="qtext">A patient with a patient-controlled analgesia pump is sleepy, and a visiting family member offers to press the button so the patient can rest. What should the RN say?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">"I will increase the lockout interval so no one needs to press it."</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">"Only the patient should press the button, because sedation is the safety limit of this method."</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">"That is fine, since the family member knows when the patient is in pain."</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">"Press the button once an hour whether or not the patient is awake."</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>A patient who becomes too drowsy stops dosing; a proxy bypasses that built-in safeguard and risks overdose.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Changing pump settings requires an order and does not make the method safer.</p><p><b>C. </b>Family-activated dosing removes the safeguard against oversedation.</p><p><b>D. </b>Scheduled pressing ignores the patient's actual pain and sedation level.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="28">
+  <div class="qmeta"><span class="num">Q28</span><span>Acute kidney injury</span></div>
+  <div class="qtext">A patient with acute kidney injury has a serum potassium of 6.4 mEq/L and peaked T waves on the monitor. Which action is the priority?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Give a potassium-sparing diuretic to increase excretion</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Encourage foods high in potassium to replace lost nutrients</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Recheck the level in 24 hours with the daily laboratory draw</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Notify the provider immediately and prepare for emergency treatment of hyperkalemia</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Peaked T waves show cardiac effects of hyperkalemia, which can progress to lethal arrhythmias without prompt therapy.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Potassium-sparing diuretics raise potassium further.</p><p><b>B. </b>Additional potassium would worsen the hyperkalemia.</p><p><b>C. </b>Waiting a day risks cardiac arrest.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="29">
+  <div class="qmeta"><span class="num">Q29</span><span>Fluid volume deficit</span></div>
+  <div class="qtext">An older adult has had diarrhea for three days and now has dry mucous membranes, poor skin turgor, and a heart rate of 112/min. Which finding best confirms dehydration?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Low urine specific gravity with clear urine</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Orthostatic drop in blood pressure with concentrated, dark urine</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Weight gain of 3 pounds over the past two days</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Bounding peripheral pulses with distended neck veins</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Positional hypotension and concentrated urine reflect reduced circulating volume.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Dilute urine suggests excess fluid or a concentrating defect rather than dehydration.</p><p><b>C. </b>Gaining weight points to retention, while dehydration lowers weight.</p><p><b>D. </b>Those findings indicate fluid overload, not deficit.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="30">
+  <div class="qmeta"><span class="num">Q30</span><span>Hand hygiene with alcohol</span></div>
+  <div class="qtext">An RN has just examined a patient with no known infectious disease and no visible soiling on the hands. Which hand hygiene is appropriate before the next patient?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Rinsing with water alone for several seconds</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Wiping the hands on a clean paper towel to remove surface contamination</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Alcohol-based hand rub, rubbed until the hands are dry</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Washing for five seconds with soap and warm water</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Alcohol-based rub is the preferred method when hands are not visibly soiled and spores are not a concern.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Water alone does not remove or kill microorganisms.</p><p><b>B. </b>Wiping only moves microorganisms around.</p><p><b>D. </b>Five seconds is far too short for effective washing.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="31">
+  <div class="qmeta"><span class="num">Q31</span><span>Central line dressing</span></div>
+  <div class="qtext">A patient's central venous catheter dressing is damp and partially lifting at the edge. What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Reinforce the edges with additional tape and recheck in the morning</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Cover the area with a clean washcloth to absorb moisture</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Perform hand hygiene and replace the dressing using sterile technique</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Leave it in place until the scheduled weekly change</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>A compromised dressing allows organisms to track along the catheter, so it must be changed promptly.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Taping over a damp, loose dressing leaves the site exposed.</p><p><b>B. </b>A cloth is not sterile and can introduce organisms.</p><p><b>D. </b>Dressings that are damp, soiled, or loose should be changed immediately, regardless of schedule.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="32">
+  <div class="qmeta"><span class="num">Q32</span><span>Tracheostomy dislodgement</span></div>
+  <div class="qtext">A patient whose tracheostomy was placed three weeks ago coughs forcefully and the tube comes out. The patient is anxious and has noisy breathing. What should the RN do first?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Lay the patient flat and give oxygen only by a face mask over the nose and mouth, then wait for the provider to decide whether the airway needs to be replaced</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Call for help and use the emergency kit at the bedside to reinsert a replacement tube with its obturator</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Cover the stoma with a sterile dressing, keep the patient calm, and wait for the respiratory therapist to arrive with the equipment</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Suction the stoma deeply to clear secretions and reassess the breathing before doing anything else to the airway</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>A mature tract allows reinsertion, and an immediate airway is the priority while help arrives.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Oxygen by mouth and nose may not pass the narrowed upper airway and delays reinsertion.</p><p><b>C. </b>Covering the stoma without establishing an airway leaves the patient in distress.</p><p><b>D. </b>Deep suction without an airway can cause trauma and does not restore ventilation.</p></div></div>
+  </div>
+</div>
+  <div class="area-nav"><a class="btn btn-ghost" href="./">← All domains</a><a class="btn btn-ghost" href="./">All domains</a><a class="btn btn-teal" href="holistic-patient-care.html">Holistic Care →</a></div>
+
+  <footer>
+    <p>Not affiliated with, endorsed by, or sponsored by MSNCB, the owner of the CMSRN® certification.</p>
+    <p>© 2026 Evan Marston. All rights reserved.</p>
+  </footer>
+</div>
+<script>
+(function(){
+var KEY="hy100:patient-care-management", saved={};
+try{ saved=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ saved={}; }
+var cards=document.querySelectorAll('.pcard'), TOTAL=cards.length;
+function score(){ var a=0,c=0; cards.forEach(function(k){ if(k.classList.contains('answered')){a++; if(k.dataset.ok==='1')c++;} });
+  document.getElementById('score-readout').textContent=a+' / '+TOTAL+' answered'+(a?'  ·  '+c+' correct':''); }
+function reveal(card,letter,persist){
+  if(card.classList.contains('answered')) return;
+  var opt=card.querySelector('button.opt[data-letter="'+letter+'"]'); if(!opt) return;
+  card.classList.add('answered'); var ok=opt.dataset.correct==='1'; card.dataset.ok=ok?'1':'0';
+  opt.classList.add(ok?'correct':'wrong');
+  if(!ok){ var r=card.querySelector('button.opt[data-correct="1"]'); if(r) r.classList.add('correct'); }
+  var res=card.querySelector('.result'); res.hidden=false;
+  var v=res.querySelector('.verdict'); v.textContent=ok?'Correct':'Not quite'; v.className='verdict '+(ok?'good':'bad');
+  if(persist){ saved[card.dataset.q]=[letter,ok?1:0]; try{ localStorage.setItem(KEY,JSON.stringify(saved)); }catch(e){} }
+}
+cards.forEach(function(card){
+  card.querySelectorAll('button.opt').forEach(function(b){ b.addEventListener('click',function(){ reveal(card,b.dataset.letter,true); score(); }); });
+  var s=saved[card.dataset.q]; if(s) reveal(card,s[0],false);
+});
+score();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<title>CMSRN High-Yield 100, Elements of Interprofessional Care — CMSRN Study Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F1B18; --paper:#F6FAF9; --surface:#FFFFFF;
+  --teal:#1F5C4F; --teal-ink:#ffffff; --sage:#3E8E7E;
+  --line:#D9E4E0; --line-strong:#C3D3CD;
+  --muted:#54635E; --muted-2:#7C8B86;
+  --vital:#B8791F; --vital-soft:#F8EEDC;
+  --shadow: 0 1px 2px rgba(15,27,24,.04), 0 12px 28px -16px rgba(15,27,24,.14);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Serif",Georgia,serif; font-size:16px; line-height:1.55; padding-inline:20px;}
+h1,h2,h3,.eyebrow,.btn,.stat-num,.step-label{font-family:"IBM Plex Sans",system-ui,sans-serif;}
+.mono,.stat-num,.subject-chip b{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
+h1,h2,h3{text-wrap:balance; margin:0; color:var(--ink);}
+a{color:inherit;}
+.shell{max-width:640px; margin:0 auto; padding-block:28px 56px;}
+.topbar{display:flex; align-items:center; gap:10px; padding-block:14px; border-bottom:1px solid var(--line); margin-bottom:34px;}
+.topbar .mark{width:26px; height:16px; flex:none;}
+.topbar .brand{font-weight:700; font-size:.82rem; letter-spacing:.06em; text-transform:uppercase; color:var(--teal);}
+.topbar .brand-sub{font-family:"IBM Plex Serif",serif; font-size:.82rem; color:var(--muted-2); font-style:italic;}
+.back-link{display:inline-block; margin-bottom:18px; font-size:.85rem; color:var(--sage); text-decoration:none;}
+.eyebrow{display:inline-flex; align-items:center; gap:.5em; font-size:.72rem; font-weight:600; letter-spacing:.11em; text-transform:uppercase; color:var(--sage);}
+.eyebrow::before{content:""; width:16px; height:1px; background:var(--sage);}
+.hero{margin-top:14px;}
+.hero h1{font-size:clamp(1.9rem,6vw,2.5rem); font-weight:700; letter-spacing:-.01em; margin-top:.6rem; max-width:18ch;}
+.hero p.lede{margin-top:.9rem; color:var(--muted); font-size:1.08rem; max-width:42ch;}
+.vitals{margin-top:32px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.vitals-head{display:flex; align-items:center; justify-content:space-between; padding:12px 18px; background:var(--teal); color:var(--teal-ink);}
+.vitals-head .label{font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;}
+.vitals-head svg{display:block; height:14px; width:90px; opacity:.9;}
+.vitals-grid{display:grid; grid-template-columns:repeat(4,1fr);}
+.vitals-grid .cell{padding:16px 14px; border-right:1px solid var(--line); border-top:1px solid var(--line);}
+.vitals-grid .cell:nth-child(4n){border-right:none;}
+.vitals-grid .cell:nth-child(-n+4){border-top:none;}
+.stat-num{font-size:1.5rem; font-weight:600; color:var(--teal); line-height:1; display:block;}
+.stat-label{margin-top:6px; font-size:.72rem; color:var(--muted); line-height:1.35; text-transform:uppercase; letter-spacing:.03em;}
+h2.section-title{margin-top:44px; font-size:1.15rem; font-weight:700; display:flex; align-items:baseline; gap:.6em;}
+h2.section-title .chart-no{font-family:"IBM Plex Mono",monospace; font-size:.85rem; font-weight:600; color:var(--sage);}
+.chart{margin-top:18px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);}
+.chart-row{display:grid; grid-template-columns:56px 1fr; padding:20px 20px;}
+.chart-row + .chart-row{border-top:1px solid var(--line);}
+.chart-row .idx{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--sage); font-size:.95rem; padding-top:.15em;}
+.chart-row .step-label{font-weight:600; font-size:1.02rem; margin:0 0 .35rem;}
+.chart-row p{margin:0; color:var(--muted); font-size:.96rem;}
+.cta-row{margin:14px 20px 20px; display:flex; flex-wrap:wrap; gap:10px;}
+.btn{display:inline-flex; align-items:center; gap:.55em; font-weight:600; font-size:.92rem; padding:.75em 1.15em; border-radius:6px; text-decoration:none; border:1px solid transparent;}
+.btn-teal{background:var(--teal); color:var(--teal-ink);}
+.btn-vital{background:var(--vital); color:#fff;}
+.btn-ghost{background:transparent; color:var(--teal); border-color:var(--line-strong);}
+.subject-chip{margin:0 20px 20px; display:inline-block; font-size:.82rem; color:var(--muted); background:var(--vital-soft); border:1px dashed var(--vital); border-radius:6px; padding:.55em .8em;}
+.alt-path{margin-top:22px; padding:16px 18px; border-left:3px solid var(--line-strong); color:var(--muted); font-size:.92rem; background:var(--surface); border-radius:0 var(--radius) var(--radius) 0;}
+.alt-path b{color:var(--ink);}
+.todo{display:inline-block; margin:0 20px 14px; font-size:.78rem; font-weight:600; color:var(--vital); font-family:"IBM Plex Mono",monospace;}
+.soon{margin-top:28px; padding:28px 22px; text-align:center; border:1px dashed var(--line-strong); border-radius:var(--radius); background:var(--surface); color:var(--muted);}
+.soon b{color:var(--ink); display:block; margin-bottom:.4em; font-family:"IBM Plex Sans",sans-serif;}
+footer{margin-top:52px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted-2); font-size:.8rem;}
+footer p{margin:.25em 0;}
+@media (max-width:520px){
+  .vitals-grid{grid-template-columns:repeat(2,1fr);}
+  .vitals-grid .cell:nth-child(2n){border-right:none;}
+  .vitals-grid .cell:nth-child(-n+2){border-top:none;}
+  .vitals-grid .cell:nth-child(3),.vitals-grid .cell:nth-child(4){border-top:1px solid var(--line);}
+  .chart-row{grid-template-columns:32px 1fr;}
+}
+
+:root{--ok:#1F7A4D; --ok-soft:#E4F2EA; --bad:#B3402A; --bad-soft:#FBE9E4;}
+.shell.wide{max-width:760px;}
+.card-list{display:flex; flex-direction:column; gap:12px; margin-top:18px;}
+.tcard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); text-decoration:none;}
+.tcard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.tcard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.tcard .go{flex:none; font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:.8rem; letter-spacing:.06em; color:var(--teal-ink); background:var(--teal); padding:.6em .95em; border-radius:6px;}
+.note{margin-top:22px; padding:14px 16px; border-left:3px solid var(--line-strong); background:var(--surface); border-radius:0 var(--radius) var(--radius) 0; color:var(--muted); font-size:.92rem;}
+.btn[disabled]{opacity:.45; cursor:not-allowed;}
+button.btn{cursor:pointer; font-family:"IBM Plex Sans",system-ui,sans-serif;}
+.panel{margin-top:22px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.panel h2{font-family:"IBM Plex Sans",sans-serif; font-size:1.05rem; margin:0 0 .6rem;}
+.panel p{margin:.5rem 0; color:var(--muted);}
+.panel ul{margin:.5rem 0 1rem; padding-left:1.2rem; color:var(--muted);}
+.gate{display:flex; gap:.7rem; align-items:flex-start; margin:14px 0 16px; font-size:.95rem;}
+.gate input{margin-top:.25rem; width:18px; height:18px; accent-color:var(--teal); flex:none;}
+.runbar{position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; margin-top:16px; background:var(--teal); color:var(--teal-ink); border-radius:var(--radius); font-family:"IBM Plex Sans",sans-serif; font-size:.82rem; font-weight:600;}
+.runbar .mono{font-size:.9rem;}
+.bar{height:6px; border-radius:3px; background:var(--line); overflow:hidden;}
+.bar > i{display:block; height:100%; background:var(--sage);}
+.q{margin-top:18px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.q .qno{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--sage); font-weight:600; letter-spacing:.04em;}
+.q .qdom{font-family:"IBM Plex Sans",sans-serif; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-left:.6rem;}
+.q .stem{margin:.6rem 0 .9rem; font-size:1.02rem; line-height:1.5;}
+.opt{display:flex; gap:.8rem; width:100%; text-align:left; align-items:flex-start; padding:.75rem .85rem; margin-top:.5rem; background:var(--paper); border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--ink); cursor:pointer;}
+.opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line-strong); display:grid; place-items:center; font-family:"IBM Plex Mono",monospace; font-size:.8rem; font-weight:600; color:var(--muted);}
+.opt .t{min-width:0; padding-top:.1rem; line-height:1.45;}
+.opt.sel{border-color:var(--teal); background:#EAF3F0;}
+.opt.sel .l{background:var(--teal); border-color:var(--teal); color:#fff;}
+.opt:focus-visible{outline:2px solid var(--vital); outline-offset:2px;}
+.secnav{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:22px; flex-wrap:wrap;}
+.secnav .mid{font-size:.82rem; color:var(--muted); font-family:"IBM Plex Mono",monospace;}
+.dots{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+.dots button{width:2rem; height:2rem; border-radius:6px; border:1px solid var(--line-strong); background:var(--surface); font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--muted); cursor:pointer;}
+.dots button.done{background:var(--teal); border-color:var(--teal); color:#fff;}
+.dots button.cur{outline:2px solid var(--vital); outline-offset:1px;}
+.score{margin-top:26px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.score-top{padding:22px 20px; display:flex; gap:18px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--line);}
+.score-top .big{font-family:"IBM Plex Mono",monospace; font-size:2.6rem; font-weight:600; color:var(--teal); line-height:1;}
+.score-top .sub{color:var(--muted); font-size:.95rem; min-width:0;}
+.refline{position:relative; margin:18px 20px 6px; height:10px; border-radius:5px; background:var(--line);}
+.refline i{position:absolute; left:0; top:0; bottom:0; border-radius:5px; background:var(--sage);}
+.refline b{position:absolute; top:-5px; width:2px; height:20px; background:var(--vital);}
+.reflabel{margin:0 20px 18px; font-size:.78rem; color:var(--muted-2);}
+.dom{padding:0 20px 18px;}
+.dom-row{display:grid; grid-template-columns:minmax(0,1fr) 3.4rem; gap:4px 12px; margin-top:12px; font-size:.88rem;}
+.dom-row .n{font-family:"IBM Plex Mono",monospace; text-align:right; color:var(--teal); font-weight:600;}
+.dom-row .bar{grid-column:1 / -1;}
+.actions{display:flex; gap:10px; flex-wrap:wrap; padding:0 20px 22px;}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px;}
+.tabs button{padding:.5em .9em; border-radius:999px; border:1px solid var(--line-strong); background:var(--surface); color:var(--muted); font:600 .82rem "IBM Plex Sans",sans-serif; cursor:pointer;}
+.tabs button[aria-pressed="true"]{background:var(--teal); color:#fff; border-color:var(--teal);}
+.rev .opt{cursor:default;}
+.rev .opt.right{border-color:var(--ok); background:var(--ok-soft);}
+.rev .opt.right .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.rev .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.rev .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.tag{display:inline-block; margin-left:.5rem; font:600 .68rem "IBM Plex Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase;}
+.tag.ok{color:var(--ok);} .tag.bad{color:var(--bad);} .tag.skip{color:var(--muted-2);}
+.why{margin-top:14px; padding:14px 16px; border-radius:8px; background:var(--vital-soft); border:1px solid #EBD6AE; font-size:.93rem;}
+.why h4{margin:0 0 .35rem; font:700 .72rem "IBM Plex Sans",sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--vital);}
+.why p{margin:.3rem 0; color:var(--ink);}
+.why .others{margin-top:.6rem; padding-top:.6rem; border-top:1px dashed #E1C58E;}
+.why .others p{font-size:.9rem; color:var(--muted);}
+.why .others b{font-family:"IBM Plex Mono",monospace; color:var(--ink);}
+@media (max-width:520px){.q{padding:14px;} .runbar{font-size:.76rem;}}
+
+.callout{margin-top:26px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.callout.alert{border-color:var(--vital); background:var(--vital-soft);}
+.callout h3{font-family:"IBM Plex Sans",sans-serif; font-size:1.1rem; margin:.4rem 0 0;}
+.callout p{margin:.6rem 0 0; color:var(--muted);}
+.feat{display:grid; grid-template-columns:28px 1fr; gap:12px; padding:14px 0; border-top:1px solid var(--line);}
+.feat:first-child{border-top:none; padding-top:0;}
+.feat .tick{width:24px; height:24px; border-radius:6px; background:var(--teal); color:#fff; display:grid; place-items:center; font-weight:700; font-size:.85rem;}
+.feat h3{font-family:"IBM Plex Sans",sans-serif; font-size:1rem; margin:0;}
+.feat p{margin:.2rem 0 0; color:var(--muted); font-size:.95rem;}
+.or{display:flex; align-items:center; gap:12px; margin:18px 0; color:var(--muted-2); font:600 .75rem "IBM Plex Sans",sans-serif; letter-spacing:.1em; text-transform:uppercase;}
+.or::before,.or::after{content:""; flex:1; height:1px; background:var(--line-strong);}
+.how{padding:20px; border-radius:var(--radius); border:1px solid var(--line); background:var(--surface);}
+.how.main{border-color:var(--vital); background:var(--vital-soft);}
+.how p{margin:0; color:var(--muted);}
+.how .cta-row{margin:14px 0 0;}
+.faq dt{font:600 1rem "IBM Plex Sans",sans-serif; margin-top:16px;}
+.faq dd{margin:.25rem 0 0; color:var(--muted);}
+.pk-head{margin-top:22px;}
+.pk-head .n{font:600 .72rem "IBM Plex Mono",monospace; letter-spacing:.06em; color:var(--sage); text-transform:uppercase;}
+.pk-head h2{font-family:"IBM Plex Sans",sans-serif; font-size:1.6rem; margin:.3rem 0 0;}
+.pcard{margin-top:16px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.pcard .qmeta{display:flex; gap:.7rem; align-items:baseline; font:600 .72rem "IBM Plex Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase; color:var(--muted-2);}
+.pcard .qmeta .num{font-family:"IBM Plex Mono",monospace; color:var(--sage);}
+.pcard .qtext{margin:.6rem 0 .8rem; font-size:1.02rem; line-height:1.5;}
+.pcard .opt{cursor:pointer;}
+.pcard.answered .opt{cursor:default;}
+.pcard.answered .opt.correct{border-color:var(--ok); background:var(--ok-soft);}
+.pcard.answered .opt.correct .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.pcard.answered .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.pcard.answered .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.verdict{font:700 .78rem "IBM Plex Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; margin-top:14px;}
+.verdict.good{color:var(--ok);} .verdict.bad{color:var(--bad);}
+.area-nav{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;}
+.area-nav .btn{flex:1 1 30%; justify-content:center; text-align:center;}
+#score-readout{margin-left:auto; font:600 .75rem "IBM Plex Mono",monospace;}
+.acard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.acard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.acard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.acard .prog{font:600 .75rem "IBM Plex Mono",monospace; color:var(--sage);}
+.acard .go{flex:none; font:600 .8rem "IBM Plex Sans",sans-serif; letter-spacing:.06em; color:#fff; background:var(--teal); padding:.6em .95em; border-radius:6px; text-decoration:none;}
+.linkbtn{background:none; border:none; padding:0; font:600 .78rem "IBM Plex Sans",sans-serif; letter-spacing:.04em; color:var(--muted); text-decoration:underline; cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="shell wide">
+
+  <div class="topbar">
+    <svg class="mark" viewBox="0 0 26 16" fill="none" aria-hidden="true">
+      <rect width="26" height="16" rx="2" fill="#1F5C4F"/>
+      <path d="M3 8H7L9 4L12 12L14 8H23" stroke="#3E8E7E" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="brand">CMSRN Study Suite</span>
+    <span class="brand-sub">— Digital Companion</span>
+  </div>
+
+  <a href="./" class="back-link">← All domains</a>
+  <div class="runbar"><span>CMSRN HIGH-YIELD 100</span><span id="score-readout"></span></div>
+  <div class="pk-head"><div class="n">Domain 3 of 5 · 17 questions</div><h2>Elements of Interprofessional Care</h2></div>
+  
+<div class="pcard" data-q="48">
+  <div class="qmeta"><span class="num">Q48</span><span>Speech-language pathology</span></div>
+  <div class="qtext">A patient recovering from a stroke coughs after sips of water and has a wet voice. Which team member should evaluate next?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Speech-language pathologist for a swallowing evaluation</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Physical therapist for gait training and strengthening exercises</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Respiratory therapist for oxygen titration and breathing treatments</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Social worker for housing assistance and community resources</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>SLPs assess swallowing function and recommend a safe diet, which reduces aspiration risk.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Gait training does not address swallowing.</p><p><b>C. </b>Oxygen titration will not make swallowing safe.</p><p><b>D. </b>Housing is unrelated to the swallowing problem.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="49">
+  <div class="qmeta"><span class="num">Q49</span><span>Nutrition consult</span></div>
+  <div class="qtext">A patient with a stage 3 pressure injury has eaten less than half of meals for a week and has lost weight. Which referral is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Registered dietitian for nutritional assessment and protein support</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Occupational therapist for upper-extremity strengthening and adaptive feeding utensils</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Chaplain for spiritual support and counseling during the hospital stay</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Pharmacist for a drug interaction review of all current medications only</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Healing requires adequate protein and calories, which a dietitian can plan.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>OT does not manage nutrition.</p><p><b>C. </b>Spiritual care does not address malnutrition.</p><p><b>D. </b>A review alone does not treat inadequate intake.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="50">
+  <div class="qmeta"><span class="num">Q50</span><span>Occupational therapy</span></div>
+  <div class="qtext">A patient with severe rheumatoid arthritis in the hands cannot button clothes or hold utensils. Which team member is best suited to help?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Case manager to arrange insurance billing and coverage for outpatient visits</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Speech-language pathologist to evaluate language, speech, and swallowing function in daily life</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Respiratory therapist to teach breathing exercises and manage inhaled treatments</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Occupational therapist to provide adaptive devices and techniques</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>OTs teach activities of daily living and supply adaptive equipment.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Insurance does not address the functional deficit.</p><p><b>B. </b>The need is hand function, not speech.</p><p><b>C. </b>Breathing is not the problem.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="51">
+  <div class="qmeta"><span class="num">Q51</span><span>Pharmacist role</span></div>
+  <div class="qtext">An older adult takes 14 medications, including two for the same condition, and has new dizziness. Which resource is most useful?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Dietitian for a low-sodium diet only</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Physical therapist for balance retraining alone</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Chaplain for emotional support</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Clinical pharmacist for a comprehensive medication review</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Pharmacists identify duplications, interactions, and high-risk drugs in polypharmacy.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Diet alone does not address duplicate drugs.</p><p><b>B. </b>Balance training does not fix drug-related causes.</p><p><b>C. </b>Emotional support does not review the regimen.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="52">
+  <div class="qmeta"><span class="num">Q52</span><span>Case management</span></div>
+  <div class="qtext">A patient being discharged after a stroke needs a hospital bed, a wheelchair, and a home health aide, and is unsure about insurance coverage. Which team member coordinates this?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Occupational therapist for insurance authorization and billing of home services</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Dietitian for coverage questions and the review of the insurance plan</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Dietitian for equipment ordering and the delivery of supplies to the home</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Case manager for equipment, insurance, and community services</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Case managers coordinate resources and ensure a safe transition.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Insurance authorization is outside occupational therapy.</p><p><b>B. </b>Coverage is not a dietitian function.</p><p><b>C. </b>Dietitians do not arrange home equipment.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="53">
+  <div class="qmeta"><span class="num">Q53</span><span>Respiratory therapy</span></div>
+  <div class="qtext">A patient with cystic fibrosis needs teaching about an airway clearance vest and nebulized treatments. Which team member is best prepared to teach this?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Social worker</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Registered dietitian</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Respiratory therapist</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Occupational therapist</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>RTs are specialized in airway clearance devices and inhaled therapies.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Social workers address psychosocial needs.</p><p><b>B. </b>Dietitians focus on nutrition.</p><p><b>D. </b>OTs address daily activities rather than airway devices.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="54">
+  <div class="qmeta"><span class="num">Q54</span><span>Ostomy nurse</span></div>
+  <div class="qtext">A patient with a new colostomy has peristomal skin breakdown and recurrent pouch leaks. Which consultation is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Pulmonary rehabilitation team</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Speech-language pathologist</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Wound, ostomy, and continence nurse</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Clinical psychologist as the first step</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>WOC nurses are specialists in pouching systems and peristomal skin care.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>The problem is not respiratory.</p><p><b>B. </b>Speech therapy is unrelated.</p><p><b>D. </b>Emotional support may help later, but the immediate need is a pouching solution.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="55">
+  <div class="qmeta"><span class="num">Q55</span><span>Chaplain</span></div>
+  <div class="qtext">A patient facing surgery asks to speak with someone about religious rituals before the procedure. Which team member should the RN contact?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Physical therapist</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Pharmacist</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Case manager</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Chaplain or spiritual care provider</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Spiritual care staff address religious needs and support coping.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>PT focuses on mobility.</p><p><b>B. </b>Pharmacists manage medications.</p><p><b>C. </b>Case managers handle discharge resources.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="56">
+  <div class="qmeta"><span class="num">Q56</span><span>Social work</span></div>
+  <div class="qtext">An older patient being discharged lives alone, has bruises of unclear origin, and says a caregiver controls money. Which referral is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Social worker for an abuse and safety assessment</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Occupational therapist for hand strengthening and adaptive devices at home</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Physical therapist for gait assessment and a walking program</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Dietitian for meal planning and nutrition support at home</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Social workers assess abuse, safety, and resources, and help meet reporting duties.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Hand function is not the concern.</p><p><b>C. </b>Gait is not the concern.</p><p><b>D. </b>Nutrition does not address safety.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="57">
+  <div class="qmeta"><span class="num">Q57</span><span>Hospice eligibility</span></div>
+  <div class="qtext">A patient with advanced cancer has stopped disease-directed treatment, and the provider estimates a prognosis of six months or less. Which service fits best?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Cardiac rehabilitation with exercise sessions focused on heart health after a cardiac event</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Hospice care, focused on comfort and support for the patient and family</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Outpatient physical therapy alone to maintain mobility and strength at home</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Short-term acute rehabilitation to rebuild strength and return the patient to independent living</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Hospice serves patients with a limited life expectancy who choose comfort-focused care.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Rehabilitation aims to restore function and is not the match.</p><p><b>C. </b>Therapy alone does not address comfort needs.</p><p><b>D. </b>Rehab is not the goal of this patient.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="58">
+  <div class="qmeta"><span class="num">Q58</span><span>Home health</span></div>
+  <div class="qtext">A patient who is homebound after surgery needs daily wound care and intravenous antibiotics. Which service is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">A meal delivery service only, with no skilled nursing visits at home</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Outpatient physical therapy twice a week at a clinic for strengthening exercises</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Home health nursing for skilled wound care and infusion</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">A volunteer visitor program for companionship and help with errands at home</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Skilled nursing is needed for ongoing wound care and infusions at home.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Meals do not treat the wound.</p><p><b>B. </b>PT does not provide wound care or infusions.</p><p><b>D. </b>Volunteers cannot provide skilled nursing.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="59">
+  <div class="qmeta"><span class="num">Q59</span><span>Telehealth</span></div>
+  <div class="qtext">A patient with well-controlled hypertension lives two hours from the clinic and has a smartphone. Which option is most appropriate for a routine follow-up?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">A video visit, after confirming the patient can use the technology and has a home blood pressure cuff</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Require a monthly in-person visit regardless of access, distance, or the patient's ability to travel</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Follow up only by mailing a pamphlet about blood pressure and healthy lifestyle choices</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Cancel all routine follow-up until symptoms occur, since the blood pressure has been well controlled so far</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Telehealth improves access when the patient has the equipment and the condition is suitable.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>This ignores a practical, safe alternative.</p><p><b>C. </b>A pamphlet cannot replace monitoring.</p><p><b>D. </b>Routine monitoring should continue.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="60">
+  <div class="qmeta"><span class="num">Q60</span><span>Structured handoff</span></div>
+  <div class="qtext">During a structured handoff using I-PASS, which information is given first?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Action list for the next shift</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Synthesis by the receiver</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Illness severity of the patient</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Situational awareness and contingency plans</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>I-PASS begins with illness severity so the receiving nurse knows who needs closer attention.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Actions come after the summary.</p><p><b>B. </b>Receiver synthesis closes the handoff.</p><p><b>D. </b>Contingency planning follows the patient summary.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="61">
+  <div class="qmeta"><span class="num">Q61</span><span>Late documentation entry</span></div>
+  <div class="qtext">An RN forgot to chart a dressing change completed earlier in the shift. How should the RN document it?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Enter a late entry labeled with the current date and time, referring to the time of the care</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Erase the original entry and rewrite it</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Do not chart it because too much time has passed</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Insert the note in the earlier time slot to appear on schedule</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Late entries must be clearly identified so the record remains accurate and honest.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Records must never be erased.</p><p><b>C. </b>Omission leaves care undocumented.</p><p><b>D. </b>Back-dating falsifies the record.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="62">
+  <div class="qmeta"><span class="num">Q62</span><span>Clinical decision support</span></div>
+  <div class="qtext">An electronic alert warns that a prescribed antibiotic may interact with a patient's current anticoagulant. What should the RN do?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Give the dose and review the alert with the pharmacist after the shift is over</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Pause, verify the interaction, and contact the prescriber and pharmacist before giving the drug</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Ask another nurse to give the drug instead and let that nurse decide about the alert</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Override the alert since alerts are often wrong and the prescriber has already ordered the antibiotic</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Alerts are safety tools that need professional judgment, not automatic override.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Review must occur before administration.</p><p><b>C. </b>Passing the task along does not resolve the safety concern.</p><p><b>D. </b>Overriding without review risks harm.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="63">
+  <div class="qmeta"><span class="num">Q63</span><span>Medication reconciliation</span></div>
+  <div class="qtext">A patient is admitted from home with a bag of pill bottles and a handwritten list. When should the RN start medication reconciliation?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">At admission, comparing all sources with current orders and resolving differences with the prescriber</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Only if the patient or the family reports a problem with a medication during the stay</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">At discharge, using only the hospital record to compare the new medications with those in the chart</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">After the first week of the hospital stay, once the patient's condition has become stable</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Reconciliation at transitions prevents omissions, duplications, and interactions.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Reconciliation is routine and should not rely on patient complaints.</p><p><b>C. </b>Waiting until discharge misses early discrepancies.</p><p><b>D. </b>Medications may be given incorrectly in the meantime.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="64">
+  <div class="qmeta"><span class="num">Q64</span><span>Palliative care</span></div>
+  <div class="qtext">How does palliative care differ from hospice?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Palliative care can be given alongside curative treatment at any stage of a serious illness</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">It replaces the patient's primary care team and directs all aspects of treatment decisions and daily care</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">It is available only after all disease treatment has been stopped and the prognosis is short</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">It is limited to patients with less than six months to live and who have chosen comfort care</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Palliative care aims to relieve symptoms and stress and is not limited to the last months of life.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Palliative care works with the primary team.</p><p><b>C. </b>That describes hospice, not palliative care.</p><p><b>D. </b>The six-month prognosis relates to hospice eligibility.</p></div></div>
+  </div>
+</div>
+  <div class="area-nav"><a class="btn btn-ghost" href="holistic-patient-care.html">← Holistic Care</a><a class="btn btn-ghost" href="./">All domains</a><a class="btn btn-teal" href="professional-concepts.html">Professional →</a></div>
+
+  <footer>
+    <p>Not affiliated with, endorsed by, or sponsored by MSNCB, the owner of the CMSRN® certification.</p>
+    <p>© 2026 Evan Marston. All rights reserved.</p>
+  </footer>
+</div>
+<script>
+(function(){
+var KEY="hy100:interprofessional-care", saved={};
+try{ saved=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ saved={}; }
+var cards=document.querySelectorAll('.pcard'), TOTAL=cards.length;
+function score(){ var a=0,c=0; cards.forEach(function(k){ if(k.classList.contains('answered')){a++; if(k.dataset.ok==='1')c++;} });
+  document.getElementById('score-readout').textContent=a+' / '+TOTAL+' answered'+(a?'  ·  '+c+' correct':''); }
+function reveal(card,letter,persist){
+  if(card.classList.contains('answered')) return;
+  var opt=card.querySelector('button.opt[data-letter="'+letter+'"]'); if(!opt) return;
+  card.classList.add('answered'); var ok=opt.dataset.correct==='1'; card.dataset.ok=ok?'1':'0';
+  opt.classList.add(ok?'correct':'wrong');
+  if(!ok){ var r=card.querySelector('button.opt[data-correct="1"]'); if(r) r.classList.add('correct'); }
+  var res=card.querySelector('.result'); res.hidden=false;
+  var v=res.querySelector('.verdict'); v.textContent=ok?'Correct':'Not quite'; v.className='verdict '+(ok?'good':'bad');
+  if(persist){ saved[card.dataset.q]=[letter,ok?1:0]; try{ localStorage.setItem(KEY,JSON.stringify(saved)); }catch(e){} }
+}
+cards.forEach(function(card){
+  card.querySelectorAll('button.opt').forEach(function(b){ b.addEventListener('click',function(){ reveal(card,b.dataset.letter,true); score(); }); });
+  var s=saved[card.dataset.q]; if(s) reveal(card,s[0],false);
+});
+score();
+})();
+</script>
+</body>
+</html>

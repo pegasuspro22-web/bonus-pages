@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<title>CMSRN High-Yield 100, Nursing Teamwork and Collaboration — CMSRN Study Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F1B18; --paper:#F6FAF9; --surface:#FFFFFF;
+  --teal:#1F5C4F; --teal-ink:#ffffff; --sage:#3E8E7E;
+  --line:#D9E4E0; --line-strong:#C3D3CD;
+  --muted:#54635E; --muted-2:#7C8B86;
+  --vital:#B8791F; --vital-soft:#F8EEDC;
+  --shadow: 0 1px 2px rgba(15,27,24,.04), 0 12px 28px -16px rgba(15,27,24,.14);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Serif",Georgia,serif; font-size:16px; line-height:1.55; padding-inline:20px;}
+h1,h2,h3,.eyebrow,.btn,.stat-num,.step-label{font-family:"IBM Plex Sans",system-ui,sans-serif;}
+.mono,.stat-num,.subject-chip b{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
+h1,h2,h3{text-wrap:balance; margin:0; color:var(--ink);}
+a{color:inherit;}
+.shell{max-width:640px; margin:0 auto; padding-block:28px 56px;}
+.topbar{display:flex; align-items:center; gap:10px; padding-block:14px; border-bottom:1px solid var(--line); margin-bottom:34px;}
+.topbar .mark{width:26px; height:16px; flex:none;}
+.topbar .brand{font-weight:700; font-size:.82rem; letter-spacing:.06em; text-transform:uppercase; color:var(--teal);}
+.topbar .brand-sub{font-family:"IBM Plex Serif",serif; font-size:.82rem; color:var(--muted-2); font-style:italic;}
+.back-link{display:inline-block; margin-bottom:18px; font-size:.85rem; color:var(--sage); text-decoration:none;}
+.eyebrow{display:inline-flex; align-items:center; gap:.5em; font-size:.72rem; font-weight:600; letter-spacing:.11em; text-transform:uppercase; color:var(--sage);}
+.eyebrow::before{content:""; width:16px; height:1px; background:var(--sage);}
+.hero{margin-top:14px;}
+.hero h1{font-size:clamp(1.9rem,6vw,2.5rem); font-weight:700; letter-spacing:-.01em; margin-top:.6rem; max-width:18ch;}
+.hero p.lede{margin-top:.9rem; color:var(--muted); font-size:1.08rem; max-width:42ch;}
+.vitals{margin-top:32px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.vitals-head{display:flex; align-items:center; justify-content:space-between; padding:12px 18px; background:var(--teal); color:var(--teal-ink);}
+.vitals-head .label{font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;}
+.vitals-head svg{display:block; height:14px; width:90px; opacity:.9;}
+.vitals-grid{display:grid; grid-template-columns:repeat(4,1fr);}
+.vitals-grid .cell{padding:16px 14px; border-right:1px solid var(--line); border-top:1px solid var(--line);}
+.vitals-grid .cell:nth-child(4n){border-right:none;}
+.vitals-grid .cell:nth-child(-n+4){border-top:none;}
+.stat-num{font-size:1.5rem; font-weight:600; color:var(--teal); line-height:1; display:block;}
+.stat-label{margin-top:6px; font-size:.72rem; color:var(--muted); line-height:1.35; text-transform:uppercase; letter-spacing:.03em;}
+h2.section-title{margin-top:44px; font-size:1.15rem; font-weight:700; display:flex; align-items:baseline; gap:.6em;}
+h2.section-title .chart-no{font-family:"IBM Plex Mono",monospace; font-size:.85rem; font-weight:600; color:var(--sage);}
+.chart{margin-top:18px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);}
+.chart-row{display:grid; grid-template-columns:56px 1fr; padding:20px 20px;}
+.chart-row + .chart-row{border-top:1px solid var(--line);}
+.chart-row .idx{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--sage); font-size:.95rem; padding-top:.15em;}
+.chart-row .step-label{font-weight:600; font-size:1.02rem; margin:0 0 .35rem;}
+.chart-row p{margin:0; color:var(--muted); font-size:.96rem;}
+.cta-row{margin:14px 20px 20px; display:flex; flex-wrap:wrap; gap:10px;}
+.btn{display:inline-flex; align-items:center; gap:.55em; font-weight:600; font-size:.92rem; padding:.75em 1.15em; border-radius:6px; text-decoration:none; border:1px solid transparent;}
+.btn-teal{background:var(--teal); color:var(--teal-ink);}
+.btn-vital{background:var(--vital); color:#fff;}
+.btn-ghost{background:transparent; color:var(--teal); border-color:var(--line-strong);}
+.subject-chip{margin:0 20px 20px; display:inline-block; font-size:.82rem; color:var(--muted); background:var(--vital-soft); border:1px dashed var(--vital); border-radius:6px; padding:.55em .8em;}
+.alt-path{margin-top:22px; padding:16px 18px; border-left:3px solid var(--line-strong); color:var(--muted); font-size:.92rem; background:var(--surface); border-radius:0 var(--radius) var(--radius) 0;}
+.alt-path b{color:var(--ink);}
+.todo{display:inline-block; margin:0 20px 14px; font-size:.78rem; font-weight:600; color:var(--vital); font-family:"IBM Plex Mono",monospace;}
+.soon{margin-top:28px; padding:28px 22px; text-align:center; border:1px dashed var(--line-strong); border-radius:var(--radius); background:var(--surface); color:var(--muted);}
+.soon b{color:var(--ink); display:block; margin-bottom:.4em; font-family:"IBM Plex Sans",sans-serif;}
+footer{margin-top:52px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted-2); font-size:.8rem;}
+footer p{margin:.25em 0;}
+@media (max-width:520px){
+  .vitals-grid{grid-template-columns:repeat(2,1fr);}
+  .vitals-grid .cell:nth-child(2n){border-right:none;}
+  .vitals-grid .cell:nth-child(-n+2){border-top:none;}
+  .vitals-grid .cell:nth-child(3),.vitals-grid .cell:nth-child(4){border-top:1px solid var(--line);}
+  .chart-row{grid-template-columns:32px 1fr;}
+}
+
+:root{--ok:#1F7A4D; --ok-soft:#E4F2EA; --bad:#B3402A; --bad-soft:#FBE9E4;}
+.shell.wide{max-width:760px;}
+.card-list{display:flex; flex-direction:column; gap:12px; margin-top:18px;}
+.tcard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); text-decoration:none;}
+.tcard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.tcard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.tcard .go{flex:none; font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:.8rem; letter-spacing:.06em; color:var(--teal-ink); background:var(--teal); padding:.6em .95em; border-radius:6px;}
+.note{margin-top:22px; padding:14px 16px; border-left:3px solid var(--line-strong); background:var(--surface); border-radius:0 var(--radius) var(--radius) 0; color:var(--muted); font-size:.92rem;}
+.btn[disabled]{opacity:.45; cursor:not-allowed;}
+button.btn{cursor:pointer; font-family:"IBM Plex Sans",system-ui,sans-serif;}
+.panel{margin-top:22px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.panel h2{font-family:"IBM Plex Sans",sans-serif; font-size:1.05rem; margin:0 0 .6rem;}
+.panel p{margin:.5rem 0; color:var(--muted);}
+.panel ul{margin:.5rem 0 1rem; padding-left:1.2rem; color:var(--muted);}
+.gate{display:flex; gap:.7rem; align-items:flex-start; margin:14px 0 16px; font-size:.95rem;}
+.gate input{margin-top:.25rem; width:18px; height:18px; accent-color:var(--teal); flex:none;}
+.runbar{position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; margin-top:16px; background:var(--teal); color:var(--teal-ink); border-radius:var(--radius); font-family:"IBM Plex Sans",sans-serif; font-size:.82rem; font-weight:600;}
+.runbar .mono{font-size:.9rem;}
+.bar{height:6px; border-radius:3px; background:var(--line); overflow:hidden;}
+.bar > i{display:block; height:100%; background:var(--sage);}
+.q{margin-top:18px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.q .qno{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--sage); font-weight:600; letter-spacing:.04em;}
+.q .qdom{font-family:"IBM Plex Sans",sans-serif; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-left:.6rem;}
+.q .stem{margin:.6rem 0 .9rem; font-size:1.02rem; line-height:1.5;}
+.opt{display:flex; gap:.8rem; width:100%; text-align:left; align-items:flex-start; padding:.75rem .85rem; margin-top:.5rem; background:var(--paper); border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--ink); cursor:pointer;}
+.opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line-strong); display:grid; place-items:center; font-family:"IBM Plex Mono",monospace; font-size:.8rem; font-weight:600; color:var(--muted);}
+.opt .t{min-width:0; padding-top:.1rem; line-height:1.45;}
+.opt.sel{border-color:var(--teal); background:#EAF3F0;}
+.opt.sel .l{background:var(--teal); border-color:var(--teal); color:#fff;}
+.opt:focus-visible{outline:2px solid var(--vital); outline-offset:2px;}
+.secnav{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:22px; flex-wrap:wrap;}
+.secnav .mid{font-size:.82rem; color:var(--muted); font-family:"IBM Plex Mono",monospace;}
+.dots{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+.dots button{width:2rem; height:2rem; border-radius:6px; border:1px solid var(--line-strong); background:var(--surface); font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--muted); cursor:pointer;}
+.dots button.done{background:var(--teal); border-color:var(--teal); color:#fff;}
+.dots button.cur{outline:2px solid var(--vital); outline-offset:1px;}
+.score{margin-top:26px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.score-top{padding:22px 20px; display:flex; gap:18px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--line);}
+.score-top .big{font-family:"IBM Plex Mono",monospace; font-size:2.6rem; font-weight:600; color:var(--teal); line-height:1;}
+.score-top .sub{color:var(--muted); font-size:.95rem; min-width:0;}
+.refline{position:relative; margin:18px 20px 6px; height:10px; border-radius:5px; background:var(--line);}
+.refline i{position:absolute; left:0; top:0; bottom:0; border-radius:5px; background:var(--sage);}
+.refline b{position:absolute; top:-5px; width:2px; height:20px; background:var(--vital);}
+.reflabel{margin:0 20px 18px; font-size:.78rem; color:var(--muted-2);}
+.dom{padding:0 20px 18px;}
+.dom-row{display:grid; grid-template-columns:minmax(0,1fr) 3.4rem; gap:4px 12px; margin-top:12px; font-size:.88rem;}
+.dom-row .n{font-family:"IBM Plex Mono",monospace; text-align:right; color:var(--teal); font-weight:600;}
+.dom-row .bar{grid-column:1 / -1;}
+.actions{display:flex; gap:10px; flex-wrap:wrap; padding:0 20px 22px;}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px;}
+.tabs button{padding:.5em .9em; border-radius:999px; border:1px solid var(--line-strong); background:var(--surface); color:var(--muted); font:600 .82rem "IBM Plex Sans",sans-serif; cursor:pointer;}
+.tabs button[aria-pressed="true"]{background:var(--teal); color:#fff; border-color:var(--teal);}
+.rev .opt{cursor:default;}
+.rev .opt.right{border-color:var(--ok); background:var(--ok-soft);}
+.rev .opt.right .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.rev .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.rev .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.tag{display:inline-block; margin-left:.5rem; font:600 .68rem "IBM Plex Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase;}
+.tag.ok{color:var(--ok);} .tag.bad{color:var(--bad);} .tag.skip{color:var(--muted-2);}
+.why{margin-top:14px; padding:14px 16px; border-radius:8px; background:var(--vital-soft); border:1px solid #EBD6AE; font-size:.93rem;}
+.why h4{margin:0 0 .35rem; font:700 .72rem "IBM Plex Sans",sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--vital);}
+.why p{margin:.3rem 0; color:var(--ink);}
+.why .others{margin-top:.6rem; padding-top:.6rem; border-top:1px dashed #E1C58E;}
+.why .others p{font-size:.9rem; color:var(--muted);}
+.why .others b{font-family:"IBM Plex Mono",monospace; color:var(--ink);}
+@media (max-width:520px){.q{padding:14px;} .runbar{font-size:.76rem;}}
+
+.callout{margin-top:26px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.callout.alert{border-color:var(--vital); background:var(--vital-soft);}
+.callout h3{font-family:"IBM Plex Sans",sans-serif; font-size:1.1rem; margin:.4rem 0 0;}
+.callout p{margin:.6rem 0 0; color:var(--muted);}
+.feat{display:grid; grid-template-columns:28px 1fr; gap:12px; padding:14px 0; border-top:1px solid var(--line);}
+.feat:first-child{border-top:none; padding-top:0;}
+.feat .tick{width:24px; height:24px; border-radius:6px; background:var(--teal); color:#fff; display:grid; place-items:center; font-weight:700; font-size:.85rem;}
+.feat h3{font-family:"IBM Plex Sans",sans-serif; font-size:1rem; margin:0;}
+.feat p{margin:.2rem 0 0; color:var(--muted); font-size:.95rem;}
+.or{display:flex; align-items:center; gap:12px; margin:18px 0; color:var(--muted-2); font:600 .75rem "IBM Plex Sans",sans-serif; letter-spacing:.1em; text-transform:uppercase;}
+.or::before,.or::after{content:""; flex:1; height:1px; background:var(--line-strong);}
+.how{padding:20px; border-radius:var(--radius); border:1px solid var(--line); background:var(--surface);}
+.how.main{border-color:var(--vital); background:var(--vital-soft);}
+.how p{margin:0; color:var(--muted);}
+.how .cta-row{margin:14px 0 0;}
+.faq dt{font:600 1rem "IBM Plex Sans",sans-serif; margin-top:16px;}
+.faq dd{margin:.25rem 0 0; color:var(--muted);}
+.pk-head{margin-top:22px;}
+.pk-head .n{font:600 .72rem "IBM Plex Mono",monospace; letter-spacing:.06em; color:var(--sage); text-transform:uppercase;}
+.pk-head h2{font-family:"IBM Plex Sans",sans-serif; font-size:1.6rem; margin:.3rem 0 0;}
+.pcard{margin-top:16px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.pcard .qmeta{display:flex; gap:.7rem; align-items:baseline; font:600 .72rem "IBM Plex Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase; color:var(--muted-2);}
+.pcard .qmeta .num{font-family:"IBM Plex Mono",monospace; color:var(--sage);}
+.pcard .qtext{margin:.6rem 0 .8rem; font-size:1.02rem; line-height:1.5;}
+.pcard .opt{cursor:pointer;}
+.pcard.answered .opt{cursor:default;}
+.pcard.answered .opt.correct{border-color:var(--ok); background:var(--ok-soft);}
+.pcard.answered .opt.correct .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.pcard.answered .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.pcard.answered .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.verdict{font:700 .78rem "IBM Plex Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; margin-top:14px;}
+.verdict.good{color:var(--ok);} .verdict.bad{color:var(--bad);}
+.area-nav{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;}
+.area-nav .btn{flex:1 1 30%; justify-content:center; text-align:center;}
+#score-readout{margin-left:auto; font:600 .75rem "IBM Plex Mono",monospace;}
+.acard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.acard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.acard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.acard .prog{font:600 .75rem "IBM Plex Mono",monospace; color:var(--sage);}
+.acard .go{flex:none; font:600 .8rem "IBM Plex Sans",sans-serif; letter-spacing:.06em; color:#fff; background:var(--teal); padding:.6em .95em; border-radius:6px; text-decoration:none;}
+.linkbtn{background:none; border:none; padding:0; font:600 .78rem "IBM Plex Sans",sans-serif; letter-spacing:.04em; color:var(--muted); text-decoration:underline; cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="shell wide">
+
+  <div class="topbar">
+    <svg class="mark" viewBox="0 0 26 16" fill="none" aria-hidden="true">
+      <rect width="26" height="16" rx="2" fill="#1F5C4F"/>
+      <path d="M3 8H7L9 4L12 12L14 8H23" stroke="#3E8E7E" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="brand">CMSRN Study Suite</span>
+    <span class="brand-sub">— Digital Companion</span>
+  </div>
+
+  <a href="./" class="back-link">← All domains</a>
+  <div class="runbar"><span>CMSRN HIGH-YIELD 100</span><span id="score-readout"></span></div>
+  <div class="pk-head"><div class="n">Domain 5 of 5 · 21 questions</div><h2>Nursing Teamwork and Collaboration</h2></div>
+  
+<div class="pcard" data-q="80">
+  <div class="qmeta"><span class="num">Q80</span><span>Delegation to assistive personnel</span></div>
+  <div class="qtext">Which task can the RN safely delegate to an assistive personnel member for a stable patient?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Titrating an intravenous medication</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Measuring and recording vital signs</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Assessing a new surgical wound for infection</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Teaching the patient about a new insulin regimen</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Routine, stable data collection is within the usual duties of assistive personnel, while the RN interprets findings.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Medication titration is outside assistive roles.</p><p><b>C. </b>Assessment requires RN judgment.</p><p><b>D. </b>Teaching is an RN responsibility.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="81">
+  <div class="qmeta"><span class="num">Q81</span><span>Delegation to LPN</span></div>
+  <div class="qtext">The RN is assigning tasks for a stable patient. Which task is appropriate for the licensed practical nurse?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Interpreting unexpected laboratory results and deciding whether to call the provider</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Reinforcing previously taught wound-care instructions and reporting questions</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Developing the initial plan of care for the stable patient after the admission</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Performing the first admission assessment and writing the nursing diagnoses</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>LPNs may reinforce teaching begun by the RN, while initial teaching stays with the RN.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Interpretation requires RN judgment.</p><p><b>C. </b>Care planning is an RN function.</p><p><b>D. </b>Initial assessment is an RN role.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="82">
+  <div class="qmeta"><span class="num">Q82</span><span>Conflict resolution</span></div>
+  <div class="qtext">Two RNs disagree about how to divide patient assignments. What is the best way for them to resolve it?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Meet privately, focus on the issue, and work toward a solution acceptable to both</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Ignore the disagreement and hope that it fades once the shift becomes busier and the assignments settle</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Insist on one's own plan without discussion, since the assignment is already decided by the charge nurse</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Complain to other coworkers about the colleague's behavior and ask them to take your side</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Collaboration addresses the needs of both parties and preserves the relationship.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Avoidance leaves the cause unresolved.</p><p><b>C. </b>Forcing creates resentment.</p><p><b>D. </b>Gossip damages team trust.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="83">
+  <div class="qmeta"><span class="num">Q83</span><span>Preceptor role</span></div>
+  <div class="qtext">A new nurse is learning to insert peripheral IV catheters. Which preceptor approach is best?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Hand the new nurse a written equipment list and a policy, and leave the nurse to practice alone</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Wait for a mistake to occur before offering any feedback about the nurse's technique</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Do the task for the nurse every time, so that no mistake can occur on the unit</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Demonstrate, observe supervised practice, give specific feedback, then validate competence</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Stepwise progression builds skill and ensures safety.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Unsupervised practice is unsafe.</p><p><b>B. </b>Feedback should be timely and constructive.</p><p><b>C. </b>Without practice, competence never develops.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="84">
+  <div class="qmeta"><span class="num">Q84</span><span>Shared governance</span></div>
+  <div class="qtext">Which activity best demonstrates shared governance?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Staff nurses on a unit council review data and make recommendations on practice changes</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">A consultant writes the policy, based on national benchmarks, and the unit adopts it without change</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Each nurse decides separately how to use a new tool, based on personal preference and experience</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Managers announce policy changes without input and expect the staff nurses to follow them as written</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Shared governance gives frontline staff a voice in decisions that affect their practice.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Staff are not involved.</p><p><b>C. </b>Individual choices lack structure.</p><p><b>D. </b>That is top-down decision making.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="85">
+  <div class="qmeta"><span class="num">Q85</span><span>Change management</span></div>
+  <div class="qtext">A unit is introducing a new electronic documentation system. Staff are reluctant. Which action best reduces resistance?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Require use immediately with no training</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Discuss only the benefits and avoid mentioning staff concerns</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Explain the reasons for change, involve staff in planning, and provide training and support</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Introduce it on half the unit and let the rest keep using paper indefinitely</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Understanding, involvement, and support increase acceptance.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Lack of training causes errors and resentment.</p><p><b>B. </b>Ignoring concerns increases distrust and resistance.</p><p><b>D. </b>Running two systems fragments communication and prolongs the problem.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="86">
+  <div class="qmeta"><span class="num">Q86</span><span>Mentoring</span></div>
+  <div class="qtext">How does mentoring differ from precepting?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Mentoring is a longer relationship focused on professional growth and career guidance</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Mentors evaluate pay raises and discipline staff, while preceptors only teach clinical skills on the unit</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">There is no difference between the two roles, because both focus on orientation to a new unit</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Mentoring lasts only a few shifts during orientation and focuses on learning the unit's routines and policies</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Preceptors orient to a role over a defined period, while mentors support development over time.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Mentors do not supervise performance management.</p><p><b>C. </b>They have distinct goals and durations.</p><p><b>D. </b>That describes precepting.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="87">
+  <div class="qmeta"><span class="num">Q87</span><span>Adult learning</span></div>
+  <div class="qtext">A nurse educator is planning a class for experienced nurses on a new pump. Which principle of adult learning applies?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Adults learn best when content is relevant to their work and problem-centered</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Assume that learners have no experience and teach every step as if the equipment were entirely new</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Focus on theory that is unrelated to the unit and test it with a written examination at the end</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Use only lectures with no practice, because experienced nurses already know how to use equipment</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Experienced learners value practical application and respect for prior knowledge.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>This ignores prior knowledge.</p><p><b>C. </b>Irrelevant content reduces engagement.</p><p><b>D. </b>Passive teaching is less effective.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="88">
+  <div class="qmeta"><span class="num">Q88</span><span>Quality improvement cycle</span></div>
+  <div class="qtext">A unit tested a new hourly rounding process on one wing for two weeks. In the PDSA cycle, which step involves reviewing the results?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Study</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Do</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Act</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Plan</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>In Study, the team analyzes data from the test to learn what happened.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Do is carrying out the test.</p><p><b>C. </b>Act follows by deciding to adopt or adjust.</p><p><b>D. </b>Planning occurs before the test.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="89">
+  <div class="qmeta"><span class="num">Q89</span><span>Chain of command</span></div>
+  <div class="qtext">An RN is concerned that a prescribed medication dose seems unsafe. The prescriber insists it is correct. What should the RN do next?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Hold the dose and use the chain of command to resolve the concern</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Give the dose to avoid conflict</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Wait until the next shift to decide</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Ask a coworker to give it instead</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Escalation protects the patient when direct communication does not resolve a safety concern.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Giving a questionable dose violates safety.</p><p><b>C. </b>Delay leaves the patient without clarity.</p><p><b>D. </b>That passes the risk to another person.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="90">
+  <div class="qmeta"><span class="num">Q90</span><span>Closed-loop communication</span></div>
+  <div class="qtext">A provider gives a verbal order during an urgent situation. Which action best ensures accuracy?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Act immediately without repeating anything, since time is critical during the urgent situation</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Ask a colleague what they think was said and then act on the version that seems most likely</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Repeat the order back and confirm it with the prescriber before acting</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Write it down later from memory once the urgent situation has ended and the patient is stable</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Read-back prevents mishearing in urgent communication.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Skipping a check risks error.</p><p><b>B. </b>Only the prescriber can confirm the order.</p><p><b>D. </b>Delay and memory increase errors.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="91">
+  <div class="qmeta"><span class="num">Q91</span><span>Speaking up</span></div>
+  <div class="qtext">During a procedure, an RN sees a team member skip a required safety step. Which approach reflects TeamSTEPPS?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Stay silent because the person is senior and more experienced, and probably has a reason for skipping the step</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Whisper the concern to a bystander rather than speak to the person who is skipping the step during the procedure</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Wait and report it to the manager next week, after the procedure and the day's work are finished</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">State the concern clearly, ask for clarification, and stop the line if safety is at risk</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Teams need members to speak up using assertive, respectful communication.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Hierarchy should not silence safety concerns.</p><p><b>B. </b>The person involved must be informed.</p><p><b>C. </b>The risk must be addressed at once.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="92">
+  <div class="qmeta"><span class="num">Q92</span><span>Debrief</span></div>
+  <div class="qtext">After a cardiac arrest on the unit, the team gathers for a few minutes. What is the main purpose of this debrief?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Assign fault to the person who made an error so that the cause is clear to the whole team</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Review each team member's actions to decide individual discipline and document it in the personnel files</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Review what went well and what to improve, without blame</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Complete the incident report only and assign any responsibility for the outcome to the staff</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Debriefs support learning and team cohesion.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Blame discourages learning.</p><p><b>B. </b>Debriefs are for learning, not for discipline.</p><p><b>D. </b>Reporting is separate from reflection.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="93">
+  <div class="qmeta"><span class="num">Q93</span><span>Peer review</span></div>
+  <div class="qtext">An RN asks what a peer review of nursing practice is intended to achieve.</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Determine which nurses are eligible for promotion and set the level of their annual raise</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Replace formal discipline procedures and provide a final record of each nurse's mistakes</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Evaluate care against professional standards to improve practice, in a nonpunitive way</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Identify nurses to terminate when their practice does not meet unit standards</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Peer review is a quality tool that supports growth.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Promotion decisions are separate from peer review.</p><p><b>B. </b>Peer review is not discipline.</p><p><b>D. </b>Its purpose is improvement.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="94">
+  <div class="qmeta"><span class="num">Q94</span><span>Horizontal violence</span></div>
+  <div class="qtext">An RN is repeatedly mocked by a coworker in front of others. What is the best response?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Ask for a different assignment without addressing the behavior, so that contact with the coworker is limited</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Endure the remarks silently to avoid conflict and hope that the coworker eventually loses interest in the behavior</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Address the behavior directly and calmly, document it, and report to the supervisor if it continues</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Respond with similar remarks in front of the others so the coworker understands how it feels to be mocked</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Lateral violence harms morale and safety, and escalating protects the team.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Avoiding the coworker leaves the behavior unchallenged.</p><p><b>B. </b>Silence allows the behavior to continue.</p><p><b>D. </b>Responding in kind escalates the conflict.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="95">
+  <div class="qmeta"><span class="num">Q95</span><span>Prioritizing assignments</span></div>
+  <div class="qtext">The charge RN is assigning patients to an RN and an LPN. Which patient is most appropriate for the LPN?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">A stable patient with chronic kidney disease who needs routine care and medication administration</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">A patient who has just arrived from the emergency department and needs an initial admission assessment</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">A patient with new chest pain, shortness of breath, and unstable vital signs after a procedure</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">A patient needing complex initial teaching for a newly diagnosed condition and a new treatment plan</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Stable patients with predictable needs fit LPN practice, while complex or unstable patients stay with the RN.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Initial assessment is an RN duty.</p><p><b>C. </b>Unstable patients need RN assessment.</p><p><b>D. </b>Initial complex teaching is an RN role.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="96">
+  <div class="qmeta"><span class="num">Q96</span><span>Transformational leadership</span></div>
+  <div class="qtext">A unit manager wants to inspire staff to pursue a shared vision of safer care. Which leadership approach fits best?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Transactional leadership based only on rewards and penalties for meeting short-term performance goals</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Autocratic leadership with strict orders and little room for staff to give their own ideas</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Laissez-faire leadership with no guidance, leaving staff to set their own goals and priorities</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Transformational leadership, which motivates through vision, support, and individual development</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>It builds engagement and shared goals.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>It does not inspire a shared vision.</p><p><b>B. </b>It limits input and motivation.</p><p><b>C. </b>It gives little direction.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="97">
+  <div class="qmeta"><span class="num">Q97</span><span>Interdisciplinary rounds</span></div>
+  <div class="qtext">Which practice makes interdisciplinary rounds most effective?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Hold rounds only with physicians at the nurses' station and give the nurses a written summary afterward</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Avoid documenting decisions to protect privacy and communicate them verbally at the next shift</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Skip the patient's preferences to save time and make decisions based on the team's schedule</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Include the nurse, other disciplines, and the patient or family, with a clear plan documented</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Inclusive rounds improve coordination and shared decisions.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Excluding disciplines loses information.</p><p><b>B. </b>Decisions must be documented.</p><p><b>C. </b>Patient goals guide the plan.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="98">
+  <div class="qmeta"><span class="num">Q98</span><span>Quality measures</span></div>
+  <div class="qtext">A unit tracks the rate of catheter-associated urinary tract infections. What type of measure is this?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">A balancing measure</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">An outcome measure</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">A process measure</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">A structure measure</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Infection rates show results of care.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Balancing measures check for unintended effects of a change.</p><p><b>C. </b>Process measures track whether steps are performed.</p><p><b>D. </b>Structure measures address resources and setting.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="99">
+  <div class="qmeta"><span class="num">Q99</span><span>Constructive feedback</span></div>
+  <div class="qtext">An RN needs to give feedback to a colleague about late documentation. Which approach is best?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Wait until the annual review to say anything and then include all examples in the written evaluation</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Speak privately, describe specific observations, and agree on a plan for improvement</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Send an angry text message after the shift describing every late entry in the record</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Criticize the nurse in front of the team so that everyone learns from the documentation problem</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Specific, private, and timely feedback is most effective.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Delayed feedback loses value.</p><p><b>C. </b>Anger prevents constructive change.</p><p><b>D. </b>Public criticism humiliates.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="100">
+  <div class="qmeta"><span class="num">Q100</span><span>Safety huddle</span></div>
+  <div class="qtext">A medical-surgical unit starts brief safety huddles at the start of each shift. Which practice makes the huddle most useful?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Hold it only when a serious event has already happened on the unit, to review what went wrong</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Let the discussion run until every nurse has shared every concern from the past week, with detailed notes taken on every topic</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Use it to review the schedule of staff vacations and shift swaps for the entire month ahead of the unit</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Keep it short, focus on risks for the shift, assign owners to actions, and follow up on them</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Short, action-oriented huddles help the team anticipate problems and close the loop on solutions.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Waiting for an event misses the proactive purpose of a huddle.</p><p><b>B. </b>Long, unfocused meetings reduce participation and rarely end with clear actions.</p><p><b>C. </b>Scheduling information does not target patient safety risks.</p></div></div>
+  </div>
+</div>
+  <div class="area-nav"><a class="btn btn-ghost" href="professional-concepts.html">← Professional</a><a class="btn btn-ghost" href="./">All domains</a><a class="btn btn-teal" href="./">All domains →</a></div>
+
+  <footer>
+    <p>Not affiliated with, endorsed by, or sponsored by MSNCB, the owner of the CMSRN® certification.</p>
+    <p>© 2026 Evan Marston. All rights reserved.</p>
+  </footer>
+</div>
+<script>
+(function(){
+var KEY="hy100:nursing-teamwork", saved={};
+try{ saved=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ saved={}; }
+var cards=document.querySelectorAll('.pcard'), TOTAL=cards.length;
+function score(){ var a=0,c=0; cards.forEach(function(k){ if(k.classList.contains('answered')){a++; if(k.dataset.ok==='1')c++;} });
+  document.getElementById('score-readout').textContent=a+' / '+TOTAL+' answered'+(a?'  ·  '+c+' correct':''); }
+function reveal(card,letter,persist){
+  if(card.classList.contains('answered')) return;
+  var opt=card.querySelector('button.opt[data-letter="'+letter+'"]'); if(!opt) return;
+  card.classList.add('answered'); var ok=opt.dataset.correct==='1'; card.dataset.ok=ok?'1':'0';
+  opt.classList.add(ok?'correct':'wrong');
+  if(!ok){ var r=card.querySelector('button.opt[data-correct="1"]'); if(r) r.classList.add('correct'); }
+  var res=card.querySelector('.result'); res.hidden=false;
+  var v=res.querySelector('.verdict'); v.textContent=ok?'Correct':'Not quite'; v.className='verdict '+(ok?'good':'bad');
+  if(persist){ saved[card.dataset.q]=[letter,ok?1:0]; try{ localStorage.setItem(KEY,JSON.stringify(saved)); }catch(e){} }
+}
+cards.forEach(function(card){
+  card.querySelectorAll('button.opt').forEach(function(b){ b.addEventListener('click',function(){ reveal(card,b.dataset.letter,true); score(); }); });
+  var s=saved[card.dataset.q]; if(s) reveal(card,s[0],false);
+});
+score();
+})();
+</script>
+</body>
+</html>
