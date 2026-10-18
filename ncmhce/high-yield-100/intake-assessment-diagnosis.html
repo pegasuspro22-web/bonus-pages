@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<title>NCMHCE High-Yield 100, Intake, Assessment, and Diagnosis — NCMHCE Study Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12141F; --paper:#EFEDE4; --surface:#FFFFFF;
+  --navy:#131C47; --navy-2:#1E2C6B; --navy-ink:#ffffff; --gold:#D6A61E; --gold-ink:#1B1500;
+  --line:#D3CFC0; --line-strong:#B7B29E;
+  --muted:#3E4155; --muted-2:#6B6E82;
+  --brick:#B23A26; --brick-ink:#ffffff;
+  --shadow: 0 2px 4px rgba(18,20,31,.06), 0 16px 32px -18px rgba(18,20,31,.28);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:"Work Sans",system-ui,sans-serif; font-size:16.5px; line-height:1.6; padding-inline:20px;}
+h1,h2,h3{font-family:"Barlow Condensed",system-ui,sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.01em; text-wrap:balance; margin:0; color:var(--ink);}
+.eyebrow,.btn,.stat-num,.step-label,.section-tag{font-family:"Barlow Condensed",system-ui,sans-serif;}
+.mono,.stat-num,.subject-chip b{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
+a{color:inherit;}
+.shell{max-width:640px; margin:0 auto; padding-block:0 56px;}
+.topbar{display:flex; align-items:center; gap:10px; padding-block:18px; margin-bottom:0;}
+.topbar .mark{width:30px; height:30px; flex:none;}
+.topbar .brand{font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1rem; letter-spacing:.04em; text-transform:uppercase; color:var(--navy);}
+.topbar .brand-sub{font-family:"Work Sans",sans-serif; font-size:.82rem; color:var(--muted-2);}
+.back-link{display:inline-block; margin:18px 0; font-family:"Barlow Condensed",sans-serif; font-weight:600; font-size:.95rem; letter-spacing:.02em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold); padding:.4em .9em; border-radius:5px; text-decoration:none;}
+.hero{background:var(--navy); color:var(--navy-ink); margin-top:8px; padding:32px 24px 44px; border-radius:14px; border-bottom:5px solid var(--gold);}
+.eyebrow{display:inline-flex; align-items:center; gap:.5em; font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold); padding:.3em .8em; border-radius:4px;}
+.hero h1{font-size:clamp(2.1rem,7vw,2.85rem); line-height:1.05; margin-top:.7rem; max-width:19ch; color:#fff;}
+.hero p.lede{margin-top:.9rem; color:#D9DDF2; font-size:1.1rem; max-width:42ch; font-weight:400;}
+.vitals{margin:-24px 10px 0; background:var(--surface); border:2px solid var(--ink); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; position:relative; z-index:2;}
+.vitals-head{padding:10px 18px; background:var(--ink); color:#fff;}
+.vitals-head .label{font-family:"Barlow Condensed",sans-serif; font-size:.85rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;}
+.vitals-grid{display:grid; grid-template-columns:repeat(4,1fr);}
+.vitals-grid .cell{padding:16px 10px; border-right:1px solid var(--line); border-top:1px solid var(--line); text-align:center;}
+.vitals-grid .cell:nth-child(4n){border-right:none;}
+.vitals-grid .cell:nth-child(-n+4){border-top:none;}
+.stat-num{font-size:2rem; font-weight:700; color:var(--navy); line-height:1; display:block;}
+.stat-label{margin-top:6px; font-family:"Work Sans",sans-serif; font-size:.72rem; color:var(--muted); line-height:1.3; text-transform:uppercase; letter-spacing:.02em; font-weight:600;}
+.section-tag{display:inline-flex; align-items:center; gap:.5em; margin-top:48px; font-size:.82rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:var(--navy); padding:.4em .9em; border-radius:4px;}
+h2.section-title{margin-top:14px; font-size:1.7rem;}
+.chart{margin-top:18px; border:2px solid var(--ink); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);}
+.chart-row{display:grid; grid-template-columns:44px 1fr; gap:14px; padding:20px 20px; align-items:start;}
+.chart-row + .chart-row{border-top:1px solid var(--line);}
+.chart-row .idx{width:34px; height:34px; border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1.05rem;}
+.chart-row .step-label{font-weight:700; font-size:1.12rem; margin:0 0 .3rem; text-transform:none; font-family:"Work Sans",sans-serif; color:var(--ink);}
+.chart-row p{margin:0; color:var(--muted); font-size:.98rem;}
+.cta-row{margin:14px 20px 20px; display:flex; flex-wrap:wrap; gap:10px;}
+.btn{display:inline-flex; align-items:center; gap:.55em; font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:.02em; text-transform:uppercase; padding:.7em 1.3em; border-radius:6px; text-decoration:none; border:2px solid transparent;}
+.btn-navy{background:var(--navy); color:#fff;}
+.btn-gold{background:var(--gold); color:var(--gold-ink);}
+.btn-brick{background:var(--brick); color:var(--brick-ink);}
+.btn-ghost{background:#fff; color:var(--navy); border-color:var(--ink);}
+.subject-chip{margin:0 20px 20px; display:inline-block; font-family:"Work Sans",sans-serif; font-size:.85rem; color:var(--ink); background:#fff; border:2px dashed var(--brick); border-radius:6px; padding:.55em .8em;}
+.alt-path{margin-top:22px; padding:16px 18px; border:2px solid var(--line-strong); color:var(--muted); font-size:.95rem; background:var(--surface); border-radius:var(--radius);}
+.alt-path b{color:var(--ink);}
+.todo{display:inline-block; margin:0 20px 14px; font-size:.8rem; font-weight:700; color:var(--brick); font-family:"IBM Plex Mono",monospace;}
+.soon{margin-top:28px; padding:32px 22px; text-align:center; border:2px dashed var(--line-strong); border-radius:var(--radius); background:var(--surface); color:var(--muted);}
+.soon b{color:var(--ink); display:block; margin-bottom:.4em; font-family:"Barlow Condensed",sans-serif; font-size:1.2rem; text-transform:uppercase;}
+.hub-card{margin-top:22px; padding:22px; border:2px solid var(--ink); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);}
+.hub-card h3{font-size:1.35rem;}
+.hub-card p{color:var(--muted); font-size:.98rem; margin:.6rem 0 0; font-family:"Work Sans",sans-serif; text-transform:none;}
+.hub-card .cta-row{margin:16px 0 0; padding:0;}
+footer{margin-top:52px; padding-top:22px; border-top:2px solid var(--ink); color:var(--muted-2); font-size:.82rem;}
+footer p{margin:.25em 0;}
+@media (max-width:520px){
+  .vitals-grid{grid-template-columns:repeat(2,1fr);}
+  .vitals-grid .cell:nth-child(2n){border-right:none;}
+  .vitals-grid .cell:nth-child(-n+2){border-top:none;}
+  .vitals-grid .cell:nth-child(3),.vitals-grid .cell:nth-child(4){border-top:1px solid var(--line);}
+}
+
+:root{--ok:#1D6B3F; --ok-soft:#E4F2EA; --bad:#B3402A; --bad-soft:#FBE9E4;}
+.shell.wide{max-width:760px;}
+.card-list{display:flex; flex-direction:column; gap:12px; margin-top:18px;}
+.tcard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); text-decoration:none;}
+.tcard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.tcard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.tcard .go{flex:none; font-family:"Work Sans",sans-serif; font-weight:600; font-size:.8rem; letter-spacing:.06em; color:#fff; background:var(--navy); padding:.6em .95em; border-radius:6px;}
+.note{margin-top:22px; padding:14px 16px; border-left:3px solid var(--line-strong); background:var(--surface); border-radius:0 var(--radius) var(--radius) 0; color:var(--muted); font-size:.92rem;}
+.btn[disabled]{opacity:.45; cursor:not-allowed;}
+button.btn{cursor:pointer; font-family:"Work Sans",system-ui,sans-serif;}
+.panel{margin-top:22px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.panel h2{font-family:"Work Sans",sans-serif; font-size:1.05rem; margin:0 0 .6rem;}
+.panel p{margin:.5rem 0; color:var(--muted);}
+.panel ul{margin:.5rem 0 1rem; padding-left:1.2rem; color:var(--muted);}
+.gate{display:flex; gap:.7rem; align-items:flex-start; margin:14px 0 16px; font-size:.95rem;}
+.gate input{margin-top:.25rem; width:18px; height:18px; accent-color:var(--navy); flex:none;}
+.runbar{position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; margin-top:16px; background:var(--navy); color:#fff; border-radius:var(--radius); font-family:"Work Sans",sans-serif; font-size:.82rem; font-weight:600;}
+.runbar .mono{font-size:.9rem;}
+.bar{height:6px; border-radius:3px; background:var(--line); overflow:hidden;}
+.bar > i{display:block; height:100%; background:var(--navy-2);}
+.q{margin-top:18px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.q .qno{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--navy-2); font-weight:600; letter-spacing:.04em;}
+.q .qdom{font-family:"Work Sans",sans-serif; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-left:.6rem;}
+.q .stem{margin:.6rem 0 .9rem; font-size:1.02rem; line-height:1.5;}
+.opt{display:flex; gap:.8rem; width:100%; text-align:left; align-items:flex-start; padding:.75rem .85rem; margin-top:.5rem; background:var(--paper); border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--ink); cursor:pointer;}
+.opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line-strong); display:grid; place-items:center; font-family:"IBM Plex Mono",monospace; font-size:.8rem; font-weight:600; color:var(--muted);}
+.opt .t{min-width:0; padding-top:.1rem; line-height:1.45;}
+.opt.sel{border-color:var(--navy); background:#E6E9F7;}
+.opt.sel .l{background:var(--navy); border-color:var(--navy); color:#fff;}
+.opt:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+.secnav{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:22px; flex-wrap:wrap;}
+.secnav .mid{font-size:.82rem; color:var(--muted); font-family:"IBM Plex Mono",monospace;}
+.dots{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+.dots button{width:2rem; height:2rem; border-radius:6px; border:1px solid var(--line-strong); background:var(--surface); font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--muted); cursor:pointer;}
+.dots button.done{background:var(--navy); border-color:var(--navy); color:#fff;}
+.dots button.cur{outline:2px solid var(--gold); outline-offset:1px;}
+.score{margin-top:26px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.score-top{padding:22px 20px; display:flex; gap:18px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--line);}
+.score-top .big{font-family:"IBM Plex Mono",monospace; font-size:2.6rem; font-weight:600; color:var(--navy); line-height:1;}
+.score-top .sub{color:var(--muted); font-size:.95rem; min-width:0;}
+.refline{position:relative; margin:18px 20px 6px; height:10px; border-radius:5px; background:var(--line);}
+.refline i{position:absolute; left:0; top:0; bottom:0; border-radius:5px; background:var(--navy-2);}
+.refline b{position:absolute; top:-5px; width:2px; height:20px; background:var(--gold);}
+.reflabel{margin:0 20px 18px; font-size:.78rem; color:var(--muted-2);}
+.dom{padding:0 20px 18px;}
+.dom-row{display:grid; grid-template-columns:minmax(0,1fr) 3.4rem; gap:4px 12px; margin-top:12px; font-size:.88rem;}
+.dom-row .n{font-family:"IBM Plex Mono",monospace; text-align:right; color:var(--navy); font-weight:600;}
+.dom-row .bar{grid-column:1 / -1;}
+.actions{display:flex; gap:10px; flex-wrap:wrap; padding:0 20px 22px;}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px;}
+.tabs button{padding:.5em .9em; border-radius:999px; border:1px solid var(--line-strong); background:var(--surface); color:var(--muted); font:600 .82rem "Work Sans",sans-serif; cursor:pointer;}
+.tabs button[aria-pressed="true"]{background:var(--navy); color:#fff; border-color:var(--navy);}
+.rev .opt{cursor:default;}
+.rev .opt.right{border-color:var(--ok); background:var(--ok-soft);}
+.rev .opt.right .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.rev .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.rev .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.tag{display:inline-block; margin-left:.5rem; font:600 .68rem "Work Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase;}
+.tag.ok{color:var(--ok);} .tag.bad{color:var(--bad);} .tag.skip{color:var(--muted-2);}
+.why{margin-top:14px; padding:14px 16px; border-radius:8px; background:#FBF1CF; border:1px solid #EBD6AE; font-size:.93rem;}
+.why h4{margin:0 0 .35rem; font:700 .72rem "Work Sans",sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--gold);}
+.why p{margin:.3rem 0; color:var(--ink);}
+.why .others{margin-top:.6rem; padding-top:.6rem; border-top:1px dashed #E1C58E;}
+.why .others p{font-size:.9rem; color:var(--muted);}
+.why .others b{font-family:"IBM Plex Mono",monospace; color:var(--ink);}
+@media (max-width:520px){.q{padding:14px;} .runbar{font-size:.76rem;}}
+
+.callout{margin-top:26px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.callout.alert{border-color:var(--gold); background:#FBF1CF;}
+.callout h3{font-family:"Work Sans",sans-serif; font-size:1.1rem; margin:.4rem 0 0;}
+.callout p{margin:.6rem 0 0; color:var(--muted);}
+.feat{display:grid; grid-template-columns:28px 1fr; gap:12px; padding:14px 0; border-top:1px solid var(--line);}
+.feat:first-child{border-top:none; padding-top:0;}
+.feat .tick{width:24px; height:24px; border-radius:6px; background:var(--navy); color:#fff; display:grid; place-items:center; font-weight:700; font-size:.85rem;}
+.feat h3{font-family:"Work Sans",sans-serif; font-size:1rem; margin:0;}
+.feat p{margin:.2rem 0 0; color:var(--muted); font-size:.95rem;}
+.or{display:flex; align-items:center; gap:12px; margin:18px 0; color:var(--muted-2); font:600 .75rem "Work Sans",sans-serif; letter-spacing:.1em; text-transform:uppercase;}
+.or::before,.or::after{content:""; flex:1; height:1px; background:var(--line-strong);}
+.how{padding:20px; border-radius:var(--radius); border:1px solid var(--line); background:var(--surface);}
+.how.main{border-color:var(--gold); background:#FBF1CF;}
+.how p{margin:0; color:var(--muted);}
+.how .cta-row{margin:14px 0 0;}
+.faq dt{font:600 1rem "Work Sans",sans-serif; margin-top:16px;}
+.faq dd{margin:.25rem 0 0; color:var(--muted);}
+.pk-head{margin-top:22px;}
+.pk-head .n{font:600 .72rem "IBM Plex Mono",monospace; letter-spacing:.06em; color:var(--navy-2); text-transform:uppercase;}
+.pk-head h2{font-family:"Work Sans",sans-serif; font-size:1.6rem; margin:.3rem 0 0;}
+.pcard{margin-top:16px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.pcard .qmeta{display:flex; gap:.7rem; align-items:baseline; font:600 .72rem "Work Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase; color:var(--muted-2);}
+.pcard .qmeta .num{font-family:"IBM Plex Mono",monospace; color:var(--navy-2);}
+.pcard .qtext{margin:.6rem 0 .8rem; font-size:1.02rem; line-height:1.5;}
+.pcard .opt{cursor:pointer;}
+.pcard.answered .opt{cursor:default;}
+.pcard.answered .opt.correct{border-color:var(--ok); background:var(--ok-soft);}
+.pcard.answered .opt.correct .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.pcard.answered .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.pcard.answered .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.verdict{font:700 .78rem "Work Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; margin-top:14px;}
+.verdict.good{color:var(--ok);} .verdict.bad{color:var(--bad);}
+.area-nav{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;}
+.area-nav .btn{flex:1 1 30%; justify-content:center; text-align:center;}
+#score-readout{margin-left:auto; font:600 .75rem "IBM Plex Mono",monospace;}
+.acard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.acard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.acard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.acard .prog{font:600 .75rem "IBM Plex Mono",monospace; color:var(--navy-2);}
+.acard .go{flex:none; font:600 .8rem "Work Sans",sans-serif; letter-spacing:.06em; color:#fff; background:var(--navy); padding:.6em .95em; border-radius:6px; text-decoration:none;}
+.linkbtn{background:none; border:none; padding:0; font:600 .78rem "Work Sans",sans-serif; letter-spacing:.04em; color:var(--muted); text-decoration:underline; cursor:pointer;}
+
+.btn-teal{background:var(--navy); color:#fff;}
+.btn-vital{background:var(--gold); color:var(--gold-ink);}
+.runbar{background:var(--navy);}
+.callout.alert{background:#FBF1CF; border-color:var(--gold);}
+.tcard h3,.acard h3{font-size:1.2rem; text-transform:uppercase;}
+.tcard p,.acard p{font-family:"Work Sans",sans-serif; text-transform:none;}
+.tcard .go,.acard .go{font-family:"Barlow Condensed",sans-serif; font-size:1rem;}
+#rmark{display:none;}
+.why h4{color:var(--brick);}
+.why .others{border-top-color:#D8C27A;}
+.how.main{border-color:var(--gold); background:#FBF1CF;}
+.q .qdom{text-transform:uppercase;}
+.casebox{background:#fff; border:1px solid var(--line-strong); border-left:6px solid var(--navy); border-radius:var(--radius); padding:14px 16px; margin:0 0 14px;}
+.casebox .ctag{display:block; font-family:"Barlow Condensed",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.06em; font-size:.95rem; color:var(--navy-2); margin-bottom:6px;}
+.casebox p{margin:0; line-height:1.55;}
+.casedet{margin:0 0 12px;} .casedet summary{cursor:pointer; font-weight:600; color:var(--navy-2);}
+.casedet .casebox{margin-top:8px;}
+.q.newcase{margin-top:26px;}
+.bonusban{background:var(--navy); color:#fff; border:3px solid var(--gold); border-radius:var(--radius); padding:20px 18px; margin:22px 0; text-align:center; box-shadow:0 8px 22px -12px rgba(19,28,71,.55);}
+.bonusban .free{display:inline-block; background:var(--gold); color:var(--gold-ink); font-family:"Barlow Condensed",sans-serif; font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:1rem; padding:3px 12px; border-radius:999px; margin-bottom:10px;}
+.bonusban h2{color:#fff; font-size:1.9rem; line-height:1.05; margin:0 0 8px;}
+.bonusban p{color:#E6E9F7; margin:0 auto 16px; max-width:34ch;}
+.bonusban .bigbtn{display:block; background:var(--gold); color:var(--gold-ink); text-decoration:none; font-family:"Barlow Condensed",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.03em; font-size:1.35rem; padding:15px 12px; border-radius:8px;}
+.bonusban .bigbtn:hover,.bonusban .bigbtn:focus-visible{background:#fff; outline:3px solid var(--gold);}
+</style>
+</head>
+<body>
+<div class="shell wide">
+
+  <div class="topbar">
+    <svg class="mark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+      <rect width="30" height="30" rx="5" fill="#131C47"/>
+      <path d="M7 22L13 15L17 19L23 10" stroke="#D6A61E" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M18.5 9.5H23.5V14.5" stroke="#D6A61E" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="brand">NCMHCE Study Suite</span>
+    <span class="brand-sub">— Digital Companion</span>
+  </div>
+
+  <a href="./" class="back-link">← All domains</a>
+  <div class="runbar"><span>NCMHCE HIGH-YIELD 100</span><span id="score-readout"></span></div>
+  <div class="pk-head"><div class="n">Domain 2 of 5 · 25 questions</div><h2>Intake, Assessment, and Diagnosis</h2></div>
+  
+<div class="pcard" data-q="16">
+  <div class="qmeta"><span class="num">Q16</span><span>Psychotic symptoms and substances</span></div>
+  <div class="qtext">Roommates bring in a 24-year-old man who hears voices and believes the neighbors are watching him. The symptoms began two days after he started using methamphetamine heavily and have eased over four days of abstinence. Which diagnosis is most strongly supported?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Brief Psychotic Disorder</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Delusional Disorder</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Schizophrenia</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Substance/Medication-Induced Psychotic Disorder</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Psychotic symptoms that began during heavy stimulant use and fade with abstinence point to a substance-induced cause.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>This diagnosis applies only when the symptoms are not attributable to a substance.</p><p><b>B. </b>Delusional disorder involves persistent delusions without prominent hallucinations, lasting at least a month.</p><p><b>C. </b>Schizophrenia needs six months of disturbance and symptoms not better explained by a substance.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="17">
+  <div class="qmeta"><span class="num">Q17</span><span>Suicide risk and level of care</span></div>
+  <div class="qtext">A 34-year-old woman with moderate depressive symptoms says she sometimes wishes she would not wake up. She has no plan, no intent, no prior attempts, good family support, and agrees to work on a safety plan. What is the most appropriate level of care?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Schedule monthly follow-up visits and provide a crisis-line number for emergencies</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Arrange involuntary hospitalization because any death wish requires inpatient treatment</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Provide outpatient counseling, a collaborative safety plan, and frequent risk reassessment</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Treat depressive symptoms without further risk monitoring because she denies a plan</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Passive ideation without plan or intent and with strong protective factors fits the least restrictive effective level of care.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Monthly contact is too infrequent for a client with current suicidal thoughts.</p><p><b>B. </b>Hospitalization is not the least restrictive option when risk is low and protective factors are strong.</p><p><b>D. </b>Risk can change, so ongoing reassessment is part of care even when ideation is passive.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="18">
+  <div class="qmeta"><span class="num">Q18</span><span>Trauma and dissociation</span></div>
+  <div class="qtext">A woman attending an intensive outpatient program after an assault reports nightmares and moments when she “zones out” during conversations. What is the best next step?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Assess trauma symptoms, dissociation, functioning, and safety while continuing intensive outpatient care</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Discharge her from the program because trauma symptoms fall outside its treatment scope</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Begin intensive trauma-exposure work immediately before assessing dissociation, functioning, or current safety</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Transfer her to inpatient treatment immediately because dissociation always requires hospitalization</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Assessment of trauma, dissociation, functioning, and safety guides treatment without disrupting care that is working.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Trauma symptoms are often central to the presentation and should be assessed, not excluded.</p><p><b>C. </b>Intensive trauma processing before assessing dissociation and safety can destabilize the client.</p><p><b>D. </b>Dissociation alone does not require hospitalization when safety and functioning are adequate.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="19">
+  <div class="qmeta"><span class="num">Q19</span><span>Co-occurring disorders</span></div>
+  <div class="qtext">A 20-year-old college student presents with low mood and anxiety and reports daily cannabis use. Which information is most important to gather next?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Her grades from prior semesters and whether academic performance has recently declined</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Her family's views about cannabis laws and their approval of her use</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Amount, frequency, impairment, and whether mood symptoms preceded or followed cannabis use</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Whether she previously used antidepressants and how she responded to those medications</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>The timing of symptoms relative to substance use separates an independent disorder from a substance-related one.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Grades show impact but do not establish whether symptoms are independent of use.</p><p><b>B. </b>Family opinions do not bear on diagnosis or treatment planning.</p><p><b>D. </b>Treatment history helps but cannot determine the diagnosis without the use and symptom timeline.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="20">
+  <div class="qmeta"><span class="num">Q20</span><span>Partner violence screening</span></div>
+  <div class="qtext">A woman asks for couple counseling, saying her husband is “very controlling” and checks her phone each day. Which information is most important before the counselor agrees to joint sessions?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Whether she feels afraid and whether coercion, threats, monitoring, or harm are present, asked privately.</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Whether both partners agree about household finances, spending limits, shared responsibilities, and major family decisions.</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">How long they have been married, how conflicts usually begin, and which partner first requested counseling.</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">His description of the conflict during a joint session, so each partner can respond to the other's concerns.</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Safety screening for violence, done privately, determines whether couple counseling is appropriate at all.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Disagreement about money is secondary to the question of safety.</p><p><b>C. </b>These details do not address safety or the suitability of joint sessions.</p><p><b>D. </b>Raising possible abuse in a joint session can put the woman at risk.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="21">
+  <div class="qmeta"><span class="num">Q21</span><span>Chronic suicidal thoughts</span></div>
+  <div class="qtext">A client with borderline personality traits has chronic urges to self-harm. She has no current plan or intent, lives in stable housing, and engages well in weekly therapy. What is the most appropriate level of care?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Hospitalize her now, because chronic suicidal thoughts in personality disorders require inpatient care</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Stop risk monitoring, since chronic thoughts are not a sign of acute danger</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Continue outpatient care with ongoing suicide-risk monitoring and a collaborative safety plan</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">End treatment and refer out, because personality disorder presentations cannot be managed in outpatient counseling</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Chronic ideation without acute risk is managed in outpatient care with monitoring and a shared safety plan.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Admission is reserved for acute risk and would be more restrictive than necessary.</p><p><b>B. </b>Risk fluctuates, so monitoring continues even when ideation is long-standing.</p><p><b>D. </b>Outpatient work is an accepted setting for these clients, and she is engaged.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="22">
+  <div class="qmeta"><span class="num">Q22</span><span>Assessment instruments</span></div>
+  <div class="qtext">At intake, a client scores 28 on the Yale-Brown Obsessive Compulsive Scale (Y-BOCS). How should the counselor interpret the result?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">It rules out other anxiety disorders, since the scale is specific to OCD</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">It measures personality traits that explain the compulsions</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">It points to severe symptoms and gives a starting point for later comparison</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">It confirms OCD on its own, so no clinical interview is needed</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>A score in this range reflects severe symptoms and serves as a starting point for monitoring response.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>A symptom scale cannot rule out other conditions.</p><p><b>B. </b>The Y-BOCS measures obsessive-compulsive symptom severity, not personality.</p><p><b>D. </b>An instrument supports but never replaces a diagnostic interview.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="23">
+  <div class="qmeta"><span class="num">Q23</span><span>Family assessment tools</span></div>
+  <div class="qtext">A family therapist wants to map patterns of substance use, divorce, and estrangement across three generations of one family. Which tool is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">A genogram</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">A mental status examination</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">The Columbia-Suicide Severity Rating Scale</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">The Alcohol Use Disorders Identification Test</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>A genogram maps relationships and recurring patterns across generations.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>The mental status examination records a client's current functioning, not family patterns.</p><p><b>C. </b>This scale screens suicide risk and does not map family history.</p><p><b>D. </b>It screens an individual's drinking and does not show multigenerational patterns.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="24">
+  <div class="qmeta"><span class="num">Q24</span><span>Dissociation screening</span></div>
+  <div class="qtext">A client reports losing blocks of time and finding items at home that she does not remember buying. Which screening instrument is most appropriate?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Patient Health Questionnaire-9</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Alcohol Use Disorders Identification Test</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Dissociative Experiences Scale–II</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Generalized Anxiety Disorder-7</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>This instrument is designed to screen for dissociative experiences such as memory gaps.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>The PHQ-9 screens depressive symptoms.</p><p><b>B. </b>The AUDIT screens hazardous drinking.</p><p><b>D. </b>The GAD-7 screens anxiety severity, not memory loss or dissociation.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="25">
+  <div class="qmeta"><span class="num">Q25</span><span>Differential diagnosis</span></div>
+  <div class="qtext">A 45-year-old woman was laid off two months ago. She is anxious and tearful, has trouble working, and has no suicidal thoughts. Her speech is normal and her thinking is organized. She does not meet criteria for major depression. Which diagnosis fits best?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Major Depressive Disorder, based on tearfulness and difficulty functioning after the layoff</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Posttraumatic Stress Disorder, based on distress following the recent job loss</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Generalized Anxiety Disorder, based on anxiety that has persisted for two months</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Adjustment Disorder with mixed anxiety and depressed mood after job loss</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Emotional symptoms within three months of an identifiable stressor, not meeting another disorder's criteria, indicate an adjustment disorder.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>The full symptom criteria for major depression are not met.</p><p><b>B. </b>A layoff is a stressor but not the traumatic exposure this diagnosis requires.</p><p><b>C. </b>This requires excessive worry for at least six months, and her symptoms are two months old.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="26">
+  <div class="qmeta"><span class="num">Q26</span><span>Medical contributors to symptoms</span></div>
+  <div class="qtext">A 38-year-old woman has new-onset anxiety, a fine tremor, unintended weight loss, and trouble tolerating heat. What is the counselor's best next step?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Diagnose generalized anxiety disorder and begin relaxation training based on the reported emotional symptoms.</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Refer her for comprehensive personality testing to identify traits that might explain her anxiety and physical complaints.</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Coordinate prompt medical evaluation, including thyroid testing, before diagnosing anxiety.</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Recommend reducing caffeine intake, monitoring the tremor and weight loss, and returning for follow-up in one month.</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>These features suggest a medical cause that must be ruled out before a psychiatric diagnosis is made.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>A medical contributor has not been excluded, so the diagnosis is premature.</p><p><b>B. </b>Personality testing does not explain physical findings.</p><p><b>D. </b>Delay is inappropriate when physical signs suggest a medical condition.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="27">
+  <div class="qmeta"><span class="num">Q27</span><span>Mental status and risk</span></div>
+  <div class="qtext">A 16-year-old with a flat affect says he sometimes thinks his family would be better off without him. After a direct assessment he reports no plan, no intent, and no attempts, and he agrees to a safety plan with his parents. What is the best course?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Avoid further suicide questions because repeated discussion could introduce suicidal thoughts or increase his distress.</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Arrange immediate psychiatric hospitalization because feeling like a burden always requires inpatient stabilization and observation.</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Continue outpatient counseling with a safety plan and scheduled suicide-risk reassessment.</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Inform his friends, teachers, and school staff about the statement so they can monitor him throughout the day.</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Low-risk ideation with protective factors and an agreed safety plan is managed in outpatient care with follow-up.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Asking directly about suicide does not increase risk and is required.</p><p><b>B. </b>Hospitalization is not the least restrictive option for low-risk ideation.</p><p><b>D. </b>Wide disclosure breaches confidentiality without a clinical need.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="28">
+  <div class="qmeta"><span class="num">Q28</span><span>Biopsychosocial interview</span></div>
+  <div class="qtext">A 62-year-old man comes to counseling two months after a heart attack and says he has felt “off” since. Which question best fits a biopsychosocial interview?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">“Why didn’t you change your diet earlier, given the risks to your heart?”</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">“Can we begin by discussing your childhood experiences and early family relationships?”</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">“Do you take your prescribed heart medication every day at the same time?”</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">“How have your health, daily routine, and relationships changed since the heart attack?”</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>This open question covers the biological, psychological, and social areas of the client's life.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>A “why” question that blames the client closes down exploration.</p><p><b>B. </b>Starting with childhood ignores the presenting concern.</p><p><b>C. </b>This closed question covers a narrow medical detail.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="29">
+  <div class="qmeta"><span class="num">Q29</span><span>Opening the clinical interview</span></div>
+  <div class="qtext">A 19-year-old college student says she cannot stop worrying since she moved out of her parents' home. Which question best explores how the problem began?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">“How did your worry begin after moving away, and how has it affected your daily routine?”</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">“Have you tried relaxation exercises, breathing techniques, or other ways to calm yourself when worry starts?”</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">“Is your family worried about you too, or have they noticed changes since you moved?”</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">“Why can’t you manage college responsibilities as easily as the other students seem to?”</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>This open question explores onset, context, and impact on functioning.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>This suggests a solution before the problem is understood.</p><p><b>C. </b>This closed question does not explore onset or impact.</p><p><b>D. </b>Comparison with others is judgmental and blocks disclosure.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="30">
+  <div class="qmeta"><span class="num">Q30</span><span>Obsessions and compulsions</span></div>
+  <div class="qtext">A client says she repeatedly checks that the stove is off before she can leave home. Which question best assesses whether this is a compulsion?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">“Why do you continue checking the stove when you already know it has been turned off?”</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">“How much time does checking take, and does it reduce fear that something bad will happen?”</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">“Have you considered simply stopping the checking behavior when you are preparing to leave home?”</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">“Do other family members repeatedly check appliances, locks, or other household items before leaving?”</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>Time consumed and anxiety relief are core features that separate compulsions from habits.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>This challenges the client instead of assessing symptom features.</p><p><b>C. </b>Telling someone to stop shows misunderstanding of compulsions.</p><p><b>D. </b>Family patterns matter less than the symptom's time and distress.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="31">
+  <div class="qmeta"><span class="num">Q31</span><span>Cultural formulation and risk</span></div>
+  <div class="qtext">A recently arrived immigrant from Guatemala says her “nerves are broken” and she wishes she could disappear. What is the best way to proceed?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Refer her for immediate psychiatric hospitalization because her cultural background may make her symptoms difficult to evaluate.</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Assign a DSM diagnosis immediately and replace her description of “broken nerves” with clinical terminology.</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Use the Cultural Formulation Interview and directly assess suicide risk.</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">View her wish to disappear as a culturally shaped expression of distress and avoid direct suicide questions.</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>Cultural understanding and direct risk assessment are both needed, and neither replaces the other.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Background alone is not a basis for hospitalization.</p><p><b>B. </b>Dismissing her explanation damages trust and cultural validity.</p><p><b>D. </b>A statement that could signal suicide must always be assessed directly.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="32">
+  <div class="qmeta"><span class="num">Q32</span><span>Eating disorder diagnosis</span></div>
+  <div class="qtext">A 16-year-old girl has a body mass index of 15.8, an intense fear of gaining weight, and restricts her eating. She reports no binge eating or purging in the past three months. Which diagnosis is most strongly supported?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Bulimia Nervosa</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Anorexia Nervosa, binge-eating/purging type</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Avoidant/Restrictive Food Intake Disorder</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Anorexia Nervosa, restricting type</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Low weight, fear of weight gain, and restriction without binge or purge behavior fit the restricting type.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Bulimia is not diagnosed when the person is significantly underweight.</p><p><b>B. </b>This type requires recurrent binge eating or purging, which is absent.</p><p><b>C. </b>This lacks the fear of weight gain that is present here.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="33">
+  <div class="qmeta"><span class="num">Q33</span><span>Observation in assessment</span></div>
+  <div class="qtext">A couple says, “We fight about everything.” After taking histories, which additional information would be most useful?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">What each partner learned from their parents’ marriages about communication, conflict, and emotional closeness.</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">How many arguments occur during a typical week, including minor disagreements and major conflicts.</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Which partner each person identifies as primarily responsible for starting or worsening the conflicts.</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">How they begin, escalate, and repair a disagreement while discussing a problem in session.</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Direct observation of the interaction shows the pattern that self-report may hide.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Family history can matter but does not reveal the present pattern.</p><p><b>B. </b>A count says little about how the conflict actually unfolds.</p><p><b>C. </b>Assigning blame does not reveal the interaction pattern.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="34">
+  <div class="qmeta"><span class="num">Q34</span><span>Interpreting mental status findings</span></div>
+  <div class="qtext">A widow says she briefly heard her husband call her name the evening after the funeral and knew it was not real. She is oriented, her thinking is organized, and her affect is sad. What do these findings suggest?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Dementia, because she was unsure who was speaking</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Substance-induced hallucinations that require immediate toxicology</span></button><button type="button" class="opt" data-letter="C" data-correct="1"><span class="l">C</span><span class="t">Grief-related distress with intact reality testing and organized thinking</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">A psychotic disorder, since she reports hearing a voice</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why C is correct</h4><p>A brief perception during bereavement with preserved insight is within the range of normal grief.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>She is oriented and knew the experience was not real.</p><p><b>B. </b>Nothing in the history suggests substance use.</p><p><b>D. </b>Intact reality testing and organized thinking argue against psychosis.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="35">
+  <div class="qmeta"><span class="num">Q35</span><span>Sleep complaints</span></div>
+  <div class="qtext">A 40-year-old shift worker reports trouble falling asleep for three weeks since a conflict with his supervisor. How should the counselor interpret the problem?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">As sleep apnea that can be confirmed from his reported sleep difficulty and work schedule history.</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">As a normal reaction to workplace stress that does not require additional assessment or follow-up.</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">As insomnia disorder that can be diagnosed during this initial interview despite the brief duration.</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">As significant insomnia symptoms requiring assessment of duration, causes, substance use, and medical factors before diagnosis.</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>A three-week complaint needs a fuller assessment, and a diagnosis cannot be made until criteria and contributors are checked.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Sleep apnea requires medical evaluation and cannot be confirmed from history alone.</p><p><b>B. </b>Significant sleep disruption deserves assessment of causes.</p><p><b>C. </b>The diagnosis requires symptoms lasting at least three months.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="36">
+  <div class="qmeta"><span class="num">Q36</span><span>Interpreting a screening score</span></div>
+  <div class="qtext">At intake, a client scores 16 on the Patient Health Questionnaire-9 (PHQ-9). How should this be interpreted?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">Moderately severe depressive symptoms requiring a diagnostic interview and follow-up</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Major depressive disorder confirmed solely by this screening score, without further clinical assessment</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Normal mood variation requiring no intervention beyond routine re-screening next year</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Primarily anxiety symptoms, because the PHQ-9 is designed to measure anxiety severity</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>A score in this range reflects clinically significant depressive symptoms that need a full evaluation.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>A screening score does not replace a diagnostic interview.</p><p><b>C. </b>A score of 16 is well above the range of normal variation.</p><p><b>D. </b>The PHQ-9 measures depressive symptoms.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="37">
+  <div class="qmeta"><span class="num">Q37</span><span>Monitoring risk during treatment</span></div>
+  <div class="qtext">After three months of improvement, a client loses his job and his suicidal thoughts increase on the monthly outcome measure. What is the best action?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Discharge him because his earlier depression scores showed improvement before the job loss</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Assess suicide risk, update the safety plan, and increase outpatient contact</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Hospitalize him automatically because any increase in suicidal-thought scores indicates imminent danger</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Wait until the next scheduled outcome measure to see whether his scores decrease</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>A change in stressors and scores calls for direct reassessment and added support.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Earlier gains do not outweigh new risk.</p><p><b>C. </b>Admission depends on the assessed level of risk, not a score change alone.</p><p><b>D. </b>Waiting leaves a possible rise in risk unaddressed.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="38">
+  <div class="qmeta"><span class="num">Q38</span><span>Alcohol use assessment</span></div>
+  <div class="qtext">A woman says she has “a few drinks to unwind” each evening, and her partner is concerned. What is the best next step?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Tell her that her evening drinking confirms alcohol use disorder and begin treatment immediately</span></button><button type="button" class="opt" data-letter="B" data-correct="1"><span class="l">B</span><span class="t">Administer the AUDIT and discuss her drinking amount, effects, and consequences</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Ask her partner to keep a private log of each drink without informing her</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">Accept her description of drinking and document no alcohol-related concern at this time</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why B is correct</h4><p>A validated screen plus a collaborative conversation gives objective data without labeling her.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>A diagnosis cannot be made without assessment.</p><p><b>C. </b>Secret monitoring harms trust and is unethical.</p><p><b>D. </b>A partner's concern and daily drinking call for further assessment.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="39">
+  <div class="qmeta"><span class="num">Q39</span><span>Level of care and withdrawal</span></div>
+  <div class="qtext">A man who drinks heavily every day, with his last drink 14 hours ago, shows tremors and sweating. He and his wife ask to begin couple counseling today. What is the best action?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="0"><span class="l">A</span><span class="t">Begin couple counseling today and address his drinking primarily as a communication issue</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">Advise him to stop drinking abruptly at home so couple counseling can begin sooner</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">Teach relaxation skills for his tremors and schedule a follow-up visit next week</span></button><button type="button" class="opt" data-letter="D" data-correct="1"><span class="l">D</span><span class="t">Refer for immediate medical evaluation of alcohol withdrawal before couple counseling</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why D is correct</h4><p>Alcohol withdrawal can be medically dangerous, so medical evaluation comes first.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>A. </b>Medical risk takes priority over relationship work.</p><p><b>B. </b>Abrupt cessation of heavy drinking can cause dangerous withdrawal.</p><p><b>C. </b>Withdrawal symptoms require medical assessment, not relaxation skills.</p></div></div>
+  </div>
+</div>
+<div class="pcard" data-q="40">
+  <div class="qmeta"><span class="num">Q40</span><span>Outcome measures</span></div>
+  <div class="qtext">In the first session, a client scores 14 on the GAD-7 and asks what the number means. What is the best response?</div>
+  <button type="button" class="opt" data-letter="A" data-correct="1"><span class="l">A</span><span class="t">“It shows your anxiety level right now, and we will compare it with later scores to track progress.”</span></button><button type="button" class="opt" data-letter="B" data-correct="0"><span class="l">B</span><span class="t">“It ranks you against other clients here, which helps me determine treatment priorities and the services you need.”</span></button><button type="button" class="opt" data-letter="C" data-correct="0"><span class="l">C</span><span class="t">“It is your diagnosis, and it will probably remain fairly stable even as you participate in treatment.”</span></button><button type="button" class="opt" data-letter="D" data-correct="0"><span class="l">D</span><span class="t">“It predicts how many months of therapy you will need before treatment can end successfully.”</span></button>
+  <div class="result" hidden>
+    <div class="verdict"></div>
+    <div class="why"><h4>Why A is correct</h4><p>Explaining the score as a baseline for tracking change is accurate and collaborative.</p>
+      <div class="others"><h4>Why the others are wrong</h4><p><b>B. </b>Outcome scores monitor the individual's change, not ranking.</p><p><b>C. </b>A score is not a diagnosis and is expected to change with treatment.</p><p><b>D. </b>A single score cannot predict treatment length.</p></div></div>
+  </div>
+</div>
+  <div class="area-nav"><a class="btn btn-ghost" href="ethics-professional-practice.html">← Ethics</a><a class="btn btn-ghost" href="./">All domains</a><a class="btn btn-navy" href="treatment-planning.html">Treatment Planning →</a></div>
+
+  <footer>
+    <p>Not affiliated with, endorsed by, or sponsored by the National Board for Certified Counselors (NBCC), the owner of the NCMHCE examination.</p>
+    <p>© 2026 CLEAR Thinking Guides. All rights reserved.</p>
+  </footer>
+</div>
+<script>
+(function(){
+var KEY="ncmhce-hy100:intake-assessment-diagnosis", saved={};
+try{ saved=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ saved={}; }
+var cards=document.querySelectorAll('.pcard'), TOTAL=cards.length;
+function score(){ var a=0,c=0; cards.forEach(function(k){ if(k.classList.contains('answered')){a++; if(k.dataset.ok==='1')c++;} });
+  document.getElementById('score-readout').textContent=a+' / '+TOTAL+' answered'+(a?'  ·  '+c+' correct':''); }
+function reveal(card,letter,persist){
+  if(card.classList.contains('answered')) return;
+  var opt=card.querySelector('button.opt[data-letter="'+letter+'"]'); if(!opt) return;
+  card.classList.add('answered'); var ok=opt.dataset.correct==='1'; card.dataset.ok=ok?'1':'0';
+  opt.classList.add(ok?'correct':'wrong');
+  if(!ok){ var r=card.querySelector('button.opt[data-correct="1"]'); if(r) r.classList.add('correct'); }
+  var res=card.querySelector('.result'); res.hidden=false;
+  var v=res.querySelector('.verdict'); v.textContent=ok?'Correct':'Not quite'; v.className='verdict '+(ok?'good':'bad');
+  if(persist){ saved[card.dataset.q]=[letter,ok?1:0]; try{ localStorage.setItem(KEY,JSON.stringify(saved)); }catch(e){} }
+}
+cards.forEach(function(card){
+  card.querySelectorAll('button.opt').forEach(function(b){ b.addEventListener('click',function(){ reveal(card,b.dataset.letter,true); score(); }); });
+  var s=saved[card.dataset.q]; if(s) reveal(card,s[0],false);
+});
+score();
+})();
+</script>
+</body>
+</html>
