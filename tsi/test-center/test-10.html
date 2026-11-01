@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<title>Simulation Test 10 — TSI Study Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12141F; --paper:#EFEDE4; --surface:#FFFFFF;
+  --navy:#131C47; --navy-2:#1E2C6B; --navy-ink:#ffffff; --gold:#D6A61E; --gold-ink:#1B1500;
+  --line:#D3CFC0; --line-strong:#B7B29E;
+  --muted:#3E4155; --muted-2:#6B6E82;
+  --brick:#B23A26; --brick-ink:#ffffff;
+  --shadow: 0 2px 4px rgba(18,20,31,.06), 0 16px 32px -18px rgba(18,20,31,.28);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:"Work Sans",system-ui,sans-serif; font-size:16.5px; line-height:1.6; padding-inline:20px;}
+h1,h2,h3{font-family:"Barlow Condensed",system-ui,sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.01em; text-wrap:balance; margin:0; color:var(--ink);}
+.eyebrow,.btn,.stat-num,.step-label,.section-tag{font-family:"Barlow Condensed",system-ui,sans-serif;}
+.mono,.stat-num,.subject-chip b{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
+a{color:inherit;}
+.shell{max-width:640px; margin:0 auto; padding-block:0 56px;}
+.topbar{display:flex; align-items:center; gap:10px; padding-block:18px; margin-bottom:0;}
+.topbar .mark{width:30px; height:30px; flex:none;}
+.topbar .brand{font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1rem; letter-spacing:.04em; text-transform:uppercase; color:var(--navy);}
+.topbar .brand-sub{font-family:"Work Sans",sans-serif; font-size:.82rem; color:var(--muted-2);}
+.back-link{display:inline-block; margin:18px 0; font-family:"Barlow Condensed",sans-serif; font-weight:600; font-size:.95rem; letter-spacing:.02em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold); padding:.4em .9em; border-radius:5px; text-decoration:none;}
+.hero{background:var(--navy); color:var(--navy-ink); margin-top:8px; padding:32px 24px 44px; border-radius:14px; border-bottom:5px solid var(--gold);}
+.eyebrow{display:inline-flex; align-items:center; gap:.5em; font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold); padding:.3em .8em; border-radius:4px;}
+.hero h1{font-size:clamp(2.1rem,7vw,2.85rem); line-height:1.05; margin-top:.7rem; max-width:19ch; color:#fff;}
+.hero p.lede{margin-top:.9rem; color:#D9DDF2; font-size:1.1rem; max-width:42ch; font-weight:400;}
+.vitals{margin:-24px 10px 0; background:var(--surface); border:2px solid var(--ink); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; position:relative; z-index:2;}
+.vitals-head{padding:10px 18px; background:var(--ink); color:#fff;}
+.vitals-head .label{font-family:"Barlow Condensed",sans-serif; font-size:.85rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;}
+.vitals-grid{display:grid; grid-template-columns:repeat(4,1fr);}
+.vitals-grid .cell{padding:16px 10px; border-right:1px solid var(--line); border-top:1px solid var(--line); text-align:center;}
+.vitals-grid .cell:nth-child(4n){border-right:none;}
+.vitals-grid .cell:nth-child(-n+4){border-top:none;}
+.stat-num{font-size:2rem; font-weight:700; color:var(--navy); line-height:1; display:block;}
+.stat-label{margin-top:6px; font-family:"Work Sans",sans-serif; font-size:.72rem; color:var(--muted); line-height:1.3; text-transform:uppercase; letter-spacing:.02em; font-weight:600;}
+.section-tag{display:inline-flex; align-items:center; gap:.5em; margin-top:48px; font-size:.82rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:var(--navy); padding:.4em .9em; border-radius:4px;}
+h2.section-title{margin-top:14px; font-size:1.7rem;}
+.chart{margin-top:18px; border:2px solid var(--ink); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);}
+.chart-row{display:grid; grid-template-columns:44px 1fr; gap:14px; padding:20px 20px; align-items:start;}
+.chart-row + .chart-row{border-top:1px solid var(--line);}
+.chart-row .idx{width:34px; height:34px; border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1.05rem;}
+.chart-row .step-label{font-weight:700; font-size:1.12rem; margin:0 0 .3rem; text-transform:none; font-family:"Work Sans",sans-serif; color:var(--ink);}
+.chart-row p{margin:0; color:var(--muted); font-size:.98rem;}
+.cta-row{margin:14px 20px 20px; display:flex; flex-wrap:wrap; gap:10px;}
+.btn{display:inline-flex; align-items:center; gap:.55em; font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:.02em; text-transform:uppercase; padding:.7em 1.3em; border-radius:6px; text-decoration:none; border:2px solid transparent;}
+.btn-navy{background:var(--navy); color:#fff;}
+.btn-gold{background:var(--gold); color:var(--gold-ink);}
+.btn-brick{background:var(--brick); color:var(--brick-ink);}
+.btn-ghost{background:#fff; color:var(--navy); border-color:var(--ink);}
+.subject-chip{margin:0 20px 20px; display:inline-block; font-family:"Work Sans",sans-serif; font-size:.85rem; color:var(--ink); background:#fff; border:2px dashed var(--brick); border-radius:6px; padding:.55em .8em;}
+.alt-path{margin-top:22px; padding:16px 18px; border:2px solid var(--line-strong); color:var(--muted); font-size:.95rem; background:var(--surface); border-radius:var(--radius);}
+.alt-path b{color:var(--ink);}
+.todo{display:inline-block; margin:0 20px 14px; font-size:.8rem; font-weight:700; color:var(--brick); font-family:"IBM Plex Mono",monospace;}
+.soon{margin-top:28px; padding:32px 22px; text-align:center; border:2px dashed var(--line-strong); border-radius:var(--radius); background:var(--surface); color:var(--muted);}
+.soon b{color:var(--ink); display:block; margin-bottom:.4em; font-family:"Barlow Condensed",sans-serif; font-size:1.2rem; text-transform:uppercase;}
+.hub-card{margin-top:22px; padding:22px; border:2px solid var(--ink); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);}
+.hub-card h3{font-size:1.35rem;}
+.hub-card p{color:var(--muted); font-size:.98rem; margin:.6rem 0 0; font-family:"Work Sans",sans-serif; text-transform:none;}
+.hub-card .cta-row{margin:16px 0 0; padding:0;}
+footer{margin-top:52px; padding-top:22px; border-top:2px solid var(--ink); color:var(--muted-2); font-size:.82rem;}
+footer p{margin:.25em 0;}
+@media (max-width:520px){
+  .vitals-grid{grid-template-columns:repeat(2,1fr);}
+  .vitals-grid .cell:nth-child(2n){border-right:none;}
+  .vitals-grid .cell:nth-child(-n+2){border-top:none;}
+  .vitals-grid .cell:nth-child(3),.vitals-grid .cell:nth-child(4){border-top:1px solid var(--line);}
+}
+
+:root{--ok:#1D6B3F; --ok-soft:#E4F2EA; --bad:#B3402A; --bad-soft:#FBE9E4;}
+.shell.wide{max-width:760px;}
+.card-list{display:flex; flex-direction:column; gap:12px; margin-top:18px;}
+.tcard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); text-decoration:none;}
+.tcard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.tcard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.tcard .go{flex:none; font-family:"Work Sans",sans-serif; font-weight:600; font-size:.8rem; letter-spacing:.06em; color:#fff; background:var(--navy); padding:.6em .95em; border-radius:6px;}
+.note{margin-top:22px; padding:14px 16px; border-left:3px solid var(--line-strong); background:var(--surface); border-radius:0 var(--radius) var(--radius) 0; color:var(--muted); font-size:.92rem;}
+.btn[disabled]{opacity:.45; cursor:not-allowed;}
+button.btn{cursor:pointer; font-family:"Work Sans",system-ui,sans-serif;}
+.panel{margin-top:22px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.panel h2{font-family:"Work Sans",sans-serif; font-size:1.05rem; margin:0 0 .6rem;}
+.panel p{margin:.5rem 0; color:var(--muted);}
+.panel ul{margin:.5rem 0 1rem; padding-left:1.2rem; color:var(--muted);}
+.gate{display:flex; gap:.7rem; align-items:flex-start; margin:14px 0 16px; font-size:.95rem;}
+.gate input{margin-top:.25rem; width:18px; height:18px; accent-color:var(--navy); flex:none;}
+.runbar{position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; margin-top:16px; background:var(--navy); color:#fff; border-radius:var(--radius); font-family:"Work Sans",sans-serif; font-size:.82rem; font-weight:600;}
+.runbar .mono{font-size:.9rem;}
+.bar{height:6px; border-radius:3px; background:var(--line); overflow:hidden;}
+.bar > i{display:block; height:100%; background:var(--navy-2);}
+.q{margin-top:18px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.q .qno{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--navy-2); font-weight:600; letter-spacing:.04em;}
+.q .qdom{font-family:"Work Sans",sans-serif; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-left:.6rem;}
+.q .stem{margin:.6rem 0 .9rem; font-size:1.02rem; line-height:1.5;}
+.opt{display:flex; gap:.8rem; width:100%; text-align:left; align-items:flex-start; padding:.75rem .85rem; margin-top:.5rem; background:var(--paper); border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--ink); cursor:pointer;}
+.opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line-strong); display:grid; place-items:center; font-family:"IBM Plex Mono",monospace; font-size:.8rem; font-weight:600; color:var(--muted);}
+.opt .t{min-width:0; padding-top:.1rem; line-height:1.45;}
+.opt.sel{border-color:var(--navy); background:#E6E9F7;}
+.opt.sel .l{background:var(--navy); border-color:var(--navy); color:#fff;}
+.opt:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+.secnav{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:22px; flex-wrap:wrap;}
+.secnav .mid{font-size:.82rem; color:var(--muted); font-family:"IBM Plex Mono",monospace;}
+.dots{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+.dots button{width:2rem; height:2rem; border-radius:6px; border:1px solid var(--line-strong); background:var(--surface); font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--muted); cursor:pointer;}
+.dots button.done{background:var(--navy); border-color:var(--navy); color:#fff;}
+.dots button.cur{outline:2px solid var(--gold); outline-offset:1px;}
+.score{margin-top:26px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.score-top{padding:22px 20px; display:flex; gap:18px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--line);}
+.score-top .big{font-family:"IBM Plex Mono",monospace; font-size:2.6rem; font-weight:600; color:var(--navy); line-height:1;}
+.score-top .sub{color:var(--muted); font-size:.95rem; min-width:0;}
+.refline{position:relative; margin:18px 20px 6px; height:10px; border-radius:5px; background:var(--line);}
+.refline i{position:absolute; left:0; top:0; bottom:0; border-radius:5px; background:var(--navy-2);}
+.refline b{position:absolute; top:-5px; width:2px; height:20px; background:var(--gold);}
+.reflabel{margin:0 20px 18px; font-size:.78rem; color:var(--muted-2);}
+.dom{padding:0 20px 18px;}
+.dom-row{display:grid; grid-template-columns:minmax(0,1fr) 3.4rem; gap:4px 12px; margin-top:12px; font-size:.88rem;}
+.dom-row .n{font-family:"IBM Plex Mono",monospace; text-align:right; color:var(--navy); font-weight:600;}
+.dom-row .bar{grid-column:1 / -1;}
+.actions{display:flex; gap:10px; flex-wrap:wrap; padding:0 20px 22px;}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px;}
+.tabs button{padding:.5em .9em; border-radius:999px; border:1px solid var(--line-strong); background:var(--surface); color:var(--muted); font:600 .82rem "Work Sans",sans-serif; cursor:pointer;}
+.tabs button[aria-pressed="true"]{background:var(--navy); color:#fff; border-color:var(--navy);}
+.rev .opt{cursor:default;}
+.rev .opt.right{border-color:var(--ok); background:var(--ok-soft);}
+.rev .opt.right .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.rev .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.rev .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.tag{display:inline-block; margin-left:.5rem; font:600 .68rem "Work Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase;}
+.tag.ok{color:var(--ok);} .tag.bad{color:var(--bad);} .tag.skip{color:var(--muted-2);}
+.why{margin-top:14px; padding:14px 16px; border-radius:8px; background:#FBF1CF; border:1px solid #EBD6AE; font-size:.93rem;}
+.why h4{margin:0 0 .35rem; font:700 .72rem "Work Sans",sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--gold);}
+.why p{margin:.3rem 0; color:var(--ink);}
+.why .others{margin-top:.6rem; padding-top:.6rem; border-top:1px dashed #E1C58E;}
+.why .others p{font-size:.9rem; color:var(--muted);}
+.why .others b{font-family:"IBM Plex Mono",monospace; color:var(--ink);}
+@media (max-width:520px){.q{padding:14px;} .runbar{font-size:.76rem;}}
+
+.callout{margin-top:26px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.callout.alert{border-color:var(--gold); background:#FBF1CF;}
+.callout h3{font-family:"Work Sans",sans-serif; font-size:1.1rem; margin:.4rem 0 0;}
+.callout p{margin:.6rem 0 0; color:var(--muted);}
+.feat{display:grid; grid-template-columns:28px 1fr; gap:12px; padding:14px 0; border-top:1px solid var(--line);}
+.feat:first-child{border-top:none; padding-top:0;}
+.feat .tick{width:24px; height:24px; border-radius:6px; background:var(--navy); color:#fff; display:grid; place-items:center; font-weight:700; font-size:.85rem;}
+.feat h3{font-family:"Work Sans",sans-serif; font-size:1rem; margin:0;}
+.feat p{margin:.2rem 0 0; color:var(--muted); font-size:.95rem;}
+.or{display:flex; align-items:center; gap:12px; margin:18px 0; color:var(--muted-2); font:600 .75rem "Work Sans",sans-serif; letter-spacing:.1em; text-transform:uppercase;}
+.or::before,.or::after{content:""; flex:1; height:1px; background:var(--line-strong);}
+.how{padding:20px; border-radius:var(--radius); border:1px solid var(--line); background:var(--surface);}
+.how.main{border-color:var(--gold); background:#FBF1CF;}
+.how p{margin:0; color:var(--muted);}
+.how .cta-row{margin:14px 0 0;}
+.faq dt{font:600 1rem "Work Sans",sans-serif; margin-top:16px;}
+.faq dd{margin:.25rem 0 0; color:var(--muted);}
+.pk-head{margin-top:22px;}
+.pk-head .n{font:600 .72rem "IBM Plex Mono",monospace; letter-spacing:.06em; color:var(--navy-2); text-transform:uppercase;}
+.pk-head h2{font-family:"Work Sans",sans-serif; font-size:1.6rem; margin:.3rem 0 0;}
+.pcard{margin-top:16px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.pcard .qmeta{display:flex; gap:.7rem; align-items:baseline; font:600 .72rem "Work Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase; color:var(--muted-2);}
+.pcard .qmeta .num{font-family:"IBM Plex Mono",monospace; color:var(--navy-2);}
+.pcard .qtext{margin:.6rem 0 .8rem; font-size:1.02rem; line-height:1.5;}
+.pcard .opt{cursor:pointer;}
+.pcard.answered .opt{cursor:default;}
+.pcard.answered .opt.correct{border-color:var(--ok); background:var(--ok-soft);}
+.pcard.answered .opt.correct .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.pcard.answered .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.pcard.answered .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.verdict{font:700 .78rem "Work Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; margin-top:14px;}
+.verdict.good{color:var(--ok);} .verdict.bad{color:var(--bad);}
+.area-nav{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;}
+.area-nav .btn{flex:1 1 30%; justify-content:center; text-align:center;}
+#score-readout{margin-left:auto; font:600 .75rem "IBM Plex Mono",monospace;}
+.acard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.acard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.acard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.acard .prog{font:600 .75rem "IBM Plex Mono",monospace; color:var(--navy-2);}
+.acard .go{flex:none; font:600 .8rem "Work Sans",sans-serif; letter-spacing:.06em; color:#fff; background:var(--navy); padding:.6em .95em; border-radius:6px; text-decoration:none;}
+.linkbtn{background:none; border:none; padding:0; font:600 .78rem "Work Sans",sans-serif; letter-spacing:.04em; color:var(--muted); text-decoration:underline; cursor:pointer;}
+
+.btn-teal{background:var(--navy); color:#fff;}
+.btn-vital{background:var(--gold); color:var(--gold-ink);}
+.runbar{background:var(--navy);}
+.callout.alert{background:#FBF1CF; border-color:var(--gold);}
+.tcard h3,.acard h3{font-size:1.2rem; text-transform:uppercase;}
+.tcard p,.acard p{font-family:"Work Sans",sans-serif; text-transform:none;}
+.tcard .go,.acard .go{font-family:"Barlow Condensed",sans-serif; font-size:1rem;}
+#rmark{display:none;}
+.why h4{color:var(--brick);}
+.why .others{border-top-color:#D8C27A;}
+.how.main{border-color:var(--gold); background:#FBF1CF;}
+.q .qdom{text-transform:uppercase;}
+
+.vitals-grid[data-n="3"] .stat-num{font-size:1.55rem;}
+.dl-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+</style>
+</head>
+<body>
+<div class="shell wide">
+
+  <div class="topbar">
+    <svg class="mark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+      <rect width="30" height="30" rx="5" fill="#131C47"/>
+      <path d="M6 21L15 7L24 21" stroke="#D6A61E" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="15" cy="17.5" r="1.6" fill="#D6A61E"/>
+    </svg>
+    <span class="brand">TSIA2 Study Suite</span>
+    <span class="brand-sub">— Digital Companion</span>
+  </div>
+
+  <a href="./" class="back-link">← Back to Test Center</a>
+  <section id="briefing" class="panel">
+    <span class="eyebrow">Simulation 10</span>
+    <h2 style="font-size:1.9rem; margin-top:.6rem;">TSIA2 Full-Length Practice Test 10</h2>
+    <p>50 multiple-choice questions in 2 sections of 25, covering reading, writing and math. A clock runs while you test so you can track your pace, with no cut-off.</p>
+    <p>Answers stay private until you finish. Then you see your score, your result for Reading &amp; Writing and for Math, and the correct answer to every question.</p>
+    <ul><li>Set aside one uninterrupted sitting.</li><li>No notes, no looking things up.</li><li>Answer every question. Blank answers count as incorrect.</li></ul>
+    <label class="gate"><input type="checkbox" id="chk"><span>I am ready to take this test under exam conditions.</span></label>
+    <button class="btn btn-navy" id="go" disabled>Start the test</button>
+  </section>
+
+  <section id="run" hidden>
+    <div class="runbar"><span>SIMULATION 10</span><span id="count">0 / 50 answered</span><span class="mono" id="clock">0:00:00</span></div>
+    <div class="bar" style="margin-top:10px;"><i id="pbar" style="width:0"></i></div>
+    <div class="dots" id="dots"></div>
+    <div id="qbody"></div>
+    <div class="secnav">
+      <button class="btn btn-ghost" id="prev">← Previous</button>
+      <span class="mid" id="secinfo"></span>
+      <button class="btn btn-navy" id="next">Next section →</button>
+      <button class="btn btn-gold" id="finish" hidden>Finish and score</button>
+    </div>
+    <div class="panel" id="confirm" hidden>
+      <h2>Finish the test?</h2><p id="confirmtxt"></p>
+      <div class="actions" style="padding:0;"><button class="btn btn-gold" id="yes">Finish and score</button><button class="btn btn-ghost" id="no">Keep working</button></div>
+    </div>
+  </section>
+
+  <section id="results" hidden>
+    <div class="score">
+      <div class="score-top"><span class="big" id="rpct"></span><div class="sub"><b style="color:var(--ink);">Your score</b><br><span id="rsub"></span></div></div>
+      <div class="refline"><i id="rfill"></i><b id="rmark"></b></div>
+      <p class="reflabel">Use your result by part to decide where to spend your next hours of study.</p>
+      <div class="dom"><h3 style="font-size:.85rem; letter-spacing:.08em; color:var(--muted-2);">Result by part</h3><div id="rdom"></div></div>
+      <div class="actions"><button class="btn btn-navy" id="rall">Review all answers</button><button class="btn btn-gold" id="rwrong">Review what I missed</button><button class="btn btn-ghost" id="again">Take it again</button></div>
+    </div>
+  </section>
+
+  <section id="review" hidden>
+    <span class="section-tag">Answer review</span>
+    <div class="tabs"><button data-f="all" aria-pressed="true">All</button><button data-f="wrong" aria-pressed="false">Incorrect</button><button data-f="skip" aria-pressed="false">Not answered</button></div>
+    <div id="rlist"></div>
+  </section>
+
+  <footer>
+    <p>Not affiliated with, endorsed by, or sponsored by the Texas Higher Education Coordinating Board or any other owner of the TSIA2 assessment.</p>
+    <p>© 2026 CLEAR Thinking Guides. All rights reserved.</p>
+  </footer>
+</div>
+<script>window.__Q=[{"s": "Most discussions of the history of printing center on major technological breakthroughs, such as the invention of movable type. Yet the survival of many printed works depended less on innovation and more on low-cost, unremarkable editions. These pamphlets and small books were printed on cheap paper in large quantities, circulated quickly, and were rarely preserved in libraries. As a result, historians now piece together their existence from references in letters and account books. The most frequently read materials of the time, therefore, are often the least visible in the historical record.\n\nWhich sentence states the main idea of the passage?", "o": {"A": "Common, inexpensive printed materials were widely read but rarely preserved.", "B": "Large libraries usually failed to collect innovative printed works.", "C": "Historians rely on letters and account books to document printing technology.", "D": "The earliest printing technologies focused on the development of movable type."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "In the passage from Question 1, what is the author’s primary purpose?", "o": {"A": "To explain why the most widely read printed works can be difficult to study today", "B": "To describe how libraries decided which printed materials to preserve", "C": "To argue that historians exaggerate the importance of major inventions", "D": "To compare the popularity of pamphlets with that of longer books"}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "In recent years, several cities have launched “night markets” that occupy formerly vacant lots or underused parking areas. Organizers typically feature small local vendors, live performances, and rotating food options. While some critics portray these events as brief fads, participation has remained strong. Many neighborhood groups report that residents who rarely attend daytime meetings will attend an evening market, start casual conversations, and gradually become more involved in local decision-making. The markets, therefore, may function as informal gateways to civic engagement rather than as mere entertainment.\n\nWhich statement is best supported by the passage?", "o": {"A": "Some residents become more active in community issues after attending night markets.", "B": "Night markets are likely to disappear once the novelty fades.", "C": "Most residents treat night markets as formal meetings for civic decision-making.", "D": "Night markets are primarily designed to raise money for neighborhood groups."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following sentence appears in a student essay:\n\nResearchers have long examined how people respond to the immediate effects of natural disasters, however fewer studies focus on the slower recovery that follows.\n\nWhich revision of the sentence best improves its punctuation and clarity?", "o": {"A": "Researchers have long examined how people respond to the immediate effects of natural disasters however fewer studies focus, on the slower recovery that follows.", "B": "Researchers have long examined how people respond to the immediate effects of natural disasters, however, fewer studies focus on the slower recovery that follows.", "C": "Researchers have long examined how people respond; to the immediate effects of natural disasters; however fewer studies focus on the slower recovery that follows.", "D": "Researchers have long examined how people respond to the immediate effects of natural disasters; however, fewer studies focus on the slower recovery that follows."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "Many museums now offer “pay what you wish” days, during which visitors are invited to contribute any amount instead of a fixed admission fee. Administrators acknowledge that revenue on those days can be unpredictable. Still, they argue that the policy ultimately benefits the institution. Some visitors who would not pay the full price choose to attend, and a portion of them donate more than the standard fee. In addition, museum leaders contend that the goodwill generated by a flexible pricing policy encourages repeat visits and longterm membership.\n\nThe author’s primary purpose in this passage is to:", "o": {"A": "Criticize museums for relying on unpredictable sources of income", "B": "Show how flexible pricing can support both access and institutional stability", "C": "Argue that museums should eliminate admission fees entirely", "D": "Explain why most visitors prefer “pay what you wish” days to regular days"}, "c": "B", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A city council commissioned a report on public transportation usage. The report notes that overall ridership has increased slightly in the past three years but that this growth is uneven across neighborhoods. One district, located near new apartment developments, has seen double-digit increases in bus use. In contrast, another district has experienced a decline, even though schedules there have remained unchanged. The report concludes that population shifts, rather than route quality alone, may significantly influence ridership patterns.\n\nWhich of the following is the best statement of the report’s main idea?", "o": {"A": "Overall transit ridership has grown steadily in every part of the city.", "B": "Population changes can play a major role in explaining differences in transit use.", "C": "New apartment developments always cause large increases in bus ridership.", "D": "Bus schedules should be changed in districts where ridership has declined."}, "c": "B", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "In the passage from Question 6, what can be inferred about the council’s previous assumptions regarding ridership?", "o": {"A": "Council members were unaware of new apartment construction in the city.", "B": "The council expected population shifts to have no effect on bus use.", "C": "The council assumed that route quality was the only factor affecting ridership.", "D": "Council members believed that ridership was declining in every district."}, "c": "C", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "Some educators argue that assigning group projects better prepares students for the workplace, where collaboration is common. Others counter that such assignments can unintentionally mask individual effort. In many group settings, one or two students may complete most of the work, while others contribute minimally yet receive the same grade. To\n\naddress this concern, some instructors require students to submit individual reflections describing their contributions and assessing the group’s process. Although these reflections do not eliminate unequal participation, they can provide instructors with more detailed insight than a single group grade would.\n\nWhich statement best expresses the main idea of the passage?", "o": {"A": "Unequal participation is unavoidable and should not be measured.", "B": "Individual reflections can help instructors evaluate students’ roles within group projects.", "C": "Group projects are no longer common in most classrooms.", "D": "Students prefer individual reflections to traditional group grades."}, "c": "B", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following sentences appear in a student’s paragraph about street trees in urban areas:\n\n(1) Street trees can reduce temperatures on hot days by providing shade and releasing moisture into the air. (2) They also absorb pollutants and improve air quality. (3) Some residents complain about the cost of maintaining street trees, including pruning and sidewalk repairs. (4) In addition, neighborhoods with more trees often experience lower levels of noise from traffic and construction.\n\nWhich sentence most clearly interrupts the paragraph’s focus and should be removed to improve cohesion?", "o": {"A": "Sentence 1", "B": "Sentence 2", "C": "Sentence 3", "D": "Sentence 4"}, "c": "C", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A researcher studying online learning surveyed students at two community colleges. At the first college, students could choose either fully online courses or traditional in-person classes. At the second, most classes were taught in a blended format that combined weekly meetings with online work. The researcher found that students at both colleges reported similar levels of satisfaction with their instructors. However, students in blended courses were more likely to say that deadlines felt manageable. The researcher suggests that regular in-person meetings may help students pace their work more effectively.\n\nWhich conclusion is best supported by this passage?", "o": {"A": "Instructor quality is lower in fully online courses than in blended courses.", "B": "Students prefer blended courses to in-person classes for all subjects.", "C": "Students in fully online courses learn less than those in other formats.", "D": "Having regular in-person meetings may help students organize their time."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "In the late nineteenth century, many cities promoted public drinking fountains as symbols of progress. Reformers argued that ready access to clean water would improve public health and reduce alcohol consumption by offering a free alternative to taverns. However, the placement of these fountains often reflected existing social divisions. Some were installed in prominent downtown locations, while others were confined to certain neighborhoods. As a\n\nresult, the benefits of the new fountains were unevenly distributed, despite their appearance as universally accessible resources.\n\nThe author’s primary purpose in this passage is to:", "o": {"A": "Explain the engineering challenges of installing fountains in crowded streets", "B": "Describe how drinking fountains helped eliminate taverns in many cities", "C": "Show that public health reforms sometimes reinforced existing inequalities", "D": "Argue that access to clean water is more important than public symbolism"}, "c": "C", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A student writes the following sentence:\n\nEach of the committee members were asked to submit their recommendations before Friday’s meeting.\n\nWhich revision corrects the agreement error while maintaining the original meaning?", "o": {"A": "Every committee members were asked to submit their recommendations before Friday’s meeting.", "B": "Each of the committee members were asked to submit his or her recommendations before Friday’s meeting.", "C": "All of the committee members was asked to submit their recommendations before Friday’s meeting.", "D": "Each of the committee members was asked to submit his or her recommendations before Friday’s meeting."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following paragraph appears in an article about neighborhood gardens:\n\nCommunity gardens can offer residents fresh produce, opportunities for exercise, and a chance to meet neighbors they might not otherwise encounter. These gardens occupy vacant lots that might otherwise attract trash or illegal dumping. In many cases, residents report feeling safer in areas where gardens are visible, even if crime statistics do not change significantly.\n\nWhich sentence, if added at the end of the paragraph, would best strengthen its cohesion?", "o": {"A": "However, some residents argue that grocery stores should provide lower-cost produce.", "B": "For these reasons, community gardens can contribute to both the physical and social health of a neighborhood.", "C": "Furthermore, city governments must decide whether to fund parks or gardens.", "D": "In contrast, residents in rural areas often grow their own food."}, "c": "B", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A college advisor writes the following email to students:\n\nBecause registration will open earlier than usual this semester, please review the course schedule this week, furthermore, make an appointment if you have questions about degree requirements.\n\nWhich revision best corrects the punctuation while preserving the original meaning?", "o": {"A": "Because registration will open earlier than usual this semester; please review the course schedule this week, furthermore make an appointment if you have questions about degree requirements.", "B": "Because registration will open earlier than usual this semester, please review the course schedule this week; furthermore, make an appointment if you have questions about degree requirements.", "C": "Because registration will open earlier than usual, this semester please review the course schedule this week, furthermore, make an appointment if you have questions about degree requirements.", "D": "Because registration will open earlier than usual this semester please review the course schedule this week furthermore make an appointment if you have questions about degree requirements."}, "c": "B", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following sentences appear in a draft of a paragraph:\n\n(1) Remote work has become more common in many industries. (2) Some workers appreciate the flexibility to design their own schedules, while others miss the structure of an office environment. (3) Companies are experimenting with hybrid models that combine inperson and remote work. (4) These models are currently being tested in several large cities.\n\nWhich is the most effective way to combine sentences 3 and 4 to improve cohesion and clarity?", "o": {"A": "Companies are experimenting with hybrid models that combine in-person and remote work, and these models are currently being tested in several large cities.", "B": "Companies, experimenting with hybrid models that combine in-person and remote work, these models are currently being tested in several large cities.", "C": "Companies are experimenting with hybrid models, they combine in-person and remote work currently being tested in several large cities.", "D": "Companies are experimenting with hybrid models that combine in-person and remote work, these models are currently being tested in several large cities."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following sentences appear in a student’s paragraph about library programs:\n\n(1) Many public libraries now host technology workshops that teach basic computer skills. (2) These workshops are often led by volunteers from local colleges or businesses. (3) Libraries also offer quiet spaces where students can study for exams. (4) Participants in the workshops report feeling more confident about applying for jobs online.\n\nWhat is the most logical role of sentence 3 in this paragraph?", "o": {"A": "It offers additional evidence of how libraries support learning in multiple ways.", "B": "It introduces a new topic that distracts from the focus on technology workshops.", "C": "It provides a contrasting example of a library service unrelated to education.", "D": "It explains why volunteers choose to lead technology workshops."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A historian writes:\n\nAlthough autobiographies can offer vivid details about a person’s experiences, they must be read with caution. Authors shape their life stories to present particular versions of themselves, sometimes omitting events that contradict that image. Yet these omissions can be as revealing as the episodes an author chooses to describe, indicating what the writer considers too embarrassing, trivial, or controversial to share.\n\nWhich statement is best supported by this passage?", "o": {"A": "Omissions in autobiographies may provide insight into an author’s priorities.", "B": "Most autobiographies are written mainly to entertain readers.", "C": "Historians should avoid using autobiographies as sources.", "D": "Autobiographies are more reliable than other forms of historical evidence."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "In a report on after-school programs, a researcher observes that students who attend tutoring sessions twice a week tend to show modest gains in reading scores. However, those who participate in both tutoring and enrichment activities—such as art or music— demonstrate slightly larger gains, even when the total time spent in the program is the same. The researcher suggests that engaging in a variety of activities may increase students’ motivation to attend regularly, which could partially explain the difference in outcomes.\n\nThe author includes the phrase “even when the total time spent in the program is the same” primarily to:", "o": {"A": "Argue that tutoring should be replaced entirely by enrichment activities", "B": "Emphasize that the benefits are due only to extra time spent studying", "C": "Suggest that enrichment activities take less time than tutoring", "D": "Indicate that differences in outcomes are not solely explained by time spent"}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A college orientation guide states:\n\nStudents who meet with an advisor early in the semester often report feeling more confident about their course selections. This does not mean that advising eliminates all uncertainty; schedules may change as students adjust to new responsibilities. Still, early advising can help students identify realistic course loads and understand how their choices fit into longterm plans.\n\nWhat is the primary purpose of this passage?", "o": {"A": "To explain how early advising can support but not completely guarantee good decisions", "B": "To compare early advising with online course registration tools", "C": "To warn students that advisors may change their schedules without permission", "D": "To argue that students should wait until the middle of the semester to seek advice"}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A writer drafting an article about city bike-share programs has the following sentences:\n\n(1) Many cities have introduced bike-share systems that allow residents to borrow bicycles for short trips. (2) Supporters argue that these systems reduce traffic congestion and promote physical activity. (3) However, some critics question whether the bikes are\n\ndistributed equitably across neighborhoods. (4) Bike-share stations are located in many major cities across the country.\n\nWhich revision best improves cohesion by removing a sentence that adds little new information?", "o": {"A": "Delete sentence 1.", "B": "Delete sentence 2.", "C": "Delete sentence 3.", "D": "Delete sentence 4."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A student writes the following sentence:\n\nThe professor, along with several teaching assistants, have agreed to hold extra review sessions before the exam.\n\nWhich revision correctly fixes the agreement error?", "o": {"A": "The professor, along with several teaching assistants, has agreed to hold extra review sessions before the exam.", "B": "The professor, along with several teaching assistants, have agreed to hold extra review sessions before the exam.", "C": "The professor and several teaching assistants, has agreed to hold extra review sessions before the exam.", "D": "The professor, along with several teaching assistants, have agreed to holds extra review sessions before the exam."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A community organizer writes:\n\nWhile the new community center’s fitness equipment has attracted many visitors, its most significant impact may come from the less visible programs. Parenting classes, financial counseling, and language workshops serve smaller groups, yet participants frequently describe long-term benefits. These programs require sustained commitment from both staff and attendees, but they may ultimately shape residents’ lives more deeply than a single visit to the gym.\n\nWhat is the main idea of this passage?", "o": {"A": "The community center should remove its fitness equipment to save space.", "B": "Residents dislike attending classes that require sustained commitment.", "C": "Fitness equipment is more popular than other services at the community center.", "D": "Less visible educational programs at the community center can have lasting effects."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A student includes the following sentences in a paper about school lunch programs:\n\n(1) Some schools have introduced salad bars to increase students’ access to fresh vegetables. (2) Early evaluations show that students are more likely to choose vegetables when they can serve themselves. (3) Furthermore, cafeteria staff report that food waste has\n\ndecreased. (4) In conclusion, salad bars are more visually appealing than traditional lunch lines.\n\nWhat is the most logical role of sentence 4 in this paragraph?", "o": {"A": "It weakens the paragraph by adding a claim that is not clearly supported.", "B": "It explains why cafeteria staff support the new lunch programs.", "C": "It provides essential evidence for the claim in sentence 2.", "D": "It introduces a new example that supports the previous sentences."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A campus newsletter reports:\n\nLast year, the college added a small food pantry to support students experiencing food insecurity. At first, organizers worried that students might feel embarrassed to use the service. However, usage increased steadily after the pantry relocated to a more central but discreet location, and after faculty began including information about it in their syllabi. These changes suggest that visibility and clear communication can be as important as the availability of resources themselves.\n\nWhat is the author’s primary purpose in this passage?", "o": {"A": "To explain how changes in location and communication increased pantry usage", "B": "To compare the food pantry with other campus services", "C": "To show that students prefer central locations to discreet ones", "D": "To argue that the college should close the pantry because few students use it"}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A student writes the following sentences in an essay about study strategies:\n\n(1) Many students find that reviewing notes shortly after class helps them remember key ideas. (2) Rereading notes allows them to identify points of confusion while the material is still fresh. (3) Waiting until the night before an exam to look at notes can make it harder to fill in missing information. (4) Therefore, students should always study in the library instead of at home.\n\nWhich sentence, if deleted, would most improve the paragraph’s focus?", "o": {"A": "Sentence 1", "B": "Sentence 2", "C": "Sentence 3", "D": "Sentence 4"}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A short passage reads:\n\nSome people assume that taking longer to complete a task always signals a more careful approach. However, research on decision-making suggests that speed and accuracy are not necessarily in conflict. In certain situations, experienced individuals can make rapid choices that are just as reliable as slower, more deliberate decisions. The key difference, according to researchers, is not the amount of time spent but the depth of knowledge that informs the judgment.\n\nWhat can be inferred from this passage?", "o": {"A": "People should avoid relying on their experience when making decisions.", "B": "Quick decisions are always less accurate than slower ones.", "C": "Spending more time on a task guarantees a better outcome.", "D": "Experienced individuals sometimes make fast decisions that are still well founded."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A student is revising the following sentences in a paragraph about note-taking tools:\n\nMany students prefer digital note-taking apps. These apps allow users to organize notes into folders, add tags, and search for specific terms. Paper notebooks remain popular on many campuses.\n\nWhere should the following sentence be placed to best improve cohesion?\n\n“Some students, however, continue to favor paper notebooks because they find writing by hand helps them focus.”", "o": {"A": "Before “Many students prefer digital note-taking apps.”", "B": "After “Many students prefer digital note-taking apps.”", "C": "The sentence should not be added because it changes the topic.", "D": "After “Paper notebooks remain popular on many campuses.”"}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "In a campus survey, students who participated in peer mentoring programs during their first semester were more likely to remain enrolled the following year than those who did not. The survey does not prove that mentoring alone caused this difference, since students who seek mentors may already be more motivated. Still, the findings suggest that structured opportunities to connect with more experienced students can play a meaningful role in supporting new students’ transition to college.\n\nWhich statement is best supported by the passage?", "o": {"A": "Motivation does not affect whether students participate in mentoring programs.", "B": "Students who seek mentors may differ in important ways from those who do not.", "C": "Peer mentoring is the only factor that influences student retention.", "D": "Peer mentoring programs have no effect on students’ decisions to remain in college."}, "c": "B", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A student includes the following sentence in an essay:\n\nThe math department announced that its annual tutoring fair, which features demonstrations of study strategies and introduces students to available resources will be held next Thursday in the student center.\n\nWhich revision best corrects the punctuation in the sentence?", "o": {"A": "The math department announced that its annual tutoring fair, which features demonstrations of study strategies and introduces students to available resources, will be held next Thursday in the student center.", "B": "The math department announced, that its annual tutoring fair, which features demonstrations of study strategies and introduces students to available resources will be held next Thursday, in the student center.", "C": "The math department announced that its annual tutoring fair which features demonstrations of study strategies and introduces students to available resources; will be held next Thursday in the student center.", "D": "The math department announced that its annual tutoring fair which features demonstrations of study strategies, and introduces students to available resources, will be held next Thursday in the student center."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A campus events coordinator writes:\n\nBecause attendance at our evening workshops has remained low, we are considering several changes. One option is to schedule some sessions during the lunch hour, when more students are already on campus. Another is to offer shorter, repeated workshops instead of a single, longer presentation. Both approaches aim to make participation feel more manageable for students with busy schedules.\n\nWhat is the main idea of this passage?", "o": {"A": "Lunch-hour workshops are always more effective than evening sessions.", "B": "Students should attend more evening workshops to help the college meet its goals.", "C": "Adjusting the timing and length of workshops may increase student participation.", "D": "The coordinator plans to cancel all current workshops due to low attendance."}, "c": "C", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A recipe uses 3 cups of flour for every 2 cups of sugar. If a baker wants to use 9 cups of flour while keeping the same ratio, how many cups of sugar should be used?", "o": {"A": "4", "B": "5", "C": "6", "D": "9"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "A car rental company charges a $25 flat fee plus $0.30 per mile. Which equation represents the total cost C, in dollars, of renting a car and driving m miles?", "o": {"A": "C = 25m + 0.30", "B": "C = 0.30m − 25", "C": "C = 25 + 0.30m", "D": "C = 25(0.30m)"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "A rectangular garden has a length that is twice its width. The perimeter of the garden is 54 meters. What is the area of the garden?", "o": {"A": "108 m²", "B": "162 m²", "C": "180 m²", "D": "216 m²"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "A store sold 5 shirts at an average (mean) price of $18. Four of the shirts sold for $15, $16, $19, and $20. What was the price of the fifth shirt?", "o": {"A": "$17", "B": "$18", "C": "$20", "D": "$22"}, "c": "D", "d": "Mathematics", "e": "", "n": {}}, {"s": "At a school, the ratio of students who take the bus to students who drive is 3:5. If 90 students drive, how many students take the bus?", "o": {"A": "36", "B": "54", "C": "72", "D": "160"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "A right triangle has one acute angle measuring 35°. What is the measure of the other acute angle?", "o": {"A": "45°", "B": "55°", "C": "65°", "D": "75°"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "A rectangular prism (box) has a length of 8 cm, a width of 5 cm, and a height of 3 cm. What is its volume?", "o": {"A": "16 cm³", "B": "40 cm³", "C": "96 cm³", "D": "120 cm³"}, "c": "D", "d": "Mathematics", "e": "", "n": {}}, {"s": "A group of students recorded the number of books they read in a month: 2, 4, 4, 5, 7, 8, 20. Which measure of center best represents the typical number of books read for this group?", "o": {"A": "Median, because it is less affected by the unusually high value of 20", "B": "Mean, because it is always the best measure of center", "C": "Mean, because it includes all data values including the 20", "D": "Mode, because it is equal to 4"}, "c": "A", "d": "Mathematics", "e": "", "n": {}}, {"s": "A map uses a scale where 1 inch represents 40 miles. Two cities are 3.5 inches apart on the map. How many miles apart are the cities?", "o": {"A": "80", "B": "120", "C": "140", "D": "160"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "A student scored 82, 88, 90, and 95 on four tests. What score does the student need on a fifth test to have an average (mean) score of 90?", "o": {"A": "90", "B": "92", "C": "95", "D": "100"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "The dimensions of a rectangle are increased so that its new length is 150% of the original length and its new width is 50% of the original width. How does the area of the new rectangle compare to the area of the original rectangle?", "o": {"A": "It is 25% larger than the original area.", "B": "It is 50% larger than the original area.", "C": "It is 25% smaller than the original area.", "D": "It is the same as the original area."}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "A clothing store is having a sale: buy 2 shirts for $30. At the regular price, one shirt costs $18. How much money does a customer save per shirt by buying them on sale instead of at the regular price?", "o": {"A": "$2", "B": "$3", "C": "$6", "D": "$8"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "The measures of five quiz scores are 7, 8, 8, 9, and 10. If the teacher adds one more quiz score of 3, which statement is true?", "o": {"A": "The mean and median both increase.", "B": "The mean decreases, but the median stays the same.", "C": "The mean stays the same, but the median decreases.", "D": "The mean and median both decrease."}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "A rectangle has an area of 96 square feet and a width of 6 feet. What is the perimeter of the rectangle?", "o": {"A": "20 ft", "B": "32 ft", "C": "44 ft", "D": "64 ft"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "A recipe designed to serve 4 people requires 6 ounces of pasta. How many ounces of pasta are needed to serve 10 people, assuming the amount of pasta is proportional to the number of people?", "o": {"A": "10", "B": "12", "C": "15", "D": "30"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "The base of a triangle is 10 cm, and its height is 7 cm. What is the area of the triangle?", "o": {"A": "17 cm²", "B": "35 cm²", "C": "70 cm²", "D": "140 cm²"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "A teacher has the following set of test scores for a class: 72, 75, 75, 80, 82, 85, 88. What is the median score?", "o": {"A": "75", "B": "80", "C": "82", "D": "85"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "A cylindrical can has a radius of 4 cm and a height of 10 cm. Using π ≈ 3.14, what is the volume of the can?", "o": {"A": "320π cm³", "B": "80π cm³", "C": "40π cm³", "D": "160π cm³"}, "c": "D", "d": "Mathematics", "e": "", "n": {}}, {"s": "A student walks 3 miles in 45 minutes at a constant speed. At this rate, how many miles will the student walk in 2 hours?", "o": {"A": "4", "B": "6", "C": "8", "D": "9"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "A triangle has sides measuring 5 cm, 12 cm, and 13 cm. What is the perimeter of the triangle?", "o": {"A": "17 cm", "B": "25 cm", "C": "30 cm", "D": "130 cm"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}];window.__DOMS=["Reading & Writing", "Mathematics"];</script>
+<script>
+(function(){
+var Q=window.__Q, SEC=25, PASS=0, DOMS=window.__DOMS, TOTAL=Q.length;
+var ans=new Array(TOTAL).fill(null), cur=0, t0=null, timer=null, finalElapsed=0, filter='all';
+function $(id){return document.getElementById(id);}
+function el(tag,cls,txt){var e=document.createElement(tag); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e;}
+function fmt(s){var h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60; return h+':'+(m<10?'0':'')+m+':'+(x<10?'0':'')+x;}
+var nSec=Math.ceil(TOTAL/SEC);
+function start(){ $('briefing').hidden=true; $('run').hidden=false; t0=Date.now(); timer=setInterval(tick,1000); tick(); renderSec(); window.scrollTo(0,0);}
+function tick(){ $('clock').textContent=fmt(Math.floor((Date.now()-t0)/1000)); }
+function answered(){return ans.filter(function(a){return a!==null;}).length;}
+function renderSec(){
+  var body=$('qbody'); body.textContent='';
+  var from=cur*SEC, to=Math.min(TOTAL,from+SEC);
+  for(var i=from;i<to;i++){ body.appendChild(card(i,false)); }
+  $('secinfo').textContent='Section '+(cur+1)+' of '+nSec;
+  $('prev').disabled=cur===0;
+  $('next').hidden=cur===nSec-1; $('finish').hidden=cur!==nSec-1;
+  $('count').textContent=answered()+' / '+TOTAL+' answered';
+  $('pbar').style.width=(answered()/TOTAL*100)+'%';
+  var d=$('dots'); d.textContent='';
+  for(var s=0;s<nSec;s++){ (function(s){var b=el('button',s===cur?'cur':'',String(s+1)); b.title='Section '+(s+1); b.onclick=function(){cur=s;renderSec();window.scrollTo(0,0);}; d.appendChild(b);})(s); }
+}
+function card(i,review){
+  var q=Q[i], c=el('div','q'); c.id='q'+i;
+  var h=el('div'); h.appendChild(el('span','qno','QUESTION '+(i+1))); h.appendChild(el('span','qdom',q.d));
+  if(review){ var a=ans[i]; var tg=el('span','tag '+(a===null?'skip':a===q.c?'ok':'bad'), a===null?'Not answered':a===q.c?'Correct':'Incorrect'); h.appendChild(tg); }
+  c.appendChild(h); q.s.split('\n\n').forEach(function(t,k){var p=el('p','stem',t); if(k>0) p.style.marginTop='.4rem'; c.appendChild(p);});
+  ['A','B','C','D'].forEach(function(L){
+    var b=el(review?'div':'button','opt'); if(!review) b.type='button';
+    b.appendChild(el('span','l',L)); b.appendChild(el('span','t',q.o[L]));
+    if(review){ if(L===q.c) b.className+=' right'; else if(L===ans[i]) b.className+=' wrong'; }
+    else { if(ans[i]===L) b.className+=' sel'; b.onclick=function(){ans[i]=L; renderOpts(i); $('count').textContent=answered()+' / '+TOTAL+' answered'; $('pbar').style.width=(answered()/TOTAL*100)+'%';}; }
+    c.appendChild(b);
+  });
+  if(review && q.e){
+    var w=el('div','why'); w.appendChild(el('h4',null,'Why '+q.c+' is correct')); w.appendChild(el('p',null,q.e));
+    var oth=el('div','others'); var any=false;
+    ['A','B','C','D'].forEach(function(L){ if(L!==q.c && q.n[L]){ any=true; var p=el('p'); var b=el('b',null,L+'. '); p.appendChild(b); p.appendChild(document.createTextNode(q.n[L])); oth.appendChild(p);} });
+    if(any){ oth.insertBefore(el('h4',null,'Why the others are wrong'),oth.firstChild); w.appendChild(oth); }
+    c.appendChild(w);
+  }
+  return c;
+}
+function renderOpts(i){ var old=$('q'+i); var nw=card(i,false); old.parentNode.replaceChild(nw,old); }
+function askFinish(){ var u=TOTAL-answered(); if(u>0){ $('confirm').hidden=false; $('confirmtxt').textContent=u+' question'+(u===1?' is':'s are')+' still unanswered. Unanswered questions count as incorrect.'; $('confirm').scrollIntoView({block:'center'}); } else finish(); }
+function finish(){
+  clearInterval(timer); finalElapsed=Math.floor((Date.now()-t0)/1000);
+  $('run').hidden=true; $('results').hidden=false;
+  var right=0, per={}; DOMS.forEach(function(d){per[d]=[0,0];});
+  Q.forEach(function(q,i){ per[q.d][1]++; if(ans[i]===q.c){right++; per[q.d][0]++;} });
+  var pct=Math.round(right/TOTAL*100);
+  $('rpct').textContent=pct+'%'; $('rsub').textContent=right+' of '+TOTAL+' correct · time '+fmt(finalElapsed);
+  $('rfill').style.width=pct+'%'; $('rmark').style.left=PASS+'%';
+  var dom=$('rdom'); dom.textContent='';
+  DOMS.forEach(function(d){ var p=per[d]; var v=p[1]?Math.round(p[0]/p[1]*100):0; var r=el('div','dom-row'); r.appendChild(el('span',null,d)); r.appendChild(el('span','n',v+'%')); var b=el('div','bar'); var f=el('i'); f.style.width=v+'%'; b.appendChild(f); r.appendChild(b); dom.appendChild(r); });
+  window.scrollTo(0,0);
+}
+function showReview(f){ filter=f; $('review').hidden=false; var list=$('rlist'); list.textContent='';
+  var n=0; Q.forEach(function(q,i){ var a=ans[i]; var ok=a===q.c; if(f==='wrong'&&ok) return; if(f==='skip'&&a!==null) return; n++; var c=card(i,true); c.className+=' rev'; list.appendChild(c); });
+  if(!n) list.appendChild(el('p','note','Nothing to show in this view.'));
+  Array.prototype.forEach.call(document.querySelectorAll('.tabs button'),function(b){b.setAttribute('aria-pressed',b.dataset.f===f?'true':'false');});
+}
+function restart(){ ans=new Array(TOTAL).fill(null); cur=0; $('results').hidden=true; $('review').hidden=true; $('confirm').hidden=true; $('briefing').hidden=false; $('chk').checked=false; $('go').disabled=true; window.scrollTo(0,0); }
+$('chk').onchange=function(){$('go').disabled=!this.checked;};
+$('go').onclick=start; $('prev').onclick=function(){cur--;renderSec();window.scrollTo(0,0);}; $('next').onclick=function(){cur++;renderSec();window.scrollTo(0,0);};
+$('finish').onclick=askFinish; $('yes').onclick=function(){$('confirm').hidden=true; finish();}; $('no').onclick=function(){$('confirm').hidden=true;};
+$('rall').onclick=function(){showReview('all'); $('review').scrollIntoView();}; $('rwrong').onclick=function(){showReview('wrong'); $('review').scrollIntoView();};
+Array.prototype.forEach.call(document.querySelectorAll('.tabs button'),function(b){b.onclick=function(){showReview(b.dataset.f);};});
+$('again').onclick=restart;
+})();
+</script>
+</body>
+</html>

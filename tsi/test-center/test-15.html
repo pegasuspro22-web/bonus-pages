@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<title>Simulation Test 15 — TSI Study Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12141F; --paper:#EFEDE4; --surface:#FFFFFF;
+  --navy:#131C47; --navy-2:#1E2C6B; --navy-ink:#ffffff; --gold:#D6A61E; --gold-ink:#1B1500;
+  --line:#D3CFC0; --line-strong:#B7B29E;
+  --muted:#3E4155; --muted-2:#6B6E82;
+  --brick:#B23A26; --brick-ink:#ffffff;
+  --shadow: 0 2px 4px rgba(18,20,31,.06), 0 16px 32px -18px rgba(18,20,31,.28);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:"Work Sans",system-ui,sans-serif; font-size:16.5px; line-height:1.6; padding-inline:20px;}
+h1,h2,h3{font-family:"Barlow Condensed",system-ui,sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.01em; text-wrap:balance; margin:0; color:var(--ink);}
+.eyebrow,.btn,.stat-num,.step-label,.section-tag{font-family:"Barlow Condensed",system-ui,sans-serif;}
+.mono,.stat-num,.subject-chip b{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
+a{color:inherit;}
+.shell{max-width:640px; margin:0 auto; padding-block:0 56px;}
+.topbar{display:flex; align-items:center; gap:10px; padding-block:18px; margin-bottom:0;}
+.topbar .mark{width:30px; height:30px; flex:none;}
+.topbar .brand{font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1rem; letter-spacing:.04em; text-transform:uppercase; color:var(--navy);}
+.topbar .brand-sub{font-family:"Work Sans",sans-serif; font-size:.82rem; color:var(--muted-2);}
+.back-link{display:inline-block; margin:18px 0; font-family:"Barlow Condensed",sans-serif; font-weight:600; font-size:.95rem; letter-spacing:.02em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold); padding:.4em .9em; border-radius:5px; text-decoration:none;}
+.hero{background:var(--navy); color:var(--navy-ink); margin-top:8px; padding:32px 24px 44px; border-radius:14px; border-bottom:5px solid var(--gold);}
+.eyebrow{display:inline-flex; align-items:center; gap:.5em; font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold); padding:.3em .8em; border-radius:4px;}
+.hero h1{font-size:clamp(2.1rem,7vw,2.85rem); line-height:1.05; margin-top:.7rem; max-width:19ch; color:#fff;}
+.hero p.lede{margin-top:.9rem; color:#D9DDF2; font-size:1.1rem; max-width:42ch; font-weight:400;}
+.vitals{margin:-24px 10px 0; background:var(--surface); border:2px solid var(--ink); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; position:relative; z-index:2;}
+.vitals-head{padding:10px 18px; background:var(--ink); color:#fff;}
+.vitals-head .label{font-family:"Barlow Condensed",sans-serif; font-size:.85rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;}
+.vitals-grid{display:grid; grid-template-columns:repeat(4,1fr);}
+.vitals-grid .cell{padding:16px 10px; border-right:1px solid var(--line); border-top:1px solid var(--line); text-align:center;}
+.vitals-grid .cell:nth-child(4n){border-right:none;}
+.vitals-grid .cell:nth-child(-n+4){border-top:none;}
+.stat-num{font-size:2rem; font-weight:700; color:var(--navy); line-height:1; display:block;}
+.stat-label{margin-top:6px; font-family:"Work Sans",sans-serif; font-size:.72rem; color:var(--muted); line-height:1.3; text-transform:uppercase; letter-spacing:.02em; font-weight:600;}
+.section-tag{display:inline-flex; align-items:center; gap:.5em; margin-top:48px; font-size:.82rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:var(--navy); padding:.4em .9em; border-radius:4px;}
+h2.section-title{margin-top:14px; font-size:1.7rem;}
+.chart{margin-top:18px; border:2px solid var(--ink); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);}
+.chart-row{display:grid; grid-template-columns:44px 1fr; gap:14px; padding:20px 20px; align-items:start;}
+.chart-row + .chart-row{border-top:1px solid var(--line);}
+.chart-row .idx{width:34px; height:34px; border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1.05rem;}
+.chart-row .step-label{font-weight:700; font-size:1.12rem; margin:0 0 .3rem; text-transform:none; font-family:"Work Sans",sans-serif; color:var(--ink);}
+.chart-row p{margin:0; color:var(--muted); font-size:.98rem;}
+.cta-row{margin:14px 20px 20px; display:flex; flex-wrap:wrap; gap:10px;}
+.btn{display:inline-flex; align-items:center; gap:.55em; font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:.02em; text-transform:uppercase; padding:.7em 1.3em; border-radius:6px; text-decoration:none; border:2px solid transparent;}
+.btn-navy{background:var(--navy); color:#fff;}
+.btn-gold{background:var(--gold); color:var(--gold-ink);}
+.btn-brick{background:var(--brick); color:var(--brick-ink);}
+.btn-ghost{background:#fff; color:var(--navy); border-color:var(--ink);}
+.subject-chip{margin:0 20px 20px; display:inline-block; font-family:"Work Sans",sans-serif; font-size:.85rem; color:var(--ink); background:#fff; border:2px dashed var(--brick); border-radius:6px; padding:.55em .8em;}
+.alt-path{margin-top:22px; padding:16px 18px; border:2px solid var(--line-strong); color:var(--muted); font-size:.95rem; background:var(--surface); border-radius:var(--radius);}
+.alt-path b{color:var(--ink);}
+.todo{display:inline-block; margin:0 20px 14px; font-size:.8rem; font-weight:700; color:var(--brick); font-family:"IBM Plex Mono",monospace;}
+.soon{margin-top:28px; padding:32px 22px; text-align:center; border:2px dashed var(--line-strong); border-radius:var(--radius); background:var(--surface); color:var(--muted);}
+.soon b{color:var(--ink); display:block; margin-bottom:.4em; font-family:"Barlow Condensed",sans-serif; font-size:1.2rem; text-transform:uppercase;}
+.hub-card{margin-top:22px; padding:22px; border:2px solid var(--ink); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);}
+.hub-card h3{font-size:1.35rem;}
+.hub-card p{color:var(--muted); font-size:.98rem; margin:.6rem 0 0; font-family:"Work Sans",sans-serif; text-transform:none;}
+.hub-card .cta-row{margin:16px 0 0; padding:0;}
+footer{margin-top:52px; padding-top:22px; border-top:2px solid var(--ink); color:var(--muted-2); font-size:.82rem;}
+footer p{margin:.25em 0;}
+@media (max-width:520px){
+  .vitals-grid{grid-template-columns:repeat(2,1fr);}
+  .vitals-grid .cell:nth-child(2n){border-right:none;}
+  .vitals-grid .cell:nth-child(-n+2){border-top:none;}
+  .vitals-grid .cell:nth-child(3),.vitals-grid .cell:nth-child(4){border-top:1px solid var(--line);}
+}
+
+:root{--ok:#1D6B3F; --ok-soft:#E4F2EA; --bad:#B3402A; --bad-soft:#FBE9E4;}
+.shell.wide{max-width:760px;}
+.card-list{display:flex; flex-direction:column; gap:12px; margin-top:18px;}
+.tcard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); text-decoration:none;}
+.tcard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.tcard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.tcard .go{flex:none; font-family:"Work Sans",sans-serif; font-weight:600; font-size:.8rem; letter-spacing:.06em; color:#fff; background:var(--navy); padding:.6em .95em; border-radius:6px;}
+.note{margin-top:22px; padding:14px 16px; border-left:3px solid var(--line-strong); background:var(--surface); border-radius:0 var(--radius) var(--radius) 0; color:var(--muted); font-size:.92rem;}
+.btn[disabled]{opacity:.45; cursor:not-allowed;}
+button.btn{cursor:pointer; font-family:"Work Sans",system-ui,sans-serif;}
+.panel{margin-top:22px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.panel h2{font-family:"Work Sans",sans-serif; font-size:1.05rem; margin:0 0 .6rem;}
+.panel p{margin:.5rem 0; color:var(--muted);}
+.panel ul{margin:.5rem 0 1rem; padding-left:1.2rem; color:var(--muted);}
+.gate{display:flex; gap:.7rem; align-items:flex-start; margin:14px 0 16px; font-size:.95rem;}
+.gate input{margin-top:.25rem; width:18px; height:18px; accent-color:var(--navy); flex:none;}
+.runbar{position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; margin-top:16px; background:var(--navy); color:#fff; border-radius:var(--radius); font-family:"Work Sans",sans-serif; font-size:.82rem; font-weight:600;}
+.runbar .mono{font-size:.9rem;}
+.bar{height:6px; border-radius:3px; background:var(--line); overflow:hidden;}
+.bar > i{display:block; height:100%; background:var(--navy-2);}
+.q{margin-top:18px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.q .qno{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--navy-2); font-weight:600; letter-spacing:.04em;}
+.q .qdom{font-family:"Work Sans",sans-serif; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2); margin-left:.6rem;}
+.q .stem{margin:.6rem 0 .9rem; font-size:1.02rem; line-height:1.5;}
+.opt{display:flex; gap:.8rem; width:100%; text-align:left; align-items:flex-start; padding:.75rem .85rem; margin-top:.5rem; background:var(--paper); border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--ink); cursor:pointer;}
+.opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line-strong); display:grid; place-items:center; font-family:"IBM Plex Mono",monospace; font-size:.8rem; font-weight:600; color:var(--muted);}
+.opt .t{min-width:0; padding-top:.1rem; line-height:1.45;}
+.opt.sel{border-color:var(--navy); background:#E6E9F7;}
+.opt.sel .l{background:var(--navy); border-color:var(--navy); color:#fff;}
+.opt:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+.secnav{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:22px; flex-wrap:wrap;}
+.secnav .mid{font-size:.82rem; color:var(--muted); font-family:"IBM Plex Mono",monospace;}
+.dots{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+.dots button{width:2rem; height:2rem; border-radius:6px; border:1px solid var(--line-strong); background:var(--surface); font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--muted); cursor:pointer;}
+.dots button.done{background:var(--navy); border-color:var(--navy); color:#fff;}
+.dots button.cur{outline:2px solid var(--gold); outline-offset:1px;}
+.score{margin-top:26px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+.score-top{padding:22px 20px; display:flex; gap:18px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--line);}
+.score-top .big{font-family:"IBM Plex Mono",monospace; font-size:2.6rem; font-weight:600; color:var(--navy); line-height:1;}
+.score-top .sub{color:var(--muted); font-size:.95rem; min-width:0;}
+.refline{position:relative; margin:18px 20px 6px; height:10px; border-radius:5px; background:var(--line);}
+.refline i{position:absolute; left:0; top:0; bottom:0; border-radius:5px; background:var(--navy-2);}
+.refline b{position:absolute; top:-5px; width:2px; height:20px; background:var(--gold);}
+.reflabel{margin:0 20px 18px; font-size:.78rem; color:var(--muted-2);}
+.dom{padding:0 20px 18px;}
+.dom-row{display:grid; grid-template-columns:minmax(0,1fr) 3.4rem; gap:4px 12px; margin-top:12px; font-size:.88rem;}
+.dom-row .n{font-family:"IBM Plex Mono",monospace; text-align:right; color:var(--navy); font-weight:600;}
+.dom-row .bar{grid-column:1 / -1;}
+.actions{display:flex; gap:10px; flex-wrap:wrap; padding:0 20px 22px;}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px;}
+.tabs button{padding:.5em .9em; border-radius:999px; border:1px solid var(--line-strong); background:var(--surface); color:var(--muted); font:600 .82rem "Work Sans",sans-serif; cursor:pointer;}
+.tabs button[aria-pressed="true"]{background:var(--navy); color:#fff; border-color:var(--navy);}
+.rev .opt{cursor:default;}
+.rev .opt.right{border-color:var(--ok); background:var(--ok-soft);}
+.rev .opt.right .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.rev .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.rev .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.tag{display:inline-block; margin-left:.5rem; font:600 .68rem "Work Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase;}
+.tag.ok{color:var(--ok);} .tag.bad{color:var(--bad);} .tag.skip{color:var(--muted-2);}
+.why{margin-top:14px; padding:14px 16px; border-radius:8px; background:#FBF1CF; border:1px solid #EBD6AE; font-size:.93rem;}
+.why h4{margin:0 0 .35rem; font:700 .72rem "Work Sans",sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--gold);}
+.why p{margin:.3rem 0; color:var(--ink);}
+.why .others{margin-top:.6rem; padding-top:.6rem; border-top:1px dashed #E1C58E;}
+.why .others p{font-size:.9rem; color:var(--muted);}
+.why .others b{font-family:"IBM Plex Mono",monospace; color:var(--ink);}
+@media (max-width:520px){.q{padding:14px;} .runbar{font-size:.76rem;}}
+
+.callout{margin-top:26px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.callout.alert{border-color:var(--gold); background:#FBF1CF;}
+.callout h3{font-family:"Work Sans",sans-serif; font-size:1.1rem; margin:.4rem 0 0;}
+.callout p{margin:.6rem 0 0; color:var(--muted);}
+.feat{display:grid; grid-template-columns:28px 1fr; gap:12px; padding:14px 0; border-top:1px solid var(--line);}
+.feat:first-child{border-top:none; padding-top:0;}
+.feat .tick{width:24px; height:24px; border-radius:6px; background:var(--navy); color:#fff; display:grid; place-items:center; font-weight:700; font-size:.85rem;}
+.feat h3{font-family:"Work Sans",sans-serif; font-size:1rem; margin:0;}
+.feat p{margin:.2rem 0 0; color:var(--muted); font-size:.95rem;}
+.or{display:flex; align-items:center; gap:12px; margin:18px 0; color:var(--muted-2); font:600 .75rem "Work Sans",sans-serif; letter-spacing:.1em; text-transform:uppercase;}
+.or::before,.or::after{content:""; flex:1; height:1px; background:var(--line-strong);}
+.how{padding:20px; border-radius:var(--radius); border:1px solid var(--line); background:var(--surface);}
+.how.main{border-color:var(--gold); background:#FBF1CF;}
+.how p{margin:0; color:var(--muted);}
+.how .cta-row{margin:14px 0 0;}
+.faq dt{font:600 1rem "Work Sans",sans-serif; margin-top:16px;}
+.faq dd{margin:.25rem 0 0; color:var(--muted);}
+.pk-head{margin-top:22px;}
+.pk-head .n{font:600 .72rem "IBM Plex Mono",monospace; letter-spacing:.06em; color:var(--navy-2); text-transform:uppercase;}
+.pk-head h2{font-family:"Work Sans",sans-serif; font-size:1.6rem; margin:.3rem 0 0;}
+.pcard{margin-top:16px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);}
+.pcard .qmeta{display:flex; gap:.7rem; align-items:baseline; font:600 .72rem "Work Sans",sans-serif; letter-spacing:.07em; text-transform:uppercase; color:var(--muted-2);}
+.pcard .qmeta .num{font-family:"IBM Plex Mono",monospace; color:var(--navy-2);}
+.pcard .qtext{margin:.6rem 0 .8rem; font-size:1.02rem; line-height:1.5;}
+.pcard .opt{cursor:pointer;}
+.pcard.answered .opt{cursor:default;}
+.pcard.answered .opt.correct{border-color:var(--ok); background:var(--ok-soft);}
+.pcard.answered .opt.correct .l{background:var(--ok); border-color:var(--ok); color:#fff;}
+.pcard.answered .opt.wrong{border-color:var(--bad); background:var(--bad-soft);}
+.pcard.answered .opt.wrong .l{background:var(--bad); border-color:var(--bad); color:#fff;}
+.verdict{font:700 .78rem "Work Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; margin-top:14px;}
+.verdict.good{color:var(--ok);} .verdict.bad{color:var(--bad);}
+.area-nav{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;}
+.area-nav .btn{flex:1 1 30%; justify-content:center; text-align:center;}
+#score-readout{margin-left:auto; font:600 .75rem "IBM Plex Mono",monospace;}
+.acard{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.acard h3{font-size:1.02rem; font-weight:600; margin:0;}
+.acard p{margin:.25rem 0 0; font-size:.88rem; color:var(--muted);}
+.acard .prog{font:600 .75rem "IBM Plex Mono",monospace; color:var(--navy-2);}
+.acard .go{flex:none; font:600 .8rem "Work Sans",sans-serif; letter-spacing:.06em; color:#fff; background:var(--navy); padding:.6em .95em; border-radius:6px; text-decoration:none;}
+.linkbtn{background:none; border:none; padding:0; font:600 .78rem "Work Sans",sans-serif; letter-spacing:.04em; color:var(--muted); text-decoration:underline; cursor:pointer;}
+
+.btn-teal{background:var(--navy); color:#fff;}
+.btn-vital{background:var(--gold); color:var(--gold-ink);}
+.runbar{background:var(--navy);}
+.callout.alert{background:#FBF1CF; border-color:var(--gold);}
+.tcard h3,.acard h3{font-size:1.2rem; text-transform:uppercase;}
+.tcard p,.acard p{font-family:"Work Sans",sans-serif; text-transform:none;}
+.tcard .go,.acard .go{font-family:"Barlow Condensed",sans-serif; font-size:1rem;}
+#rmark{display:none;}
+.why h4{color:var(--brick);}
+.why .others{border-top-color:#D8C27A;}
+.how.main{border-color:var(--gold); background:#FBF1CF;}
+.q .qdom{text-transform:uppercase;}
+
+.vitals-grid[data-n="3"] .stat-num{font-size:1.55rem;}
+.dl-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+</style>
+</head>
+<body>
+<div class="shell wide">
+
+  <div class="topbar">
+    <svg class="mark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+      <rect width="30" height="30" rx="5" fill="#131C47"/>
+      <path d="M6 21L15 7L24 21" stroke="#D6A61E" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="15" cy="17.5" r="1.6" fill="#D6A61E"/>
+    </svg>
+    <span class="brand">TSIA2 Study Suite</span>
+    <span class="brand-sub">— Digital Companion</span>
+  </div>
+
+  <a href="./" class="back-link">← Back to Test Center</a>
+  <section id="briefing" class="panel">
+    <span class="eyebrow">Simulation 15</span>
+    <h2 style="font-size:1.9rem; margin-top:.6rem;">TSIA2 Full-Length Practice Test 15</h2>
+    <p>50 multiple-choice questions in 2 sections of 25, covering reading, writing and math. A clock runs while you test so you can track your pace, with no cut-off.</p>
+    <p>Answers stay private until you finish. Then you see your score, your result for Reading &amp; Writing and for Math, and the correct answer to every question.</p>
+    <ul><li>Set aside one uninterrupted sitting.</li><li>No notes, no looking things up.</li><li>Answer every question. Blank answers count as incorrect.</li></ul>
+    <label class="gate"><input type="checkbox" id="chk"><span>I am ready to take this test under exam conditions.</span></label>
+    <button class="btn btn-navy" id="go" disabled>Start the test</button>
+  </section>
+
+  <section id="run" hidden>
+    <div class="runbar"><span>SIMULATION 15</span><span id="count">0 / 50 answered</span><span class="mono" id="clock">0:00:00</span></div>
+    <div class="bar" style="margin-top:10px;"><i id="pbar" style="width:0"></i></div>
+    <div class="dots" id="dots"></div>
+    <div id="qbody"></div>
+    <div class="secnav">
+      <button class="btn btn-ghost" id="prev">← Previous</button>
+      <span class="mid" id="secinfo"></span>
+      <button class="btn btn-navy" id="next">Next section →</button>
+      <button class="btn btn-gold" id="finish" hidden>Finish and score</button>
+    </div>
+    <div class="panel" id="confirm" hidden>
+      <h2>Finish the test?</h2><p id="confirmtxt"></p>
+      <div class="actions" style="padding:0;"><button class="btn btn-gold" id="yes">Finish and score</button><button class="btn btn-ghost" id="no">Keep working</button></div>
+    </div>
+  </section>
+
+  <section id="results" hidden>
+    <div class="score">
+      <div class="score-top"><span class="big" id="rpct"></span><div class="sub"><b style="color:var(--ink);">Your score</b><br><span id="rsub"></span></div></div>
+      <div class="refline"><i id="rfill"></i><b id="rmark"></b></div>
+      <p class="reflabel">Use your result by part to decide where to spend your next hours of study.</p>
+      <div class="dom"><h3 style="font-size:.85rem; letter-spacing:.08em; color:var(--muted-2);">Result by part</h3><div id="rdom"></div></div>
+      <div class="actions"><button class="btn btn-navy" id="rall">Review all answers</button><button class="btn btn-gold" id="rwrong">Review what I missed</button><button class="btn btn-ghost" id="again">Take it again</button></div>
+    </div>
+  </section>
+
+  <section id="review" hidden>
+    <span class="section-tag">Answer review</span>
+    <div class="tabs"><button data-f="all" aria-pressed="true">All</button><button data-f="wrong" aria-pressed="false">Incorrect</button><button data-f="skip" aria-pressed="false">Not answered</button></div>
+    <div id="rlist"></div>
+  </section>
+
+  <footer>
+    <p>Not affiliated with, endorsed by, or sponsored by the Texas Higher Education Coordinating Board or any other owner of the TSIA2 assessment.</p>
+    <p>© 2026 CLEAR Thinking Guides. All rights reserved.</p>
+  </footer>
+</div>
+<script>window.__Q=[{"s": "The following passage is from a campus newsletter article.\n\nStudents often assume that shorter reading assignments are easier, but this is not always the case. Brief texts can be densely packed with evidence, specialized vocabulary, or complex reasoning that demand slow, careful attention. Longer chapters, by contrast, sometimes include repetition and detailed examples that make the main ideas more accessible. Rather than judging difficulty by page count, students may benefit from noticing how much new information each paragraph introduces and how frequently the author expects the reader to infer ideas that are not directly stated.\n\nWhat is the main idea of the passage?", "o": {"A": "Judging the difficulty of a reading based only on its length can be misleading for students.", "B": "Longer chapters are generally easier to understand because they repeat the same points many times.", "C": "Short readings are usually more difficult because they use more specialized vocabulary than longer readings.", "D": "Students should always read longer texts more carefully than shorter texts to understand the main ideas."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from an article about public libraries.\n\nIn many communities, the library’s most visible contribution is the lending of books and media. Less recognized, however, are the quiet services that extend beyond the shelves. Librarians help job seekers refine résumés, provide a safe space for students whose homes are crowded or noisy, and offer technology training to residents who might otherwise be left behind. These activities rarely appear in budget reports as dramatic line items, yet they shape daily life in ways that are difficult to measure but easy to lose.\n\nWhich statement best expresses the author’s primary purpose in this passage?", "o": {"A": "To compare the effectiveness of library programs for students and job seekers.", "B": "To describe several often-overlooked ways libraries support their communities.", "C": "To criticize budget reports for ignoring the costs of library technology programs.", "D": "To argue that libraries should invest less in books and more in digital media."}, "c": "B", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a report about urban planning.\n\nCity officials recently launched a tree-planting initiative, aiming to place thousands of new trees along major streets within five years. Supporters claim that more trees will cool sidewalks, improve air quality, and encourage pedestrians to spend time outdoors. Critics caution that without a plan for long-term maintenance, the city may repeat past mistakes, when poorly chosen species damaged sidewalks and required costly removal. For now, the program moves forward while residents wait to see whether the city has learned from earlier efforts.\n\nWhich conclusion is best supported by the passage?", "o": {"A": "The new tree-planting initiative will definitely fail for the same reasons as past efforts.", "B": "The success of the initiative depends largely on how well the city maintains and selects its trees.", "C": "The main goal of the initiative is to reduce city spending on sidewalk repair projects.", "D": "Most residents have already opposed the plan because they dislike sidewalk trees."}, "c": "B", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from an article about study habits.\n\nAlthough many students praise their ability to “multitask,” research suggests that switching rapidly between tasks often reduces both speed and accuracy. When students alternate between texting, checking social media, and reading a chapter, their brains must continually refocus. This repeated shifting can make simple assignments feel unusually tiring. Students who limit distractions for short, focused intervals may find that they complete the same work in less time and with better understanding.\n\nBased on the passage, what inference can be made about students who frequently multitask while studying?", "o": {"A": "They usually earn higher grades because they finish assignments more quickly.", "B": "They avoid reading assignments altogether because the work feels too difficult.", "C": "They benefit from distractions because these give their brains time to rest.", "D": "They may feel more tired and work less efficiently than students who focus on one task."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a staff email.\n\nTo streamline our weekly meetings, the committee will now distribute background materials two days in advance. Members are expected to review these documents beforehand so that meeting time can be devoted primarily to discussion and decision-making. While brief clarifying questions are still welcome, extensive explanations of information provided in the materials should be avoided during the meeting unless absolutely necessary.\n\nWhat is the main purpose of the email?", "o": {"A": "To explain how members should prepare for meetings so that discussion is more efficient.", "B": "To announce that the committee will meet less frequently throughout the semester.", "C": "To remind members to submit all written reports immediately after each meeting.", "D": "To describe in detail the specific decisions the committee must make this week."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from an article about community gardens.\n\nWhen a neighborhood launches a community garden, the first harvest rarely reflects the project’s true value. While fresh produce is welcome, the garden’s more lasting contributions are often social rather than agricultural. Neighbors who once passed each other without speaking begin to trade advice about watering schedules and recipes. Over time, these casual conversations can strengthen a sense of shared responsibility for the block, which may matter more to residents than the number of tomatoes grown in a given season.\n\nWhich choice best states the main idea of the passage?", "o": {"A": "The most important benefit of a community garden is often the relationships it creates.", "B": "Residents should pay more attention to harvest size when evaluating community gardens.", "C": "Community gardens usually fail to produce enough food to justify their cost.", "D": "Excessive socializing in community gardens distracts residents from proper plant care."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a student reflection.\n\nDuring my first semester, I treated office hours as an emergency resource, something to use only if I was in danger of failing. As a result, I rarely visited my instructors, even when I was confused. Later, I realized that office hours were not remedial sessions but opportunities to ask questions, explore ideas, and build connections. Once I started attending regularly, I understood course material more deeply and felt less intimidated in class.\n\nWhich inference is best supported by the passage?", "o": {"A": "The student found office hours less useful than trying to learn the material alone.", "B": "The student believes that office hours are only helpful for students who are failing.", "C": "The student’s view of office hours changed from seeing them as a last resort to seeing them as a valuable learning tool.", "D": "The student concluded that office hours should be replaced with online discussion boards."}, "c": "C", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a magazine article about outdoor recreation.\n\nAlthough the park’s main trail attracts most visitors, the smaller side paths offer a different experience. These narrow routes are less crowded and more shaded, allowing hikers to hear birds and running water that are often drowned out near the main path. However, side paths may be uneven or poorly marked, so hikers should bring a map and wear sturdy shoes before leaving the wider trail.\n\nWhat is the author’s primary purpose in this passage?", "o": {"A": "To argue that the park should close the main trail and expand only side paths.", "B": "To explain how the park was originally designed and constructed.", "C": "To compare the advantages and risks of using the park’s less-traveled side paths.", "D": "To discourage hikers from leaving the main trail for safety reasons."}, "c": "C", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a campus policy document.\n\nStudents may request an extension on major assignments if they experience unexpected emergencies, such as serious illness or family crisis. To ensure fairness, instructors are encouraged to ask for brief documentation when appropriate. However, the policy also recognizes that not all emergencies are easily documented. In these cases, instructors should use their judgment, balancing compassion for individual students with the need to maintain consistent standards for the course.\n\nWhich statement is best supported by the passage?", "o": {"A": "The policy allows instructors some flexibility in deciding whether to grant extensions.", "B": "Only emergencies with formal documentation can qualify for an extension.", "C": "The main goal of the policy is to reduce the number of extensions instructors approve.", "D": "Instructors must grant an extension to any student who asks for one."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a report on online courses.\n\nCompletion rates for our online courses remain lower than for in-person sections, but the gap is narrowing. Over the past three years, additional orientation modules and more frequent instructor feedback have helped students feel less isolated. Still, many online learners report difficulty managing their time when weekly schedules are flexible. Unless students develop stronger planning habits, improvements in course design alone may not fully close the completion gap.\n\nWhich inference can reasonably be drawn from the passage?", "o": {"A": "Online courses are now just as successful as in-person courses in terms of completion rates.", "B": "The primary advantage of online courses is that they require very little planning from students.", "C": "Completion rates would be identical if instructors stopped giving feedback to online students.", "D": "Course design changes have helped, but students’ time-management skills remain a significant factor in online course completion."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from an essay about class discussions.\n\nSome instructors hesitate to assign controversial topics for class discussion, fearing that disagreements will damage the learning environment. Yet avoiding difficult subjects altogether may unintentionally suggest that complex issues are too dangerous to examine. Instead, many educators argue for clearly defined guidelines, such as listening without interruption and criticizing ideas rather than individuals. When students know what is expected, disagreement can become a tool for deeper inquiry rather than a threat.\n\nIn the context of the passage, what is the primary role of the final sentence (“When students know what is expected, disagreement can become a tool for deeper inquiry rather than a threat.”)?", "o": {"A": "It introduces a new problem that arises when guidelines are strictly enforced.", "B": "It shifts the focus from student behavior to the difficulty of creating course policies.", "C": "It offers a potential benefit that can result from using clear discussion guidelines.", "D": "It summarizes evidence that controversial topics never cause classroom conflict."}, "c": "C", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a brochure on financial literacy workshops.\n\nOur financial literacy workshops are not designed to turn students into investment experts. Instead, the sessions focus on everyday decisions, such as comparing loan offers or creating a realistic monthly budget. Participants examine sample scenarios and practice weighing trade-offs, like choosing between a car with a lower purchase price and one with lower long-term maintenance costs. By the end of the program, students should feel more confident asking questions and seeking reliable advice before signing financial agreements.\n\nWhat is the author’s primary purpose in this passage?", "o": {"A": "To explain the practical focus and intended outcome of the financial literacy workshops.", "B": "To persuade students to avoid all forms of borrowing whenever possible.", "C": "To compare the effectiveness of multiple financial education programs at different colleges.", "D": "To advertise a workshop that trains students to manage large investment portfolios."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a textbook preface.\n\nThis textbook does not assume that readers already enjoy writing. In fact, it was developed with reluctant writers specifically in mind. Rather than beginning with rigid rules, each chapter starts by showing how writing can help people clarify their thinking, whether they are planning a science project or deciding how to respond to a workplace problem. Only after readers have experimented with generating ideas do we introduce strategies for organizing and polishing their drafts.\n\nWhich choice best describes the main idea of the passage?", "o": {"A": "The textbook is designed to make writing feel more approachable for students who may not already like to write.", "B": "The textbook assumes that students prefer strict rules before trying any writing activities.", "C": "The textbook is intended only for professional writers who work on complex projects.", "D": "The textbook focuses primarily on advanced grammar for experienced writers."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a memo about campus parking.\n\nLast year, the college added a new parking lot on the east side of campus to relieve crowding near the main entrance. While the additional spaces have reduced the number of cars circling the central lot, many students still report arriving late to class because they underestimate the extra time needed to walk from the east lot. Some students suggest that clearer signage or estimates of walking time posted near the entrances might help them plan more accurately.\n\nWhich conclusion is best supported by the passage?", "o": {"A": "The east lot has eased parking congestion, but some students struggle to adjust their schedules to the longer walk.", "B": "Students want the college to close the new lot because it is too far from classrooms.", "C": "The new east lot has completely solved all parking problems on campus.", "D": "Students value shorter walking distances more than they value finding available parking."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a campus survey summary.\n\nWhen asked about their preferred study environments, students gave varied responses. Many appreciated the quiet of the library’s upper floors, while others favored the background noise of a café. A smaller group reported that where they studied mattered less than whether they had a clear plan for how to use their time. Across all groups, students who regularly set specific goals for each study session were more likely to report feeling prepared for exams.\n\nWhat inference can be drawn from the passage?", "o": {"A": "Students who lack a study plan generally perform better on exams.", "B": "Studying in a café is better for exam preparation than studying in the library.", "C": "Most students can only study effectively in complete silence.", "D": "Having clear study goals appears to be more strongly related to feeling prepared than the choice of location."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following paragraph appears in a draft article about student employment.\n\n(1) Many college students work part-time while taking classes. (2) Some on-campus jobs are directly connected to a student’s field of study, while others simply provide flexible hours and steady income. (3) My cousin, for example, once had a job at the campus bookstore. (4) Regardless of the position, students must learn to balance their work responsibilities with assignments and exams.\n\nWhich sentence does NOT contribute effectively to the focus of the paragraph and should be deleted to improve cohesion?", "o": {"A": "Sentence 1", "B": "Sentence 2", "C": "Sentence 3", "D": "Sentence 4"}, "c": "C", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following sentences appear in a student essay.\n\nMany first-year students arrive on campus without knowing where to find support services. The writing center, for instance, offers free one-on-one consultations on any stage of the writing process. The tutoring center hosts group review sessions before major exams. Libraries have existed for hundreds of years and have always been important.\n\nWhich choice is the best revision to improve the cohesion and focus of the paragraph?", "o": {"A": "Delete the last sentence because it does not clearly relate to campus support services.", "B": "Add a new final sentence explaining why libraries are more useful than tutoring centers.", "C": "Replace “for instance” in the second sentence with “however.”", "D": "Move the second sentence to the end of the paragraph."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following sentences appear in a draft email from a student to an instructor.\n\n[1] I am writing to ask whether it might be possible to receive a two-day extension on the research essay due this Friday. [2] My work schedule changed unexpectedly this week, and I am now working additional evening shifts. [3] I do not want my rushed work to lower the overall quality of the class discussions. [4] With a short extension, I believe I can submit an essay that better reflects the effort I have put into the course so far.\n\nWhich sentence is LEAST relevant to the purpose of the email and should be removed to improve clarity?", "o": {"A": "Sentence 1", "B": "Sentence 2", "C": "Sentence 3", "D": "Sentence 4"}, "c": "C", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following sentences appear in a student’s paragraph about campus fitness resources.\n\n[1] The campus recreation center offers a wide range of fitness options for students with different schedules. [2] Because the center opens at 6:00 a.m. on weekdays, early risers can exercise before class. [3] The basketball courts and indoor track remain open until late evening, which allows students who work during the day to fit in a workout. [4] In addition, the center’s website posts daily hours and special event announcements. [5] The university’s first recreation center was built more than forty years ago.\n\nWhich sentence should be removed to strengthen the paragraph’s focus and cohesion?", "o": {"A": "Sentence 2", "B": "Sentence 3", "C": "Sentence 4", "D": "Sentence 5"}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "Read the following sentences and choose the option that creates the most logical and clear transition between ideas.\n\nOriginal: Many students review their notes the night before an exam. This strategy can be useful, it is much more effective when combined with regular practice throughout the week.\n\nWhich revision best improves the sentence structure and clarity?", "o": {"A": "Many students review their notes the night before an exam; this strategy can be useful, but it is much more effective when combined with regular practice throughout the week.", "B": "Many students review their notes the night before an exam, this strategy can be useful, and it is much more effective when combined with regular practice throughout the week.", "C": "Many students review their notes the night before an exam although, this strategy can be useful, it is much more effective when combined with regular practice throughout the week.", "D": "Many students review their notes the night before an exam, although this strategy can be useful it is much more effective when combined with regular practice throughout the week."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "Choose the sentence that is punctuated and worded most effectively.", "o": {"A": "The group project requires students to divide tasks fairly, communicate regularly, and they must submit a final report together.", "B": "The group project requires students to divide tasks fairly, to communicate regularly, and submitting a final report together.", "C": "The group project requires students dividing tasks fairly, communicating regularly, and they submit a final report together.", "D": "The group project requires students to divide tasks fairly, communicate regularly, and submit a final report together."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "Choose the sentence that maintains correct subject-verb agreement.", "o": {"A": "The results of the student surveys, along with the instructor interviews, have suggests that smaller class sizes improve participation.", "B": "The results of the student surveys, along with the instructor interviews, has suggested that smaller class sizes improves participation.", "C": "The results of the student surveys, along with the instructor interviews, suggests that smaller class sizes improve participation.", "D": "The results of the student surveys, along with the instructor interviews, suggest that smaller class sizes improve participation."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "Choose the best revision of the sentence to correct any agreement or punctuation errors.\n\nOriginal: Neither the students in the front row nor the instructor seem satisfied with how clearly the assignment was explained.", "o": {"A": "Neither the students in the front row nor the instructor seem satisfied, with how clearly the assignment was explained.", "B": "Neither the students in the front row, nor the instructor seem satisfied with how clearly the assignment was explained.", "C": "Neither the students in the front row nor the instructor seems satisfied with how clearly the assignment was explained.", "D": "Neither the students in the front row nor the instructor seems satisfied, with how clearly the assignment was explained."}, "c": "C", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "Choose the sentence that is free of punctuation and agreement errors.", "o": {"A": "The orientation sessions, which were led by current students, was helpful for many new arrivals.", "B": "The orientation sessions, which were led by current students, were helpful for many new arrivals.", "C": "The orientation sessions which were led by current students, were helpful for many new arrivals.", "D": "The orientation sessions which were led by current students were helpful, for many new arrivals."}, "c": "B", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from an article about internships.\n\nSome students hesitate to pursue unpaid internships, worrying that they cannot afford to work without receiving a paycheck. Others argue that the professional experience is valuable enough to justify short-term financial sacrifice. However, internships that require full-time hours while offering no compensation may unintentionally exclude students who must support themselves. Programs that provide at least a modest stipend can help ensure that internship opportunities are open to a wider range of students.\n\nWhat is the author’s primary purpose in this passage?", "o": {"A": "To explain why internships that offer some financial support can make participation more equitable.", "B": "To prove that professional experience is more important than any financial concerns.", "C": "To compare the benefits of unpaid internships with those of full-time permanent jobs.", "D": "To argue that all unpaid internships should be eliminated immediately."}, "c": "A", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a campus technology guide.\n\nWhile laptops and tablets are useful tools, they can easily become sources of distraction during lectures. Some students open a device intending to take notes but quickly shift to checking messages or browsing unrelated websites. One strategy is to decide in advance which tasks the device will be used for in class and which will be saved for breaks. By setting these boundaries beforehand, students can take advantage of digital tools without allowing them to interrupt their focus.\n\nWhat inference is best supported by the passage?", "o": {"A": "The main benefit of laptops in class is that they provide entertainment during long lectures.", "B": "Planning how to use devices before class may help students stay focused during lectures.", "C": "Devices are always harmful to learning, even when used only for note-taking.", "D": "The guide recommends that students avoid bringing any digital devices to class."}, "c": "B", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from an article about note-taking methods.\n\nSome students insist that typing notes during lectures allows them to capture more information. Others prefer writing by hand, claiming that the slower pace forces them to decide what truly matters. Studies suggest that simply recording more words does not guarantee better understanding. Instead, students appear to learn more when they reorganize information in their own words, whether they are using a keyboard or a pen.\n\nWhat is the main idea of the passage?", "o": {"A": "Writing notes by hand is the only way to ensure that students understand the material.", "B": "Typing notes is always better than writing by hand because it is faster.", "C": "Students should avoid taking notes during lectures and focus on listening instead.", "D": "The quality of note-taking depends more on how students process information than on whether they type or write by hand."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a report on tutoring center usage.\n\nOver the past year, the tutoring center has seen an increase in visits just before major exams but a decline in regular weekly appointments. Short, last-minute sessions can help clarify specific questions, yet they rarely allow enough time to address broader patterns in a student’s work. Tutors recommend that students schedule recurring appointments earlier in the term, when there is more opportunity to practice strategies and build confidence.\n\nWhich conclusion is best supported by the passage?", "o": {"A": "Last-minute tutoring sessions are completely ineffective and should be discontinued.", "B": "The tutoring center plans to reduce its hours because weekly appointments have declined.", "C": "Students who attend tutoring weekly no longer need to study outside of their sessions.", "D": "Regular tutoring appointments throughout the term are likely to be more beneficial than relying only on sessions right before exams."}, "c": "D", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a commentary on textbook costs.\n\nIn response to rising textbook prices, some faculty members have begun adopting open educational resources, which are free to students. These materials can reduce financial pressure, but they require instructors to spend additional time evaluating quality and keeping content up to date. Despite these challenges, early surveys suggest that students in courses using open materials are just as successful as those using traditional textbooks, and they are more likely to enroll in a full course load.\n\nWhich statement best expresses the author’s main point?", "o": {"A": "Traditional textbooks should always be preferred because they are easier for instructors to adopt.", "B": "Open educational resources are free, but they are usually lower in quality than traditional textbooks.", "C": "Although open educational resources require extra work from instructors, they can lower costs for students without harming academic outcomes.", "D": "Students who use open educational resources rarely enroll in a full course load."}, "c": "C", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "The following passage is from a proposal for a campus mentorship program.\n\nMany first-generation college students arrive on campus with strong academic potential but limited access to informal guidance. A structured mentorship program that pairs these students with trained volunteers—such as advanced undergraduates or alumni—could provide a regular space to discuss course selection, financial questions, and campus culture. Rather than replacing existing advising offices, the program would complement them by offering ongoing, relationship-based support.\n\nWhat is the primary role of the final sentence (“Rather than replacing existing advising offices, the program would complement them by offering ongoing, relationship-based support.”)?", "o": {"A": "It argues that existing advising offices are ineffective and should be restructured.", "B": "It explains that the mentorship program would focus only on financial questions.", "C": "It clarifies how the proposed program would work alongside, not in place of, current advising services.", "D": "It introduces a new, unrelated suggestion that the college close its advising offices."}, "c": "C", "d": "Reading & Writing", "e": "", "n": {}}, {"s": "A jacket originally costs $80. It is discounted by 25%, and then a sales tax of 8% is applied to the discounted price. What is the final price of the jacket?", "o": {"A": "$57.60", "B": "$62.40", "C": "$64.80", "D": "$69.12"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "A plumber charges a $40 service fee plus $30 per hour of work. If a customer is charged a total of $160, for how many hours did the plumber work?", "o": {"A": "3 hours", "B": "4 hours", "C": "5 hours", "D": "6 hours"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "A mixture is made by combining red and blue paint in a ratio of 3 : 5 (red : blue). If the total amount of paint in the mixture is 32 liters, how many liters of red paint are in the mixture?", "o": {"A": "9 liters", "B": "12 liters", "C": "15 liters", "D": "20 liters"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "A car uses 12 gallons of gasoline to travel 270 miles on the highway. At this rate, how many miles can the car travel on 15 gallons of gasoline?", "o": {"A": "300 miles", "B": "315 miles", "C": "330 miles", "D": "337.5 miles"}, "c": "D", "d": "Mathematics", "e": "", "n": {}}, {"s": "A student bought notebooks and pens. Each notebook costs $2.50, and each pen costs $0.80. If the student bought 4 notebooks and x pens and spent a total of $15.80, which equation can be used to find x?", "o": {"A": "2.5x + 0.8(4) = 15.8", "B": "2.5(4) + 0.8x = 15.8", "C": "2.5 + 0.8x = 15.8", "D": "2.5(4 + x) = 15.8"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "At a printing shop, 5 identical printers working at the same rate can print a total of 3,000 pages in 2 hours. At this same rate, how many pages can 3 printers print in 4 hours?", "o": {"A": "1,800 pages", "B": "2,400 pages", "C": "3,600 pages", "D": "4,800 pages"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "A gym membership costs $25 per month plus a one-time registration fee of $55. Which equation gives the total cost C, in dollars, of the membership after m months?", "o": {"A": "C = 25m − 55", "B": "C = 25m + 55", "C": "C = 55m + 25", "D": "C = 80m"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "The length of a rectangle is 5 centimeters more than twice its width. If the perimeter of the rectangle is 46 centimeters, what is the width?", "o": {"A": "6 cm", "B": "9 cm", "C": "10 cm", "D": "11 cm"}, "c": "A", "d": "Mathematics", "e": "", "n": {}}, {"s": "A rectangular garden is 12 meters long and 7 meters wide. The owner wants to add a uniform border around the outside of the garden, increasing both the length and the width by the same amount. If the new perimeter is 50 meters, how wide is the border?", "o": {"A": "1.5 meter", "B": "2 meters", "C": "3 meters", "D": "4 meters"}, "c": "A", "d": "Mathematics", "e": "", "n": {}}, {"s": "A triangle has sides of length 7 cm, 9 cm, and 12 cm. What is the perimeter of the triangle?", "o": {"A": "25 cm", "B": "26 cm", "C": "28 cm", "D": "30 cm"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "A right triangle has one leg that measures 6 cm and a hypotenuse that measures 10 cm. What is the length of the other leg?", "o": {"A": "7 cm", "B": "8 cm", "C": "9 cm", "D": "11 cm"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "A rectangular prism (box) has a length of 10 inches, a width of 4 inches, and a height of 6 inches. What is the volume of the prism?", "o": {"A": "60 cubic inches", "B": "120 cubic inches", "C": "180 cubic inches", "D": "240 cubic inches"}, "c": "D", "d": "Mathematics", "e": "", "n": {}}, {"s": "A circular garden has a diameter of 14 feet. Using π ≈ 3.14, what is the approximate circumference of the garden?", "o": {"A": "21.98 ft", "B": "43.96 ft", "C": "87.92 ft", "D": "153.86 ft"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "A rectangular room has an area of 192 square feet and a length of 16 feet. What is the perimeter of the room?", "o": {"A": "32 ft", "B": "48 ft", "C": "56 ft", "D": "64 ft"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "A data set of quiz scores is: 5, 7, 7, 8, 9, 10, 30. Which measure of central tendency (mean, median, or mode) best represents the typical score for this data set?", "o": {"A": "Median, because it is not strongly affected by the unusually high score of 30.", "B": "Mode, because there are two scores of 7 in the data set.", "C": "Mean, because it will be close to the highest score in the data set.", "D": "Mean, because it includes the effect of all scores, including 30."}, "c": "A", "d": "Mathematics", "e": "", "n": {}}, {"s": "The ages (in years) of eight volunteers at a community center are: 16, 18, 19, 20, 20, 22, 24, 40. What is the median age?", "o": {"A": "19.5", "B": "20", "C": "21", "D": "22"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "A student’s test scores are 78, 85, 92, and 95. What score must the student earn on the fifth test to have an average (mean) score of 90 for all five tests?", "o": {"A": "90", "B": "93", "C": "95", "D": "100"}, "c": "D", "d": "Mathematics", "e": "", "n": {}}, {"s": "A teacher recorded the number of books read by each student in a reading group: 3, 4, 4, 5, 5, 5, 7, 8. What is the mode of this data set?", "o": {"A": "4", "B": "5", "C": "6", "D": "7"}, "c": "B", "d": "Mathematics", "e": "", "n": {}}, {"s": "The mean of five numbers is 12. Four of the numbers are 9, 10, 13, and 14. What is the fifth number?", "o": {"A": "10", "B": "12", "C": "14", "D": "16"}, "c": "C", "d": "Mathematics", "e": "", "n": {}}, {"s": "The heights (in centimeters) of seven plants are: 25, 27, 28, 29, 29, 31, 50. A gardener wants a single number that best describes the typical plant height in this group. Which measure of central tendency is most appropriate to use?", "o": {"A": "Mean, because it includes all the data values, including 50.", "B": "Mean, because it will be equal to the most common height.", "C": "Mode, because it shows that 29 cm occurs more than once.", "D": "Median, because it is less affected by the unusually tall plant."}, "c": "D", "d": "Mathematics", "e": "", "n": {}}];window.__DOMS=["Reading & Writing", "Mathematics"];</script>
+<script>
+(function(){
+var Q=window.__Q, SEC=25, PASS=0, DOMS=window.__DOMS, TOTAL=Q.length;
+var ans=new Array(TOTAL).fill(null), cur=0, t0=null, timer=null, finalElapsed=0, filter='all';
+function $(id){return document.getElementById(id);}
+function el(tag,cls,txt){var e=document.createElement(tag); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e;}
+function fmt(s){var h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60; return h+':'+(m<10?'0':'')+m+':'+(x<10?'0':'')+x;}
+var nSec=Math.ceil(TOTAL/SEC);
+function start(){ $('briefing').hidden=true; $('run').hidden=false; t0=Date.now(); timer=setInterval(tick,1000); tick(); renderSec(); window.scrollTo(0,0);}
+function tick(){ $('clock').textContent=fmt(Math.floor((Date.now()-t0)/1000)); }
+function answered(){return ans.filter(function(a){return a!==null;}).length;}
+function renderSec(){
+  var body=$('qbody'); body.textContent='';
+  var from=cur*SEC, to=Math.min(TOTAL,from+SEC);
+  for(var i=from;i<to;i++){ body.appendChild(card(i,false)); }
+  $('secinfo').textContent='Section '+(cur+1)+' of '+nSec;
+  $('prev').disabled=cur===0;
+  $('next').hidden=cur===nSec-1; $('finish').hidden=cur!==nSec-1;
+  $('count').textContent=answered()+' / '+TOTAL+' answered';
+  $('pbar').style.width=(answered()/TOTAL*100)+'%';
+  var d=$('dots'); d.textContent='';
+  for(var s=0;s<nSec;s++){ (function(s){var b=el('button',s===cur?'cur':'',String(s+1)); b.title='Section '+(s+1); b.onclick=function(){cur=s;renderSec();window.scrollTo(0,0);}; d.appendChild(b);})(s); }
+}
+function card(i,review){
+  var q=Q[i], c=el('div','q'); c.id='q'+i;
+  var h=el('div'); h.appendChild(el('span','qno','QUESTION '+(i+1))); h.appendChild(el('span','qdom',q.d));
+  if(review){ var a=ans[i]; var tg=el('span','tag '+(a===null?'skip':a===q.c?'ok':'bad'), a===null?'Not answered':a===q.c?'Correct':'Incorrect'); h.appendChild(tg); }
+  c.appendChild(h); q.s.split('\n\n').forEach(function(t,k){var p=el('p','stem',t); if(k>0) p.style.marginTop='.4rem'; c.appendChild(p);});
+  ['A','B','C','D'].forEach(function(L){
+    var b=el(review?'div':'button','opt'); if(!review) b.type='button';
+    b.appendChild(el('span','l',L)); b.appendChild(el('span','t',q.o[L]));
+    if(review){ if(L===q.c) b.className+=' right'; else if(L===ans[i]) b.className+=' wrong'; }
+    else { if(ans[i]===L) b.className+=' sel'; b.onclick=function(){ans[i]=L; renderOpts(i); $('count').textContent=answered()+' / '+TOTAL+' answered'; $('pbar').style.width=(answered()/TOTAL*100)+'%';}; }
+    c.appendChild(b);
+  });
+  if(review && q.e){
+    var w=el('div','why'); w.appendChild(el('h4',null,'Why '+q.c+' is correct')); w.appendChild(el('p',null,q.e));
+    var oth=el('div','others'); var any=false;
+    ['A','B','C','D'].forEach(function(L){ if(L!==q.c && q.n[L]){ any=true; var p=el('p'); var b=el('b',null,L+'. '); p.appendChild(b); p.appendChild(document.createTextNode(q.n[L])); oth.appendChild(p);} });
+    if(any){ oth.insertBefore(el('h4',null,'Why the others are wrong'),oth.firstChild); w.appendChild(oth); }
+    c.appendChild(w);
+  }
+  return c;
+}
+function renderOpts(i){ var old=$('q'+i); var nw=card(i,false); old.parentNode.replaceChild(nw,old); }
+function askFinish(){ var u=TOTAL-answered(); if(u>0){ $('confirm').hidden=false; $('confirmtxt').textContent=u+' question'+(u===1?' is':'s are')+' still unanswered. Unanswered questions count as incorrect.'; $('confirm').scrollIntoView({block:'center'}); } else finish(); }
+function finish(){
+  clearInterval(timer); finalElapsed=Math.floor((Date.now()-t0)/1000);
+  $('run').hidden=true; $('results').hidden=false;
+  var right=0, per={}; DOMS.forEach(function(d){per[d]=[0,0];});
+  Q.forEach(function(q,i){ per[q.d][1]++; if(ans[i]===q.c){right++; per[q.d][0]++;} });
+  var pct=Math.round(right/TOTAL*100);
+  $('rpct').textContent=pct+'%'; $('rsub').textContent=right+' of '+TOTAL+' correct · time '+fmt(finalElapsed);
+  $('rfill').style.width=pct+'%'; $('rmark').style.left=PASS+'%';
+  var dom=$('rdom'); dom.textContent='';
+  DOMS.forEach(function(d){ var p=per[d]; var v=p[1]?Math.round(p[0]/p[1]*100):0; var r=el('div','dom-row'); r.appendChild(el('span',null,d)); r.appendChild(el('span','n',v+'%')); var b=el('div','bar'); var f=el('i'); f.style.width=v+'%'; b.appendChild(f); r.appendChild(b); dom.appendChild(r); });
+  window.scrollTo(0,0);
+}
+function showReview(f){ filter=f; $('review').hidden=false; var list=$('rlist'); list.textContent='';
+  var n=0; Q.forEach(function(q,i){ var a=ans[i]; var ok=a===q.c; if(f==='wrong'&&ok) return; if(f==='skip'&&a!==null) return; n++; var c=card(i,true); c.className+=' rev'; list.appendChild(c); });
+  if(!n) list.appendChild(el('p','note','Nothing to show in this view.'));
+  Array.prototype.forEach.call(document.querySelectorAll('.tabs button'),function(b){b.setAttribute('aria-pressed',b.dataset.f===f?'true':'false');});
+}
+function restart(){ ans=new Array(TOTAL).fill(null); cur=0; $('results').hidden=true; $('review').hidden=true; $('confirm').hidden=true; $('briefing').hidden=false; $('chk').checked=false; $('go').disabled=true; window.scrollTo(0,0); }
+$('chk').onchange=function(){$('go').disabled=!this.checked;};
+$('go').onclick=start; $('prev').onclick=function(){cur--;renderSec();window.scrollTo(0,0);}; $('next').onclick=function(){cur++;renderSec();window.scrollTo(0,0);};
+$('finish').onclick=askFinish; $('yes').onclick=function(){$('confirm').hidden=true; finish();}; $('no').onclick=function(){$('confirm').hidden=true;};
+$('rall').onclick=function(){showReview('all'); $('review').scrollIntoView();}; $('rwrong').onclick=function(){showReview('wrong'); $('review').scrollIntoView();};
+Array.prototype.forEach.call(document.querySelectorAll('.tabs button'),function(b){b.onclick=function(){showReview(b.dataset.f);};});
+$('again').onclick=restart;
+})();
+</script>
+</body>
+</html>
