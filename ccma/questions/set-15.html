@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Q&amp;A Set 15 — NHA CCMA Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#0A1444; --navy-2:#111C55; --navy-3:#192767; --line:#2A3B77;
+  --gold:#F4D348; --gold-ink:#151B45;
+  --paper:#F3F1E8; --muted:#9AA3CC; --muted-2:#6E77A8;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --alert-soft:#3A2E12; --alert-muted:#D9CBA3;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px; overflow-x:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+a{color:inherit;}
+img{max-width:100%;}
+button{font:inherit;}
+.topbar{position:sticky; top:0; z-index:20; background:rgba(10,20,68,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:760px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;}
+.page{max-width:760px; margin:0 auto; padding:0 1.25rem 4rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.5rem 0 1.25rem;}
+.eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(1.8rem,6.5vw,2.6rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:500px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.5rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.55rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; padding:.85rem 1.4rem; border-radius:999px; border:1.5px solid transparent; cursor:pointer; text-align:center;}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(244,211,72,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+.btn[disabled]{opacity:.4; cursor:not-allowed;}
+.action-block{margin-top:1rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.5rem; box-shadow:var(--shadow); margin-top:1.5rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+.callout p{color:var(--muted); margin:.5rem 0 0;}
+.section-head{padding-top:2.25rem; margin-bottom:1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+.muted{color:var(--muted);}
+.card-list{display:flex; flex-direction:column; border-top:1px solid var(--line); margin-top:1rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center; text-decoration:none;}
+.card h3{font-size:1.02rem; font-weight:700;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; flex-shrink:0;}
+.grid-tests{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-top:1rem;}
+.tbox{display:block; text-decoration:none; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:.9rem 1rem;}
+.tbox:hover{border-color:var(--gold);}
+.tbox .k{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.tbox .t{font-family:'Anton',sans-serif; font-size:1.35rem; color:var(--gold); line-height:1.15; margin-top:.15rem;}
+.tbox .s{font-size:.8rem; color:var(--muted); margin-top:.2rem;}
+.tbox .s.prog{color:var(--correct);}
+.subject-chip{font-weight:600; font-size:.92rem; background:var(--navy); border:1.5px dashed var(--line); border-radius:8px; padding:.7rem 1rem; color:var(--paper); word-break:break-word; display:inline-block;}
+.subject-chip b{color:var(--gold);}
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+.step-list{margin:1.25rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.4rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{font-family:'Anton',sans-serif; font-size:1.1rem; color:var(--gold-ink); background:var(--gold); width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0;}
+.bp-table{width:100%; border-collapse:collapse; margin-top:1rem; font-size:.9rem;}
+.bp-table th{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--line);}
+.bp-table td{padding:.6rem; border-bottom:1px solid var(--line);}
+.bp-table td.n{color:var(--gold); font-family:'Oswald',sans-serif; font-weight:700; text-align:right; white-space:nowrap;}
+.faq dt{font-weight:700; margin-top:1.1rem;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem;}
+.foot{max-width:760px; margin:2.5rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em;}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card .tag{align-self:stretch; text-align:center;}
+  .topbar-inner{padding:.6rem 1rem;} .topbar .logo{height:38px;}
+  .hero{padding-top:1.8rem;}
+  .action-block .btn{width:100%;}
+  .bp-table{font-size:.8rem;}
+}
+
+.qa{margin-top:.8rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1rem 1.1rem;}
+.qa .qn{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted-2);}
+.qa .qq{margin:.35rem 0 0; line-height:1.55;}
+.qa button.rev{margin-top:.7rem; background:none; border:1.5px solid var(--line); color:var(--gold); border-radius:999px; padding:.35rem .9rem; font-family:'Oswald',sans-serif; font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; cursor:pointer;}
+.qa .qa-a{margin-top:.7rem; padding:.75rem .9rem; border-left:3px solid var(--gold); background:var(--navy); border-radius:0 8px 8px 0; color:var(--paper); font-size:.95rem; line-height:1.55;}
+.toolbar{display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; margin-top:1rem;}
+.search{width:100%; padding:.8rem 1rem; border-radius:999px; border:1.5px solid var(--line); background:var(--navy-2); color:var(--paper); font:inherit; font-size:1rem;}
+.search:focus{outline:none; border-color:var(--gold);}
+.setnav{display:flex; justify-content:space-between; gap:.6rem; margin-top:1.5rem; flex-wrap:wrap;}
+.setnav .btn{flex:1;}
+mark{background:var(--gold); color:var(--gold-ink); border-radius:2px;}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner"><img class="logo" src="../assets/med-prep-logo.png" alt="MED PREP"><span class="title">NHA CCMA Study Guide</span></div></div>
+<div class="page">
+
+  <a href="./" class="back-link">← All sets</a>
+  <div class="hero" style="padding-bottom:.5rem;">
+    <div class="eyebrow">Q&amp;A Bank · Set 15 of 50</div>
+    <h1>Questions 1401–1500</h1>
+  </div>
+  <div class="toolbar"><button class="btn btn-ghost" id="showall" type="button">Show all answers</button><a class="btn btn-ghost" href="search.html">🔎 Search</a></div>
+  
+    <div class="qa"><div class="qn">Question 1401</div><p class="qq">You are applying a dressing to a minor laceration; what is the correct sequence to reduce infection risk?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Perform hand hygiene, don clean gloves, cleanse the wound as directed, then apply the sterile dressing because cleaning before covering reduces contamination and the trap is placing a dressing over an uncleaned wound.</div></div>
+    <div class="qa"><div class="qn">Question 1402</div><p class="qq">A patient is due for an injection, but the chart shows a documented latex allergy and the room has latex gloves on the counter; what should you do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Remove latex supplies and use latex-free gloves/equipment, confirming vaccine components as needed, because exposure can trigger a reaction and the trap is thinking “gloves won’t touch the patient” so it doesn’t matter.</div></div>
+    <div class="qa"><div class="qn">Question 1403</div><p class="qq">You draw up an injectable medication and then realize the patient’s identity hasn’t been verified yet; what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Pause and verify the patient using two identifiers before administering (and relabel/reprepare if there’s any doubt about mix-ups) because right patient is a core medication right and the trap is assuming the room assignment guarantees identity.</div></div>
+    <div class="qa"><div class="qn">Question 1404</div><p class="qq">A patient needs a pelvic exam; how should you position them and what should you do to support safety and dignity?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Place them in lithotomy with proper draping and explain each step before assisting, because positioning and privacy reduce anxiety and improve cooperation and the trap is rushing positioning without draping or consent to proceed.</div></div>
+    <div class="qa"><div class="qn">Question 1405</div><p class="qq">When giving an IM injection, you’re about to recap the needle “just to walk it to the sharps”; what should you do instead?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not recap; activate the safety device and discard immediately into a sharps container because recapping causes needlesticks and the trap is thinking a quick recap is safer for transport.</div></div>
+    <div class="qa"><div class="qn">Question 1406</div><p class="qq">A patient reports dizziness immediately after a vaccination while standing at the checkout desk; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Assist them to sit or lie down and monitor while calling for clinical help because syncope/fall prevention is immediate priority and the trap is offering water and letting them remain standing.</div></div>
+    <div class="qa"><div class="qn">Question 1407</div><p class="qq">You accidentally stick yourself with a used lancet after a glucose test; what is the first action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Wash the area immediately with soap and water and report the exposure per clinic protocol because prompt cleansing and reporting are time-sensitive and the trap is waiting until the end of the shift to “see if it’s a big deal.”</div></div>
+    <div class="qa"><div class="qn">Question 1408</div><p class="qq">You are preparing an IM vaccine and notice the syringe label doesn’t match the order even though the vial looks similar; what is the best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and verify the medication against the order and the vial’s name/strength/expiration before proceeding because look-alike products cause errors and the trap is relying on appearance or a partially read label.</div></div>
+    <div class="qa"><div class="qn">Question 1409</div><p class="qq">In the lobby, a visitor tells you a patient “just collapsed and isn’t breathing”; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Activate emergency response (call for help/911 per clinic policy) and begin CPR/AED as soon as available because early activation and compressions save lives and the trap is searching for the provider first instead of starting lifesaving steps.</div></div>
+    <div class="qa"><div class="qn">Question 1410</div><p class="qq">You enter the room wearing gloves only to remove a saturated wound dressing, and the patient begins coughing repeatedly—what PPE change is best?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Add a surgical mask with eye protection (and keep gloves) because splash/droplet exposure is possible during wound care with coughing; the trap is thinking gloves alone meet Standard Precautions when mucous membrane exposure risk increases.</div></div>
+    <div class="qa"><div class="qn">Question 1411</div><p class="qq">You are about to administer a medication and notice the MAR lists 0.5 mL but the syringe is drawn to 0.8 mL—what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and resolve the discrepancy by rechecking the order and recalculating/remeasuring before giving anything because the “right dose” is a core safety check; the trap is assuming the prefilled syringe amount is correct and administering anyway.</div></div>
+    <div class="qa"><div class="qn">Question 1412</div><p class="qq">The provider orders an IM injection, and the patient says they have a severe latex allergy—what should the CMA do before preparing supplies?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify all supplies (gloves, vial stoppers, syringe/needle packaging, bandage) are latex-free and alert the provider if alternatives are needed because preventing exposure is the priority; the trap is assuming nonsterile gloves are the only latex source.</div></div>
+    <div class="qa"><div class="qn">Question 1413</div><p class="qq">During rooming, an adult patient’s BP is 186/112 and they report a new severe headache; they are here for a routine refill visit—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Recheck BP manually after a brief rest and immediately alert the provider with symptoms and readings because this may be hypertensive crisis; the trap is documenting it and continuing intake as “white coat” without prompt escalation.</div></div>
+    <div class="qa"><div class="qn">Question 1414</div><p class="qq">While obtaining vitals, a patient becomes pale and says they feel faint while standing on the scale—what is the best next action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Assist them to a seated or supine position (legs elevated if tolerated) and stay with them, then obtain vitals and notify the provider because fall prevention comes before finishing measurements; the trap is insisting they “hold on” to complete height/weight.</div></div>
+    <div class="qa"><div class="qn">Question 1415</div><p class="qq">After drawing up an IM vaccine, the patient suddenly asks to use the restroom and you step out holding the uncapped syringe—what is the safest action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Discard the prepared syringe and prepare a new dose before administration because leaving with/transporting an uncapped or unattended prepared medication risks contamination and mix-ups; the trap is “saving the dose” to avoid waste.</div></div>
+    <div class="qa"><div class="qn">Question 1416</div><p class="qq">You obtain an oral temperature of 101.8°F on a patient who just drank hot coffee in the waiting room—what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Wait about 15 minutes and retake using an appropriate route/device (or use tympanic/temporal per clinic practice) because recent hot liquids can falsely elevate oral temps; the trap is charting the first reading as true fever without confirming.</div></div>
+    <div class="qa"><div class="qn">Question 1417</div><p class="qq">During venipuncture for a CBC and BMP, the CMA fills the lavender tube first because it was closest on the tray; what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and redraw using the correct order of draw because drawing EDTA (lavender) before a serum/chemistry tube can contaminate the sample and alter results; the trap is “it’s already collected” but accuracy requires recollection.</div></div>
+    <div class="qa"><div class="qn">Question 1418</div><p class="qq">A fasting lipid panel specimen sits on the counter for 45 minutes after collection because the clinic got busy; what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Follow the test’s handling requirements and contact the lab/supervisor to determine if recollection is needed because delayed processing can compromise stability; the trap is assuming all blood is stable at room temperature.</div></div>
+    <div class="qa"><div class="qn">Question 1419</div><p class="qq">In the lobby, a visitor says, “Is my sister done yet? She’s in room 3 for an STI test,” and they ask you for her results—what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Decline to confirm information and direct the visitor to the patient or authorized contact process because HIPAA prohibits sharing even presence/test details without permission; the trap is giving “just a status update” because it seems harmless.</div></div>
+    <div class="qa"><div class="qn">Question 1420</div><p class="qq">A provider orders PT/INR, CMP, and CBC; the CMA prepares light blue, gold SST, and lavender tubes—what is the correct order of draw?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Draw light blue first, then gold/SST, then lavender because coagulation tubes must be collected before additive tubes that can affect clotting tests; the trap is placing SST before citrate.</div></div>
+    <div class="qa"><div class="qn">Question 1421</div><p class="qq">After drawing a lavender tube, the CMA shakes it vigorously to “mix it fast”; what is the best corrective action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Gently invert the tube the recommended number of times to mix additive without hemolyzing the specimen; the trap is shaking, which can cause hemolysis and inaccurate labs.</div></div>
+    <div class="qa"><div class="qn">Question 1422</div><p class="qq">A patient arrives for a minor procedure and asks to watch while you set up the sterile field, reaching toward the drape to “help”—what is the best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Politely ask them to keep hands away and reposition them for safety (and re-establish sterility if contamination occurs) because patient movement can contaminate the field; the trap is allowing “help” to save time and then proceeding after contamination.</div></div>
+    <div class="qa"><div class="qn">Question 1423</div><p class="qq">A patient’s name on the label is correct but the date of birth is missing; the specimen is already in the transport bag—what should the CMA do FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not send the specimen; relabel correctly at the patient’s side using two identifiers because mislabeling is a patient-safety event; the trap is fixing labels away from the patient, which breaks identification integrity.</div></div>
+    <div class="qa"><div class="qn">Question 1424</div><p class="qq">While collecting a light blue tube for PT/INR, the tube stops filling early and is only half full; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Discard and recollect a properly filled tube because citrate tubes require the correct blood-to-additive ratio for accurate coagulation results; the trap is “send it anyway” which can falsely prolong or shorten results.</div></div>
+    <div class="qa"><div class="qn">Question 1425</div><p class="qq">A rapid strep test is CLIA-waived, but the CMA realizes the control was not run for a new kit lot; the patient is waiting—what is the best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Run the required controls before reporting patient results because lot verification is part of quality assurance even for waived tests; the trap is thinking CLIA-waived means “no QC needed.”</div></div>
+    <div class="qa"><div class="qn">Question 1426</div><p class="qq">A patient’s antecubital veins are hard to palpate and the CMA is tempted to “fish” with the needle; what should the CMA do BEST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and reassess (reposition arm, warm site, try a different vein or obtain assistance) because probing increases pain, hematoma risk, and nerve injury; the trap is repeated redirection to salvage a missed attempt.</div></div>
+    <div class="qa"><div class="qn">Question 1427</div><p class="qq">The provider orders a blood culture, and the CMA has collected the tubes but has not cleaned the site with antiseptic yet; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Discard and restart with proper skin antisepsis before collection because cultures are highly contamination-sensitive; the trap is thinking you can “clean after” or rely on alcohol alone without proper technique.</div></div>
+    <div class="qa"><div class="qn">Question 1428</div><p class="qq">A urine dipstick POCT was performed, but the bottle of reagent strips has been left uncapped on the counter for an hour; what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Repeat the test with properly stored strips (and document the issue) because moisture/light exposure can invalidate reagent chemistry; the trap is accepting the first result because it “looked normal.”</div></div>
+    <div class="qa"><div class="qn">Question 1429</div><p class="qq">The clinic’s CLIA-waived glucose meter displays “QC failed” before patient testing; what should the CMA do FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not test patients and perform troubleshooting/QC per manufacturer instructions (repeat control, check strips, calibration, expiration) because failed QC means patient results are unreliable; the trap is proceeding to “save time.”</div></div>
+    <div class="qa"><div class="qn">Question 1430</div><p class="qq">After venipuncture, a hematoma begins forming at the site while the tube is still filling; what is the CMA’s best next action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Release the tourniquet, remove the needle, and apply firm pressure because continued blood flow into tissue worsens hematoma; the trap is keeping the needle in to complete the collection.</div></div>
+    <div class="qa"><div class="qn">Question 1431</div><p class="qq">A patient on anticoagulant therapy has persistent oozing after the needle is removed; what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Maintain firm pressure longer and reassess before bandaging, escalating per clinic protocol if bleeding won’t stop because anticoagulants increase bleeding risk; the trap is applying a bandage too soon and letting the patient leave.</div></div>
+    <div class="qa"><div class="qn">Question 1432</div><p class="qq">During a draw, the patient says, “I feel dizzy,” becomes pale, and starts to slump in the chair; what should the CMA do FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop the draw, remove the needle, apply pressure, and assist the patient into a safe position (reclined with legs elevated if possible) to prevent syncope injury; the trap is trying to “finish the tube” despite symptoms.</div></div>
+    <div class="qa"><div class="qn">Question 1433</div><p class="qq">A patient’s EKG has a wandering baseline and the CMA notices the patient is talking and the bed is not locked; what should the CMA do FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Instruct the patient to remain still and quiet and stabilize the environment (lock bed, ensure comfortable position) because movement causes artifact that can mimic dysrhythmias; the trap is assuming it’s a true rhythm change.</div></div>
+    <div class="qa"><div class="qn">Question 1434</div><p class="qq">After placing chest leads for an EKG, the CMA realizes V1 and V2 were placed too high near the clavicles; what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Reposition V1/V2 to the 4th intercostal space at the sternal borders and repeat the EKG because incorrect placement can mimic ischemia or axis changes; the trap is keeping the tracing because “it’s readable.”</div></div>
+    <div class="qa"><div class="qn">Question 1435</div><p class="qq">The EKG printout shows consistent 60-cycle interference, and the CMA sees a nearby power cord draped over the lead wires; what should the CMA do BEST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Separate/untangle lead wires from electrical cords and ensure good skin contact because electrical interference commonly causes this artifact; the trap is turning up filter settings instead of fixing the source.</div></div>
+    <div class="qa"><div class="qn">Question 1436</div><p class="qq">While filling a light blue sodium citrate tube for PT/INR, blood flow stops and the tube is only half full; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Discard that tube and recollect a fully filled light blue tube because underfilling changes the blood-to-additive ratio and invalidates results (trap: “topping off” from another tube or accepting it “since it clotted fine”).</div></div>
+    <div class="qa"><div class="qn">Question 1437</div><p class="qq">A fecal occult blood POCT card is developed, but the sample window is smeared with too much stool and the result is hard to read; what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Repeat the test with a proper thin smear and follow kit timing exactly because excess specimen can invalidate readability and accuracy; the trap is guessing the result or over-interpreting a compromised test.</div></div>
+    <div class="qa"><div class="qn">Question 1438</div><p class="qq">While setting up a 12-lead EKG, the CMA places limb electrodes on the patient’s wrists and ankles, but the tracing shows heavy motion artifact from tremor; what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Reposition limb electrodes to the torso (per facility practice) and have the patient relax/keep still to reduce artifact while maintaining correct lead orientation; the trap is repeating the EKG without addressing artifact source.</div></div>
+    <div class="qa"><div class="qn">Question 1439</div><p class="qq">A provider asks the CMA to interpret the EKG as “normal” so the patient can leave; the tracing prints with an automated message “possible acute MI”; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Immediately notify the provider with the tracing and patient status because CMAs do not interpret/clear EKGs and possible critical findings require prompt escalation; the trap is reassuring the patient or documenting an interpretation.</div></div>
+    <div class="qa"><div class="qn">Question 1440</div><p class="qq">A provider orders CBC, PT/INR, BMP, and a lactic acid, and you have one venipuncture attempt to get all tubes; what order of draw should you use?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Draw blood cultures first (if ordered), then light blue, then serum (red/gold), then green, then lavender, then gray because correct order prevents additive carryover (common trap: drawing lavender before light blue can falsely prolong coag results).</div></div>
+    <div class="qa"><div class="qn">Question 1441</div><p class="qq">A patient’s wristband is missing, and they verbally confirm their name and date of birth; what is the best way to label the tubes?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Label at the patient’s side immediately after the draw using two identifiers matched to the order because bedside labeling reduces mislabeling errors (trap: labeling later at the workstation from memory).</div></div>
+    <div class="qa"><div class="qn">Question 1442</div><p class="qq">A patient is fasting for labs and asks if they can sip coffee while you prepare the draw; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask what the provider ordered and instruct the patient to avoid anything but water until the draw is complete because coffee can break fasting requirements and alter results (trap: allowing “just a little” without verifying test prep).</div></div>
+    <div class="qa"><div class="qn">Question 1443</div><p class="qq">The only specimen you receive for a potassium level is visibly hemolyzed (pink/red serum) after a difficult draw; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Notify the lab/provider per clinic process and recollect if requested because hemolysis can falsely elevate potassium and compromise accuracy (trap: sending it anyway to “see what it says”).</div></div>
+    <div class="qa"><div class="qn">Question 1444</div><p class="qq">A patient becomes pale and says, “I’m going to pass out,” while seated upright in the phlebotomy chair; what should you do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop the draw and assist the patient to a safe reclined position (legs elevated if possible) to prevent injury from syncope (trap: offering water or continuing the draw while they remain upright).</div></div>
+    <div class="qa"><div class="qn">Question 1445</div><p class="qq">You’re preparing for venipuncture and the patient says they are on “blood thinners”; after removing the needle, how should you adjust aftercare?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Hold firm pressure longer than usual and ensure bleeding has stopped before bandaging because anticoagulants increase bleeding risk (trap: using the usual brief pressure time and letting them leave with continued oozing).</div></div>
+    <div class="qa"><div class="qn">Question 1446</div><p class="qq">You drew a lavender tube for CBC and set it on the counter without mixing while you label other tubes; what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Gently invert the lavender tube the recommended number of times as soon as possible because EDTA tubes must be mixed to prevent microclots (trap: shaking vigorously, which can hemolyze, or assuming mixing isn’t needed).</div></div>
+    <div class="qa"><div class="qn">Question 1447</div><p class="qq">You have difficulty advancing the needle and see no blood return; what should you do to avoid damaging the vein?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Withdraw the needle slightly and reassess angle/position, then stop and attempt a new site if unsuccessful because “digging” increases hematoma/nerve injury risk (trap: probing repeatedly under the skin).</div></div>
+    <div class="qa"><div class="qn">Question 1448</div><p class="qq">After a venipuncture, you notice swelling and firmness at the site as blood is entering the tube; what is the CMA’s best immediate action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Release the tourniquet, remove the needle, and apply firm pressure because this suggests a hematoma/infiltration and continuing worsens tissue injury (trap: finishing the draw to “get all tubes” despite swelling).</div></div>
+    <div class="qa"><div class="qn">Question 1449</div><p class="qq">You place limb electrodes on the patient’s torso to reduce artifact, and the provider asks why the EKG looks different than prior studies; what is the best response/action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Repeat the EKG with correct limb placement on wrists/ankles (or distal limbs per standard) because nonstandard placement can change axis and waveform comparisons (trap: leaving it because it “prints fine”).</div></div>
+    <div class="qa"><div class="qn">Question 1450</div><p class="qq">You are performing an EKG and notice the machine displays “LEAD OFF” for V2; what is the next best step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Check that the V2 electrode is adhered and the wire is securely snapped in, then repeat the acquisition because a disconnected lead produces incomplete/erroneous data (trap: printing and sending an incomplete tracing).</div></div>
+    <div class="qa"><div class="qn">Question 1451</div><p class="qq">After printing an EKG, you see the patient’s name is misspelled and the DOB is wrong; what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not send it as-is—correct the patient identifiers and repeat/regen the report per device workflow because misidentified diagnostics are a major safety risk (trap: hand-correcting with pen and hoping it’s “good enough”).</div></div>
+    <div class="qa"><div class="qn">Question 1452</div><p class="qq">A CLIA-waived urine pregnancy test shows the control line is absent; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Treat it as an invalid test and repeat with a new device/specimen as appropriate because a missing control means the result can’t be trusted (trap: reporting “negative” because the test line is absent).</div></div>
+    <div class="qa"><div class="qn">Question 1453</div><p class="qq">You run daily quality control on a POCT analyzer and the control is out of range; what is the best next action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop patient testing, troubleshoot per manufacturer instructions (new control/strip, verify lot/expiration, clean device), and document/notify as required because reporting patient results without passing QC is unsafe (trap: rerunning patient samples and assuming it will “average out”).</div></div>
+    <div class="qa"><div class="qn">Question 1454</div><p class="qq">Before running a fingerstick glucose on a clinic meter, you notice the test strips expired last week; what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not use expired strips—discard and obtain in-date strips because expiration affects accuracy and QC compliance (trap: using them “just for today” since the meter still reads).</div></div>
+    <div class="qa"><div class="qn">Question 1455</div><p class="qq">A patient’s skin is oily and the EKG leads keep popping off; what should you do to get a clean tracing?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Clean and dry the skin (and gently abrade if allowed) before reapplying electrodes because good contact reduces artifact (trap: adding extra gel only or taping over poorly prepped skin).</div></div>
+    <div class="qa"><div class="qn">Question 1456</div><p class="qq">During a 12-lead EKG, the tracing shows a wandering baseline and the patient is shivering; what should you do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Warm and relax the patient (blanket, adjust room temp) and ask them to stay still because muscle tremor causes artifact (trap: immediately repositioning all electrodes without addressing shivering).</div></div>
+    <div class="qa"><div class="qn">Question 1457</div><p class="qq">After drawing a lavender-top tube, the CMA vigorously shakes it to mix and the specimen becomes frothy—what is the best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Recollect and gently invert the new tube the recommended number of times to prevent hemolysis; the trap is assuming “more mixing is better,” which can invalidate results.</div></div>
+    <div class="qa"><div class="qn">Question 1458</div><p class="qq">A patient’s requisition says fasting lipid panel, but at check-in the patient reports drinking a sugary coffee 30 minutes ago—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Notify the provider or follow clinic protocol to reschedule/clarify before drawing because non-fasting can alter results; the trap is drawing anyway and “letting the lab decide.”</div></div>
+    <div class="qa"><div class="qn">Question 1459</div><p class="qq">A patient arrives with a urine specimen collected at home “this morning,” unlabeled and sitting in a warm car; what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Reject and request a new properly labeled, fresh specimen (or follow storage requirements) because time/temperature can alter urine chemistry and promote bacterial growth (trap: labeling it yourself and sending it to avoid delaying the visit).</div></div>
+    <div class="qa"><div class="qn">Question 1460</div><p class="qq">The CMA prints labels for two patients and is about to label tubes at the counter after leaving the room—what is the best practice?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Label tubes in the patient’s presence immediately after collection using two identifiers because delayed labeling increases mislabeling risk; the trap is relying on “I’ll remember which tube is which.”</div></div>
+    <div class="qa"><div class="qn">Question 1461</div><p class="qq">A provider orders PT/INR, CBC, and BMP, and the CMA has blue, lavender, and light green tubes ready—what is the correct order of draw?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Draw light blue, then light green, then lavender because coagulation tubes must be collected before EDTA tubes to prevent clotting-test interference; the trap is drawing CBC first “because it’s routine.”</div></div>
+    <div class="qa"><div class="qn">Question 1462</div><p class="qq">While drawing a blue-top tube, you notice the vacuum stops early and the tube is only half full—what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Redraw the blue-top to the required fill line because underfilling alters the blood-to-additive ratio and skews coag results; the trap is “topping off” from another tube or sending it anyway.</div></div>
+    <div class="qa"><div class="qn">Question 1463</div><p class="qq">During venipuncture for a CBC and CMP, you collect the CMP in a lavender tube first and then remember the order of draw—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and redraw using the correct order of draw because additive carryover can contaminate results; the common trap is “it’s already labeled so send it,” which risks inaccurate labs.</div></div>
+    <div class="qa"><div class="qn">Question 1464</div><p class="qq">You are about to collect a throat swab for a CLIA-waived rapid strep test and the patient just used mouthwash; what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask when they used it and, if recent, notify the provider/consider recollection timing per test instructions because mouthwash can reduce organism load and cause false negatives (trap: collecting immediately without considering pre-test interference).</div></div>
+    <div class="qa"><div class="qn">Question 1465</div><p class="qq">A 12-lead EKG printout shows heavy baseline wander, and you notice the patient is shivering in a cold room—what is the best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Warm/comfort the patient and repeat the EKG because muscle tremor commonly causes artifact; the trap is troubleshooting the machine first when the issue is patient-related.</div></div>
+    <div class="qa"><div class="qn">Question 1466</div><p class="qq">A urine specimen for culture was collected, but it sat at room temperature on the counter for 2 hours before being processed—what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Treat it as compromised and follow protocol to recollect or refrigerate with proper timing because bacterial overgrowth can alter culture results; the trap is sending it anyway to “avoid bothering the patient.”</div></div>
+    <div class="qa"><div class="qn">Question 1467</div><p class="qq">Immediately after you remove the tourniquet and needle, the patient reports tingling shooting down the arm—what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop, apply pressure, assess for persistent symptoms, and promptly report to the provider because nerve irritation/injury is possible; the trap is dismissing it as “normal soreness.”</div></div>
+    <div class="qa"><div class="qn">Question 1468</div><p class="qq">While placing EKG limb leads, the patient’s wrists are covered in lotion and the electrodes keep lifting—what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Clean and dry the skin (and lightly abrade if appropriate) then reapply electrodes because poor contact causes artifact; the trap is pressing harder or adding tape without prepping the skin.</div></div>
+    <div class="qa"><div class="qn">Question 1469</div><p class="qq">During a routine venipuncture for CBC, BMP, and PT/INR, you draw the tubes in the wrong order and the light blue citrate tube is filled only halfway before the vein collapses; what should the CMA do next before sending specimens to the lab?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and redraw the specimens with a new venipuncture using the correct order of draw and fully fill the light blue tube to its mark, because underfilling or drawing it after other additives can alter the blood-to-anticoagulant ratio and cause inaccurate coagulation results (a common mistake is “topping off” or submitting a short-draw citrate tube).</div></div>
+    <div class="qa"><div class="qn">Question 1470</div><p class="qq">During venipuncture, a patient suddenly becomes pale, diaphoretic, and says they feel faint—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop the draw, remove the needle, activate safety, and position the patient safely (recline with legs elevated if possible) because syncope can cause injury; the trap is trying to “finish the last tube.”</div></div>
+    <div class="qa"><div class="qn">Question 1471</div><p class="qq">The first venipuncture attempt is unsuccessful and the patient is anxious and asking you to “just try again right away”—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask for assistance or follow the clinic limit on attempts (often no more than two) because multiple sticks increase complications and patient distress; the trap is repeated attempts to “prove you can get it.”</div></div>
+    <div class="qa"><div class="qn">Question 1472</div><p class="qq">A patient says they have a history of mastectomy with lymph node removal on the left, and you were preparing to draw from the left arm—what is the best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Use the other arm (or consult the provider if both sides are restricted) to reduce lymphedema/infection risk; the trap is thinking a small venipuncture “doesn’t count.”</div></div>
+    <div class="qa"><div class="qn">Question 1473</div><p class="qq">The provider orders a CLIA-waived fingerstick glucose, but the control solution has not been run on the meter today—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Run and document quality control before testing the patient because QC verifies accuracy and is required for reliable results; the trap is skipping QC “since the meter turned on fine.”</div></div>
+    <div class="qa"><div class="qn">Question 1474</div><p class="qq">A CMA is collecting a blood specimen for PT/INR, CBC, and CMP using evacuated tubes; which tube should be drawn first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Draw the light blue citrate tube first because coagulation testing is most sensitive to additive carryover; a common trap is drawing the purple EDTA first, which can falsely prolong clotting results.</div></div>
+    <div class="qa"><div class="qn">Question 1475</div><p class="qq">During venipuncture, blood flow stops after the first tube and the tube is only partially filled; what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Reposition the needle slightly (without probing) and ensure the tube is fully seated, because loss of vacuum/needle position is common; a trap is “milking” the arm, which increases hemolysis and alters results.</div></div>
+    <div class="qa"><div class="qn">Question 1476</div><p class="qq">During a routine venipuncture for a CMP and CBC, the CMA accidentally fills the lavender EDTA tube first and then the light green heparin tube; the patient is stable and the draw is complete—what should the CMA do next to prevent an inaccurate CMP result?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Notify the provider/lab and recollect the CMP specimen in the correct order of draw because EDTA carryover can falsely alter chemistry values (common trap: sending both tubes anyway or just “mixing well” to fix the error).</div></div>
+    <div class="qa"><div class="qn">Question 1477</div><p class="qq">During a 12-lead EKG, the machine flags “leads off” intermittently and the tracing is intermittent—what should the CMA check first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify each electrode and lead wire connection at the patient before restarting because loose leads are the most common cause; the trap is assuming the printer or paper is the problem.</div></div>
+    <div class="qa"><div class="qn">Question 1478</div><p class="qq">A patient brings in a home-collected stool sample with no label and says, “It’s mine; I dropped it off for the test”—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not accept it as-is; obtain proper labeling with two identifiers and verify collection requirements (or recollect) because unlabeled specimens are a major identification error; the trap is labeling it later based on the patient’s word.</div></div>
+    <div class="qa"><div class="qn">Question 1479</div><p class="qq">A patient asks the CMA, “Does this EKG mean I’m having a heart attack?” after you see abnormal-looking complexes—what is the best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Tell the patient you can’t interpret results, keep them calm, and immediately alert the provider because abnormal findings require prompt clinical evaluation; the trap is reassuring or diagnosing based on the tracing.</div></div>
+    <div class="qa"><div class="qn">Question 1480</div><p class="qq">A urine dipstick bottle has been left open on the counter, and another CMA says it’s fine because “the strips still look normal”—what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Discard per manufacturer guidance and open a new bottle because moisture/light exposure can cause false results; the trap is relying on appearance instead of storage requirements.</div></div>
+    <div class="qa"><div class="qn">Question 1481</div><p class="qq">A urine pregnancy test (POCT) is negative but the control indicator did not appear; what is the CMA’s BEST next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Treat it as an invalid test, repeat per manufacturer instructions with QC as required, because missing controls mean results can’t be reported; a trap is documenting “negative” anyway.</div></div>
+    <div class="qa"><div class="qn">Question 1482</div><p class="qq">A specimen label is printed but the CMA realizes it was placed on the tube before the draw and the patient stepped out to the restroom; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Discard the pre-labeled tube and recollect/label at bedside after re-identifying the patient, because unattended pre-labeling risks misidentification; a trap is “confirming later” from memory or the schedule.</div></div>
+    <div class="qa"><div class="qn">Question 1483</div><p class="qq">A patient says they fainted during a previous blood draw and looks pale while seated upright on the exam table; what should the CMA do FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and place the patient supine (or reclined) before attempting the draw because preventing syncope-related injury is priority; a common trap is proceeding quickly “to get it over with.”</div></div>
+    <div class="qa"><div class="qn">Question 1484</div><p class="qq">The patient’s arm becomes swollen and cool around the venipuncture site while blood is being drawn; what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop the draw, release the tourniquet, remove the needle, and apply pressure because this suggests hematoma/infiltration; a trap is continuing to fill the tube, which worsens tissue damage.</div></div>
+    <div class="qa"><div class="qn">Question 1485</div><p class="qq">A CMP and potassium are ordered, and the sample arrives in the lab with visible hemolysis; what is the most likely collection error the CMA should avoid next time?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Avoid vigorous shaking/forceful syringe transfer because hemolysis can falsely elevate potassium; a trap is assuming the result is “still usable” and not recollecting when required.</div></div>
+    <div class="qa"><div class="qn">Question 1486</div><p class="qq">The clinic runs CLIA-waived glucose testing and the meter flags “QC overdue”; a patient is waiting for a reading; what should the CMA do FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Perform the required quality control before patient testing because results are not reliable without QC compliance; a trap is running the patient sample “just this once” to save time.</div></div>
+    <div class="qa"><div class="qn">Question 1487</div><p class="qq">After drawing a lavender-top tube for CBC, the CMA sets it down and continues charting; what is the BEST immediate action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Gently invert the tube the required number of times right away to mix anticoagulant and prevent clotting; a common trap is shaking vigorously, which can hemolyze the specimen.</div></div>
+    <div class="qa"><div class="qn">Question 1488</div><p class="qq">A provider requests blood cultures and a CBC from the same venipuncture; what should the CMA collect FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Collect blood cultures first using aseptic technique because contamination control is critical; a trap is drawing other tubes first, increasing the risk of skin flora contaminating cultures.</div></div>
+    <div class="qa"><div class="qn">Question 1489</div><p class="qq">The provider asks the CMA to “interpret” an EKG that appears abnormal; what is the CMA’s appropriate response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Immediately notify the provider of concerning findings and document that the EKG was performed, but do not interpret/diagnose because interpretation is outside CMA scope; a trap is telling the patient what it “means.”</div></div>
+    <div class="qa"><div class="qn">Question 1490</div><p class="qq">A rapid strep POCT is performed, but the swab touched the tongue and cheeks before reaching the tonsillar area; what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Discard that swab and recollect correctly because oral contamination can cause inaccurate results; a trap is running the test anyway to avoid an uncomfortable recollection.</div></div>
+    <div class="qa"><div class="qn">Question 1491</div><p class="qq">A patient’s ECG limb leads are placed on the wrists/ankles and the tracing is very noisy as the patient talks and moves hands; what change is MOST helpful?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Reposition limb electrodes to the torso (if facility protocol allows) and instruct the patient to keep arms/legs still because motion artifact is common; a trap is increasing gain/filter settings to “hide” the noise.</div></div>
+    <div class="qa"><div class="qn">Question 1492</div><p class="qq">While performing a 12-lead EKG, the tracing shows a wandering baseline and the patient is shivering; what should the CMA do FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Warm/comfort the patient and ask them to lie still and relax muscles because tremor causes artifact; a trap is repeatedly reprinting without fixing the cause.</div></div>
+    <div class="qa"><div class="qn">Question 1493</div><p class="qq">A 12-lead EKG prints with a flatline in lead I and an unusual pattern suggesting lead reversal; what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify electrode placement and cable connections and repeat the EKG because misplacement commonly mimics abnormalities; a trap is alerting the provider with an unverified tracing.</div></div>
+    <div class="qa"><div class="qn">Question 1494</div><p class="qq">A fasting lipid panel is ordered, but the patient states they drank a large coffee with cream 30 minutes ago; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Notify the provider and document the intake because the test may need rescheduling for accurate results; a trap is proceeding without disclosure and creating misleading lab values.</div></div>
+    <div class="qa"><div class="qn">Question 1495</div><p class="qq">During EKG setup, the patient has oily lotion on the chest and multiple electrodes won’t stick; what should the CMA do BEST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Clean and dry the skin (and lightly abrade if allowed) before applying electrodes because poor contact causes artifact; a trap is taping over loose electrodes without skin prep.</div></div>
+    <div class="qa"><div class="qn">Question 1496</div><p class="qq">After centrifuging a serum tube, the CMA notices the cap popped slightly open during spinning; what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Treat it as a potential exposure/compromised specimen, follow spill/exposure procedure, and recollect if needed because aerosol/leak risk and integrity are concerns; a trap is simply snapping the cap back and sending it.</div></div>
+    <div class="qa"><div class="qn">Question 1497</div><p class="qq">A CBC is ordered and the patient has an IV running in the left arm; which site selection is BEST for venipuncture?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Use the opposite arm if possible because drawing above/near an IV can dilute or contaminate the specimen; a trap is drawing from the IV arm “below the IV” without guidance.</div></div>
+    <div class="qa"><div class="qn">Question 1498</div><p class="qq">After a successful venipuncture, the patient asks to see their lab results on the computer screen while other patients are nearby at check-in; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Maintain privacy by moving the conversation to a private area or offering the patient portal process, because HIPAA requires limiting exposure of PHI; a trap is turning the monitor toward the patient in public view.</div></div>
+    <div class="qa"><div class="qn">Question 1499</div><p class="qq">After drawing a light-blue tube for PT/INR, the CMA notices it is underfilled—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Redraw the specimen to the proper fill line, because citrate tubes require a correct blood-to-additive ratio for accurate coagulation results; a common trap is “topping off” from another tube or accepting a short draw.</div></div>
+    <div class="qa"><div class="qn">Question 1500</div><p class="qq">During venipuncture, blood stops flowing and the tube is only partially filled while the needle is still in the vein—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Gently reposition the needle (slightly withdraw/adjust angle) and ensure the tube is fully seated before restarting, because the bevel may be against the vein wall; a common trap is “digging” aggressively or removing the needle without first checking tube engagement.</div></div>
+  <div class="setnav"><a class="btn btn-ghost" href="set-14.html">← Set 14</a><a class="btn btn-gold" href="set-16.html">Set 16 →</a></div>
+</div>
+<div class="foot">
+  <div class="copyright">© 2026 MED PREP. All rights reserved.</div>
+  <div class="legal">Independently produced study material — not affiliated with, endorsed by, or sponsored by the National Healthcareer Association (NHA). CCMA is a credential of the NHA. Questions are for practice only and are not actual exam items.</div>
+</div>
+<script>
+(function(){
+function $(id){return document.getElementById(id);}
+var all=document.querySelectorAll('.qa');
+function setAll(open){ all.forEach(function(c){ c.querySelector('.qa-a').hidden=!open; c.querySelector('button.rev').textContent=open?'Hide answer':'Show answer'; }); }
+all.forEach(function(c){ var b=c.querySelector('button.rev'), a=c.querySelector('.qa-a'); b.onclick=function(){ a.hidden=!a.hidden; b.textContent=a.hidden?'Show answer':'Hide answer'; }; });
+var sa=$('showall'); if(sa) sa.onclick=function(){ var open=sa.dataset.open!=='1'; setAll(open); sa.dataset.open=open?'1':'0'; sa.textContent=open?'Hide all answers':'Show all answers'; };
+})();
+</script>
+</body>
+</html>

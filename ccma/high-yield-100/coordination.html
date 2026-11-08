@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Patient Care Coordination and Education — High-Yield 100</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#0A1444; --navy-2:#111C55; --navy-3:#192767; --line:#2A3B77;
+  --gold:#F4D348; --gold-ink:#151B45;
+  --paper:#F3F1E8; --muted:#9AA3CC; --muted-2:#6E77A8;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --alert-soft:#3A2E12; --alert-muted:#D9CBA3;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px; overflow-x:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+a{color:inherit;}
+img{max-width:100%;}
+button{font:inherit;}
+.topbar{position:sticky; top:0; z-index:20; background:rgba(10,20,68,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:760px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;}
+.page{max-width:760px; margin:0 auto; padding:0 1.25rem 4rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.5rem 0 1.25rem;}
+.eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(1.8rem,6.5vw,2.6rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:500px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.5rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.55rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; padding:.85rem 1.4rem; border-radius:999px; border:1.5px solid transparent; cursor:pointer; text-align:center;}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(244,211,72,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+.btn[disabled]{opacity:.4; cursor:not-allowed;}
+.action-block{margin-top:1rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.5rem; box-shadow:var(--shadow); margin-top:1.5rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+.callout p{color:var(--muted); margin:.5rem 0 0;}
+.section-head{padding-top:2.25rem; margin-bottom:1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+.muted{color:var(--muted);}
+.card-list{display:flex; flex-direction:column; border-top:1px solid var(--line); margin-top:1rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center; text-decoration:none;}
+.card h3{font-size:1.02rem; font-weight:700;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; flex-shrink:0;}
+.grid-tests{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-top:1rem;}
+.tbox{display:block; text-decoration:none; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:.9rem 1rem;}
+.tbox:hover{border-color:var(--gold);}
+.tbox .k{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.tbox .t{font-family:'Anton',sans-serif; font-size:1.35rem; color:var(--gold); line-height:1.15; margin-top:.15rem;}
+.tbox .s{font-size:.8rem; color:var(--muted); margin-top:.2rem;}
+.tbox .s.prog{color:var(--correct);}
+.subject-chip{font-weight:600; font-size:.92rem; background:var(--navy); border:1.5px dashed var(--line); border-radius:8px; padding:.7rem 1rem; color:var(--paper); word-break:break-word; display:inline-block;}
+.subject-chip b{color:var(--gold);}
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+.step-list{margin:1.25rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.4rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{font-family:'Anton',sans-serif; font-size:1.1rem; color:var(--gold-ink); background:var(--gold); width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0;}
+.bp-table{width:100%; border-collapse:collapse; margin-top:1rem; font-size:.9rem;}
+.bp-table th{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--line);}
+.bp-table td{padding:.6rem; border-bottom:1px solid var(--line);}
+.bp-table td.n{color:var(--gold); font-family:'Oswald',sans-serif; font-weight:700; text-align:right; white-space:nowrap;}
+.faq dt{font-weight:700; margin-top:1.1rem;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem;}
+.foot{max-width:760px; margin:2.5rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em;}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card .tag{align-self:stretch; text-align:center;}
+  .topbar-inner{padding:.6rem 1rem;} .topbar .logo{height:38px;}
+  .hero{padding-top:1.8rem;}
+  .action-block .btn{width:100%;}
+  .bp-table{font-size:.8rem;}
+}
+
+.panel{margin-top:1.25rem; padding:1.4rem; background:var(--navy-2); border:1px solid var(--line); border-radius:12px;}
+.panel h1{font-family:'Oswald',sans-serif; font-size:1.45rem; text-transform:uppercase;}
+.panel p{color:var(--muted); margin:.8rem 0 0;}
+.panel ul{color:var(--muted); margin:.8rem 0 0; padding-left:1.25rem;}
+.panel ul li::marker{color:var(--gold);}
+.gate{display:flex; gap:.7rem; align-items:flex-start; margin:1.3rem 0 1rem; font-size:.95rem;}
+.gate input{margin-top:.25rem; width:18px; height:18px; accent-color:var(--gold); flex:none;}
+.resume{margin-top:1rem; padding:1rem 1.1rem; border:1.5px solid var(--gold); border-radius:10px; background:var(--alert-soft);}
+.resume p{margin:0; color:var(--paper);}
+.runbar{position:sticky; top:62px; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:.6rem .9rem; margin-top:1rem; background:var(--gold); color:var(--gold-ink); border-radius:10px; font-family:'Oswald',sans-serif; font-size:.8rem; font-weight:600; letter-spacing:.03em;}
+.bar{height:6px; border-radius:3px; background:var(--line); overflow:hidden; margin-top:.6rem;}
+.bar > i{display:block; height:100%; background:var(--gold);}
+.dots{display:flex; flex-wrap:wrap; gap:6px; margin-top:.8rem;}
+.dots button{width:2.2rem; height:2.2rem; border-radius:6px; border:1px solid var(--line); background:var(--navy-2); color:var(--muted); cursor:pointer; font-family:'Oswald',sans-serif;}
+.dots button.cur{border-color:var(--gold); color:var(--gold);}
+.q{margin-top:1rem; padding:1.2rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px;}
+.qno{font-family:'Oswald',sans-serif; font-size:.7rem; color:var(--muted-2); letter-spacing:.06em; text-transform:uppercase;}
+.stem{margin:.5rem 0 .8rem; font-size:1rem; line-height:1.55;}
+.opt{display:flex; gap:.75rem; width:100%; text-align:left; align-items:flex-start; padding:.7rem .8rem; margin-top:.5rem; background:var(--navy); border:1.5px solid var(--line); border-radius:8px; color:var(--paper); cursor:pointer; line-height:1.45;}
+.opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line); display:grid; place-items:center; font-family:'Oswald',sans-serif; font-weight:700; font-size:.8rem; color:var(--gold);}
+.opt.sel{border-color:var(--gold);}
+.opt.sel .l{background:var(--gold); color:var(--gold-ink); border-color:var(--gold);}
+.opt:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+.secnav{display:flex; align-items:center; justify-content:space-between; gap:.6rem; margin-top:1.4rem; flex-wrap:wrap;}
+.secnav .mid{font-family:'Oswald',sans-serif; font-size:.78rem; color:var(--muted); width:100%; text-align:center; order:-1;}
+.secnav .btn{flex:1;}
+.score{margin-top:1.25rem; padding:1.5rem; background:var(--navy-2); border:1px solid var(--line); border-radius:12px; text-align:center;}
+.score .big{font-family:'Anton',sans-serif; font-size:2.8rem; color:var(--gold); line-height:1;}
+.score .sub{color:var(--muted); margin-top:.5rem;}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:1.4rem;}
+.tabs button{padding:.45em .9em; border-radius:999px; border:1px solid var(--line); background:var(--navy-2); color:var(--muted); font-family:'Oswald',sans-serif; font-size:.78rem; cursor:pointer;}
+.tabs button[aria-pressed="true"]{background:var(--gold); color:var(--gold-ink); border-color:var(--gold);}
+.rev .opt{cursor:default;}
+.rev .opt.right{border-color:var(--correct); background:var(--correct-soft);}
+.rev .opt.right .l{background:var(--correct); border-color:var(--correct); color:#fff;}
+.rev .opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.rev .opt.wrong .l{background:var(--incorrect); border-color:var(--incorrect); color:#fff;}
+.rtag{display:inline-block; margin-left:.5rem; font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.07em; text-transform:uppercase;}
+.rtag.ok{color:var(--correct);} .rtag.bad{color:var(--incorrect);} .rtag.skip{color:var(--muted-2);}
+.why{margin-top:.9rem; padding:.9rem 1rem; border-radius:8px; background:var(--alert-soft); border:1px solid rgba(244,211,72,.35); font-size:.93rem;}
+.why h4{margin:0 0 .3rem; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold);}
+.why p{margin:.3rem 0; color:var(--paper);}
+.why .others p{color:var(--muted); font-size:.9rem;}
+#printview{display:none;}
+body.printing .topbar, body.printing .page > *:not(#printview), body.printing .foot{display:none !important;}
+body.printing{background:#fff; color:#000;}
+body.printing #printview{display:block; color:#000; font-family:Georgia,serif; font-size:11pt; line-height:1.4;}
+#printview h1{font-family:Arial,sans-serif; font-size:16pt; margin:0 0 4pt;}
+#printview .pq{break-inside:avoid; margin:0 0 10pt;}
+#printview .pq p{margin:0 0 3pt;}
+#printview .po{margin-left:14pt;}
+#printview .key{break-before:page; columns:5; font-family:Arial,sans-serif; font-size:10pt;}
+#printview .noprint{font-family:Arial,sans-serif; margin:10pt 0 14pt; padding:8pt; border:1px solid #999;}
+@media print{ #printview .noprint{display:none;} }
+
+.hyq{margin-top:1rem; padding:1.2rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px;}
+.hyq .opt{display:flex; gap:.75rem; width:100%; text-align:left; align-items:flex-start; padding:.7rem .8rem; margin-top:.5rem; background:var(--navy); border:1.5px solid var(--line); border-radius:8px; color:var(--paper); cursor:pointer; line-height:1.45;}
+.hyq .opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line); display:grid; place-items:center; font-family:'Oswald',sans-serif; font-weight:700; font-size:.8rem; color:var(--gold);}
+.hyq.done .opt{cursor:default;}
+.hyq .opt.right{border-color:var(--correct); background:var(--correct-soft);}
+.hyq .opt.right .l{background:var(--correct); border-color:var(--correct); color:#fff;}
+.hyq .opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.hyq .opt.wrong .l{background:var(--incorrect); border-color:var(--incorrect); color:#fff;}
+.hyq .exp{margin-top:.9rem; padding:.9rem 1rem; border-radius:8px; background:var(--alert-soft); border:1px solid rgba(244,211,72,.35);}
+.hyq .exp h4{margin:0 0 .3rem; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold);}
+.hyq .exp p{margin:.3rem 0; font-size:.94rem;}
+.hyq .exp .trap{color:var(--alert-muted);}
+.hy-score{position:sticky; top:62px; z-index:5; margin-top:1rem; padding:.55rem .9rem; border-radius:10px; background:var(--gold); color:var(--gold-ink); font-family:'Oswald',sans-serif; font-size:.82rem; font-weight:600; text-align:center;}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner"><img class="logo" src="../assets/med-prep-logo.png" alt="MED PREP"><span class="title">NHA CCMA Study Guide</span></div></div>
+<div class="page">
+
+  <a href="./" class="back-link">← All areas</a>
+  <div class="hero" style="padding-bottom:.5rem;">
+    <div class="eyebrow">High-Yield 100 · Area 9 of 12</div>
+    <h1>Patient Care Coordination and Education</h1>
+  </div>
+  <div class="hy-score" id="hyscore"></div>
+  <div id="hylist"></div>
+  <div class="action-block" style="margin-top:1.5rem;"><a class="btn btn-gold" href="administrative.html">Next: Administrative Assisting →</a></div>
+</div>
+<div class="foot">
+  <div class="copyright">© 2026 MED PREP. All rights reserved.</div>
+  <div class="legal">Independently produced study material — not affiliated with, endorsed by, or sponsored by the National Healthcareer Association (NHA). CCMA is a credential of the NHA. Questions are for practice only and are not actual exam items.</div>
+</div>
+<script>window.__HY=[{"s": "A patient's insurance requires approval before an MRI is scheduled. What is this called?", "o": {"A": "Prior authorization", "B": "Assignment of benefits", "C": "Coordination of benefits", "D": "Explanation of benefits"}, "c": "A", "e": "Prior authorization (pre-certification) is the insurer's approval before a service is performed. Without it, the claim may be denied.", "t": "Scheduling the test first and asking for approval afterward."}, {"s": "After explaining how to use an inhaler, how can the CMA best check that the patient understood?", "o": {"A": "Ask the patient whether they have any questions", "B": "Ask the patient to explain and demonstrate the steps back (teach-back)", "C": "Ask the patient whether they understood everything", "D": "Give the patient a printed brochure with the steps and pictures to read at home"}, "c": "B", "e": "Teach-back confirms understanding by having the patient demonstrate it. A simple 'Do you understand?' often gets a yes even when they did not.", "t": "Accepting a nod or a 'yes' as proof of understanding."}, {"s": "A patient reads at a low literacy level. Which approach is best for patient education?", "o": {"A": "Speak quickly to cover all the information in one visit", "B": "Use plain language, short steps, and pictures, then confirm with teach-back", "C": "Give a detailed written handout to read at home, so the patient can study it calmly", "D": "Use the correct medical terms so the instructions are precise"}, "c": "B", "e": "Plain language and visual aids make instructions easier to understand. Teach-back confirms that the patient can follow them.", "t": "Assuming a written handout is enough for every patient."}, {"s": "At what age does the USPSTF recommend that average-risk adults begin colorectal cancer screening?", "o": {"A": "55", "B": "50", "C": "40", "D": "45"}, "c": "D", "e": "Since 2021, the USPSTF recommends that adults at average risk begin colorectal cancer screening at age 45.", "t": "Using the older starting age of 50."}, {"s": "The office is still waiting for a patient's lab results that are a week overdue. What should the CMA do?", "o": {"A": "Tell the patient that no news is good news", "B": "Wait, because the lab always calls the office directly if a result is abnormal", "C": "Remove the test from the tracking log", "D": "Follow up with the lab and track the result until the provider has reviewed it"}, "c": "D", "e": "Pending results are tracked until they are received and reviewed. Missing results can delay a diagnosis.", "t": "Assuming 'no news is good news'."}, {"s": "A patient comes in for a follow-up after a hospital stay. What is an important step for the CMA during intake?", "o": {"A": "Help reconcile the medication list against the discharge list", "B": "Remove from the record any drug not on the discharge list", "C": "Tell the patient to stop the old medications", "D": "Copy the discharge list into the record without asking the patient"}, "c": "A", "e": "Medication reconciliation finds omissions, duplications, and changes after a transition of care. The provider then decides on any discrepancy.", "t": "Changing the medications on your own. Decisions belong to the provider."}, {"s": "A patient says they cannot afford a prescribed medication. What is the best response?", "o": {"A": "Tell the patient to stop the drug until they can pay for it", "B": "Recommend a cheaper over-the-counter drug from a different class that works the same way", "C": "Suggest that the patient take half the dose to make it last", "D": "Tell the provider and share assistance resources the office uses"}, "c": "D", "e": "The CMA connects the patient with resources and informs the provider, who can choose an alternative if needed. Changing doses or drugs is outside scope.", "t": "Advising the patient to split doses to save money."}, {"s": "A patient has hearing loss. Which approach helps communication most?", "o": {"A": "Speak very slowly and exaggerate every word so the patient can read your lips more easily", "B": "Face the patient, speak clearly at a normal pace, and reduce background noise", "C": "Speak to the family member instead of the patient", "D": "Shout so the patient can hear you"}, "c": "B", "e": "Facing the patient allows lip reading. Shouting distorts speech, and exaggerated mouth movements make lip reading harder.", "t": "Raising your voice. Clarity matters more than volume."}];</script><script>
+(function(){
+var Q=window.__HY, right=0, done=0;
+function el(t,c,x){var e=document.createElement(t); if(c)e.className=c; if(x!=null)e.textContent=x; return e;}
+var box=document.getElementById('hylist'), sc=document.getElementById('hyscore');
+function upd(){ sc.textContent=done+' of '+Q.length+' answered \u00b7 '+right+' correct'; }
+Q.forEach(function(q,i){
+  var c=el('div','hyq'); c.appendChild(el('div','qno','Question '+(i+1)+' of '+Q.length)); c.appendChild(el('p','stem',q.s));
+  var opts=[];
+  ['A','B','C','D'].forEach(function(L){ var o=el('button','opt'); o.type='button'; o.appendChild(el('span','l',L)); o.appendChild(el('span',null,q.o[L])); opts.push(o); c.appendChild(o);
+    o.onclick=function(){ if(c.classList.contains('done')) return; c.classList.add('done'); done++; if(L===q.c) right++;
+      opts.forEach(function(x,k){ var LL='ABCD'[k]; if(LL===q.c) x.classList.add('right'); else if(LL===L) x.classList.add('wrong'); });
+      var e=el('div','exp'); e.appendChild(el('h4',null,(L===q.c?'Correct \u2014 ':'Not quite \u2014 ')+'the answer is '+q.c));
+      e.appendChild(el('p',null,q.e)); if(q.t){ e.appendChild(el('p','trap','Exam trap: '+q.t)); } c.appendChild(e); upd(); };
+  });
+  box.appendChild(c);
+});
+upd();
+})();
+</script>
+</body>
+</html>

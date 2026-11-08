@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Q&amp;A Set 39 — NHA CCMA Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#0A1444; --navy-2:#111C55; --navy-3:#192767; --line:#2A3B77;
+  --gold:#F4D348; --gold-ink:#151B45;
+  --paper:#F3F1E8; --muted:#9AA3CC; --muted-2:#6E77A8;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --alert-soft:#3A2E12; --alert-muted:#D9CBA3;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px; overflow-x:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+a{color:inherit;}
+img{max-width:100%;}
+button{font:inherit;}
+.topbar{position:sticky; top:0; z-index:20; background:rgba(10,20,68,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:760px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;}
+.page{max-width:760px; margin:0 auto; padding:0 1.25rem 4rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.5rem 0 1.25rem;}
+.eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(1.8rem,6.5vw,2.6rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:500px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.5rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.55rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; padding:.85rem 1.4rem; border-radius:999px; border:1.5px solid transparent; cursor:pointer; text-align:center;}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(244,211,72,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+.btn[disabled]{opacity:.4; cursor:not-allowed;}
+.action-block{margin-top:1rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.5rem; box-shadow:var(--shadow); margin-top:1.5rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+.callout p{color:var(--muted); margin:.5rem 0 0;}
+.section-head{padding-top:2.25rem; margin-bottom:1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+.muted{color:var(--muted);}
+.card-list{display:flex; flex-direction:column; border-top:1px solid var(--line); margin-top:1rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center; text-decoration:none;}
+.card h3{font-size:1.02rem; font-weight:700;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; flex-shrink:0;}
+.grid-tests{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-top:1rem;}
+.tbox{display:block; text-decoration:none; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:.9rem 1rem;}
+.tbox:hover{border-color:var(--gold);}
+.tbox .k{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.tbox .t{font-family:'Anton',sans-serif; font-size:1.35rem; color:var(--gold); line-height:1.15; margin-top:.15rem;}
+.tbox .s{font-size:.8rem; color:var(--muted); margin-top:.2rem;}
+.tbox .s.prog{color:var(--correct);}
+.subject-chip{font-weight:600; font-size:.92rem; background:var(--navy); border:1.5px dashed var(--line); border-radius:8px; padding:.7rem 1rem; color:var(--paper); word-break:break-word; display:inline-block;}
+.subject-chip b{color:var(--gold);}
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+.step-list{margin:1.25rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.4rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{font-family:'Anton',sans-serif; font-size:1.1rem; color:var(--gold-ink); background:var(--gold); width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0;}
+.bp-table{width:100%; border-collapse:collapse; margin-top:1rem; font-size:.9rem;}
+.bp-table th{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--line);}
+.bp-table td{padding:.6rem; border-bottom:1px solid var(--line);}
+.bp-table td.n{color:var(--gold); font-family:'Oswald',sans-serif; font-weight:700; text-align:right; white-space:nowrap;}
+.faq dt{font-weight:700; margin-top:1.1rem;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem;}
+.foot{max-width:760px; margin:2.5rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em;}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card .tag{align-self:stretch; text-align:center;}
+  .topbar-inner{padding:.6rem 1rem;} .topbar .logo{height:38px;}
+  .hero{padding-top:1.8rem;}
+  .action-block .btn{width:100%;}
+  .bp-table{font-size:.8rem;}
+}
+
+.qa{margin-top:.8rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1rem 1.1rem;}
+.qa .qn{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted-2);}
+.qa .qq{margin:.35rem 0 0; line-height:1.55;}
+.qa button.rev{margin-top:.7rem; background:none; border:1.5px solid var(--line); color:var(--gold); border-radius:999px; padding:.35rem .9rem; font-family:'Oswald',sans-serif; font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; cursor:pointer;}
+.qa .qa-a{margin-top:.7rem; padding:.75rem .9rem; border-left:3px solid var(--gold); background:var(--navy); border-radius:0 8px 8px 0; color:var(--paper); font-size:.95rem; line-height:1.55;}
+.toolbar{display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; margin-top:1rem;}
+.search{width:100%; padding:.8rem 1rem; border-radius:999px; border:1.5px solid var(--line); background:var(--navy-2); color:var(--paper); font:inherit; font-size:1rem;}
+.search:focus{outline:none; border-color:var(--gold);}
+.setnav{display:flex; justify-content:space-between; gap:.6rem; margin-top:1.5rem; flex-wrap:wrap;}
+.setnav .btn{flex:1;}
+mark{background:var(--gold); color:var(--gold-ink); border-radius:2px;}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner"><img class="logo" src="../assets/med-prep-logo.png" alt="MED PREP"><span class="title">NHA CCMA Study Guide</span></div></div>
+<div class="page">
+
+  <a href="./" class="back-link">← All sets</a>
+  <div class="hero" style="padding-bottom:.5rem;">
+    <div class="eyebrow">Q&amp;A Bank · Set 39 of 50</div>
+    <h1>Questions 3801–3900</h1>
+  </div>
+  <div class="toolbar"><button class="btn btn-ghost" id="showall" type="button">Show all answers</button><a class="btn btn-ghost" href="search.html">🔎 Search</a></div>
+  
+    <div class="qa"><div class="qn">Question 3801</div><p class="qq">A patient leaves a voicemail saying, “Call me back at my work number with my test results,” but the chart notes “do not contact at work”; what should the CMA do best?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Follow the documented communication preference and use an approved alternative (secure portal/home number) or confirm updated permission with the patient, because honoring privacy preferences prevents unintended disclosure and the trap is following the most recent voicemail instruction without reconciling the chart.</div></div>
+    <div class="qa"><div class="qn">Question 3802</div><p class="qq">A teen arrives for a visit and asks you not to tell their parent what the visit is for; the parent demands details at check-in—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Move the conversation to a private area and follow state/clinic rules by involving the provider/manager before disclosing anything, because discussing details at the front desk is a common privacy violation.</div></div>
+    <div class="qa"><div class="qn">Question 3803</div><p class="qq">A provider tells you to “just put normal” for a patient’s pain score because the clinic is behind; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document the patient’s actual reported pain score (or reassess and document) and refuse to falsify, because altering clinical data for speed creates legal risk and patient-safety harm.</div></div>
+    <div class="qa"><div class="qn">Question 3804</div><p class="qq">You document a blood pressure in the EHR and then notice you typed 180/80 instead of 118/80; what is the correct way to fix it?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Enter a corrected entry using the EHR’s amendment/correction function with date/time and reason, because deleting or overwriting without an audit trail is improper documentation.</div></div>
+    <div class="qa"><div class="qn">Question 3805</div><p class="qq">During checkout, you overhear staff discussing a patient’s STI results in the hallway; what is the most appropriate CMA action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Redirect the conversation to a private area and remind the team to avoid public disclosures, because “staff-only hallway” talk is a common HIPAA trap.</div></div>
+    <div class="qa"><div class="qn">Question 3806</div><p class="qq">At check-in, two patients with the same first and last name arrive within minutes; what should the CMA do to prevent documentation errors?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Use at least two identifiers (e.g., full name and date of birth) and confirm the correct chart before documenting or scanning, because relying on name alone is a common wrong-chart error.</div></div>
+    <div class="qa"><div class="qn">Question 3807</div><p class="qq">A patient’s allergy list in the EHR is blank, but they tell you they had an anaphylactic reaction to penicillin; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Enter the allergy with reaction details per clinic process and alert the provider before any medications are ordered, because leaving it as “no known allergies” is a high-risk documentation trap.</div></div>
+    <div class="qa"><div class="qn">Question 3808</div><p class="qq">A patient asks you to print their full chart for “personal reasons” and wants it immediately; what should you do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify identity and follow the facility’s release-of-information process (often through records/ROI with documented request), because handing over a chart without proper workflow can release wrong or excessive information.</div></div>
+    <div class="qa"><div class="qn">Question 3809</div><p class="qq">You receive a faxed record request from an attorney with no patient signature attached; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Route it for verification and obtain a valid signed authorization before releasing records, because legal letterhead alone is not permission to disclose PHI.</div></div>
+    <div class="qa"><div class="qn">Question 3810</div><p class="qq">A provider documents late and asks you to enter the provider’s physical exam findings for them since you were in the room; what is the best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not document findings you didn’t personally perform/observe as your own; instead, document only what you did and notify the provider to complete their note, because “helping” can become falsification and misattribution.</div></div>
+    <div class="qa"><div class="qn">Question 3811</div><p class="qq">At check-in, a patient becomes loud and demands you confirm whether their spouse had “that STD test” at your clinic last week; the spouse is not present and there is no authorization on file—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Calmly state you cannot confirm or deny any patient’s care without written permission, redirect to discuss only the requesting patient’s own visit, and offer the spouse the proper release process; this protects HIPAA—common trap is “just confirming they were seen,” which is still a disclosure.</div></div>
+    <div class="qa"><div class="qn">Question 3812</div><p class="qq">While documenting a phone call, the patient uses profanity and makes threats; what is the best documentation approach?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document objective facts and direct quotes as needed without added opinions, because editorializing (“patient is crazy”) is a common charting error that harms legal defensibility.</div></div>
+    <div class="qa"><div class="qn">Question 3813</div><p class="qq">A patient leaves a voicemail with full name, date of birth, and detailed symptoms and asks for a callback at work; what is the safest callback approach?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Call back using the number provided but verify identity first and avoid leaving detailed PHI on voicemail unless the patient’s permission/preferences are documented, because detailed messages are a common privacy breach.</div></div>
+    <div class="qa"><div class="qn">Question 3814</div><p class="qq">A patient arrives for a procedure and says they never signed the consent form; the provider is running behind and asks you to “just have them sign”; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ensure the patient receives the provider’s explanation and has questions answered before obtaining the signature (and notify the provider if consent wasn’t done), because a signature without informed discussion is not valid consent.</div></div>
+    <div class="qa"><div class="qn">Question 3815</div><p class="qq">A patient says their insurer “will cover it” but the EHR shows the policy expired last month; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify and update insurance eligibility/coverage before the visit (or route to billing/registration) because assuming coverage leads to denials and unexpected patient balances.</div></div>
+    <div class="qa"><div class="qn">Question 3816</div><p class="qq">A patient calls asking for their spouse’s medication list “for an emergency,” and the caller can correctly state the spouse’s DOB and address; what is the CMA’s best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify authorization (release/permission on file) and, if not present, decline and offer to speak directly with the patient or have the patient complete a release because identity knowledge alone is not legal consent; the trap is assuming correct identifiers equal permission.</div></div>
+    <div class="qa"><div class="qn">Question 3817</div><p class="qq">A patient calls asking, “What does my diagnosis code mean?” and wants medical interpretation; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Provide non-clinical clarification only (e.g., that codes are for billing) and route clinical meaning/questions to the provider, because interpreting diagnoses is outside CMA scope.</div></div>
+    <div class="qa"><div class="qn">Question 3818</div><p class="qq">While rooming a patient, you overhear a coworker discussing a celebrity patient’s lab results in the hallway where other patients can hear; what should you do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop the conversation and move it to a private area (or ask them to lower their voice and step away) because HIPAA requires minimizing incidental disclosure; the trap is ignoring it because “they didn’t say the name” when details can still identify the patient.</div></div>
+    <div class="qa"><div class="qn">Question 3819</div><p class="qq">The provider documents a preventive visit plus an in-depth evaluation for new chest discomfort; the patient expects “no copay”; what should the CMA say?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain that insurance may process additional problem-focused services separately and billing will follow payer rules, because promising “free” care is a common front-desk communication trap.</div></div>
+    <div class="qa"><div class="qn">Question 3820</div><p class="qq">A claim was denied for “incorrect subscriber ID,” and the patient is upset; what is the best CMA action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Recheck the insurance card and demographics for data-entry errors and route corrected information to billing for resubmission, because arguing coverage without verifying identifiers is a common delay.</div></div>
+    <div class="qa"><div class="qn">Question 3821</div><p class="qq">You realize you documented the wrong blood pressure in the EHR on a visit that is already signed; what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Enter a correction per EHR policy (addendum/amendment) with date/time and reason and document the correct value without deleting the original because records must remain auditable; the trap is trying to “erase” the mistake.</div></div>
+    <div class="qa"><div class="qn">Question 3822</div><p class="qq">While entering charges, you notice the provider documented a procedure but no diagnosis code is attached, and the claim is due today; what is the best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Flag it to the provider/coding team for diagnosis clarification before submission because incomplete/unsupported coding increases denials and compliance risk; the trap is guessing a diagnosis to “get it out the door.”</div></div>
+    <div class="qa"><div class="qn">Question 3823</div><p class="qq">A patient emails a photo of a rash to the clinic’s general inbox and asks “Is this contagious?”; what is the CMA’s best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Route the message and image through the approved secure patient portal/EHR workflow and notify the provider per protocol because regular email may not be secure and CMAs do not diagnose; the trap is replying with medical advice from an unsecured account.</div></div>
+    <div class="qa"><div class="qn">Question 3824</div><p class="qq">A provider tells you to “just copy-forward the last note to save time” for today’s visit; what is the best response for a CMA?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Use copy-forward only if you verify and update each section and document current findings because cloning can create inaccurate records and patient harm; the trap is leaving outdated symptoms/meds that don’t apply today.</div></div>
+    <div class="qa"><div class="qn">Question 3825</div><p class="qq">A parent arrives with a 15-year-old requesting STI testing and asks you to print the after-visit summary to review at the front desk; what should you do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Move the discussion/printing to a private area and follow minor confidentiality rules per clinic policy/state law (often allowing confidential sexual health services) because privacy is required even with a parent present; the trap is automatically sharing details because the parent is the guardian.</div></div>
+    <div class="qa"><div class="qn">Question 3826</div><p class="qq">A patient tells you they want to leave because “I can’t afford this visit,” and asks if the insurance will cover it; what should you do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Acknowledge the concern and connect them with billing/insurance verification or a financial counselor while documenting the conversation because coverage decisions require verification and you should avoid guaranteeing benefits; the trap is promising “it should be covered.”</div></div>
+    <div class="qa"><div class="qn">Question 3827</div><p class="qq">A patient asks for a copy of their record “right now,” and your clinic charges a small fee and needs a release form; what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Provide the patient with the records request/release process and route to the designated staff to verify identity and process the request because record release must follow formal HIPAA procedures; the trap is printing the chart immediately without authorization/verification.</div></div>
+    <div class="qa"><div class="qn">Question 3828</div><p class="qq">During check-in, you call out “Mr. Lopez, here for your HIV results?” because the schedule note is visible; what is the best immediate corrective action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Apologize and switch to neutral identifiers (name/DOB only) and discuss visit details privately because announcing sensitive information violates minimum necessary privacy; the trap is thinking the waiting room is “public anyway.”</div></div>
+    <div class="qa"><div class="qn">Question 3829</div><p class="qq">You are scheduling a referral visit and the specialist office asks for the patient’s last office note and labs; what is the CMA’s best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Confirm the referral/authorization process and send only the minimum necessary records through a secure method (fax/portal) with patient identifiers because coordinated care requires proper documentation and privacy; the trap is sending the entire chart “just in case.”</div></div>
+    <div class="qa"><div class="qn">Question 3830</div><p class="qq">A patient refuses to sign a general consent form and says, “Just do my vitals and I’ll decide later”; what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Pause non-urgent care and notify the provider/lead to address questions and document the refusal because consent is required for treatment and must be informed; the trap is proceeding because vitals seem harmless.</div></div>
+    <div class="qa"><div class="qn">Question 3831</div><p class="qq">A patient asks to amend their record because a past diagnosis listed is “wrong,” and they demand you delete it from the EHR; what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Provide the amendment request process and route to the designated records/privacy officer because patients can request amendments but entries are not simply deleted; the trap is editing historical diagnoses without formal review.</div></div>
+    <div class="qa"><div class="qn">Question 3832</div><p class="qq">A patient is upset on the phone and starts yelling that the provider “never calls back”; what communication technique should you use first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Use active listening and de-escalation (calm tone, reflect concern, gather key details, set next steps/timeframe) because it preserves safety and improves compliance; the trap is matching their tone or arguing about fault.</div></div>
+    <div class="qa"><div class="qn">Question 3833</div><p class="qq">A patient’s insurance denies a claim as “patient not eligible on date of service,” and the patient insists they were covered; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify coverage dates and correct member information, then resubmit or route for appeal with documentation because eligibility denials are often data/coverage timing issues; the trap is immediately billing the patient without verification.</div></div>
+    <div class="qa"><div class="qn">Question 3834</div><p class="qq">A patient arrives late and demands to be seen, and the provider has a time-sensitive procedure scheduled next; what should you do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain the clinic’s late-arrival policy calmly and check with the provider/lead on whether the patient can be worked in or needs rescheduling because scheduling decisions must balance safety and workflow; the trap is unilaterally promising they’ll be seen.</div></div>
+    <div class="qa"><div class="qn">Question 3835</div><p class="qq">At checkout, a patient angrily asks for a printed summary of “all my labs and notes” from last year for a legal dispute, and the provider is running behind; what should the CMA do next to handle the request appropriately?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Provide the patient with the standard medical-records release/authorization process and route the request to the designated records/Privacy contact (rather than printing the chart immediately) because HIPAA allows access but requires identity verification and proper disclosure tracking—common mistake is handing over broad records on the spot without authorization.</div></div>
+    <div class="qa"><div class="qn">Question 3836</div><p class="qq">A patient asks you to “tell the doctor I need antibiotics again” and wants you to send it to the pharmacy without a visit; what is the CMA’s best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain you can relay the request but cannot prescribe, then collect symptoms/onset/allergies and route to the provider per protocol because medication decisions require provider assessment; the trap is implying approval or giving treatment advice.</div></div>
+    <div class="qa"><div class="qn">Question 3837</div><p class="qq">You accidentally chart a blood pressure in the wrong patient’s EHR and realize it immediately—what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Immediately follow the EHR correction policy to retract/mark the entry as erroneous and re-enter in the correct chart with an explanation because misfiled documentation is a legal risk, and the trap is “copying it over” without correcting the original error.</div></div>
+    <div class="qa"><div class="qn">Question 3838</div><p class="qq">A patient’s friend offers to interpret during consent for an in-office procedure, and the patient agrees; what should you do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Use a qualified medical interpreter (phone/video) instead of the friend for consent discussions because accurate communication is required for informed consent and reduces errors; the trap is accepting ad hoc interpreters for convenience.</div></div>
+    <div class="qa"><div class="qn">Question 3839</div><p class="qq">You are charting in the exam room and the patient says, “Don’t write that down,” after disclosing vaping and occasional cocaine use; what is the best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain you must document clinically relevant history for safe care and clarify confidentiality limits, then document objectively because accurate records support treatment and safety; the trap is omitting key information to avoid discomfort.</div></div>
+    <div class="qa"><div class="qn">Question 3840</div><p class="qq">While rooming a patient, you notice the provider’s note from yesterday contains the wrong medication dose for this patient, but the patient has not mentioned any issues—what should the CMA do first in the EHR?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Notify the provider and follow the facility process to correct the entry with an addendum/correction (do not delete or “edit to fix”) because the record must remain auditable and a common trap is altering signed documentation.</div></div>
+    <div class="qa"><div class="qn">Question 3841</div><p class="qq">During check-in, a patient loudly asks for the lab results of her adult son who is also a patient at the clinic, and she says, “I’m his mother and he told you it’s fine,” while other patients are in the waiting area—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Move the conversation to a private area and explain that results can only be discussed with the patient or a verified authorized person in the record, then offer to contact the son for permission or have him call back; HIPAA requires verification, and the common mistake is disclosing information based on family status or verbal assurances.</div></div>
+    <div class="qa"><div class="qn">Question 3842</div><p class="qq">At check-in, a patient says they “don’t want their employer to find out” they’re being seen and asks you to stop insurance billing—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain billing options and refer to the billing supervisor/provider for self-pay/confidential communication preferences because CMAs should not promise confidentiality beyond HIPAA/insurance rules, and the trap is agreeing to “not bill” without guidance.</div></div>
+    <div class="qa"><div class="qn">Question 3843</div><p class="qq">At check-in, a patient says, “My spouse is on my insurance—can you tell them what today’s visit is for when you call to confirm the copay?” and the spouse is listed as the emergency contact in the EHR; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask the patient to specify and document (or sign) a HIPAA authorization for what information may be shared and with whom, and until then discuss only minimum necessary billing details directly with the patient, because an emergency contact or shared insurance does not automatically permit disclosure of visit information (common trap: assuming “emergency contact” equals HIPAA release).</div></div>
+    <div class="qa"><div class="qn">Question 3844</div><p class="qq">A patient calls asking for their lab results, and their spouse is on speakerphone saying, “I’m authorized, just tell us”—what is the CMA’s best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify the patient’s identity and confirm documented permission/ROI before discussing any results because HIPAA allows disclosure only to the patient or authorized individuals, and the trap is assuming relationship equals authorization.</div></div>
+    <div class="qa"><div class="qn">Question 3845</div><p class="qq">While scheduling, a patient insists on being booked into a 10-minute slot for a procedure visit “because it’s quick,” but the template shows only 30-minute slots—what is the best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Follow the scheduling template and offer appropriate available times or escalate for approval because templates protect patient flow and safety, and the trap is overriding duration and causing downstream delays/errors.</div></div>
+    <div class="qa"><div class="qn">Question 3846</div><p class="qq">At checkout, an insurance card scan in the EHR is blurry and cuts off the group number, and the patient is already walking out—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop the patient briefly to rescan or manually verify the missing data because incomplete insurance info commonly causes claim denials, and the trap is assuming billing “can figure it out later.”</div></div>
+    <div class="qa"><div class="qn">Question 3847</div><p class="qq">During a busy morning, another patient leans over the front desk and can see the schedule with names and appointment types—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Immediately turn the screen away/use a privacy filter and reposition paperwork to prevent incidental disclosure because minimum necessary privacy must be maintained, and the trap is waiting until later to “clean up.”</div></div>
+    <div class="qa"><div class="qn">Question 3848</div><p class="qq">A patient wants a copy of their entire record today and becomes upset when told it may take time—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Provide the records request/ROI process and escalate to the medical records designee with the required timeline because access is a legal right but must follow procedure, and the trap is handing over the chart immediately without verification/documentation.</div></div>
+    <div class="qa"><div class="qn">Question 3849</div><p class="qq">The provider documents a diagnosis code that doesn’t match the service performed, and you’re entering charges—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Flag the discrepancy and route it to the provider/coder for clarification before submission because incorrect coding can be fraud/denial risk, and the trap is “picking a close code” yourself to push the claim through.</div></div>
+    <div class="qa"><div class="qn">Question 3850</div><p class="qq">The provider asks you to “add that the patient denied chest pain” to yesterday’s note because they forgot to document it—what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not document as if you observed it yesterday; instead tell the provider to add a dated/time-stamped late entry/addendum themselves because only the original author should amend their note, and the trap is backdating or documenting something you didn’t witness.</div></div>
+    <div class="qa"><div class="qn">Question 3851</div><p class="qq">At check-in, a patient says, “I don’t want my spouse to know I’m being seen today,” but the spouse is in the waiting room demanding the appointment time and reason for visit; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify the patient’s communication preferences/authorized disclosures in the EHR and politely refuse to share any information with the spouse unless the patient has given written permission, because HIPAA requires protecting PHI and a common error is “confirming” an appointment as a courtesy which is still a disclosure.</div></div>
+    <div class="qa"><div class="qn">Question 3852</div><p class="qq">You receive a faxed referral request from a specialist that lists the wrong patient DOB but correct name—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop processing and verify identifiers with the specialist office before sending records because mismatched identifiers can cause HIPAA breaches, and the trap is “fixing” the DOB yourself without verification.</div></div>
+    <div class="qa"><div class="qn">Question 3853</div><p class="qq">A patient leaves a voicemail: “Call me back with my biopsy results,” but the callback number is unclear—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Use the number on file and verify identity before discussing any results or requesting a callback because voicemails can be overheard/misdialed, and the trap is leaving detailed PHI in a return voicemail.</div></div>
+    <div class="qa"><div class="qn">Question 3854</div><p class="qq">A patient asks you to email their visit summary to their personal email “right now” because they can’t access the portal—what is the best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Use the clinic’s approved secure method (portal/secure messaging or printed copy after identity verification) and follow policy for electronic release because standard email may be insecure, and the trap is sending PHI via convenience.</div></div>
+    <div class="qa"><div class="qn">Question 3855</div><p class="qq">In the waiting room, a patient loudly asks, “Why did you put ‘STD testing’ on my paperwork?”—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Move the discussion to a private area and address the concern discreetly while minimizing PHI spoken aloud because privacy applies in public spaces, and the trap is explaining details at the front desk.</div></div>
+    <div class="qa"><div class="qn">Question 3856</div><p class="qq">A patient calls angry about a denial and demands you “change the code so insurance will pay”—what should the CMA do best?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain you cannot alter codes to obtain payment and refer to billing/coding for a formal review/appeal because codes must reflect documented care, and the trap is agreeing to “adjust” documentation to satisfy coverage.</div></div>
+    <div class="qa"><div class="qn">Question 3857</div><p class="qq">You are documenting a vaccine given today and the EHR autopopulates the lot number from a prior visit that looks similar—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify and enter the lot/expiration from today’s vial/stock record before signing the entry because vaccine documentation must be exact for safety/recalls, and the trap is trusting autopopulated fields.</div></div>
+    <div class="qa"><div class="qn">Question 3858</div><p class="qq">While rooming a patient, the CMA hears the front-desk staff tell the patient’s spouse in the waiting room, “Your wife is here for her STD test,” and the spouse asks you to confirm and give details—what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Politely refuse to confirm any information and direct the spouse to speak with the patient (or obtain the patient’s explicit authorization before any disclosure) because HIPAA prohibits sharing PHI without permission, and a common mistake is assuming a spouse can automatically receive details.</div></div>
+    <div class="qa"><div class="qn">Question 3859</div><p class="qq">While rooming a patient, the CMA notices the previous visit note in the EHR lists a penicillin allergy, but today the patient states they have no medication allergies; what is the CMA’s best next action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document the patient’s statement and immediately notify the provider for reconciliation rather than deleting the prior entry, because removing historical data is an audit/legal risk and allergies must be clarified before treatment.</div></div>
+    <div class="qa"><div class="qn">Question 3860</div><p class="qq">A patient’s spouse calls asking for the patient’s lab results and says, “I’m on the emergency contact list,” while the patient is not present; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify the caller’s identity and confirm a documented HIPAA authorization specifically allowing release to that person before sharing anything, because being an emergency contact is a common trap that does not automatically permit disclosure.</div></div>
+    <div class="qa"><div class="qn">Question 3861</div><p class="qq">A patient asks the CMA to “just sign my consent for the procedure since I’m in a rush” and offers to sign later; what is the CMA’s best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not sign and stop the process until the patient reviews and signs their own consent (with provider involvement as required), because signing for a patient is falsification and invalidates consent.</div></div>
+    <div class="qa"><div class="qn">Question 3862</div><p class="qq">A provider gives a verbal order in the hallway for an injection, and the CMA is about to administer it without documenting; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Require the order to be entered/verified in the chart (or follow read-back and documentation protocol) before administration, because giving meds without a documented, authorized order is a safety and legal trap.</div></div>
+    <div class="qa"><div class="qn">Question 3863</div><p class="qq">During check-in, a patient loudly states they are here for an STD test and others in the waiting room can hear; what should the CMA do best?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Lower voice, move the conversation to a private area, and use discreet language, because minimizing incidental disclosure is required and continuing the discussion at the window increases privacy risk.</div></div>
+    <div class="qa"><div class="qn">Question 3864</div><p class="qq">After sending a portal message, the CMA realizes it contained another patient’s appointment time in the text; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Immediately report the disclosure per clinic privacy incident process (notify supervisor/privacy officer) and document the event as required, because trying to “fix it quietly” is a common trap that delays breach mitigation.</div></div>
+    <div class="qa"><div class="qn">Question 3865</div><p class="qq">The CMA accidentally documents a blood pressure in the wrong patient’s chart and notices the error immediately; what is the correct action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Enter a correction per EHR policy (amend with date/time and reason) and notify the appropriate staff to ensure the correct chart is updated, because deleting or overwriting without an audit trail is a legal documentation error.</div></div>
+    <div class="qa"><div class="qn">Question 3866</div><p class="qq">A patient calls to get their spouse added to the patient portal access and says, “We share everything”; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Follow the clinic’s proxy access process and obtain the patient’s documented authorization/identity verification before enabling access, because informal verbal permission is a common trap and portal access exposes broad PHI.</div></div>
+    <div class="qa"><div class="qn">Question 3867</div><p class="qq">A front-desk coworker asks the CMA to confirm whether a neighbor is a patient at the clinic and what they were seen for; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Refuse to disclose and remind the coworker that access/disclosure must be job-related and authorized, because “just confirming” patient status is still PHI and casual sharing is a common HIPAA violation.</div></div>
+    <div class="qa"><div class="qn">Question 3868</div><p class="qq">A patient requests a copy of their medical record “right now” at the checkout desk; what should the CMA do best?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify identity and route the request through the clinic’s records-release process (authorization, timeframe, and appropriate format), because handing over records immediately without verification/documentation risks improper disclosure.</div></div>
+    <div class="qa"><div class="qn">Question 3869</div><p class="qq">A caller asks detailed medication questions and says they “don’t want to bother the provider”; what should the CMA do best?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Collect key information and route the question to the provider/pharmacist per protocol without giving medical advice, because interpreting meds or changing how to take them is outside CMA scope.</div></div>
+    <div class="qa"><div class="qn">Question 3870</div><p class="qq">The CMA receives an Explanation of Benefits (EOB) showing “patient responsibility” and the patient asks if that means the claim was denied; what is the CMA’s best clarification?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain that an EOB is not a bill and “patient responsibility” usually reflects deductible/copay/coinsurance after processing, because a common trap is assuming any balance means a denial.</div></div>
+    <div class="qa"><div class="qn">Question 3871</div><p class="qq">A patient wants a work excuse note and asks the CMA to “write whatever sounds best” and the provider is busy; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Tell the patient the provider must authorize the content and route the request for provider approval, because creating clinical statements without authorization is outside CMA scope and creates legal liability.</div></div>
+    <div class="qa"><div class="qn">Question 3872</div><p class="qq">A patient calls with chest tightness and asks to schedule the next available appointment; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Escalate immediately (follow emergency triage protocol such as advising emergency services/bringing to clinical staff) rather than scheduling, because treating it as routine scheduling is a dangerous communication trap.</div></div>
+    <div class="qa"><div class="qn">Question 3873</div><p class="qq">A patient calls angry that their insurance “denied my visit” and demands the CMA “fix the code to make it pay”; what is the CMA’s best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain you can help route the concern to billing/claims review and collect details from the denial, but you cannot alter codes without documentation/provider support, because changing codes to force payment is fraudulent.</div></div>
+    <div class="qa"><div class="qn">Question 3874</div><p class="qq">At scheduling, a patient insists on being booked under a different complaint so insurance will cover it; what should the CMA do best?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Decline and schedule using the accurate visit reason and direct billing questions to the appropriate staff, because misrepresenting the reason for the visit is a common fraud trap.</div></div>
+    <div class="qa"><div class="qn">Question 3875</div><p class="qq">A patient’s insurance card lists a different last name than the chart, and the patient says, “Just bill it anyway”; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify demographics/insurance information and update the chart per documentation policy before submission, because billing with mismatched identifiers commonly causes claim rejections and delays care coordination.</div></div>
+    <div class="qa"><div class="qn">Question 3876</div><p class="qq">The CMA is documenting an immunization and realizes the lot number is missing from the vial label because it was thrown away; what is the best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and obtain the correct lot/expiration from source documentation (inventory log/box) before completing the entry, because guessing or leaving it blank compromises legal vaccine documentation and recall tracking.</div></div>
+    <div class="qa"><div class="qn">Question 3877</div><p class="qq">While rooming a patient, the CMA sees in the EHR that a coworker has already documented the patient’s blood pressure, but the patient says no vitals have been taken today; the provider is waiting—what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Recheck and document the patient’s blood pressure under your own entry and immediately notify the provider that the prior BP entry may be inaccurate, because correct, attributable documentation is a legal record and the common mistake is “fixing” or deleting another user’s charting instead of adding an accurate note and escalating potential documentation error.</div></div>
+    <div class="qa"><div class="qn">Question 3878</div><p class="qq">During a busy check-in, a patient says, “My spouse called earlier about my lab results—can you tell me what you told them?” and the chart has no release of information on file; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain you can’t confirm or discuss results with or about a spouse without the patient’s written authorization, offer to review results with the patient or have the provider call, and document the request because disclosing to a family member without authorization is a common HIPAA breach.</div></div>
+    <div class="qa"><div class="qn">Question 3879</div><p class="qq">A provider dictates a note and later asks you to “just add that the abdomen was non-tender” even though you didn’t hear them assess it; what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not add unobserved findings; route the request back for the provider to enter or amend because documenting care not performed is falsification, even if requested by a provider.</div></div>
+    <div class="qa"><div class="qn">Question 3880</div><p class="qq">A minor arrives with an older sibling for a sports physical, and the parent is not present; the patient says, “My mom said it’s okay”; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Pause the visit and obtain proper consent per state/policy (usually parent/guardian consent for non-emancipated minors) because verbal “permission” through a sibling is not valid authorization.</div></div>
+    <div class="qa"><div class="qn">Question 3881</div><p class="qq">A patient calls asking for their lab results and says, “I’m the spouse—he told me it’s okay”; what is the CMA’s best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify whether the spouse is authorized in the chart (release on file) before sharing anything because relying on “he said it’s fine” is a frequent privacy trap.</div></div>
+    <div class="qa"><div class="qn">Question 3882</div><p class="qq">While rooming a patient, you overhear two staff discussing a patient’s positive STI result in the hallway where other patients can hear; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop the conversation and move it to a private area immediately, then remind staff of minimum-necessary disclosure because hallway discussions are a common HIPAA breach even if names aren’t said.</div></div>
+    <div class="qa"><div class="qn">Question 3883</div><p class="qq">At check-in, a patient asks to see the schedule to confirm their partner isn’t also a patient there; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Decline and do not confirm whether the partner is a patient because even acknowledging someone’s presence in the practice is protected information under HIPAA.</div></div>
+    <div class="qa"><div class="qn">Question 3884</div><p class="qq">A patient arrives with a referral authorization number but wants to see a different specialist than listed because it’s closer; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify referral requirements and coordinate an updated referral/authorization before scheduling the new specialist, because using the wrong referred provider commonly triggers insurance denial and breaks care coordination.</div></div>
+    <div class="qa"><div class="qn">Question 3885</div><p class="qq">A coworker logs into the EHR and says, “Use my login—yours isn’t working and we’re behind”; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Refuse and contact IT/supervisor to restore your access because shared credentials break audit trails and are a common legal/disciplinary pitfall.</div></div>
+    <div class="qa"><div class="qn">Question 3886</div><p class="qq">A patient wants a copy of their full medical record “right now” and becomes upset when told it may take time; what is the CMA’s best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain the formal records-request process and timeframe and route to the designated staff/records custodian because handing over the chart immediately risks releasing third-party info and violates controlled disclosure procedures.</div></div>
+    <div class="qa"><div class="qn">Question 3887</div><p class="qq">A patient reads their after-visit summary and says the allergy list is wrong (“penicillin—anaphylaxis” is listed but they only had nausea); what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Clarify the reaction details with the patient and flag/update the allergy section per clinic process for provider review because ignoring “minor” discrepancies can create serious medication safety risks.</div></div>
+    <div class="qa"><div class="qn">Question 3888</div><p class="qq">The provider’s note includes an abbreviation you don’t recognize, and you’re asked to transcribe it into the EHR; what is the best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask the provider to clarify before entering it because guessing at abbreviations is a common documentation trap that can lead to clinical errors.</div></div>
+    <div class="qa"><div class="qn">Question 3889</div><p class="qq">A patient asks, “Why was my claim denied?” and shows an Explanation of Benefits listing “medical necessity not established”; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Collect key details (payer, denial reason code) and route to billing/coding for appeal/correction because guessing or promising coverage is a common trap outside CMA authority.</div></div>
+    <div class="qa"><div class="qn">Question 3890</div><p class="qq">A patient checks out and says their employer needs a work note including the diagnosis; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Provide only the minimum necessary information (dates/limitations) unless the patient specifically authorizes diagnosis disclosure because over-including details on work notes is a common privacy mistake.</div></div>
+    <div class="qa"><div class="qn">Question 3891</div><p class="qq">During a phone call, the caller says, “I’m the patient,” but you suspect it may be someone else and they refuse to verify date of birth; what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not disclose information; request appropriate identifiers and offer to call back using the number on file because failing to verify identity is a frequent HIPAA disclosure error.</div></div>
+    <div class="qa"><div class="qn">Question 3892</div><p class="qq">A patient asks you to message the provider to prescribe an antibiotic “like last time” without being seen; what is the CMA’s best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Take the request and route it to the provider per protocol without promising a prescription because medication decisions are outside CMA scope and “I’ll get it called in” is the common trap.</div></div>
+    <div class="qa"><div class="qn">Question 3893</div><p class="qq">While documenting, you realize you forgot to record a patient’s temperature taken earlier; what is the correct documentation action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Enter it as a late entry with the actual time obtained and note it was documented late because back-timing or pretending it was charted earlier is a common legal pitfall.</div></div>
+    <div class="qa"><div class="qn">Question 3894</div><p class="qq">A patient calls asking for their lab results, and their spouse is on the line saying “I’m authorized—just tell us,” but there is no release on file; what is the best CMA response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Decline to disclose and request to speak directly with the patient or obtain verified written authorization because HIPAA prohibits release to family without permission; the trap is assuming marriage automatically grants access.</div></div>
+    <div class="qa"><div class="qn">Question 3895</div><p class="qq">A patient’s insurance card is expired, and they insist “it’s the same plan” and want to be seen; what is the CMA’s best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify eligibility in the system and follow clinic financial policy (e.g., self-pay deposit or reschedule if required) because assuming coverage is a common billing/denial trigger.</div></div>
+    <div class="qa"><div class="qn">Question 3896</div><p class="qq">A patient leaves a voicemail asking to be called back with test results, and the voicemail greeting is the patient’s name plus a shared family number; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Return the call but avoid leaving detailed results on voicemail unless the patient has documented consent for voicemail disclosure because message-content oversharing is a common HIPAA violation.</div></div>
+    <div class="qa"><div class="qn">Question 3897</div><p class="qq">You receive a faxed request from a specialist for the patient’s last visit note, but there is no release form attached; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify there is a valid authorization or appropriate treatment-related disclosure basis before sending records because “they’re a doctor” is not automatic permission to release.</div></div>
+    <div class="qa"><div class="qn">Question 3898</div><p class="qq">The front desk double-books a complex procedure in a 15-minute slot and the patient is already in the lobby; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Notify the provider/lead immediately to reprioritize and adjust expectations because silently trying to “make it fit” often leads to rushed care and documentation errors.</div></div>
+    <div class="qa"><div class="qn">Question 3899</div><p class="qq">A parent at the desk demands details about their 19-year-old child’s visit and says, “I’m paying for it”; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not disclose without the adult patient’s written permission and offer to have the patient contact the parent directly because payment/relationship does not override adult patient privacy rights.</div></div>
+    <div class="qa"><div class="qn">Question 3900</div><p class="qq">While rooming a patient, you notice the provider’s note in the EHR auto-populated “denies allergies,” but the patient states they have an anaphylactic penicillin allergy; what should the CMA do FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Update the allergy field per clinic protocol and immediately alert the provider before any orders are carried out because allergy reconciliation is a safety-critical documentation item; the trap is leaving it for the provider later or burying it only in free-text.</div></div>
+  <div class="setnav"><a class="btn btn-ghost" href="set-38.html">← Set 38</a><a class="btn btn-gold" href="set-40.html">Set 40 →</a></div>
+</div>
+<div class="foot">
+  <div class="copyright">© 2026 MED PREP. All rights reserved.</div>
+  <div class="legal">Independently produced study material — not affiliated with, endorsed by, or sponsored by the National Healthcareer Association (NHA). CCMA is a credential of the NHA. Questions are for practice only and are not actual exam items.</div>
+</div>
+<script>
+(function(){
+function $(id){return document.getElementById(id);}
+var all=document.querySelectorAll('.qa');
+function setAll(open){ all.forEach(function(c){ c.querySelector('.qa-a').hidden=!open; c.querySelector('button.rev').textContent=open?'Hide answer':'Show answer'; }); }
+all.forEach(function(c){ var b=c.querySelector('button.rev'), a=c.querySelector('.qa-a'); b.onclick=function(){ a.hidden=!a.hidden; b.textContent=a.hidden?'Show answer':'Hide answer'; }; });
+var sa=$('showall'); if(sa) sa.onclick=function(){ var open=sa.dataset.open!=='1'; setAll(open); sa.dataset.open=open?'1':'0'; sa.textContent=open?'Hide all answers':'Show all answers'; };
+})();
+</script>
+</body>
+</html>

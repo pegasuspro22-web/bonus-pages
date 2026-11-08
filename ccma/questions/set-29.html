@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Q&amp;A Set 29 — NHA CCMA Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#0A1444; --navy-2:#111C55; --navy-3:#192767; --line:#2A3B77;
+  --gold:#F4D348; --gold-ink:#151B45;
+  --paper:#F3F1E8; --muted:#9AA3CC; --muted-2:#6E77A8;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --alert-soft:#3A2E12; --alert-muted:#D9CBA3;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px; overflow-x:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+a{color:inherit;}
+img{max-width:100%;}
+button{font:inherit;}
+.topbar{position:sticky; top:0; z-index:20; background:rgba(10,20,68,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:760px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;}
+.page{max-width:760px; margin:0 auto; padding:0 1.25rem 4rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.5rem 0 1.25rem;}
+.eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(1.8rem,6.5vw,2.6rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:500px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.5rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.55rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; padding:.85rem 1.4rem; border-radius:999px; border:1.5px solid transparent; cursor:pointer; text-align:center;}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(244,211,72,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+.btn[disabled]{opacity:.4; cursor:not-allowed;}
+.action-block{margin-top:1rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.5rem; box-shadow:var(--shadow); margin-top:1.5rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+.callout p{color:var(--muted); margin:.5rem 0 0;}
+.section-head{padding-top:2.25rem; margin-bottom:1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+.muted{color:var(--muted);}
+.card-list{display:flex; flex-direction:column; border-top:1px solid var(--line); margin-top:1rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center; text-decoration:none;}
+.card h3{font-size:1.02rem; font-weight:700;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; flex-shrink:0;}
+.grid-tests{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-top:1rem;}
+.tbox{display:block; text-decoration:none; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:.9rem 1rem;}
+.tbox:hover{border-color:var(--gold);}
+.tbox .k{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.tbox .t{font-family:'Anton',sans-serif; font-size:1.35rem; color:var(--gold); line-height:1.15; margin-top:.15rem;}
+.tbox .s{font-size:.8rem; color:var(--muted); margin-top:.2rem;}
+.tbox .s.prog{color:var(--correct);}
+.subject-chip{font-weight:600; font-size:.92rem; background:var(--navy); border:1.5px dashed var(--line); border-radius:8px; padding:.7rem 1rem; color:var(--paper); word-break:break-word; display:inline-block;}
+.subject-chip b{color:var(--gold);}
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+.step-list{margin:1.25rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.4rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{font-family:'Anton',sans-serif; font-size:1.1rem; color:var(--gold-ink); background:var(--gold); width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0;}
+.bp-table{width:100%; border-collapse:collapse; margin-top:1rem; font-size:.9rem;}
+.bp-table th{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--line);}
+.bp-table td{padding:.6rem; border-bottom:1px solid var(--line);}
+.bp-table td.n{color:var(--gold); font-family:'Oswald',sans-serif; font-weight:700; text-align:right; white-space:nowrap;}
+.faq dt{font-weight:700; margin-top:1.1rem;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem;}
+.foot{max-width:760px; margin:2.5rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em;}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card .tag{align-self:stretch; text-align:center;}
+  .topbar-inner{padding:.6rem 1rem;} .topbar .logo{height:38px;}
+  .hero{padding-top:1.8rem;}
+  .action-block .btn{width:100%;}
+  .bp-table{font-size:.8rem;}
+}
+
+.qa{margin-top:.8rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1rem 1.1rem;}
+.qa .qn{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted-2);}
+.qa .qq{margin:.35rem 0 0; line-height:1.55;}
+.qa button.rev{margin-top:.7rem; background:none; border:1.5px solid var(--line); color:var(--gold); border-radius:999px; padding:.35rem .9rem; font-family:'Oswald',sans-serif; font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; cursor:pointer;}
+.qa .qa-a{margin-top:.7rem; padding:.75rem .9rem; border-left:3px solid var(--gold); background:var(--navy); border-radius:0 8px 8px 0; color:var(--paper); font-size:.95rem; line-height:1.55;}
+.toolbar{display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; margin-top:1rem;}
+.search{width:100%; padding:.8rem 1rem; border-radius:999px; border:1.5px solid var(--line); background:var(--navy-2); color:var(--paper); font:inherit; font-size:1rem;}
+.search:focus{outline:none; border-color:var(--gold);}
+.setnav{display:flex; justify-content:space-between; gap:.6rem; margin-top:1.5rem; flex-wrap:wrap;}
+.setnav .btn{flex:1;}
+mark{background:var(--gold); color:var(--gold-ink); border-radius:2px;}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner"><img class="logo" src="../assets/med-prep-logo.png" alt="MED PREP"><span class="title">NHA CCMA Study Guide</span></div></div>
+<div class="page">
+
+  <a href="./" class="back-link">← All sets</a>
+  <div class="hero" style="padding-bottom:.5rem;">
+    <div class="eyebrow">Q&amp;A Bank · Set 29 of 50</div>
+    <h1>Questions 2801–2900</h1>
+  </div>
+  <div class="toolbar"><button class="btn btn-ghost" id="showall" type="button">Show all answers</button><a class="btn btn-ghost" href="search.html">🔎 Search</a></div>
+  
+    <div class="qa"><div class="qn">Question 2801</div><p class="qq">In the lobby, an adult collapses and is unresponsive; a coworker is calling 911—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Start CPR immediately and send someone to retrieve the AED because early compressions/AED use improves survival; the trap is checking vital signs for an extended period before beginning compressions.</div></div>
+    <div class="qa"><div class="qn">Question 2802</div><p class="qq">During vitals you count respirations and the patient suddenly starts watching you and breathing slower; what is the best technique to get an accurate rate?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Keep your fingers on the radial pulse and unobtrusively count respirations, because patients alter breathing when aware and the trap is announcing “I’m counting your breaths.”</div></div>
+    <div class="qa"><div class="qn">Question 2803</div><p class="qq">A patient’s pulse oximeter shows 88% but they are talking in full sentences with cold fingers and dark nail polish; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Warm the hand/remove polish if possible and recheck with a good waveform (or alternate site), because poor perfusion/artifact can cause false lows and the trap is treating the number without confirming accuracy.</div></div>
+    <div class="qa"><div class="qn">Question 2804</div><p class="qq">A teen arrives for a sports physical and says they “faint with shots”; where should the CMA position the patient before vaccines?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Place the patient supine (or seated with support) and observe after injection, because preventing fall injury is priority and the trap is vaccinating while standing.</div></div>
+    <div class="qa"><div class="qn">Question 2805</div><p class="qq">A patient comes for suture removal and you see dried blood on your hands from a paper cut; what is the correct action before starting care?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Perform hand hygiene and cover the cut, then don gloves, because non-intact skin increases transmission risk and the trap is relying on gloves without protecting broken skin.</div></div>
+    <div class="qa"><div class="qn">Question 2806</div><p class="qq">After removing gloves, you realize you touched the outside of the glove with your bare wrist while doffing; what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Perform hand hygiene immediately and avoid touching clean surfaces until done, because contamination can occur during removal and the trap is assuming “gloves off” automatically means “clean.”</div></div>
+    <div class="qa"><div class="qn">Question 2807</div><p class="qq">During a sterile dressing change, the sterile field becomes wet from saline; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Consider the field contaminated and set up a new sterile field, because moisture allows strike-through contamination and the trap is continuing because “it’s only saline.”</div></div>
+    <div class="qa"><div class="qn">Question 2808</div><p class="qq">A patient asks why you’re wearing gloves to check their blood sugar; what is the best explanation within CMA scope?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>State that gloves are standard precautions to protect both patient and staff from blood exposure, because blood is a potential biohazard even when infection status is unknown and the trap is mentioning a specific diagnosis or implying the patient is “infectious.”</div></div>
+    <div class="qa"><div class="qn">Question 2809</div><p class="qq">The provider orders 0.5 mL of a vaccine, but your syringe contains visible air bubbles; what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Remove the bubbles and re-verify the dose at eye level before administration, because air can alter delivered volume and the trap is “it’s fine for IM” without ensuring accurate dosing.</div></div>
+    <div class="qa"><div class="qn">Question 2810</div><p class="qq">You’re cleaning an exam room after a draining wound visit and the provider asks for a “quick wipe”; what is the best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Use the approved disinfectant with the correct wet contact time on high-touch surfaces, because killing pathogens requires proper dwell time and the trap is wiping dry immediately, which doesn’t disinfect.</div></div>
+    <div class="qa"><div class="qn">Question 2811</div><p class="qq">A patient with a persistent cough checks in and removes their mask to talk; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask the patient to put on a mask/cover cough and separate them from others as able, because source control reduces droplet spread and the trap is focusing on paperwork before infection control.</div></div>
+    <div class="qa"><div class="qn">Question 2812</div><p class="qq">You prepare an IM injection and notice the medication vial label looks similar to another vial on the counter; what should you do before drawing up?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and verify the medication name/strength against the order using the label (and barcode if available), because look-alike packaging is a common error and the trap is relying on vial color/shape.</div></div>
+    <div class="qa"><div class="qn">Question 2813</div><p class="qq">In an exam room a patient suddenly becomes unresponsive and you see no normal breathing; another staff member is nearby—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Activate emergency response/ask the staff member to call 911 and get the AED while you begin CPR, because early CPR and AED retrieval are time-critical and the trap is searching for a pulse for too long.</div></div>
+    <div class="qa"><div class="qn">Question 2814</div><p class="qq">During a wound dressing change, the patient complains of increasing pain and you see new redness spreading beyond the wound edge; what is the CMA’s best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and promptly report the findings to the provider before proceeding, because worsening pain and spreading erythema may indicate infection needing evaluation and the trap is finishing the dressing and mentioning it later.</div></div>
+    <div class="qa"><div class="qn">Question 2815</div><p class="qq">A patient becomes pale and diaphoretic after an injection and says they feel faint; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Assist them to a supine position with legs elevated as tolerated and monitor, notifying the provider, because this is consistent with vasovagal syncope and the trap is having them “sit up and drink water” before preventing a fall.</div></div>
+    <div class="qa"><div class="qn">Question 2816</div><p class="qq">A patient scheduled for an injection says they had hives and throat tightness after the same medication last year; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Hold the medication and notify the provider immediately, because this suggests a prior severe allergic reaction and the trap is administering first and “watching them afterward.”</div></div>
+    <div class="qa"><div class="qn">Question 2817</div><p class="qq">During intake, a 64-year-old patient says, “I feel a little dizzy,” and you obtain BP 82/54 and pulse 118 after they hurried from the parking lot; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Sit/lay the patient down safely and recheck BP manually after 1–2 minutes, because immediate fall prevention and confirming an abnormal reading comes before documenting it as “true hypotension” or sending them back to the lobby.</div></div>
+    <div class="qa"><div class="qn">Question 2818</div><p class="qq">A patient’s oral temperature is 101.8°F, but they just finished a hot coffee in the waiting room; what is the best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Wait about 15 minutes and retake the temperature (or use an alternate site per clinic protocol), because recent hot liquids can falsely elevate oral temps and the trap is reporting fever without controlling for intake.</div></div>
+    <div class="qa"><div class="qn">Question 2819</div><p class="qq">You’re about to give a deltoid IM injection and the patient’s sleeve is tight; they offer to “just pull it up a little”; what is the best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Have the patient remove the arm from the sleeve or change into a gown to fully expose the site, because injecting through or near tight clothing risks contamination and poor landmarking and the trap is injecting with limited visibility.</div></div>
+    <div class="qa"><div class="qn">Question 2820</div><p class="qq">After a subcutaneous injection, the patient rubs the site vigorously and asks if that helps; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Instruct them not to rub and apply gentle pressure if needed, because rubbing can increase bruising or alter absorption and the trap is encouraging rubbing to “spread the medicine.”</div></div>
+    <div class="qa"><div class="qn">Question 2821</div><p class="qq">You get a pulse ox reading of 84% on a patient who is talking comfortably but has dark nail polish and cold hands; what should you do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Reposition the probe/warm the hand or use an alternate site and recheck, because poor perfusion and nail polish cause false lows and the trap is treating the number without confirming accuracy.</div></div>
+    <div class="qa"><div class="qn">Question 2822</div><p class="qq">You need to suction a small amount of drainage from a fresh surgical wound per provider order; which technique is required?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Use sterile technique, because fresh surgical sites are high risk for introducing pathogens and the trap is using clean technique because it’s an outpatient setting.</div></div>
+    <div class="qa"><div class="qn">Question 2823</div><p class="qq">You obtain BP 168/102 on a patient who is anxious and talking during the measurement; what is the best next step before reporting it?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Have the patient rest quietly with feet flat and arm supported at heart level, then repeat the BP with correct cuff/technique, because poor technique can falsely elevate readings and the trap is charting an “abnormal” without a proper repeat.</div></div>
+    <div class="qa"><div class="qn">Question 2824</div><p class="qq">A patient stands up from the exam table after a blood draw and says they feel faint; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Assist them back to a seated or supine position and assess for responsiveness, because preventing syncope-related falls is the immediate priority and the trap is offering water or sending them to the lobby.</div></div>
+    <div class="qa"><div class="qn">Question 2825</div><p class="qq">A patient with suspected tuberculosis is coughing in the waiting room at check-in; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Provide a mask and quickly place the patient in a separate room, because source control and separation break the chain of infection and the trap is completing paperwork first.</div></div>
+    <div class="qa"><div class="qn">Question 2826</div><p class="qq">After removing gloves used for a wound dressing change, what should the CMA do next before touching the computer keyboard?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Perform hand hygiene immediately, because gloves are not a substitute and contamination occurs during removal; the trap is assuming “I wore gloves” makes hands clean.</div></div>
+    <div class="qa"><div class="qn">Question 2827</div><p class="qq">While rooming a patient, you notice their respirations are 28/min with audible wheezing and they can only speak in short phrases; what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop the routine intake and alert the provider immediately while keeping the patient upright, because respiratory distress is a priority finding and the trap is continuing vitals/history as if stable.</div></div>
+    <div class="qa"><div class="qn">Question 2828</div><p class="qq">You are about to enter an exam room for a routine sore throat visit and notice your hands are visibly soiled from setting up equipment; what is the correct hand hygiene action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Wash with soap and water before patient contact, because visible soil requires soap-and-water (sanitizer is less effective) and the trap is using gel as a shortcut.</div></div>
+    <div class="qa"><div class="qn">Question 2829</div><p class="qq">A patient becomes pale, sweaty, and shaky in the exam room shortly after a procedure and says they have diabetes; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Check their blood glucose per protocol and alert the provider while keeping the patient seated/ सुरक्षित, because hypoglycemia is a common urgent cause and the trap is giving food/juice without confirming level or notifying.</div></div>
+    <div class="qa"><div class="qn">Question 2830</div><p class="qq">The provider orders 0.5 mL of vaccine IM, but the syringe you grabbed is a 3 mL syringe without 0.1 mL markings; what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Replace it with an appropriate syringe (e.g., 1 mL) to measure accurately, because dose accuracy is part of medication safety and the trap is estimating volume on an imprecise syringe.</div></div>
+    <div class="qa"><div class="qn">Question 2831</div><p class="qq">You are preparing an IM injection and notice the medication label is smudged and you cannot clearly read the concentration; what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and obtain a clearly labeled vial (or verify with pharmacy/stock and replace), because you must confirm the right drug/strength and the trap is “guessing” based on vial shape or color.</div></div>
+    <div class="qa"><div class="qn">Question 2832</div><p class="qq">When drawing up medication for an injection, you realize you forgot to perform the final label check and have two syringes on your tray; what is the best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Discard and redraw with one medication prepared and labeled at a time, because unlabeled/uncertain syringes are an error risk and the trap is trying to “figure it out” by appearance.</div></div>
+    <div class="qa"><div class="qn">Question 2833</div><p class="qq">A patient requests you “just recap this needle” after you give a vaccine because the sharps container is across the room; what is the best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not recap; activate the safety device and immediately dispose in a sharps container, because recapping increases needlestick risk and the trap is prioritizing convenience over safety.</div></div>
+    <div class="qa"><div class="qn">Question 2834</div><p class="qq">You are asked to position a patient for a rectal exam; what is the correct position to use?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Place the patient in Sims’ position (left side-lying with right knee flexed), because it provides optimal access and safety; the trap is using dorsal recumbent, which is less appropriate.</div></div>
+    <div class="qa"><div class="qn">Question 2835</div><p class="qq">You are about to administer a medication injection and the patient says, “I’m allergic to that one,” but the chart shows no allergies documented; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Hold the medication and immediately verify the allergy details and notify the provider, because patient-reported allergy requires confirmation before administration and the trap is relying only on the chart.</div></div>
+    <div class="qa"><div class="qn">Question 2836</div><p class="qq">While cleaning an exam room, you see dried blood on the exam table paper and nearby surface; what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Don gloves and clean then disinfect with an EPA-registered disinfectant appropriate for blood/body fluids, because blood requires proper disinfection and the trap is wiping with alcohol or changing paper only.</div></div>
+    <div class="qa"><div class="qn">Question 2837</div><p class="qq">A teen faints immediately after standing for weight and height—what position is best right now?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Assist to a supine position with legs elevated and maintain airway, then notify the provider because it supports cerebral perfusion; the trap is sitting them upright quickly which can worsen syncope.</div></div>
+    <div class="qa"><div class="qn">Question 2838</div><p class="qq">A patient’s pulse is irregular on the pulse oximeter at check-in—what is the best next action by the CMA?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify by counting the apical pulse for a full minute and report the irregular rhythm to the provider because equipment can misread and irregularity may be clinically significant; the trap is charting the machine rate without confirmation.</div></div>
+    <div class="qa"><div class="qn">Question 2839</div><p class="qq">During intake, a 58-year-old reports dizziness; vitals are BP 84/52, HR 118, RR 22, skin cool/clammy—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Have the patient lie supine with legs elevated and call for the provider/activate clinic emergency response while staying with the patient because possible shock requires immediate support, not finishing paperwork or rechecking later.</div></div>
+    <div class="qa"><div class="qn">Question 2840</div><p class="qq">In the lobby, a patient suddenly collapses and is unresponsive; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Activate emergency response (call for help/911 per clinic protocol) and start CPR while someone retrieves the AED, because early CPR/AED saves lives and the trap is checking vitals or searching for the provider first.</div></div>
+    <div class="qa"><div class="qn">Question 2841</div><p class="qq">You obtain BP 178/112 in an asymptomatic patient who says they “ran up the stairs”—what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Recheck manually after 5 minutes of seated rest with proper cuff size and arm at heart level, then report if still elevated because technique/rest affect accuracy; the trap is documenting a single high automated reading as final.</div></div>
+    <div class="qa"><div class="qn">Question 2842</div><p class="qq">During a wound dressing change, the old gauze is stuck to the wound bed and begins to pull tissue when removed; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Moisten the dressing with sterile saline and gently remove, because dry removal can damage tissue and the trap is pulling harder to “get it off quickly.”</div></div>
+    <div class="qa"><div class="qn">Question 2843</div><p class="qq">A patient with suspected meningitis arrives coughing and febrile in the waiting room—what should the CMA do first regarding infection control?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Place a surgical mask on the patient and move them to a private room promptly because source control reduces droplet spread; the trap is putting on your PPE first while leaving the patient unmasked among others.</div></div>
+    <div class="qa"><div class="qn">Question 2844</div><p class="qq">A 6-year-old is anxious and moving during an oral temperature; the reading is 102.9°F—what is the best next step before reporting?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Recheck using a more reliable route for the situation (e.g., tympanic/temporal per clinic device) because motion can falsely elevate oral readings; the trap is accepting a questionable measurement without confirmation.</div></div>
+    <div class="qa"><div class="qn">Question 2845</div><p class="qq">While preparing an IM injection, you draw up the medication but notice the vial label doesn’t match the MAR order—what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not administer; re-verify the order and medication (and ask the nurse/provider/pharmacist as appropriate) because a mismatch is a medication error risk; the trap is assuming “same drawer” means correct drug.</div></div>
+    <div class="qa"><div class="qn">Question 2846</div><p class="qq">While rooming a patient, you notice dried blood on the exam table paper from the prior visit—what is the correct next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Don gloves and disinfect the surface with an approved agent for the required contact time and replace the paper because visible soil requires cleaning/disinfection before reuse; the trap is just changing paper without disinfecting.</div></div>
+    <div class="qa"><div class="qn">Question 2847</div><p class="qq">During intake, a 64-year-old becomes pale and says he feels faint while standing on the scale after reporting he skipped breakfast; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Assist the patient to a seated or supine position and assess airway/breathing and vital signs while calling for help as needed, because preventing a fall and checking for acute instability comes before continuing intake or offering food/drink (a common mistake is trying to “push through” vitals while the patient is still standing).</div></div>
+    <div class="qa"><div class="qn">Question 2848</div><p class="qq">You enter a room to perform a wound dressing change and the patient begins coughing forcefully—what PPE change is most appropriate?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Add a surgical mask with eye protection (and keep gloves) because splash/droplet risk increases during coughing; the trap is proceeding with only gloves and risking mucous membrane exposure.</div></div>
+    <div class="qa"><div class="qn">Question 2849</div><p class="qq">You accidentally stick yourself with a used lancet after a glucose check—what is the first action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Wash the area immediately with soap and water, then report and follow exposure protocol because prompt cleansing and reporting reduces risk and ensures timely evaluation; the trap is finishing tasks before reporting.</div></div>
+    <div class="qa"><div class="qn">Question 2850</div><p class="qq">You are preparing to administer a vaccine and the patient says they had an anaphylactic reaction to a prior dose—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and notify the provider before administering because history suggests a contraindication/need for medical decision-making; the trap is proceeding because the order exists.</div></div>
+    <div class="qa"><div class="qn">Question 2851</div><p class="qq">During rooming, a 68-year-old reports dizziness and you obtain a seated BP of 84/52 with a pulse of 118; the patient is pale but awake and says they “just took my BP pill,” what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Assist the patient to a safe supine position with legs elevated and immediately notify the provider/activate clinic emergency response as needed because symptomatic hypotension with tachycardia is potentially unstable; the common trap is repeating the BP or continuing intake instead of prioritizing safety and rapid escalation.</div></div>
+    <div class="qa"><div class="qn">Question 2852</div><p class="qq">You remove gloves after a fingerstick and immediately reach for the keyboard to document—what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Perform hand hygiene before touching the keyboard because glove removal can contaminate hands; the trap is assuming “no direct contact” means hand hygiene isn’t needed.</div></div>
+    <div class="qa"><div class="qn">Question 2853</div><p class="qq">After an IM injection, the patient becomes pale and says they feel faint—what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Assist the patient to a safe seated or supine position and assess airway/breathing while calling for help because preventing a fall and rapid assessment come before documentation; the trap is telling them to “take deep breaths” while they remain standing.</div></div>
+    <div class="qa"><div class="qn">Question 2854</div><p class="qq">In the lobby, a patient collapses and is unresponsive; you don’t feel a pulse within 10 seconds—what should you do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Activate emergency response (call 911/get AED) and begin CPR immediately because early CPR/AED saves lives; the trap is spending extra time rechecking pulse or searching for history.</div></div>
+    <div class="qa"><div class="qn">Question 2855</div><p class="qq">A 6-year-old is anxious and crying during vitals and the automated BP reads 138/92; what is the best next step for the CMA?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Recheck BP after calming the child using the correct cuff size and manual technique because anxiety/wrong cuff can falsely elevate readings; the trap is documenting it as true hypertension without verification.</div></div>
+    <div class="qa"><div class="qn">Question 2856</div><p class="qq">During intake an adult patient says they feel dizzy and you obtain BP 86/52, HR 118, RR 24, and they look pale; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Seat/lay the patient supine with legs elevated and call the provider/activate clinic emergency response because these are signs of possible shock; the trap is finishing the intake or repeating vitals while the patient is unstable.</div></div>
+    <div class="qa"><div class="qn">Question 2857</div><p class="qq">During a dressing change, the old gauze is stuck to the wound and begins bleeding when pulled—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Moisten the dressing with sterile saline to loosen it, then remove gently and report unexpected bleeding because tearing tissue increases bleeding; the trap is pulling harder to “get it off quickly.”</div></div>
+    <div class="qa"><div class="qn">Question 2858</div><p class="qq">A provider requests assistance with a sterile suture removal kit setup; you accidentally touch the sterile field with your bare wrist—what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Tell the provider immediately and replace the contaminated sterile setup because sterility is broken; the trap is ignoring it because the touch was “brief.”</div></div>
+    <div class="qa"><div class="qn">Question 2859</div><p class="qq">You are about to give a subcutaneous injection; the patient’s abdomen has multiple bruises from recent injections—what is the best site-selection action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Choose a different appropriate site/area and rotate away from bruised tissue because bruising alters absorption and increases discomfort; the trap is injecting into bruised areas because they’re “already sore.”</div></div>
+    <div class="qa"><div class="qn">Question 2860</div><p class="qq">You bring the AED to an unresponsive patient and a bystander is touching the patient’s shoulder while you are about to deliver a shock—what is the best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Loudly direct “clear” and ensure no one is touching the patient before delivering the shock because contact can injure rescuers and reduce effectiveness; the trap is shocking quickly without visual confirmation.</div></div>
+    <div class="qa"><div class="qn">Question 2861</div><p class="qq">While taking vitals, you count a respiratory rate of 10 with shallow breaths in a patient who is very sleepy after a procedure; what is the best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stay with the patient and immediately alert the provider/clinical lead because slow, shallow respirations can signal respiratory depression; the trap is assuming they are “just tired” and leaving them alone.</div></div>
+    <div class="qa"><div class="qn">Question 2862</div><p class="qq">A patient with severe shortness of breath arrives for a routine follow-up and cannot speak full sentences; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop routine check-in, bring the patient to a clinical area, and alert the provider/activate urgent response because airway/breathing takes priority; the trap is completing paperwork and insurance verification first.</div></div>
+    <div class="qa"><div class="qn">Question 2863</div><p class="qq">After removing gloves, you realize you touched the outside of the glove with your bare hand during removal; what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Perform hand hygiene immediately because glove removal can contaminate hands; the trap is assuming gloves fully prevented exposure and skipping handwashing.</div></div>
+    <div class="qa"><div class="qn">Question 2864</div><p class="qq">A patient in a wheelchair becomes lightheaded when you stand them for a weight; what should you do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Sit the patient back down and reassess safety/vitals before attempting again because fall prevention is the priority; the trap is insisting on obtaining the weight immediately.</div></div>
+    <div class="qa"><div class="qn">Question 2865</div><p class="qq">You are about to enter an exam room and notice the previous patient’s used gauze on the counter; what is the correct first step before rooming the next patient?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Perform hand hygiene and don gloves to remove contaminated waste and disinfect high-touch surfaces because breaking the chain of infection starts with standard precautions; the trap is cleaning bare-handed “since it’s just gauze.”</div></div>
+    <div class="qa"><div class="qn">Question 2866</div><p class="qq">You recheck an adult’s temperature twice and it remains 103.1°F orally in an outpatient visit for sore throat; what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Promptly notify the provider and document the confirmed fever because it may change triage and testing; the trap is giving antipyretics or diagnosing infection, which is outside CMA scope.</div></div>
+    <div class="qa"><div class="qn">Question 2867</div><p class="qq">During intake, an adult’s pulse is irregular and you note skipped beats while the patient denies symptoms; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Reassess apical pulse for a full minute and report the irregular rhythm to the provider because irregular pulses can be clinically significant; the trap is charting a quick radial count and moving on.</div></div>
+    <div class="qa"><div class="qn">Question 2868</div><p class="qq">A patient with suspected influenza asks you to help adjust their mask while you are ungloved; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Perform hand hygiene and don appropriate PPE (at minimum gloves and a mask per standard/droplet precautions per clinic protocol) before assisting because respiratory secretions transmit infection; the trap is touching the mask/face directly to be “helpful.”</div></div>
+    <div class="qa"><div class="qn">Question 2869</div><p class="qq">A patient says they are “allergic to shots” right before a scheduled antibiotic injection; what is the CMA’s best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Pause the administration and obtain specific allergy details (agent and reaction) and notify the provider because “allergic” may indicate anaphylaxis risk; the trap is proceeding because the chart lists “NKDA” or assuming it’s only fear.</div></div>
+    <div class="qa"><div class="qn">Question 2870</div><p class="qq">Immediately after an injection, the patient develops hives and starts wheezing; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Activate emergency response (call for help/911 per clinic protocol) and begin basic life support actions as directed while staying with the patient because this suggests anaphylaxis; the trap is sending the patient to the waiting room or looking for forms to complete first.</div></div>
+    <div class="qa"><div class="qn">Question 2871</div><p class="qq">You are setting up a sterile dressing change and a coworker places a pen on your sterile field; what is the best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Consider the field contaminated and replace the sterile drape/supplies because a nonsterile item breaks sterility; the trap is moving the pen away and continuing as if the field is still sterile.</div></div>
+    <div class="qa"><div class="qn">Question 2872</div><p class="qq">You are preparing an IM vaccine and notice the vial label does not match the order, though the color looks similar; what should you do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and resolve the discrepancy by rechecking the order and verifying the vial with a second check/provider because medication safety requires right medication before administration; the trap is relying on packaging appearance.</div></div>
+    <div class="qa"><div class="qn">Question 2873</div><p class="qq">You are about to administer a vaccine and the patient asks, “Is this the one I got last year?”; what is the best response by the CMA?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify using the patient’s record and the vaccine label (name, dose, route, expiration) and then provide brief education/confirm with the provider if unclear because the patient’s question is a safety check; the trap is reassuring without verification.</div></div>
+    <div class="qa"><div class="qn">Question 2874</div><p class="qq">During a wound dressing change, the patient’s old dressing is stuck and pulling causes pain; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Moisten the dressing with sterile saline to loosen it before removal because this reduces tissue trauma and bleeding; the trap is forcibly pulling it off quickly to “get it done.”</div></div>
+    <div class="qa"><div class="qn">Question 2875</div><p class="qq">You draw up 1.0 mL of medication for an injection and then realize the order is for 0.5 mL; what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Discard the syringe safely and prepare a correct dose (or have another qualified staff verify) because accurate dosing is a core right of medication and you cannot “eyeball” a correction; the trap is expelling medication back into the vial or guessing the remaining amount.</div></div>
+    <div class="qa"><div class="qn">Question 2876</div><p class="qq">While rooming a patient for a routine visit, the CMA obtains vitals and finds BP 198/118 mm Hg with a mild headache; the patient says they “just ran in from the parking lot” and wants the visit to continue—what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Seat the patient quietly and repeat the BP after at least 5 minutes with correct cuff size/arm position, then immediately report the persistently severe reading to the provider because it may require urgent evaluation; the trap is dismissing it as exertion or proceeding with the visit without confirming and escalating.</div></div>
+    <div class="qa"><div class="qn">Question 2877</div><p class="qq">A patient becomes unresponsive in the lobby and is not breathing normally; what is the CMA’s first action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Activate the emergency response system and start CPR (send someone for the AED) because early CPR/AED is the priority; the trap is checking paperwork, getting vitals, or moving the patient unnecessarily before calling for help.</div></div>
+    <div class="qa"><div class="qn">Question 2878</div><p class="qq">A patient with known atrial fibrillation has an irregular pulse; what is the correct technique to document the heart rate during vital signs?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Measure the apical pulse for a full 60 seconds and document rate/rhythm; the trap is using a 15-second radial count that can miss irregular beats.</div></div>
+    <div class="qa"><div class="qn">Question 2879</div><p class="qq">You are about to take an oral temperature and the patient says they just drank hot coffee 2 minutes ago—what is the BEST next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Wait at least 15 minutes (or use an alternate route per clinic protocol) before measuring; recent hot liquids falsely elevate readings and the trap is documenting an inaccurate “fever.”</div></div>
+    <div class="qa"><div class="qn">Question 2880</div><p class="qq">While taking BP, you realize the cuff bladder barely wraps the patient’s arm—what is the BEST action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and get the correct larger cuff before measuring; too-small cuffs falsely elevate BP and the trap is documenting a number you know may be inaccurate.</div></div>
+    <div class="qa"><div class="qn">Question 2881</div><p class="qq">You obtain a BP of 178/112 on an adult who denies symptoms and says “my BP is always high”—what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Recheck manually after 5 minutes of rest with correct cuff size and notify the provider of persistent severe elevation; the trap is accepting the first reading or delaying notification because the patient is “used to it.”</div></div>
+    <div class="qa"><div class="qn">Question 2882</div><p class="qq">During intake an adult patient reports dizziness; you obtain BP 86/54, HR 122, and the patient looks pale—what should the CMA do FIRST before finishing the rest of the history?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Sit/lay the patient down and call for the provider/activate clinic emergency response while rechecking vitals; severe hypotension with tachycardia suggests instability and the trap is continuing routine intake or walking the patient to another room.</div></div>
+    <div class="qa"><div class="qn">Question 2883</div><p class="qq">A patient stands up after vitals and becomes lightheaded; what position should you place them in FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Assist them to a supine position (legs elevated if tolerated) and reassess; this supports perfusion and the trap is having them sit upright or walk to “shake it off.”</div></div>
+    <div class="qa"><div class="qn">Question 2884</div><p class="qq">You arrive with the AED and find the patient is on a wet floor from a spilled drink; what should you do next before delivering a shock?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Quickly move/dry the patient’s chest area and ensure the area is safe/dry before applying pads and following AED prompts because water increases electrical hazard and poor pad adherence; the trap is applying pads and shocking immediately without addressing the wet environment.</div></div>
+    <div class="qa"><div class="qn">Question 2885</div><p class="qq">You draw up medication for an IM injection and notice the vial label does not match the provider order (similar name, different concentration)—what should the CMA do FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and verify the medication against the order with the provider/pharmacist before giving anything; medication rights require correct drug/strength and the trap is assuming “close enough” or relying on memory.</div></div>
+    <div class="qa"><div class="qn">Question 2886</div><p class="qq">You are rooming a coughing patient with possible influenza and they are not wearing a mask—what should the CMA do FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Provide a surgical mask and perform hand hygiene before proceeding; source control reduces droplet spread and the trap is starting vitals/registration while the patient continues unmasked.</div></div>
+    <div class="qa"><div class="qn">Question 2887</div><p class="qq">You enter an exam room where a patient is on contact precautions and you see your coworker wearing gloves but no gown while assisting with linen changes—what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Pause the task and add the required gown (and reinforce proper PPE use) before continuing; linen handling can contaminate clothing and the trap is thinking gloves alone are adequate for contact precautions.</div></div>
+    <div class="qa"><div class="qn">Question 2888</div><p class="qq">The provider orders 0.5 mL IM of a vaccine, but the syringe you grabbed is a 3 mL syringe without fine markings—what is the BEST next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Use an appropriately sized syringe (e.g., 1 mL) to measure 0.5 mL accurately; wrong equipment increases dosing error and the trap is estimating the dose on a poorly marked syringe.</div></div>
+    <div class="qa"><div class="qn">Question 2889</div><p class="qq">After removing gloves used for a wound dressing change, you need to type in the EHR on a shared computer—what is the BEST next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Perform hand hygiene before touching the keyboard; gloves are not a substitute for hand hygiene and the trap is assuming “I wore gloves so my hands are clean.”</div></div>
+    <div class="qa"><div class="qn">Question 2890</div><p class="qq">You are cleaning an exam table after a patient leaves and the disinfectant label states “wet contact time: 3 minutes”—what is the correct action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Keep the surface visibly wet for the full 3 minutes before drying/using the room; wiping it off early reduces effectiveness and the trap is cleaning “until it looks dry.”</div></div>
+    <div class="qa"><div class="qn">Question 2891</div><p class="qq">While preparing an injection, you accidentally touch the sterile needle with your fingers—what should you do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Discard the contaminated needle and replace it with a new sterile needle before administering; sterility is broken and the trap is wiping the needle with alcohol (which is not acceptable).</div></div>
+    <div class="qa"><div class="qn">Question 2892</div><p class="qq">A patient’s respiratory rate appears 8/min and shallow, but they are talking normally—what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Reassess respirations discreetly for a full minute and verify pulse oximetry if available; counting while the patient is aware often alters breathing and the trap is reporting an implausible rate without confirmation.</div></div>
+    <div class="qa"><div class="qn">Question 2893</div><p class="qq">During intake, a seated patient says they feel dizzy while you’re about to take orthostatic vitals; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Have the patient sit or lie down and assess safety/LOC before continuing because preventing a fall takes priority over completing measurements, and a common trap is pushing through orthostatics despite symptoms.</div></div>
+    <div class="qa"><div class="qn">Question 2894</div><p class="qq">A provider orders an IM injection for a toddler; what positioning is BEST to reduce sudden movement and improve safety?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Use a secure comfort hold with the caregiver assisting (stabilizing the limb) and expose only the injection site; minimizing movement prevents needle injury and the trap is attempting the injection while the child is loosely seated.</div></div>
+    <div class="qa"><div class="qn">Question 2895</div><p class="qq">During a dressing change, you set the sterile gauze on the edge of the counter and it slides out of view—what is the BEST next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Treat it as contaminated and open a new sterile dressing set-up; you can’t verify sterility once out of sight and the trap is using it because it “probably” stayed clean.</div></div>
+    <div class="qa"><div class="qn">Question 2896</div><p class="qq">You obtain an adult BP of 188/112 in triage; the patient denies chest pain but looks anxious—what is the best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Recheck manually after 5 minutes of rest and immediately notify the provider of the confirmed reading because it may be hypertensive urgency, and the trap is documenting a single machine reading without verification or escalation.</div></div>
+    <div class="qa"><div class="qn">Question 2897</div><p class="qq">In the waiting room, a patient suddenly collapses and is unresponsive; what should the CMA do FIRST?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Check responsiveness and breathing, call for help/activate EMS, and start CPR while someone retrieves the AED; early CPR/AED saves lives and the trap is searching for a pulse for too long or leaving the patient alone.</div></div>
+    <div class="qa"><div class="qn">Question 2898</div><p class="qq">A patient arrives for a minor procedure and states they ate a large meal 30 minutes ago; the order requires fasting for safety—what should the CMA do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop the procedure prep and notify the provider for rescheduling or further instructions; proceeding increases aspiration/complication risk and the trap is continuing because the patient is already roomed and consented.</div></div>
+    <div class="qa"><div class="qn">Question 2899</div><p class="qq">A patient says they have a severe latex allergy as you are about to administer an injection—what should you do NEXT?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and confirm latex-free supplies/packaging (gloves, syringe components, vial stoppers) before proceeding and notify the provider if alternatives are needed; the trap is continuing with “nonlatex gloves” only while other items may contain latex.</div></div>
+    <div class="qa"><div class="qn">Question 2900</div><p class="qq">You are preparing to administer a medication and the patient says, “I’m not sure what this is for; do I have to take it?”—what is the CMA’s BEST response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Pause administration and notify the provider to address questions/consent, then proceed only after the patient agrees; the trap is pushing ahead because there’s an order, which undermines informed consent.</div></div>
+  <div class="setnav"><a class="btn btn-ghost" href="set-28.html">← Set 28</a><a class="btn btn-gold" href="set-30.html">Set 30 →</a></div>
+</div>
+<div class="foot">
+  <div class="copyright">© 2026 MED PREP. All rights reserved.</div>
+  <div class="legal">Independently produced study material — not affiliated with, endorsed by, or sponsored by the National Healthcareer Association (NHA). CCMA is a credential of the NHA. Questions are for practice only and are not actual exam items.</div>
+</div>
+<script>
+(function(){
+function $(id){return document.getElementById(id);}
+var all=document.querySelectorAll('.qa');
+function setAll(open){ all.forEach(function(c){ c.querySelector('.qa-a').hidden=!open; c.querySelector('button.rev').textContent=open?'Hide answer':'Show answer'; }); }
+all.forEach(function(c){ var b=c.querySelector('button.rev'), a=c.querySelector('.qa-a'); b.onclick=function(){ a.hidden=!a.hidden; b.textContent=a.hidden?'Show answer':'Hide answer'; }; });
+var sa=$('showall'); if(sa) sa.onclick=function(){ var open=sa.dataset.open!=='1'; setAll(open); sa.dataset.open=open?'1':'0'; sa.textContent=open?'Hide all answers':'Show all answers'; };
+})();
+</script>
+</body>
+</html>

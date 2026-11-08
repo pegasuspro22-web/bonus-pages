@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Clinical Patient Care: General Patient Care — High-Yield 100</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#0A1444; --navy-2:#111C55; --navy-3:#192767; --line:#2A3B77;
+  --gold:#F4D348; --gold-ink:#151B45;
+  --paper:#F3F1E8; --muted:#9AA3CC; --muted-2:#6E77A8;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --alert-soft:#3A2E12; --alert-muted:#D9CBA3;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px; overflow-x:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+a{color:inherit;}
+img{max-width:100%;}
+button{font:inherit;}
+.topbar{position:sticky; top:0; z-index:20; background:rgba(10,20,68,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:760px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;}
+.page{max-width:760px; margin:0 auto; padding:0 1.25rem 4rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.5rem 0 1.25rem;}
+.eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(1.8rem,6.5vw,2.6rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:500px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.5rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.55rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; padding:.85rem 1.4rem; border-radius:999px; border:1.5px solid transparent; cursor:pointer; text-align:center;}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(244,211,72,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+.btn[disabled]{opacity:.4; cursor:not-allowed;}
+.action-block{margin-top:1rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.5rem; box-shadow:var(--shadow); margin-top:1.5rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+.callout p{color:var(--muted); margin:.5rem 0 0;}
+.section-head{padding-top:2.25rem; margin-bottom:1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+.muted{color:var(--muted);}
+.card-list{display:flex; flex-direction:column; border-top:1px solid var(--line); margin-top:1rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center; text-decoration:none;}
+.card h3{font-size:1.02rem; font-weight:700;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; flex-shrink:0;}
+.grid-tests{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-top:1rem;}
+.tbox{display:block; text-decoration:none; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:.9rem 1rem;}
+.tbox:hover{border-color:var(--gold);}
+.tbox .k{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.tbox .t{font-family:'Anton',sans-serif; font-size:1.35rem; color:var(--gold); line-height:1.15; margin-top:.15rem;}
+.tbox .s{font-size:.8rem; color:var(--muted); margin-top:.2rem;}
+.tbox .s.prog{color:var(--correct);}
+.subject-chip{font-weight:600; font-size:.92rem; background:var(--navy); border:1.5px dashed var(--line); border-radius:8px; padding:.7rem 1rem; color:var(--paper); word-break:break-word; display:inline-block;}
+.subject-chip b{color:var(--gold);}
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+.step-list{margin:1.25rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.4rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{font-family:'Anton',sans-serif; font-size:1.1rem; color:var(--gold-ink); background:var(--gold); width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0;}
+.bp-table{width:100%; border-collapse:collapse; margin-top:1rem; font-size:.9rem;}
+.bp-table th{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--line);}
+.bp-table td{padding:.6rem; border-bottom:1px solid var(--line);}
+.bp-table td.n{color:var(--gold); font-family:'Oswald',sans-serif; font-weight:700; text-align:right; white-space:nowrap;}
+.faq dt{font-weight:700; margin-top:1.1rem;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem;}
+.foot{max-width:760px; margin:2.5rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em;}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card .tag{align-self:stretch; text-align:center;}
+  .topbar-inner{padding:.6rem 1rem;} .topbar .logo{height:38px;}
+  .hero{padding-top:1.8rem;}
+  .action-block .btn{width:100%;}
+  .bp-table{font-size:.8rem;}
+}
+
+.panel{margin-top:1.25rem; padding:1.4rem; background:var(--navy-2); border:1px solid var(--line); border-radius:12px;}
+.panel h1{font-family:'Oswald',sans-serif; font-size:1.45rem; text-transform:uppercase;}
+.panel p{color:var(--muted); margin:.8rem 0 0;}
+.panel ul{color:var(--muted); margin:.8rem 0 0; padding-left:1.25rem;}
+.panel ul li::marker{color:var(--gold);}
+.gate{display:flex; gap:.7rem; align-items:flex-start; margin:1.3rem 0 1rem; font-size:.95rem;}
+.gate input{margin-top:.25rem; width:18px; height:18px; accent-color:var(--gold); flex:none;}
+.resume{margin-top:1rem; padding:1rem 1.1rem; border:1.5px solid var(--gold); border-radius:10px; background:var(--alert-soft);}
+.resume p{margin:0; color:var(--paper);}
+.runbar{position:sticky; top:62px; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:.6rem .9rem; margin-top:1rem; background:var(--gold); color:var(--gold-ink); border-radius:10px; font-family:'Oswald',sans-serif; font-size:.8rem; font-weight:600; letter-spacing:.03em;}
+.bar{height:6px; border-radius:3px; background:var(--line); overflow:hidden; margin-top:.6rem;}
+.bar > i{display:block; height:100%; background:var(--gold);}
+.dots{display:flex; flex-wrap:wrap; gap:6px; margin-top:.8rem;}
+.dots button{width:2.2rem; height:2.2rem; border-radius:6px; border:1px solid var(--line); background:var(--navy-2); color:var(--muted); cursor:pointer; font-family:'Oswald',sans-serif;}
+.dots button.cur{border-color:var(--gold); color:var(--gold);}
+.q{margin-top:1rem; padding:1.2rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px;}
+.qno{font-family:'Oswald',sans-serif; font-size:.7rem; color:var(--muted-2); letter-spacing:.06em; text-transform:uppercase;}
+.stem{margin:.5rem 0 .8rem; font-size:1rem; line-height:1.55;}
+.opt{display:flex; gap:.75rem; width:100%; text-align:left; align-items:flex-start; padding:.7rem .8rem; margin-top:.5rem; background:var(--navy); border:1.5px solid var(--line); border-radius:8px; color:var(--paper); cursor:pointer; line-height:1.45;}
+.opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line); display:grid; place-items:center; font-family:'Oswald',sans-serif; font-weight:700; font-size:.8rem; color:var(--gold);}
+.opt.sel{border-color:var(--gold);}
+.opt.sel .l{background:var(--gold); color:var(--gold-ink); border-color:var(--gold);}
+.opt:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+.secnav{display:flex; align-items:center; justify-content:space-between; gap:.6rem; margin-top:1.4rem; flex-wrap:wrap;}
+.secnav .mid{font-family:'Oswald',sans-serif; font-size:.78rem; color:var(--muted); width:100%; text-align:center; order:-1;}
+.secnav .btn{flex:1;}
+.score{margin-top:1.25rem; padding:1.5rem; background:var(--navy-2); border:1px solid var(--line); border-radius:12px; text-align:center;}
+.score .big{font-family:'Anton',sans-serif; font-size:2.8rem; color:var(--gold); line-height:1;}
+.score .sub{color:var(--muted); margin-top:.5rem;}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:1.4rem;}
+.tabs button{padding:.45em .9em; border-radius:999px; border:1px solid var(--line); background:var(--navy-2); color:var(--muted); font-family:'Oswald',sans-serif; font-size:.78rem; cursor:pointer;}
+.tabs button[aria-pressed="true"]{background:var(--gold); color:var(--gold-ink); border-color:var(--gold);}
+.rev .opt{cursor:default;}
+.rev .opt.right{border-color:var(--correct); background:var(--correct-soft);}
+.rev .opt.right .l{background:var(--correct); border-color:var(--correct); color:#fff;}
+.rev .opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.rev .opt.wrong .l{background:var(--incorrect); border-color:var(--incorrect); color:#fff;}
+.rtag{display:inline-block; margin-left:.5rem; font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.07em; text-transform:uppercase;}
+.rtag.ok{color:var(--correct);} .rtag.bad{color:var(--incorrect);} .rtag.skip{color:var(--muted-2);}
+.why{margin-top:.9rem; padding:.9rem 1rem; border-radius:8px; background:var(--alert-soft); border:1px solid rgba(244,211,72,.35); font-size:.93rem;}
+.why h4{margin:0 0 .3rem; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold);}
+.why p{margin:.3rem 0; color:var(--paper);}
+.why .others p{color:var(--muted); font-size:.9rem;}
+#printview{display:none;}
+body.printing .topbar, body.printing .page > *:not(#printview), body.printing .foot{display:none !important;}
+body.printing{background:#fff; color:#000;}
+body.printing #printview{display:block; color:#000; font-family:Georgia,serif; font-size:11pt; line-height:1.4;}
+#printview h1{font-family:Arial,sans-serif; font-size:16pt; margin:0 0 4pt;}
+#printview .pq{break-inside:avoid; margin:0 0 10pt;}
+#printview .pq p{margin:0 0 3pt;}
+#printview .po{margin-left:14pt;}
+#printview .key{break-before:page; columns:5; font-family:Arial,sans-serif; font-size:10pt;}
+#printview .noprint{font-family:Arial,sans-serif; margin:10pt 0 14pt; padding:8pt; border:1px solid #999;}
+@media print{ #printview .noprint{display:none;} }
+
+.hyq{margin-top:1rem; padding:1.2rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px;}
+.hyq .opt{display:flex; gap:.75rem; width:100%; text-align:left; align-items:flex-start; padding:.7rem .8rem; margin-top:.5rem; background:var(--navy); border:1.5px solid var(--line); border-radius:8px; color:var(--paper); cursor:pointer; line-height:1.45;}
+.hyq .opt .l{flex:none; width:1.7rem; height:1.7rem; border-radius:50%; border:1.5px solid var(--line); display:grid; place-items:center; font-family:'Oswald',sans-serif; font-weight:700; font-size:.8rem; color:var(--gold);}
+.hyq.done .opt{cursor:default;}
+.hyq .opt.right{border-color:var(--correct); background:var(--correct-soft);}
+.hyq .opt.right .l{background:var(--correct); border-color:var(--correct); color:#fff;}
+.hyq .opt.wrong{border-color:var(--incorrect); background:var(--incorrect-soft);}
+.hyq .opt.wrong .l{background:var(--incorrect); border-color:var(--incorrect); color:#fff;}
+.hyq .exp{margin-top:.9rem; padding:.9rem 1rem; border-radius:8px; background:var(--alert-soft); border:1px solid rgba(244,211,72,.35);}
+.hyq .exp h4{margin:0 0 .3rem; font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold);}
+.hyq .exp p{margin:.3rem 0; font-size:.94rem;}
+.hyq .exp .trap{color:var(--alert-muted);}
+.hy-score{position:sticky; top:62px; z-index:5; margin-top:1rem; padding:.55rem .9rem; border-radius:10px; background:var(--gold); color:var(--gold-ink); font-family:'Oswald',sans-serif; font-size:.82rem; font-weight:600; text-align:center;}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner"><img class="logo" src="../assets/med-prep-logo.png" alt="MED PREP"><span class="title">NHA CCMA Study Guide</span></div></div>
+<div class="page">
+
+  <a href="./" class="back-link">← All areas</a>
+  <div class="hero" style="padding-bottom:.5rem;">
+    <div class="eyebrow">High-Yield 100 · Area 4 of 12</div>
+    <h1>Clinical Patient Care: General Patient Care</h1>
+  </div>
+  <div class="hy-score" id="hyscore"></div>
+  <div id="hylist"></div>
+  <div class="action-block" style="margin-top:1.5rem;"><a class="btn btn-gold" href="infection-control.html">Next: Infection Control and Safety →</a></div>
+</div>
+<div class="foot">
+  <div class="copyright">© 2026 MED PREP. All rights reserved.</div>
+  <div class="legal">Independently produced study material — not affiliated with, endorsed by, or sponsored by the National Healthcareer Association (NHA). CCMA is a credential of the NHA. Questions are for practice only and are not actual exam items.</div>
+</div>
+<script>window.__HY=[{"s": "Which site is preferred for an intramuscular injection in an infant?", "o": {"A": "Deltoid", "B": "Dorsogluteal", "C": "Ventrogluteal", "D": "Vastus lateralis"}, "c": "D", "e": "The vastus lateralis, on the outer thigh, is the most developed muscle in infants and has no major nerves or vessels nearby. The deltoid is too small at that age.", "t": "Choosing the deltoid because it is used for adult vaccines."}, {"s": "Why is the Z-track method used for some intramuscular injections?", "o": {"A": "To make the medication absorb more slowly", "B": "To keep an irritating medication from leaking into the subcutaneous tissue", "C": "To allow a larger volume of medication to be given safely in the deltoid muscle", "D": "To avoid having to aspirate before injecting"}, "c": "B", "e": "Pulling the skin to one side before injecting and releasing it afterward seals the needle track. It is used for drugs such as iron that stain or irritate tissue.", "t": "Thinking Z-track is about speed of absorption. Its purpose is to seal the medication in the muscle."}, {"s": "At what angle is an intramuscular injection given?", "o": {"A": "10 to 15 degrees", "B": "30 degrees", "C": "45 degrees", "D": "90 degrees"}, "c": "D", "e": "IM injections go straight in at 90 degrees to reach the muscle. Subcutaneous injections are usually 45 degrees, and intradermal injections 10 to 15 degrees.", "t": "Mixing up the three injection angles. IM 90, subcutaneous 45, intradermal 10 to 15."}, {"s": "A tuberculin skin test (PPD) was placed on Monday morning. When should it be read?", "o": {"A": "Right away, before the patient leaves", "B": "Between Wednesday and Thursday morning, 48 to 72 hours after placement", "C": "After one full week, when the induration has fully developed and is easier to measure", "D": "The next morning, after 24 hours"}, "c": "B", "e": "The reaction to the PPD is read 48 to 72 hours after placement, by measuring induration (the raised, hard area), not redness. A test read late must be repeated.", "t": "Measuring the redness instead of the induration."}, {"s": "The order is amoxicillin 0.5 g by mouth. The tablets on hand are 250 mg. How many tablets should be given?", "o": {"A": "1 tablet", "B": "½ tablet", "C": "4 tablets", "D": "2 tablets"}, "c": "D", "e": "Convert first: 0.5 g = 500 mg. Then 500 mg ÷ 250 mg per tablet = 2 tablets.", "t": "Skipping the unit conversion and reading 0.5 as half a tablet."}, {"s": "The order is 375 mg of an oral suspension. The bottle reads 125 mg/5 mL. How many milliliters should be given?", "o": {"A": "15 mL", "B": "3 mL", "C": "7.5 mL", "D": "25 mL"}, "c": "A", "e": "Desired ÷ have × quantity: 375 ÷ 125 × 5 mL = 15 mL.", "t": "Stopping at 375 ÷ 125 = 3 and forgetting to multiply by the 5 mL."}, {"s": "Before giving a medication, how should the CMA confirm the patient's identity?", "o": {"A": "Ask the patient to state two identifiers, such as full name and date of birth", "B": "Call the patient by name and wait for them to respond", "C": "Check the patient's name on the day's schedule and the exam room number assigned at check-in", "D": "Ask the patient to confirm the medication they are expecting"}, "c": "A", "e": "Two identifiers, stated by the patient, are the standard. Saying the name and waiting for a nod can confirm the wrong person.", "t": "Asking 'Are you Mrs. Smith?'. A distracted or hard-of-hearing patient may just say yes."}, {"s": "A patient becomes short of breath while lying flat on the exam table. Which position will help most?", "o": {"A": "Trendelenburg position, with the head lower than the feet", "B": "Left lateral (Sims') position", "C": "Fowler's position, sitting up with the head raised", "D": "Prone position"}, "c": "C", "e": "Sitting up lets the diaphragm move more freely and makes breathing easier. Trendelenburg (head down) makes breathing harder.", "t": "Choosing Trendelenburg because it is used for 'emergencies'. It is not used for breathing problems."}, {"s": "Which position is used for a rectal exam or for giving an enema?", "o": {"A": "Fowler's position", "B": "Sims' position, on the left side with the right knee bent", "C": "Lithotomy position, lying on the back with the feet in stirrups", "D": "Dorsal recumbent position"}, "c": "B", "e": "In Sims' position the patient lies on the left side with the right leg flexed. It gives access to the rectum and follows the shape of the colon. Lithotomy is used for pelvic exams.", "t": "Confusing Sims' (rectal) with lithotomy (pelvic exam)."}, {"s": "While setting up a sterile field, the CMA lets the sterile tray drop below waist level for a moment. What should the CMA do?", "o": {"A": "Continue, because nothing touched the tray", "B": "Spray the tray with disinfectant and continue", "C": "Consider the tray contaminated and set up a new one", "D": "Ask the provider whether the tray can still be used"}, "c": "C", "e": "Anything below waist level, or out of sight, is considered non-sterile. The tray must be replaced.", "t": "Thinking contamination requires visible contact. Below the waist counts as contaminated."}, {"s": "A patient develops hives, wheezing, and throat tightness a few minutes after an injection. What is the first priority?", "o": {"A": "Schedule a follow-up visit to check the reaction", "B": "Stay with the patient and alert the provider and emergency response at once", "C": "Apply ice to the injection site, give water, and document the reaction in the chart", "D": "Give the patient water and ask them to rest in the waiting room"}, "c": "B", "e": "These are signs of anaphylaxis, which can block the airway in minutes. The CMA stays with the patient and gets the provider and emergency help right away; epinephrine is given per provider order or protocol.", "t": "Treating a systemic reaction as a local one. Wheezing and throat tightness mean an emergency."}, {"s": "Before giving a routine childhood vaccine, what must the parent receive?", "o": {"A": "A copy of the manufacturer's package insert with the full list of ingredients", "B": "A written prescription for the vaccine", "C": "The current Vaccine Information Statement (VIS) for that vaccine", "D": "A signed waiver from the pharmacy"}, "c": "C", "e": "Federal law requires that the current VIS be given before each dose of covered vaccines. The VIS edition date is documented in the record.", "t": "Giving the VIS only at the first dose. It is required before every dose."}, {"s": "At what temperature should refrigerated vaccines be stored?", "o": {"A": "Between 0 °C and 4 °C (32 °F and 39 °F)", "B": "Between 2 °C and 8 °C (36 °F and 46 °F)", "C": "Between 8 °C and 15 °C (46 °F and 59 °F)", "D": "At or below -15 °C (5 °F)"}, "c": "B", "e": "The CDC range for refrigerated vaccines is 2 to 8 °C. Temperatures are checked and logged, and any reading out of range is reported right away.", "t": "Thinking colder is always safer. Freezing destroys many refrigerated vaccines."}, {"s": "How should the CMA remove a simple interrupted suture?", "o": {"A": "Cut both sides of the knot and pull out each half", "B": "Lift the knot, cut close to the skin on one side, and pull the suture out by the knot", "C": "Cut the knot off first, then pull the suture out gently from the opposite side of the wound", "D": "Cut in the middle of the stitch and pull from the center"}, "c": "B", "e": "Cutting close to the skin and pulling by the knot keeps the part of the suture that was outside the skin from being pulled through the wound, which reduces infection risk.", "t": "Cutting off the knot. There is then nothing to pull, and pieces can be left in the skin."}, {"s": "Why should the solution for an ear irrigation be close to body temperature?", "o": {"A": "To keep the eardrum from rupturing", "B": "To prevent burns to the ear canal", "C": "To dissolve earwax faster", "D": "To prevent dizziness and nausea"}, "c": "D", "e": "Water that is colder or warmer than the body stimulates the inner ear and can cause vertigo and nausea.", "t": "Thinking warm water is only for comfort. The main reason is to prevent vertigo."}, {"s": "In which direction should an eye irrigation flow?", "o": {"A": "From the outer canthus toward the inner canthus", "B": "From the inner canthus toward the outer canthus", "C": "From the upper lid down toward the lower lid", "D": "Directly onto the center of the cornea"}, "c": "B", "e": "Flowing from inner to outer corner carries debris away from the tear duct and away from the other eye.", "t": "Reversing the direction, which washes debris toward the tear duct."}, {"s": "A patient's Snellen result is 20/40 in the right eye. What does this mean?", "o": {"A": "At 40 feet, the patient sees what a person with normal vision sees at 20 feet", "B": "At 20 feet, the patient sees what a person with normal vision sees at 40 feet", "C": "The patient has 50% of normal vision and is legally blind in that eye", "D": "The patient read 20 of the 40 letters correctly"}, "c": "B", "e": "The top number is the testing distance (20 feet). The bottom number is the distance at which a normal eye could read the same line.", "t": "Reversing the numbers or reading them as a score."}, {"s": "A patient performs three peak flow measurements. Which value is recorded?", "o": {"A": "The last of the three readings", "B": "The average of the three readings", "C": "The highest of the three readings", "D": "The lowest of the three readings"}, "c": "C", "e": "Peak flow measures the best effort, so the highest of three good attempts is recorded.", "t": "Averaging the results, which hides the patient's best effort."}, {"s": "A patient sprained an ankle this morning. What does the provider usually recommend for the first 24 to 48 hours?", "o": {"A": "Massage of the ankle to improve circulation", "B": "Heat applications to relax the muscles", "C": "Cold applications to reduce swelling and pain", "D": "Alternating hot soaks every hour"}, "c": "C", "e": "Cold narrows the blood vessels, which limits swelling and bleeding in the first 24 to 48 hours. Heat is used later to improve circulation.", "t": "Using heat right away. It increases blood flow and swelling."}];</script><script>
+(function(){
+var Q=window.__HY, right=0, done=0;
+function el(t,c,x){var e=document.createElement(t); if(c)e.className=c; if(x!=null)e.textContent=x; return e;}
+var box=document.getElementById('hylist'), sc=document.getElementById('hyscore');
+function upd(){ sc.textContent=done+' of '+Q.length+' answered \u00b7 '+right+' correct'; }
+Q.forEach(function(q,i){
+  var c=el('div','hyq'); c.appendChild(el('div','qno','Question '+(i+1)+' of '+Q.length)); c.appendChild(el('p','stem',q.s));
+  var opts=[];
+  ['A','B','C','D'].forEach(function(L){ var o=el('button','opt'); o.type='button'; o.appendChild(el('span','l',L)); o.appendChild(el('span',null,q.o[L])); opts.push(o); c.appendChild(o);
+    o.onclick=function(){ if(c.classList.contains('done')) return; c.classList.add('done'); done++; if(L===q.c) right++;
+      opts.forEach(function(x,k){ var LL='ABCD'[k]; if(LL===q.c) x.classList.add('right'); else if(LL===L) x.classList.add('wrong'); });
+      var e=el('div','exp'); e.appendChild(el('h4',null,(L===q.c?'Correct \u2014 ':'Not quite \u2014 ')+'the answer is '+q.c));
+      e.appendChild(el('p',null,q.e)); if(q.t){ e.appendChild(el('p','trap','Exam trap: '+q.t)); } c.appendChild(e); upd(); };
+  });
+  box.appendChild(c);
+});
+upd();
+})();
+</script>
+</body>
+</html>

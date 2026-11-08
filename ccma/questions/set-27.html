@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Q&amp;A Set 27 — NHA CCMA Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#0A1444; --navy-2:#111C55; --navy-3:#192767; --line:#2A3B77;
+  --gold:#F4D348; --gold-ink:#151B45;
+  --paper:#F3F1E8; --muted:#9AA3CC; --muted-2:#6E77A8;
+  --correct:#34A853; --correct-soft:#173420; --incorrect:#E5484D; --incorrect-soft:#3A1D22;
+  --alert-soft:#3A2E12; --alert-muted:#D9CBA3;
+  --shadow: 0 10px 28px -16px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
+body{background:var(--navy); color:var(--paper); font-family:'Karla',system-ui,sans-serif; margin:0; line-height:1.6; font-size:16.5px; overflow-x:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+a{color:inherit;}
+img{max-width:100%;}
+button{font:inherit;}
+.topbar{position:sticky; top:0; z-index:20; background:rgba(10,20,68,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:760px; margin:0 auto; padding:.7rem 1.25rem; display:flex; align-items:center; gap:.85rem;}
+.topbar .logo{height:44px; width:auto; flex-shrink:0; display:block;}
+.topbar .title{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;}
+.page{max-width:760px; margin:0 auto; padding:0 1.25rem 4rem;}
+.back-link{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:inline-block; margin-top:2rem;}
+.hero{text-align:center; padding:2.5rem 0 1.25rem;}
+.eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+.hero h1{font-size:clamp(1.8rem,6.5vw,2.6rem); line-height:1.05; margin-top:.5rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;}
+.hero .lede{max-width:500px; margin:1rem auto 0; color:var(--muted); font-size:1.02rem;}
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.5rem 0;}
+.stat{background:var(--navy-2); padding:1rem .75rem; text-align:center;}
+.stat .n{font-family:'Anton',sans-serif; font-size:1.55rem; color:var(--gold);}
+.stat .l{font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin-top:.15rem;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; font-family:'Oswald',sans-serif; font-weight:600; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; padding:.85rem 1.4rem; border-radius:999px; border:1.5px solid transparent; cursor:pointer; text-align:center;}
+.btn-gold{background:var(--gold); color:var(--gold-ink); box-shadow:0 6px 16px -4px rgba(244,211,72,.5);}
+.btn-ghost{border-color:var(--line); color:var(--paper); background:var(--navy-2);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+.btn[disabled]{opacity:.4; cursor:not-allowed;}
+.action-block{margin-top:1rem; display:flex; flex-wrap:wrap; align-items:center; gap:.7rem;}
+.callout{background:var(--navy-2); border:1px solid var(--line); border-radius:12px; padding:1.5rem; box-shadow:var(--shadow); margin-top:1.5rem;}
+.callout.alert{border-color:var(--gold); background:var(--alert-soft);}
+.callout p{color:var(--muted); margin:.5rem 0 0;}
+.section-head{padding-top:2.25rem; margin-bottom:1rem;}
+.section-head h2{font-family:'Oswald',sans-serif; font-size:1.2rem; font-weight:700; text-transform:uppercase;}
+.section-head .rule{height:3px; width:2.5rem; background:var(--gold); margin-top:.5rem; border-radius:2px;}
+.muted{color:var(--muted);}
+.card-list{display:flex; flex-direction:column; border-top:1px solid var(--line); margin-top:1rem;}
+.card{padding:1.1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1.25rem; align-items:center; text-decoration:none;}
+.card h3{font-size:1.02rem; font-weight:700;}
+.card p{color:var(--muted); font-size:.88rem; margin:.3rem 0 0; line-height:1.5;}
+.tag{font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold); padding:.55rem .95rem; border-radius:999px; white-space:nowrap; flex-shrink:0;}
+.grid-tests{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-top:1rem;}
+.tbox{display:block; text-decoration:none; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:.9rem 1rem;}
+.tbox:hover{border-color:var(--gold);}
+.tbox .k{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.tbox .t{font-family:'Anton',sans-serif; font-size:1.35rem; color:var(--gold); line-height:1.15; margin-top:.15rem;}
+.tbox .s{font-size:.8rem; color:var(--muted); margin-top:.2rem;}
+.tbox .s.prog{color:var(--correct);}
+.subject-chip{font-weight:600; font-size:.92rem; background:var(--navy); border:1.5px dashed var(--line); border-radius:8px; padding:.7rem 1rem; color:var(--paper); word-break:break-word; display:inline-block;}
+.subject-chip b{color:var(--gold);}
+.or-divider{display:flex; align-items:center; gap:.75rem; margin:1.1rem 0; color:var(--muted); font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:''; flex:1; height:1px; background:var(--line);}
+.step-list{margin:1.25rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1.4rem;}
+.step-list li{display:flex; gap:1rem; align-items:flex-start;}
+.step-list .num{font-family:'Anton',sans-serif; font-size:1.1rem; color:var(--gold-ink); background:var(--gold); width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.step-list h3{font-family:'Oswald',sans-serif; font-size:1.02rem; font-weight:700; text-transform:uppercase;}
+.step-list p{color:var(--muted); font-size:.95rem; margin:.35rem 0 0;}
+.bp-table{width:100%; border-collapse:collapse; margin-top:1rem; font-size:.9rem;}
+.bp-table th{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--line);}
+.bp-table td{padding:.6rem; border-bottom:1px solid var(--line);}
+.bp-table td.n{color:var(--gold); font-family:'Oswald',sans-serif; font-weight:700; text-align:right; white-space:nowrap;}
+.faq dt{font-weight:700; margin-top:1.1rem;}
+.faq dd{margin:.4rem 0 0; color:var(--muted); font-size:.94rem;}
+.foot{max-width:760px; margin:2.5rem auto 0; padding:1.75rem 1.25rem 3rem; border-top:1px solid var(--line);}
+.foot .copyright{font-family:'Oswald',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em;}
+.foot .legal{color:var(--muted-2); font-size:.76rem; line-height:1.65; margin-top:.4rem;}
+@media (max-width:520px){
+  .card{flex-direction:column; align-items:flex-start; gap:.6rem;}
+  .card .tag{align-self:stretch; text-align:center;}
+  .topbar-inner{padding:.6rem 1rem;} .topbar .logo{height:38px;}
+  .hero{padding-top:1.8rem;}
+  .action-block .btn{width:100%;}
+  .bp-table{font-size:.8rem;}
+}
+
+.qa{margin-top:.8rem; background:var(--navy-2); border:1px solid var(--line); border-radius:10px; padding:1rem 1.1rem;}
+.qa .qn{font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted-2);}
+.qa .qq{margin:.35rem 0 0; line-height:1.55;}
+.qa button.rev{margin-top:.7rem; background:none; border:1.5px solid var(--line); color:var(--gold); border-radius:999px; padding:.35rem .9rem; font-family:'Oswald',sans-serif; font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; cursor:pointer;}
+.qa .qa-a{margin-top:.7rem; padding:.75rem .9rem; border-left:3px solid var(--gold); background:var(--navy); border-radius:0 8px 8px 0; color:var(--paper); font-size:.95rem; line-height:1.55;}
+.toolbar{display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; margin-top:1rem;}
+.search{width:100%; padding:.8rem 1rem; border-radius:999px; border:1.5px solid var(--line); background:var(--navy-2); color:var(--paper); font:inherit; font-size:1rem;}
+.search:focus{outline:none; border-color:var(--gold);}
+.setnav{display:flex; justify-content:space-between; gap:.6rem; margin-top:1.5rem; flex-wrap:wrap;}
+.setnav .btn{flex:1;}
+mark{background:var(--gold); color:var(--gold-ink); border-radius:2px;}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner"><img class="logo" src="../assets/med-prep-logo.png" alt="MED PREP"><span class="title">NHA CCMA Study Guide</span></div></div>
+<div class="page">
+
+  <a href="./" class="back-link">← All sets</a>
+  <div class="hero" style="padding-bottom:.5rem;">
+    <div class="eyebrow">Q&amp;A Bank · Set 27 of 50</div>
+    <h1>Questions 2601–2700</h1>
+  </div>
+  <div class="toolbar"><button class="btn btn-ghost" id="showall" type="button">Show all answers</button><a class="btn btn-ghost" href="search.html">🔎 Search</a></div>
+  
+    <div class="qa"><div class="qn">Question 2601</div><p class="qq">A patient asks whether it’s okay to take two different OTC cold medicines along with their prescribed medication, but you’re unsure about interactions; what is the CMA’s best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not recommend a regimen; collect the exact product names/ingredients and route to the provider/pharmacist for guidance, because combination products often duplicate ingredients and the trap is giving advice that could cause overdose.</div></div>
+    <div class="qa"><div class="qn">Question 2602</div><p class="qq">A prescription label the patient brings in reads “metoprolol 25 mg PO BID,” and the patient says they take it “whenever I feel stressed”; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Teach that BID means twice daily as directed and alert the provider about nonadherence, because the trap is assuming the patient understands abbreviations or ignoring unsafe self-directed dosing.</div></div>
+    <div class="qa"><div class="qn">Question 2603</div><p class="qq">A patient taking an antibiotic says they developed hives and lip swelling after the first dose; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Treat it as a possible severe allergic reaction by directing immediate emergency care per clinic protocol and alerting the provider, because angioedema can progress quickly and the trap is advising antihistamines and “watching it.”</div></div>
+    <div class="qa"><div class="qn">Question 2604</div><p class="qq">A patient says, “I stopped my steroid pill yesterday because I felt better,” after several weeks of use; what should the CMA do next within scope?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Advise the patient to contact the prescribing provider before stopping and document/route the message, because abrupt steroid discontinuation can be harmful and the trap is giving taper instructions (which is outside CMA scope).</div></div>
+    <div class="qa"><div class="qn">Question 2605</div><p class="qq">During intake, a patient points to the right lower abdomen and says it hurts; which body quadrant should the CMA document?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document right lower quadrant (RLQ), because accurate anatomical terminology prevents the trap of vague notes like “lower stomach” that mislead clinical decision-making.</div></div>
+    <div class="qa"><div class="qn">Question 2606</div><p class="qq">A medication order reads “0.5 mL” but the syringe is marked in “cc”; what should the CMA do to ensure correct dosing?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Treat 1 mL as equivalent to 1 cc and measure 0.5 mL accurately, because the trap is thinking they’re different units and misdosing.</div></div>
+    <div class="qa"><div class="qn">Question 2607</div><p class="qq">A patient with asthma asks why they need “a bronchodilator” before exercise; what is the best CMA-level explanation?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain it relaxes airway smooth muscle to open the bronchi and improve airflow, because the trap is promising it “cures” asthma or giving provider-level counseling.</div></div>
+    <div class="qa"><div class="qn">Question 2608</div><p class="qq">A patient asks where their “trachea” is during a neck exam; what is the most accurate brief explanation within CMA scope?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain it’s the windpipe in the midline of the neck that carries air to the lungs, because the trap is using imprecise terms (e.g., “throat”) that confuse airway vs esophagus.</div></div>
+    <div class="qa"><div class="qn">Question 2609</div><p class="qq">A patient reports burning with urination and urinary frequency; which system should the CMA recognize as most likely involved when selecting intake questions?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Focus on the urinary system (genitourinary) and ask about fever/flank pain, because the trap is treating it as a gastrointestinal complaint and missing urinary red flags.</div></div>
+    <div class="qa"><div class="qn">Question 2610</div><p class="qq">The order says “IM injection in the deltoid,” and a new CMA suggests injecting into the antecubital fossa because it’s “easy to find”; what should you do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and select the correct anatomical site (deltoid muscle of upper arm) per order, because the trap is confusing venipuncture landmarks with intramuscular injection sites.</div></div>
+    <div class="qa"><div class="qn">Question 2611</div><p class="qq">A patient says they have “syncope” episodes, but when you ask they describe feeling lightheaded without passing out; what is the best CMA follow-up?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Clarify whether there was true loss of consciousness and document the patient’s description, because the trap is accepting medical jargon at face value and misclassifying near-syncope.</div></div>
+    <div class="qa"><div class="qn">Question 2612</div><p class="qq">A provider asks the CMA to “chart the patient is tachypneic”; the respirations you counted are 18 and unlabored—what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document the objective respiration rate/effort you observed and clarify with the provider if needed, because the trap is charting a term that contradicts measured data.</div></div>
+    <div class="qa"><div class="qn">Question 2613</div><p class="qq">A provider gives a verbal instruction to “start an ACE,” and the patient asks you which medication that is; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Tell the patient you will have the provider discuss the specific medication and indication, because the trap is naming or recommending a drug class, which is outside CMA prescribing/counseling authority.</div></div>
+    <div class="qa"><div class="qn">Question 2614</div><p class="qq">A parent says their teen is taking “one tablet daily” of a new medication but doesn’t know the strength, and the bottle isn’t available; what is the best next step for the CMA?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Obtain the exact name and strength by calling the pharmacy with consent or having the parent bring the bottle, because the trap is documenting incomplete medication details that can lead to dosing or interaction errors.</div></div>
+    <div class="qa"><div class="qn">Question 2615</div><p class="qq">A caregiver says a child’s acetaminophen is “160 mg/5 mL” and asks how many mL equals 320 mg; what is the correct calculation for the CMA to provide as labeled dosing support?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Give 10 mL (because doubling 160 mg to 320 mg doubles 5 mL to 10 mL), and the trap is mixing mg and mL without using the concentration.</div></div>
+    <div class="qa"><div class="qn">Question 2616</div><p class="qq">An order states “apply ophthalmic drops,” but the patient thinks it goes in the ear because it’s “the same kind of drop”; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Clarify that ophthalmic means eye and demonstrate correct eye-drop technique if instructed, because the trap is confusing ophthalmic vs otic and causing harm.</div></div>
+    <div class="qa"><div class="qn">Question 2617</div><p class="qq">A patient brings two look-alike insulin pens and says, “I use the blue one at night and the other with meals, but I’m not sure which is which”; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and have the patient identify each pen by the pharmacy label/name (and notify provider/pharmacist if unclear), because the trap is relying on color/appearance, which changes and causes serious errors.</div></div>
+    <div class="qa"><div class="qn">Question 2618</div><p class="qq">A patient asks if “SL nitroglycerin” should be swallowed like other pills; what is the best CMA response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Instruct that SL means place under the tongue to dissolve and notify the provider if the patient has been swallowing it, because the trap is treating route abbreviations as optional and reducing effectiveness.</div></div>
+    <div class="qa"><div class="qn">Question 2619</div><p class="qq">During medication reconciliation, a patient lists “Coumadin” but the EHR lists “warfarin”; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify they are the same medication (brand vs generic) and document consistently while confirming dose/strength, because the trap is recording them as two separate anticoagulants.</div></div>
+    <div class="qa"><div class="qn">Question 2620</div><p class="qq">A patient reports “melena” but then says their stool was black after taking bismuth; what should the CMA do with this information?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document the description and medication use and promptly notify the provider for evaluation, because the trap is dismissing black stools as “just meds” when GI bleeding must be considered.</div></div>
+    <div class="qa"><div class="qn">Question 2621</div><p class="qq">A provider writes “D/C lisinopril today” and the patient asks if that means “discharge from the clinic”; what should the CMA clarify and do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Clarify that “D/C” here means discontinue the medication and notify the provider if the patient is confused, because abbreviation meaning depends on context; the trap is assuming “discharge” and giving incorrect instructions.</div></div>
+    <div class="qa"><div class="qn">Question 2622</div><p class="qq">During rooming, the provider’s note says “c/o CP x2 hrs,” and the patient points to the center of the chest and looks pale; what should the CMA do first before continuing intake questions?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop the routine intake and alert the provider/activate the clinic’s emergency response immediately because “CP” can indicate acute cardiac symptoms; the trap is treating it as a minor complaint abbreviation and delaying escalation.</div></div>
+    <div class="qa"><div class="qn">Question 2623</div><p class="qq">A teen tells the CMA, “I’ve had nausea and dizziness since starting my new med,” and the mother says, “She seems fine”; how should the CMA document signs vs symptoms?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document nausea and dizziness as symptoms (patient-reported) and note any objective findings you observe (e.g., unsteady gait) as signs; the trap is charting caregiver opinions as objective “signs.”</div></div>
+    <div class="qa"><div class="qn">Question 2624</div><p class="qq">During intake, a patient describes “burning when I pee and going all the time”; which system is most directly involved for accurate documentation and routing?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>The urinary system because dysuria and frequency commonly reflect urinary tract involvement; the trap is documenting it as a “GI issue” due to abdominal discomfort wording.</div></div>
+    <div class="qa"><div class="qn">Question 2625</div><p class="qq">While updating the medication list, a prescription label reads “metoprolol 25 mg bid,” and the patient says they take it “whenever I remember”; what is the CMA’s best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Confirm that “bid” means twice daily and educate on taking it consistently as directed, then notify the provider of nonadherence; the trap is simply recording what the patient does without addressing the safety risk.</div></div>
+    <div class="qa"><div class="qn">Question 2626</div><p class="qq">A patient with diabetes says they have “pins-and-needles” in both feet; which system connection should the CMA recognize when flagging the chart?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Nervous system involvement (peripheral neuropathy pattern) should be flagged because it can affect sensation and injury risk; the trap is treating it as a minor skin complaint and not connecting it to neuro symptoms.</div></div>
+    <div class="qa"><div class="qn">Question 2627</div><p class="qq">A patient with “hx of COPD” reports increased wheezing today; which body system should the CMA prioritize when reporting the concern to the provider?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Prioritize the respiratory system because COPD affects airflow and worsening wheeze may indicate breathing compromise; the trap is focusing on unrelated systems and delaying respiratory assessment/escalation.</div></div>
+    <div class="qa"><div class="qn">Question 2628</div><p class="qq">An order says “apply medication topically to the affected area,” but the patient asks if they should swallow it since it’s “medicine”; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain that “topical” means applied to the skin and review the label/site of application, because route errors are common; the trap is assuming the patient understands and not preventing a wrong-route exposure.</div></div>
+    <div class="qa"><div class="qn">Question 2629</div><p class="qq">A patient states, “I’m spotting between periods and feel unusually tired,” and the chart notes heavy menses last month; what system should the CMA consider when prioritizing follow-up questions?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>The reproductive/hematologic connection should be considered (abnormal uterine bleeding with possible anemia symptoms like fatigue); the trap is charting fatigue alone without linking it to potential blood loss.</div></div>
+    <div class="qa"><div class="qn">Question 2630</div><p class="qq">A patient asks whether they can split a tablet to “make it last longer,” and the label indicates “extended-release”; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Instruct the patient not to split/crush extended-release tablets and to consult the provider/pharmacy for alternatives, because altering ER forms can cause dose dumping; the trap is treating all tablets as safely splittable.</div></div>
+    <div class="qa"><div class="qn">Question 2631</div><p class="qq">The provider orders “ibuprofen 600 mg” and the patient says they also take an OTC “pain reliever” for arthritis but can’t recall the name; what is the CMA’s best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask the patient to bring in the OTC bottle or call with the exact name/strength before starting additional NSAIDs, because duplication increases GI/renal risk; the trap is accepting “pain reliever” as sufficient.</div></div>
+    <div class="qa"><div class="qn">Question 2632</div><p class="qq">A prescription is written for “1 tablet qd,” but the patient asks if taking it “every other day” is close enough; what should the CMA say?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Reinforce that “qd” means every day as prescribed and advise the patient to discuss any schedule changes with the provider, because altering frequency can reduce effectiveness; the trap is giving approval for a self-adjusted regimen.</div></div>
+    <div class="qa"><div class="qn">Question 2633</div><p class="qq">A patient reports right upper quadrant abdominal pain after greasy meals and nausea; which organ system is most likely implicated for focused history questions?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>The digestive/hepatobiliary system (gallbladder/liver area) because the symptom pattern aligns with biliary issues; the trap is focusing only on “stomach flu” and missing the RUQ clue.</div></div>
+    <div class="qa"><div class="qn">Question 2634</div><p class="qq">A patient says, “I’m allergic to penicillin—my throat swelled up,” and the provider plans to prescribe an antibiotic; what should the CMA do within scope?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document the reaction type clearly and immediately flag/notify the provider because throat swelling suggests anaphylaxis risk; the trap is recording “PCN allergy” without details and missing severity.</div></div>
+    <div class="qa"><div class="qn">Question 2635</div><p class="qq">While reconciling meds, the patient lists “Tylenol” and “acetaminophen” as two separate items taken daily; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Identify they are the same medication and clarify total daily intake to prevent duplicate dosing, then notify the provider if doses are high; the trap is leaving both on the list and missing overdose risk.</div></div>
+    <div class="qa"><div class="qn">Question 2636</div><p class="qq">A provider orders “0.5 mL IM” of a vaccine, but the vial concentration is different from what the CMA is used to seeing; what should the CMA do before drawing it up?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify the ordered dose (mL) against the specific product’s label and medication record and clarify discrepancies before preparation, because concentration/volume confusion causes dosing errors; the trap is relying on memory of “usual” volumes.</div></div>
+    <div class="qa"><div class="qn">Question 2637</div><p class="qq">During rooming, a patient says “I’ve had vertigo for 2 days,” but the chart note from the last visit says “dizziness”; what should the CMA do next to document accurately?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask the patient to describe what they mean (spinning vs lightheaded) and document the patient’s exact words because “vertigo” is a specific symptom pattern and the trap is copying the prior term without clarification.</div></div>
+    <div class="qa"><div class="qn">Question 2638</div><p class="qq">A patient reports “nocturia” when reviewing the history form; what focused follow-up should the CMA ask to correctly interpret the term?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask how many times they wake at night to urinate and document the frequency because nocturia is nighttime urination frequency and the trap is treating it as daytime “frequency” without timing.</div></div>
+    <div class="qa"><div class="qn">Question 2639</div><p class="qq">A patient’s medication list shows “mg” on one entry and “mcg” on another for a similar drug name; what should the CMA do before confirming the list as accurate?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify the exact drug and strength with the prescription bottle or pharmacy record because mg vs mcg mix-ups can be 1000-fold errors; the trap is assuming they’re interchangeable units.</div></div>
+    <div class="qa"><div class="qn">Question 2640</div><p class="qq">The provider orders a medication “subcutaneous,” but the patient assumes it goes into muscle since it’s an injection; what should the CMA clarify before administration?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Clarify that subcutaneous injections go into fatty tissue (not muscle) and select the correct site/technique per standard practice, because route/site errors affect absorption and safety; the trap is proceeding with an IM technique.</div></div>
+    <div class="qa"><div class="qn">Question 2641</div><p class="qq">At the front desk, a patient says, “My spouse can pick up my lab results if you tell them over the phone,” and no release is documented; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not disclose results and explain that written permission (or documented authorization) is needed before discussing protected information, because HIPAA prohibits sharing without proper authorization; the trap is assuming marital status equals automatic access.</div></div>
+    <div class="qa"><div class="qn">Question 2642</div><p class="qq">A provider’s order reads “MS 2 mg IM,” and the patient has multiple medication allergies listed; what should the CMA do before preparing the injection?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Hold the medication and clarify the abbreviation with the provider because “MS” can be confused (morphine sulfate vs magnesium sulfate) and the trap is assuming the intended drug from context.</div></div>
+    <div class="qa"><div class="qn">Question 2643</div><p class="qq">A teen arrives with a parent, and the parent asks to hear all results while the teen answers questions; what is the CMA’s best initial response using correct terminology and boundaries?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask the teen privately who they want present and what can be shared because confidentiality/authorization may apply and the trap is automatically disclosing protected information to the parent.</div></div>
+    <div class="qa"><div class="qn">Question 2644</div><p class="qq">A patient scheduled for a minor in-office procedure asks, “Do I need to sign anything?” and the provider is running behind; what is the CMA’s best action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ensure the correct consent form is present and alert the provider to obtain informed consent before the procedure, because the CMA cannot obtain informed consent independently; the trap is having the patient sign without provider discussion.</div></div>
+    <div class="qa"><div class="qn">Question 2645</div><p class="qq">While assisting with a medication reconciliation, a patient points to their “diuretic” and says it helps their “edema”; what body system and symptom connection should the CMA recognize to guide accurate documentation?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Recognize this is cardiovascular/renal-related fluid retention and document swelling location and severity because edema is fluid accumulation and the trap is charting it as “weight gain” without describing swelling.</div></div>
+    <div class="qa"><div class="qn">Question 2646</div><p class="qq">A patient complains of “paresthesia” in both feet and asks if it’s diabetes; what is the CMA’s best response within scope?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document the symptom details (onset, location, numbness/tingling) and notify the provider without diagnosing because paresthesia can have many causes and the trap is confirming diabetes or offering medical interpretation.</div></div>
+    <div class="qa"><div class="qn">Question 2647</div><p class="qq">A patient on an ACE inhibitor calls to report a new persistent dry cough; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document the symptom and route the message to the provider because this can be a medication adverse effect needing evaluation and the trap is telling the patient to stop the medication independently.</div></div>
+    <div class="qa"><div class="qn">Question 2648</div><p class="qq">A provider note states “hx of MI,” and the patient says “I had a heart attack years ago”; what should the CMA document to prevent misunderstanding?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document “history of myocardial infarction (patient reports heart attack)” because MI is a common abbreviation that should be clearly expanded and the trap is leaving unclear shorthand that can be misread.</div></div>
+    <div class="qa"><div class="qn">Question 2649</div><p class="qq">The provider orders 0.5 mL of a medication supplied as 250 mg/1 mL; what should the CMA calculate as the dose in mg to double-check before administration?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>125 mg, because half of 250 mg is delivered in 0.5 mL, and the trap is confusing mL with mg and documenting the volume as the dose.</div></div>
+    <div class="qa"><div class="qn">Question 2650</div><p class="qq">A patient says they have “hematemesis,” but they also had a nosebleed earlier; what should the CMA do first to clarify the symptom?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask whether they vomited blood versus swallowed blood from the nosebleed because hematemesis is GI bleeding and the trap is assuming a GI source without clarifying the origin.</div></div>
+    <div class="qa"><div class="qn">Question 2651</div><p class="qq">A provider orders an OTC medication and writes “bid,” but the patient asks if that means “as needed”; what should the CMA say?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain it means twice daily as written and verify understanding because “bid” is scheduled dosing and the trap is confusing it with “as needed,” which can cause under- or overdosing.</div></div>
+    <div class="qa"><div class="qn">Question 2652</div><p class="qq">While rooming, a patient states they have “syncope” earlier today but now feel fine; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Immediately notify the provider and keep the patient seated/monitored because syncope can indicate serious cardiovascular/neurologic issues and the trap is treating it like simple dizziness and continuing routine intake.</div></div>
+    <div class="qa"><div class="qn">Question 2653</div><p class="qq">A patient reports “epigastric pain” after meals and points to the upper mid-abdomen; what should the CMA document to match correct anatomy terminology?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document pain in the epigastric region (upper central abdomen) with timing/character because correct location supports clinical decision-making and the trap is charting it as “lower abdominal pain” or “chest pain” based on vague wording.</div></div>
+    <div class="qa"><div class="qn">Question 2654</div><p class="qq">A patient with “GERD” asks where that problem occurs in the body; what should the CMA say to connect the term to anatomy without diagnosing?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain it involves stomach acid refluxing into the esophagus and document the patient’s questions/symptoms because GERD is a GI/esophageal issue, and the trap is giving a new diagnosis or detailed treatment recommendations.</div></div>
+    <div class="qa"><div class="qn">Question 2655</div><p class="qq">A prescription label says “take 1 tablet qhs,” and the patient says they plan to take it with breakfast; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Educate that qhs means at bedtime and confirm they understand because timing affects safety and effectiveness, and the trap is letting the patient choose a time that changes intended dosing.</div></div>
+    <div class="qa"><div class="qn">Question 2656</div><p class="qq">A patient complains of “dyspnea on exertion” when walking from the parking lot; what system-focused follow-up should the CMA ask to support accurate charting?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask about associated chest pain, cough/wheeze, and when it occurs because DOE can be cardiac or respiratory and the trap is documenting only “shortness of breath” without context.</div></div>
+    <div class="qa"><div class="qn">Question 2657</div><p class="qq">A provider order includes “apply topically to affected area,” and the patient asks if that means “take by mouth”; what is the CMA’s best clarification?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain topical means applied to the skin and demonstrate where to apply if appropriate because route errors are common, and the trap is assuming the patient understands medication routes.</div></div>
+    <div class="qa"><div class="qn">Question 2658</div><p class="qq">A patient brings in two similar-looking inhalers and isn’t sure which is “rescue” versus “controller”; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask the patient to show the labels/med names and document each with directions, then alert the provider if confusion persists because mix-ups can cause unsafe use and the trap is guessing based on inhaler color.</div></div>
+    <div class="qa"><div class="qn">Question 2659</div><p class="qq">The provider instructs “give 2 gtt in each eye,” and the patient asks what “gtt” means; what is the CMA’s best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain gtt means drops and reinforce “2 drops in each eye” because abbreviation misunderstanding leads to dosing errors and the trap is leaving the patient to interpret the abbreviation.</div></div>
+    <div class="qa"><div class="qn">Question 2660</div><p class="qq">A patient says they have “polyuria” and asks if it’s the same as urinary incontinence; what should the CMA clarify?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Clarify polyuria is increased urine volume/frequency and ask about leakage versus high output because these are different symptoms, and the trap is documenting incontinence when the patient means frequent urination.</div></div>
+    <div class="qa"><div class="qn">Question 2661</div><p class="qq">While updating medications, a patient reports taking “ASA 81 mg” daily but calls it “a vitamin”; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document it as aspirin 81 mg and ask about bleeding/bruising or upcoming procedures because missing that ASA is an antiplatelet is a common intake trap.</div></div>
+    <div class="qa"><div class="qn">Question 2662</div><p class="qq">A provider writes “D/C lisinopril today” and the patient thinks it means “discharge from the clinic”; what should the CMA say to prevent misunderstanding?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain “D/C” here means “discontinue the medication,” and confirm understanding because “D/C” is commonly misinterpreted and can lead to wrong medication use.</div></div>
+    <div class="qa"><div class="qn">Question 2663</div><p class="qq">An order reads “qd” for a blood pressure medication on a refill request; the patient asks what it means—what is the safest CMA response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Clarify it means “once daily” and encourage the patient to verify the exact timing with the provider/pharmacist because confusing qd with qid is a well-known safety risk.</div></div>
+    <div class="qa"><div class="qn">Question 2664</div><p class="qq">A teen arrives with a parent for a sports physical; the chart lists “Hx asthma,” but the patient denies any breathing problems—what is the best way to clarify “Hx” before the provider enters?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask what “history of asthma” means for them (past diagnosis, current meds, last symptoms) and document objectively, because assuming “Hx” equals current disease is a common error.</div></div>
+    <div class="qa"><div class="qn">Question 2665</div><p class="qq">A patient with abdominal pain points to the right lower quadrant and says it hurts “deep inside”; which body system should you flag as most relevant when you relay the complaint?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Flag GI/appendiceal area involvement based on location while avoiding diagnosis, because mislabeling it as “muscle pain” can delay appropriate evaluation.</div></div>
+    <div class="qa"><div class="qn">Question 2666</div><p class="qq">During rooming, the provider’s note says “c/o dysuria,” but the patient tells you they have “burning with urination”; what should the CMA document to keep terminology accurate?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document the patient’s exact words (e.g., “burning with urination”) and note it as a symptom because translating into a medical diagnosis term is a common trap.</div></div>
+    <div class="qa"><div class="qn">Question 2667</div><p class="qq">The provider requests “STAT fingerstick glucose” on a walk-in; the front-desk staff asks if STAT can wait until after paperwork—what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Perform the STAT test immediately because “STAT” means time-critical, and delaying for administrative steps is a common prioritization trap.</div></div>
+    <div class="qa"><div class="qn">Question 2668</div><p class="qq">A patient says they feel “lightheaded,” but you observe clammy skin and unsteady gait in the hallway; which findings are signs vs symptoms when documenting?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Lightheadedness is a symptom (patient-reported) and clammy skin/unsteady gait are signs (observable), because swapping them can mislead clinical decision-making.</div></div>
+    <div class="qa"><div class="qn">Question 2669</div><p class="qq">A patient with diabetes says they have “pins and needles” in both feet; what system connection should the CMA recognize when documenting the symptom?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Recognize it as a nervous system symptom (possible neuropathy) and document location/onset because charting it vaguely as “foot pain” loses key clinical meaning.</div></div>
+    <div class="qa"><div class="qn">Question 2670</div><p class="qq">A patient arrives with wheezing and says their “bronchi feel tight”; which system is involved and what should the CMA do within scope?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>This involves the respiratory system; notify the provider promptly and document observed breathing effort because attempting to independently treat is outside CMA scope.</div></div>
+    <div class="qa"><div class="qn">Question 2671</div><p class="qq">A patient complains of “heartburn” after meals and asks if it’s a heart problem; what is the best CMA clarification using anatomy terminology?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain it commonly relates to the esophagus/stomach (reflux) but any chest pain concerns should be evaluated by the provider, because dismissing cardiac risk is a dangerous trap.</div></div>
+    <div class="qa"><div class="qn">Question 2672</div><p class="qq">A patient reports frequent urination and burning; the provider plans a urine test—what system is primarily involved and what should the CMA avoid doing?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>It’s primarily the urinary system, and the CMA should avoid diagnosing a UTI and instead document symptoms and assist with ordered testing.</div></div>
+    <div class="qa"><div class="qn">Question 2673</div><p class="qq">A parent asks you to “just tell me if this antibiotic is safe with my child’s allergy to penicillin”; what is the best CMA action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Do not give safety clearance; document the reported allergy and immediately notify the provider/pharmacist because counseling on allergy risk is a scope and safety trap.</div></div>
+    <div class="qa"><div class="qn">Question 2674</div><p class="qq">A provider orders an IM injection of ketorolac 30 mg; the vial concentration is 60 mg/2 mL—how many mL should the CMA prepare?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Draw up 1 mL because 60 mg in 2 mL equals 30 mg in 1 mL, and confusing total volume with dose is a frequent calculation trap.</div></div>
+    <div class="qa"><div class="qn">Question 2675</div><p class="qq">The provider orders amoxicillin 500 mg PO; the available capsules are 250 mg—how many capsules should the patient take per dose if directions are per dose?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Two capsules per dose because 250 mg + 250 mg = 500 mg, and taking one capsule is a common underdosing mistake.</div></div>
+    <div class="qa"><div class="qn">Question 2676</div><p class="qq">A prescription label says “Take 2 tablets twice daily,” but the patient says they take “2 tablets total per day”; what should the CMA do first?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Reconcile the discrepancy by confirming the exact label instructions and alerting the provider/pharmacy for clarification because guessing the intended dose is a common medication error.</div></div>
+    <div class="qa"><div class="qn">Question 2677</div><p class="qq">A patient education handout says a medication may cause “orthostatic hypotension”; the patient asks what to watch for—what should the CMA explain in plain language?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain it can cause dizziness when standing up and to rise slowly and report fainting, because failing to translate the term can lead to preventable falls.</div></div>
+    <div class="qa"><div class="qn">Question 2678</div><p class="qq">A referral order says “f/u with cardiology ASAP,” and the patient asks if that means “sometime this month”; what should the CMA clarify to the patient?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain that ASAP means “as soon as possible” and start scheduling/coordination immediately per clinic process; the trap is downgrading urgency based on convenience rather than the order’s intent.</div></div>
+    <div class="qa"><div class="qn">Question 2679</div><p class="qq">A patient says they took an “extra dose” of their beta blocker because their pulse felt fast; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Instruct the patient to be evaluated by the provider immediately/triage per clinic protocol and document details (drug, dose, time, symptoms) because advising self-titration is unsafe.</div></div>
+    <div class="qa"><div class="qn">Question 2680</div><p class="qq">A provider note includes “HTN uncontrolled”; the patient asks what HTN stands for and whether the CMA can “confirm the diagnosis”; what is the best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain HTN means hypertension and defer any confirmation/diagnosis to the provider; the trap is interpreting or validating diagnoses beyond CMA scope.</div></div>
+    <div class="qa"><div class="qn">Question 2681</div><p class="qq">During medication review, a patient shows you two bottles of the same drug with different brand names and says they take both; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Identify them as potential duplicates, stop the patient from making changes on their own, and notify the provider for reconciliation because duplicate therapy can cause overdose.</div></div>
+    <div class="qa"><div class="qn">Question 2682</div><p class="qq">While updating the med list, the patient reports an “adverse reaction” to penicillin as “I got hives and my lips swelled”; how should the CMA record this in the chart?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Document it as an allergy with the specific reaction (hives/lip swelling) because it suggests hypersensitivity; the trap is recording it as a side effect, which can lead to unsafe re-exposure.</div></div>
+    <div class="qa"><div class="qn">Question 2683</div><p class="qq">During rooming, a patient says, “I’ve had vertigo all week,” and the provider later asks the CMA to document it as a “sign”; what should the CMA chart it as?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Chart it as a symptom because it’s a subjective patient-reported experience; the trap is labeling patient statements as signs, which are objective findings observed/measured by the team.</div></div>
+    <div class="qa"><div class="qn">Question 2684</div><p class="qq">A provider’s note includes “titrate up weekly” for a medication; the patient asks you how to adjust the dose—what is the best response?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Refer the question to the provider and reinforce following the written instructions only, because giving titration instructions is medication management outside CMA scope.</div></div>
+    <div class="qa"><div class="qn">Question 2685</div><p class="qq">A patient complains of numbness and tingling in the hands after typing all day; which system should the CMA connect this complaint to when documenting?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>The nervous system (peripheral nerves) because paresthesia reflects nerve involvement; the trap is charting it under cardiovascular symptoms without clarifying neuro details.</div></div>
+    <div class="qa"><div class="qn">Question 2686</div><p class="qq">A patient with swelling in both ankles asks if it’s “a kidney thing or a heart thing,” and wants the CMA to decide; what is the best CMA response using anatomy/system knowledge and scope limits?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>State swelling (edema) can be related to several systems (often cardiovascular/renal) and notify the provider rather than attributing a cause; the trap is giving a single-system explanation that sounds like a diagnosis.</div></div>
+    <div class="qa"><div class="qn">Question 2687</div><p class="qq">During intake, a patient points to the lower right abdomen and says the pain is “in my RLQ”; what should the CMA understand RLQ refers to?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>The right lower quadrant of the abdomen; the trap is confusing quadrants with regions and documenting the wrong location, which can mislead clinical decision-making.</div></div>
+    <div class="qa"><div class="qn">Question 2688</div><p class="qq">A lab requisition lists “CBC” but the patient thinks it is a “cancer test” and wants you to explain the results before they’re back; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Briefly explain a CBC is a common blood count test and tell the patient the provider will review results when available; the trap is promising interpretations or outcomes before results and provider review.</div></div>
+    <div class="qa"><div class="qn">Question 2689</div><p class="qq">The provider orders a medication “IM,” and the patient asks where it will go; what should the CMA explain?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>IM means intramuscular—into a muscle; the trap is confusing IM with IV or subcutaneous, which changes absorption and safety.</div></div>
+    <div class="qa"><div class="qn">Question 2690</div><p class="qq">A teen reports “I feel heartburn after spicy foods,” and the parent asks whether that’s “cardiac”; what should the CMA clarify about the system involved?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Heartburn typically involves the gastrointestinal system (esophagus/stomach reflux) and is not the same as heart pain; the trap is ignoring red flags, so advise provider evaluation if symptoms are severe or atypical.</div></div>
+    <div class="qa"><div class="qn">Question 2691</div><p class="qq">A patient with COPD calls the clinic saying they are “cyanotic around the lips”; which body system is most directly involved, and what should the CMA recognize about the symptom?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Respiratory/cardiovascular oxygenation is involved, and cyanosis is an observable sign indicating low oxygenation; the trap is treating it as a minor symptom instead of an objective, potentially urgent finding.</div></div>
+    <div class="qa"><div class="qn">Question 2692</div><p class="qq">A chart note states “c/o dysuria,” and the patient later denies “pain” but says “burning when I pee”; what should the CMA do with the documentation?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Keep/confirm “dysuria” as burning or pain with urination and document the patient’s exact words; the trap is removing the term due to misunderstanding that “pain” can present as burning.</div></div>
+    <div class="qa"><div class="qn">Question 2693</div><p class="qq">A parent brings a child and says they gave “two teaspoons” of an OTC medication but can’t recall the mg; what should the CMA do to improve dosing safety for documentation?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Ask for the exact product and concentration (mg per mL) from the bottle and document the measured mL if possible; the trap is relying on teaspoon estimates, which are inaccurate and vary by spoon.</div></div>
+    <div class="qa"><div class="qn">Question 2694</div><p class="qq">A prescription message includes “titrate up weekly,” and the patient asks the CMA how to adjust the dose; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Refer the patient to the provider’s written titration instructions or the provider for clarification before giving directions; the trap is paraphrasing dosing changes from memory, leading to unsafe self-adjustment.</div></div>
+    <div class="qa"><div class="qn">Question 2695</div><p class="qq">A patient asks the CMA if they should stop their beta-blocker because their pulse “seems low”; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Instruct the patient not to stop medication without provider guidance and promptly notify the provider of the concern; the trap is advising medication changes, which is outside CMA scope and potentially dangerous.</div></div>
+    <div class="qa"><div class="qn">Question 2696</div><p class="qq">A patient asks, “What does ‘contraindicated’ mean on my new medication handout?” and wants to know if it applies to them; what should the CMA say/do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Explain it means the medication should not be used in certain conditions and route the question to the provider/pharmacist to determine if it applies; the trap is deciding eligibility yourself, which is clinical judgment beyond CMA scope.</div></div>
+    <div class="qa"><div class="qn">Question 2697</div><p class="qq">While reconciling medications, the patient says they take “metformin 500 mg bid” but the bottle says “take 1 tablet twice daily”; what should the CMA do?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Confirm that “bid” means twice daily and document using clear patient-friendly directions consistent with the label, escalating discrepancies to the provider; the trap is copying abbreviations without verifying accuracy.</div></div>
+    <div class="qa"><div class="qn">Question 2698</div><p class="qq">The provider orders “acetaminophen 650 mg PO,” and the patient says they already took “Tylenol” at home; what is the best CMA action?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Report it and clarify timing/dose because Tylenol is acetaminophen and duplication increases toxicity risk; the trap is treating brand and generic as different drugs.</div></div>
+    <div class="qa"><div class="qn">Question 2699</div><p class="qq">While preparing to administer a vaccine, the CMA notes the syringe label is smudged and the patient is ready; what is the best next step?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Stop and obtain a clearly labeled, verified dose before proceeding because you must confirm medication and concentration; the trap is “going ahead” to avoid delaying the schedule, risking a med error.</div></div>
+    <div class="qa"><div class="qn">Question 2700</div><p class="qq">A provider writes an order for “0.5 mg,” but the CMA notices the available tablets are “1 mg” and the patient insists they can “just take half”; what should the CMA do next?</p>
+      <button class="rev" type="button">Show answer</button><div class="qa-a" hidden>Verify with the provider/pharmacist instructions before advising splitting because not all tablets are safe to split (e.g., extended-release); the trap is assuming half a tablet always equals half the dose safely.</div></div>
+  <div class="setnav"><a class="btn btn-ghost" href="set-26.html">← Set 26</a><a class="btn btn-gold" href="set-28.html">Set 28 →</a></div>
+</div>
+<div class="foot">
+  <div class="copyright">© 2026 MED PREP. All rights reserved.</div>
+  <div class="legal">Independently produced study material — not affiliated with, endorsed by, or sponsored by the National Healthcareer Association (NHA). CCMA is a credential of the NHA. Questions are for practice only and are not actual exam items.</div>
+</div>
+<script>
+(function(){
+function $(id){return document.getElementById(id);}
+var all=document.querySelectorAll('.qa');
+function setAll(open){ all.forEach(function(c){ c.querySelector('.qa-a').hidden=!open; c.querySelector('button.rev').textContent=open?'Hide answer':'Show answer'; }); }
+all.forEach(function(c){ var b=c.querySelector('button.rev'), a=c.querySelector('.qa-a'); b.onclick=function(){ a.hidden=!a.hidden; b.textContent=a.hidden?'Show answer':'Hide answer'; }; });
+var sa=$('showall'); if(sa) sa.onclick=function(){ var open=sa.dataset.open!=='1'; setAll(open); sa.dataset.open=open?'1':'0'; sa.textContent=open?'Hide all answers':'Show all answers'; };
+})();
+</script>
+</body>
+</html>
