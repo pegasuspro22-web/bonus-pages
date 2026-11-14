@@ -122,6 +122,15 @@ img{max-width:100%;}
 .resume-actions{display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1rem;}
 .resume-actions .btn{flex:1; min-width:150px; justify-content:center;}
 .saved-flag{color:var(--correct,#2ea043);}
+.skip-flag{color:var(--gold,#f5c518); font-weight:700;}
+#skip-notice{display:flex; flex-wrap:wrap; gap:.6rem 1rem; align-items:center; justify-content:space-between; margin-top:1.25rem; padding:.8rem 1rem; border:1.5px solid var(--gold,#f5c518); border-radius:10px; background:var(--navy-2,#16244d); font-size:.9rem;}
+#skip-notice button{font:inherit; font-size:.8rem; cursor:pointer; border-radius:999px; padding:.4rem .9rem; border:1.5px solid var(--gold,#f5c518); background:transparent; color:var(--gold,#f5c518);}
+.qmodal-bg{position:fixed; top:0; right:0; bottom:0; left:0; z-index:100; background:rgba(5,10,25,.72); display:flex; align-items:center; justify-content:center; padding:1rem;}
+.qmodal{max-width:420px; width:100%; background:var(--navy-2,#16244d); border:1.5px solid var(--gold,#f5c518); border-radius:12px; padding:1.4rem;}
+.qmodal h3{margin:0 0 .5rem; font-size:1.05rem;}
+.qmodal p{margin:0; color:var(--muted,#9aa3b8); line-height:1.55; font-size:.93rem;}
+.qmodal-actions{display:flex; flex-direction:column; gap:.6rem; margin-top:1.2rem;}
+.qmodal-actions .btn{justify-content:center;}
 .review-bar{display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin-top:1.4rem;}
 .review-bar .lbl{font-size:.8rem; color:var(--muted,#9aa3b8); margin-right:.2rem;}
 .review-bar button{font:inherit; font-size:.8rem; cursor:pointer; background:var(--navy,#0f1e45); color:inherit; border:1.5px solid var(--line,#2b3a63); border-radius:999px; padding:.45rem .95rem;}
@@ -237,6 +246,37 @@ const QuizText = {
   }
 };
 
+/* ---- Domande non risposte: avviso al cambio sezione + conferma al Submit (la navigazione resta libera) ---- */
+const QuizSkips = (function(){
+  function clearNotice(){ const n = document.getElementById('skip-notice'); if(n) n.remove(); }
+  function notice(beforeEl, msg, btnLabel, onGo){
+    clearNotice();
+    const n = document.createElement('div');
+    n.id = 'skip-notice';
+    n.innerHTML = '<span></span><button type="button"></button>';
+    n.querySelector('span').textContent = msg;
+    const b = n.querySelector('button');
+    b.textContent = btnLabel;
+    b.addEventListener('click', function(){ clearNotice(); onGo(); });
+    beforeEl.parentNode.insertBefore(n, beforeEl);
+  }
+  function confirmSubmit(o){
+    const bg = document.createElement('div');
+    bg.className = 'qmodal-bg';
+    bg.innerHTML = '<div class="qmodal" role="dialog" aria-modal="true"><h3>Submit with unanswered questions?</h3><p>You have <b></b> unanswered. Unanswered questions count as incorrect.</p><div class="qmodal-actions"><button type="button" class="btn btn-gold" data-a="review">Go to the unanswered questions</button><button type="button" class="btn btn-ghost" data-a="submit">Submit anyway</button></div></div>';
+    bg.querySelector('b').textContent = o.count + (o.count === 1 ? ' question' : ' questions');
+    bg.addEventListener('click', function(ev){
+      if(ev.target === bg){ bg.remove(); return; }
+      const b = ev.target.closest('button'); if(!b) return;
+      bg.remove();
+      if(b.dataset.a === 'review') o.onReview(); else o.onSubmit();
+    });
+    document.body.appendChild(bg);
+    bg.querySelector('button').focus();
+  }
+  return {notice: notice, clearNotice: clearNotice, confirmSubmit: confirmSubmit};
+})();
+
 /* ---- Salvataggio automatico (localStorage, senza server) ---- */
 const QuizStore = (function(){
   function make(key, questions){
@@ -257,7 +297,7 @@ const QuizStore = (function(){
       },
       save: function(state){
         if(!ok) return;
-        try { localStorage.setItem(k, JSON.stringify({ver: ver, answers: state.answers, current: state.current, ts: Date.now()})); } catch(e){}
+        try { localStorage.setItem(k, JSON.stringify({ver: ver, answers: state.answers, current: state.current, max: state.max, ts: Date.now()})); } catch(e){}
       },
       clear: function(){ if(!ok) return; try { localStorage.removeItem(k); } catch(e){} }
     };
@@ -304,6 +344,21 @@ function runQuiz(questions, domainOrder, storeKey){
   const sections = [];
   for(let i = 0; i < questions.length; i += SECTION_SIZE){ sections.push(questions.slice(i, i + SECTION_SIZE)); }
   let current = 0;
+  let maxVisited = 0;
+  function persist(){ store.save({answers: answers, current: current, max: maxVisited}); }
+  function unansweredIn(idx){ return sections[idx].filter(function(q){ return !answers[q.n]; }); }
+  function totalUnanswered(){ return questions.filter(function(q){ return !answers[q.n]; }).length; }
+  function skippedCount(){ let n = 0; for(let s = 0; s < maxVisited; s++){ if(s !== current) n += unansweredIn(s).length; } return n; }  // saltati = vuote nelle sezioni lasciate indietro rispetto alla piu' avanzata raggiunta
+  function focusFirstUnanswered(idx){
+    const miss = unansweredIn(idx)[0]; if(!miss) return;
+    const card = document.querySelector('.qsection[data-index="' + idx + '"] .qcard:nth-child(' + (sections[idx].indexOf(miss) + 1) + ')');
+    if(card) card.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+  function goToUnanswered(idx){ showSection(idx); setTimeout(function(){ focusFirstUnanswered(idx); }, 400); }
+  function leaveNotice(idx){
+    const m = unansweredIn(idx).length;
+    if(m > 0){ QuizSkips.notice(body, 'Section ' + (idx + 1) + ': ' + m + (m === 1 ? ' question' : ' questions') + ' not answered yet.', m === 1 ? 'Go back to it' : 'Go back to them', function(){ goToUnanswered(idx); }); }
+  }
 
   sections.forEach(function(group, sIdx){
     const sec = document.createElement('div');
@@ -322,7 +377,7 @@ function runQuiz(questions, domainOrder, storeKey){
         label.dataset.letter = letter.toUpperCase();
         label.innerHTML = '<input type="radio" name="q' + q.n + '" value="' + letter.toUpperCase() + '"><span><span class="letter">' + letter.toUpperCase() + '.</span> <span class="opttext"></span></span>';
         label.querySelector('.opttext').innerHTML = QuizText.fmt(q[letter]);
-        label.querySelector('input').addEventListener('change', function(){ answers[q.n] = letter.toUpperCase(); updateProgress(); store.save({answers: answers, current: current}); });
+        label.querySelector('input').addEventListener('change', function(){ answers[q.n] = letter.toUpperCase(); updateProgress(); persist(); });
         opts.appendChild(label);
       });
       sec.appendChild(card);
@@ -331,27 +386,38 @@ function runQuiz(questions, domainOrder, storeKey){
   });
 
   function updateProgress(){
-    document.getElementById('quiz-progress').textContent = Object.keys(answers).length + ' / ' + questions.length + ' answered' + (store.available && Object.keys(answers).length ? ' · progress saved' : '');
+    const sk = skippedCount();
+    document.getElementById('quiz-progress').innerHTML = Object.keys(answers).length + ' / ' + questions.length + ' answered' + (sk ? ' · <span class="skip-flag">' + sk + ' skipped</span>' : '') + (store.available && Object.keys(answers).length ? ' · progress saved' : '');
     document.getElementById('section-progress').textContent = 'Section ' + (current + 1) + ' of ' + sections.length;
   }
   function showSection(idx){
     document.querySelectorAll('.qsection').forEach(function(s){ s.hidden = Number(s.dataset.index) !== idx; });
+    QuizSkips.clearNotice();
     current = idx;
-    store.save({answers: answers, current: current});
+    if(idx > maxVisited) maxVisited = idx;
+    persist();
     document.getElementById('btn-prev').disabled = idx === 0;
     document.getElementById('btn-next').textContent = (idx === sections.length - 1) ? 'Submit Test' : 'Next Section →';
     updateProgress();
     document.getElementById('quiz-wrapper').scrollIntoView({behavior:'smooth', block:'start'});
   }
-  document.getElementById('btn-prev').addEventListener('click', function(){ if(current > 0) showSection(current - 1); });
+  document.getElementById('btn-prev').addEventListener('click', function(){ if(current > 0){ const from = current; showSection(current - 1); leaveNotice(from); } });
   document.getElementById('btn-next').addEventListener('click', function(){
-    if(current < sections.length - 1){ showSection(current + 1); return; }
+    if(current < sections.length - 1){ const from = current; showSection(current + 1); leaveNotice(from); return; }
+    const miss = totalUnanswered();
+    if(miss > 0){
+      QuizSkips.confirmSubmit({count: miss, onSubmit: finalizeQuiz, onReview: function(){
+        for(let s = 0; s < sections.length; s++){ if(unansweredIn(s).length){ goToUnanswered(s); return; } }
+      }});
+      return;
+    }
     finalizeQuiz();
   });
   updateProgress();
 
   function finalizeQuiz(){
     store.clear();
+    QuizSkips.clearNotice();
     let correct = 0;
     const byDomain = {};
     questions.forEach(function(q){
@@ -418,6 +484,7 @@ function runQuiz(questions, domainOrder, storeKey){
       });
       briefing.hidden = true;
       document.getElementById('quiz-wrapper').hidden = false;
+      maxVisited = Math.min(Math.max(saved.max || 0, saved.current || 0), sections.length - 1);
       showSection(Math.min(saved.current || 0, sections.length - 1));
     });
     document.getElementById('btn-startover').addEventListener('click', function(){ store.clear(); box.remove(); });
