@@ -120,6 +120,13 @@ img{max-width:100%;}
 .callout .eyebrow{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-text); font-weight:600; display:flex; justify-content:center;}
 .callout h3{font-family:'Oswald',sans-serif; text-transform:uppercase; font-weight:700;}
 .callout .lede{color:var(--muted); font-size:.98rem;}
+
+.sim-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); gap:.6rem; margin-top:1.25rem;}
+.sim-tile{display:flex; flex-direction:column; align-items:center; gap:.1rem; padding:.8rem .4rem .7rem; border:1.5px solid var(--line); border-radius:10px; background:var(--navy-2); text-decoration:none; color:var(--navy);}
+.sim-tile:hover,.sim-tile:focus-visible{border-color:var(--gold-text);}
+.sim-tile .lbl{font-family:'Oswald',sans-serif; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.sim-tile .num{font-family:'Archivo Black',sans-serif; font-size:1.5rem; line-height:1.15; color:var(--navy);}
+.sim-tile .go{font-family:'Oswald',sans-serif; font-size:.68rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--gold-text);}
 </style>
 </head>
 <body>
@@ -136,8 +143,10 @@ img{max-width:100%;}
   <div class="hero">
     <div class="eyebrow">Timed · full-length · on screen</div>
     <h1>Welcome to Your Simulation Test Center</h1>
-    <p class="lede">4 full-length, 100-question simulations covering all 8 NCLEX-PN content areas in every test. Each one opens on its own, saves your progress as you go, and ends with a full review: every question with the correct answer and a complete explanation.</p>
+    <p class="lede">31 full-length, 100-question simulations covering all 8 NCLEX-PN content areas in every test. Each one opens on its own, saves your progress as you go, and ends with a full review: every question with the correct answer and a complete explanation.</p>
   </div>
+  <div class="stat-row"><div class="stat"><div class="n">31</div><div class="l">Simulations</div></div><div class="stat"><div class="n">100</div><div class="l">Questions each</div></div><div class="stat"><div class="n">Saved</div><div class="l">Progress kept</div></div><div class="stat"><div class="n">Print</div><div class="l">Printable version</div></div></div>
+  <p class="lede" style="margin:0; text-align:left; max-width:none;">Prefer paper? Open any test and tap <b>Printable version</b>: you get the full test, with the answer key on the last page, ready to print or save as a PDF.</p>
 
   
   <div class="callout alert" style="text-align:center;">
@@ -155,7 +164,8 @@ img{max-width:100%;}
     </div>
   </div>
 
-  <div class="section-head"><h2>The 4 Simulations</h2><div class="rule"></div></div>
+  <div class="section-head"><h2>Core Simulations</h2><div class="rule"></div></div>
+  <p class="lede" style="margin:0; text-align:left; max-width:none;">Start here: four simulations designed as a progression, from your baseline to a final readiness check.</p>
   <div class="card-list">
     <div class="card">
       <div><h3>🖥️ Simulation Test 1</h3><p>Take this first timed simulation to establish your performance baseline and identify priority content areas before advancing further.</p></div>
@@ -173,6 +183,10 @@ img{max-width:100%;}
       <div><h3>🖥️ Simulation Test 4</h3><p>Your last full-length evaluation before exam day. Complete this simulation in one sitting to measure true readiness.</p></div>
       <a href="test-4.html" class="tag" target="_blank" rel="noopener">START ↗</a>
     </div></div>
+
+  <div class="section-head"><h2>Bonus Simulations</h2><div class="rule"></div></div>
+  <p class="lede" style="margin:0; text-align:left; max-width:none;">27 more full-length simulations, numbered as in your printable Bonus Simulation Tests PDF, so you can take each one on screen or on paper.</p>
+  <div class="sim-grid"><a class="sim-tile" href="bonus-1.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">1</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-2.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">2</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-3.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">3</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-4.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">4</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-5.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">5</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-6.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">6</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-7.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">7</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-8.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">8</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-9.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">9</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-10.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">10</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-11.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">11</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-12.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">12</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-13.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">13</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-14.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">14</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-15.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">15</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-16.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">16</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-17.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">17</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-18.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">18</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-19.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">19</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-20.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">20</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-21.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">21</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-22.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">22</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-23.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">23</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-24.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">24</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-25.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">25</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-26.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">26</span><span class="go">Start ↗</span></a><a class="sim-tile" href="bonus-27.html" target="_blank" rel="noopener"><span class="lbl">Bonus</span><span class="num">27</span><span class="go">Start ↗</span></a></div>
 
   <div class="section-head"><h2>Need Help or Have a Question?</h2><div class="rule"></div></div>
   <p class="lede" style="margin:0; text-align:left; max-width:none;">If you experience any issues accessing the online practice tests, have a question about the material, or need assistance, you can contact us directly. We're happy to help and typically respond within 24–48 hours.</p>
