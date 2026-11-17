@@ -89,6 +89,12 @@ section{padding-block:40px}
 .manual{background:var(--kraft-l);border:2px dashed var(--kraft-d);border-radius:10px;padding:10px 12px;font-size:14.5px;display:grid;gap:6px}
 .manual code{font:700 15px/1.3 ui-monospace,Menlo,monospace;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:2px 6px;user-select:all;overflow-wrap:anywhere}
 .copy{font:700 13px var(--f-body);color:var(--ink);border:2px solid var(--ink);background:var(--paper);border-radius:8px;padding:3px 8px;cursor:pointer;margin-left:6px}
+.alt{background:#273148;border:2px dashed #5A6A8E;border-radius:14px;padding:16px 18px;color:#fff}
+.alt h3{font-size:20px;margin-bottom:4px;color:var(--sun)}
+.alt p{margin:0 0 12px;font-size:15px;color:#C9D2DE}
+.alt .or{color:#C9D2DE}.alt .or::before,.alt .or::after{background:#3A4766}
+.alt .manual{color:var(--ink)}
+.alt-btn{background:var(--paper);color:var(--ink)}
 .share{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:var(--paper);border:2px solid var(--ink);border-radius:16px;padding:20px}
 .share .bx{width:80px;height:98px}
 .share h2{font-size:30px;margin-bottom:6px}
@@ -246,7 +252,7 @@ footer{padding-block:22px 34px;font-size:13.5px;color:var(--muted)}
 </div></section>
 
 <section class="kit" id="kit"><div class="wrap">
-  <div class="sh"><span class="eyebrow">For our readers</span><h2>Unlock the Bonus Inventor Kit</h2><p>More to build after the last page. Follow the 3 steps below and we email the full kit to you.</p></div>
+  <div class="sh"><span class="eyebrow">For our readers</span><h2>Unlock the Bonus Inventor Kit</h2><p>More to build after the last page. Follow the 3 steps below and we email the full kit to you within a few hours.</p></div>
   <div class="kit-grid">
     <div class="inside">
       <div><b>Extra projects</b><p>New machines that use the skills from the book.</p></div>
@@ -262,6 +268,11 @@ footer{padding-block:22px 34px;font-size:13.5px;color:var(--muted)}
         <div class="or">OR</div>
         <div class="manual"><span>To: <code id="m-to">info@neurosciencepress.com</code><button class="copy" type="button" data-c="m-to">Copy</button></span><span>Subject: <code id="m-sub">CARDBOARD Bonus Kit</code><button class="copy" type="button" data-c="m-sub">Copy</button></span><span>Attach: the screenshot of your review</span></div>
       </div></div>
+      <div class="alt"><h3>Prefer not to leave a public review?</h3><p>No problem. Just email us the photo of your book, with no review needed. We check these by hand, so the Bonus Kit arrives within 24–72 hours instead of a few hours.</p>
+        <a class="btn alt-btn" href="mailto:info@neurosciencepress.com?subject=CARDBOARD%20Book%20Verification">Send my book photo</a>
+        <div class="or">OR</div>
+        <div class="manual"><span>To: <code id="m-to2">info@neurosciencepress.com</code><button class="copy" type="button" data-c="m-to2">Copy</button></span><span>Subject: <code id="m-sub2">CARDBOARD Book Verification</code><button class="copy" type="button" data-c="m-sub2">Copy</button></span><span>Attach: a photo of your copy of the book</span></div>
+      </div>
     </div>
   </div>
 </div></section>
