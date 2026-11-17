@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Free Templates · Amazing Cardboard Machines</title>
+<meta name="description" content="Free full-size printable templates for all 10 projects in Amazing Cardboard Machines That Really Work!, plus the Bonus Inventor Kit.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
+<style>
+/* Layout: kraft workbench page; one column on phones, cards on a 2-3 column grid on wider screens. Single light look (customer page). */
+:root{
+  --ink:#1C2433; --muted:#4E5A6C; --paper:#FFFFFF; --kraft:#D9B88A; --kraft-l:#F6EEE2; --kraft-d:#9C7443;
+  --hyd:#1F63D8; --work:#FF7A1A; --sun:#FFC83D; --sun-l:#FFF6DC; --rule:#DCE2EA;
+  --f-display:"Baloo 2","Trebuchet MS",system-ui,sans-serif; --f-body:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--kraft-l);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);line-height:1.05;margin:0;text-wrap:balance}
+a{color:var(--hyd)}
+:focus-visible{outline:3px solid var(--work);outline-offset:2px}
+.top{background:var(--ink);color:#fff}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:10px;font-size:14px}
+.top b{font-family:var(--f-display);font-size:17px;letter-spacing:.01em}
+.top span{opacity:.8;text-align:right}
+.hero{background:var(--kraft);border-bottom:4px dashed var(--kraft-d)}
+.hero .wrap{display:grid;grid-template-columns:1fr;gap:20px;padding-block:28px 36px;align-items:center}
+@media(min-width:820px){.hero .wrap{grid-template-columns:1.1fr .9fr;padding-block:44px}}
+.eyebrow{font:800 14px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--sun);display:inline-block;padding:6px 10px;border-radius:6px;transform:rotate(-1.5deg);align-self:flex-start}
+.hero h1{font-size:clamp(38px,7vw,64px);margin:14px 0 10px}
+.hero h1 em{font-style:normal;color:var(--paper);-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--ink)}
+.hero p{margin:0 0 18px;max-width:52ch;font-size:18px}
+.hero-img{position:relative;min-width:0}
+.hero-img img{display:block;width:100%;height:auto;border-radius:16px;border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);transform:rotate(1.2deg)}
+.hero-img .bx{position:absolute;width:74px;height:90px;left:-10px;bottom:-24px}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:800 18px/1.1 var(--f-display);text-decoration:none;text-align:center;color:#fff;background:var(--work);border:3px solid var(--ink);border-radius:12px;padding:14px 20px;box-shadow:4px 4px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.btn.alt{background:var(--paper);color:var(--ink)}
+.btn small{font:700 13px var(--f-body);opacity:.9}
+.btn.dl{flex-direction:column;gap:4px}
+section{padding-block:40px}
+.sh{display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.sh h2{font-size:clamp(30px,5vw,42px)}
+.sh p{margin:0;max-width:62ch;color:var(--muted)}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;margin-bottom:26px}
+.how div{background:var(--paper);border:2px solid var(--ink);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
+.how i{font:800 22px/40px var(--f-display);font-style:normal;text-align:center;width:40px;height:40px;border-radius:50%;background:var(--hyd);color:#fff}
+.how b{display:block;font-family:var(--f-display);font-size:19px;line-height:1.2}
+.how p{margin:2px 0 0;font-size:15px;color:var(--muted)}
+.ruler{display:flex;gap:16px;align-items:center;background:var(--sun-l);border:2px dashed var(--kraft-d);border-radius:12px;padding:14px 16px;margin-bottom:24px}
+.ruler .sq{flex:none;width:72px;height:72px;border:2px solid var(--ink);background:var(--paper);display:grid;place-items:center;font:800 14px var(--f-display)}
+.ruler p{margin:0;font-size:15.5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:18px}
+.card{background:var(--paper);border:2px solid var(--ink);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-bottom:4px solid var(--s)}
+.card-b{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.meta{display:flex;align-items:center;gap:8px}
+.num{font:800 15px/28px var(--f-display);width:28px;height:28px;text-align:center;border-radius:8px;background:var(--s);color:#fff}
+.sec{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--s)}
+.card h3{font-size:24px}
+.facts{margin:0;display:flex;flex-wrap:wrap;gap:6px}
+.facts span{font-size:13px;font-weight:700;background:var(--sl);color:var(--ink);padding:2px 9px;border-radius:999px}
+.parts{margin:0;font-size:14.5px;color:var(--muted);flex:1}
+.parts b{color:var(--ink)}
+.btn-s{align-self:flex-start;display:inline-flex;flex-direction:column;font:800 16px/1.15 var(--f-display);text-decoration:none;color:var(--ink);background:var(--sun);border:2px solid var(--ink);border-radius:10px;padding:9px 14px}
+.btn-s small{font:700 12px var(--f-body)}
+.btn-s:hover{background:var(--work);color:#fff}
+.kit{background:var(--ink);color:#fff}
+.kit .sh p{color:#C9D2DE}
+.kit-grid{display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:860px){.kit-grid{grid-template-columns:.9fr 1.1fr}}
+.inside{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start}
+.inside div{background:#273148;border:2px solid #3A4766;border-radius:12px;padding:12px 14px}
+.inside b{display:block;font-family:var(--f-display);font-size:18px;line-height:1.15;color:var(--sun)}
+.inside p{margin:3px 0 0;font-size:14px;color:#C9D2DE}
+.steps{display:grid;gap:12px}
+.step{background:var(--paper);color:var(--ink);border-radius:14px;padding:16px 18px;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.step>i{font:800 24px/44px var(--f-display);font-style:normal;text-align:center;width:44px;height:44px;border-radius:12px;background:var(--work);color:#fff}
+.step>div{min-width:0}
+.step h3{font-size:22px;margin-bottom:4px}
+.step p{margin:0 0 10px;font-size:15.5px;color:var(--muted)}
+.step p:last-child{margin-bottom:0}
+.or{display:flex;align-items:center;gap:10px;margin:12px 0;font-weight:800;font-size:13px;letter-spacing:.1em;color:var(--muted)}
+.or::before,.or::after{content:"";flex:1;height:2px;background:var(--rule)}
+.manual{background:var(--kraft-l);border:2px dashed var(--kraft-d);border-radius:10px;padding:10px 12px;font-size:14.5px;display:grid;gap:6px}
+.manual code{font:700 15px/1.3 ui-monospace,Menlo,monospace;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:2px 6px;user-select:all;overflow-wrap:anywhere}
+.copy{font:700 13px var(--f-body);color:var(--ink);border:2px solid var(--ink);background:var(--paper);border-radius:8px;padding:3px 8px;cursor:pointer;margin-left:6px}
+.share{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:var(--paper);border:2px solid var(--ink);border-radius:16px;padding:20px}
+.share .bx{width:80px;height:98px}
+.share h2{font-size:30px;margin-bottom:6px}
+.share p{margin:0;overflow-wrap:anywhere}
+@media(max-width:520px){.share{grid-template-columns:1fr}.inside{grid-template-columns:1fr}}
+.safety{background:var(--sun-l);border-top:3px solid var(--sun)}
+.safety .wrap{padding-block:18px;font-size:15px}
+.safety b{font-family:var(--f-display);font-size:17px}
+footer{padding-block:22px 34px;font-size:13.5px;color:var(--muted)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head><body>
+
+<header class="top"><div class="wrap"><b>Creative Academy</b><span>Amazing Cardboard Machines</span></div></header>
+
+<div class="hero"><div class="wrap">
+  <div>
+    <span class="eyebrow">Free for every builder</span>
+    <h1>Your <em>templates</em> are ready to print</h1>
+    <p>Every cardboard part of all 10 machines in the book, at full size. Print the page, trace it onto your cardboard and cut along the lines. Perfect parts on the first try.</p>
+    <div class="cta-row"><a class="btn" href="#templates">Get the templates</a><a class="btn alt" href="#kit">Unlock the Bonus Kit</a></div>
+  </div>
+  <div class="hero-img"><img src="img/p02.jpg" alt="A cardboard hydraulic crane lifting a toy" width="640" height="427"><svg class="bx" viewBox="0 0 90 110" aria-hidden="true">
+      <line x1="45" y1="4" x2="45" y2="18" stroke="#1C2433" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="45" cy="6" r="5.5" fill="#FF7A1A" stroke="#1C2433" stroke-width="2.5"/>
+      <rect x="14" y="17" width="62" height="40" rx="8" fill="#D9B88A" stroke="#1C2433" stroke-width="3"/>
+      <path d="M20 23 h50" stroke="#9C7443" stroke-width="2" stroke-dasharray="3 4"/>
+      <circle cx="33" cy="36" r="7" fill="#fff" stroke="#1C2433" stroke-width="2.5"/>
+      <circle cx="57" cy="36" r="7" fill="#fff" stroke="#1C2433" stroke-width="2.5"/>
+      <circle cx="34.5" cy="37" r="3" fill="#1C2433"/><circle cx="58.5" cy="37" r="3" fill="#1C2433"/>
+      <path d="M36 47 q9 7 18 0" fill="none" stroke="#1C2433" stroke-width="3" stroke-linecap="round"/>
+      <rect x="22" y="60" width="46" height="34" rx="6" fill="#D9B88A" stroke="#1C2433" stroke-width="3"/>
+      <path d="M47 66 l-7 12 h7 l-3 10 l10 -14 h-7 l3 -8z" fill="#FF7A1A" stroke="#1C2433" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M22 70 q-12 2 -14 14" fill="none" stroke="#1C2433" stroke-width="3" stroke-linecap="round"/>
+      <path d="M68 70 q12 -4 16 -14" fill="none" stroke="#1C2433" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="8" cy="86" r="4" fill="#1F63D8" stroke="#1C2433" stroke-width="2"/>
+      <circle cx="84" cy="55" r="4" fill="#1F63D8" stroke="#1C2433" stroke-width="2"/>
+      <rect x="28" y="94" width="10" height="12" rx="2" fill="#9C7443" stroke="#1C2433" stroke-width="2.5"/>
+      <rect x="52" y="94" width="10" height="12" rx="2" fill="#9C7443" stroke="#1C2433" stroke-width="2.5"/>
+    </svg></div>
+</div></div>
+
+<main>
+<section id="templates"><div class="wrap">
+  <div class="sh"><span class="eyebrow">Free templates</span><h2>Printable templates</h2><p>One PDF for each project, in the same order as the book. The letters on every part match the Cutting Map in your book.</p></div>
+  <div class="how">
+    <div><i>1</i><span><b>Print at 100%</b><p>Choose "Actual size" in the print settings, on regular letter paper.</p></span></div>
+    <div><i>2</i><span><b>Trace on cardboard</b><p>Cut out the paper part and trace around it, or glue it on with a glue stick.</p></span></div>
+    <div><i>3</i><span><b>Cut on the lines</b><p>Dashed line = cut. Dotted line = fold. Grown-ups handle the craft knife.</p></span></div>
+  </div>
+  <div class="ruler"><span class="sq">1 in</span><p><b>Check before you cut.</b> The first page of every PDF has a 1-inch test square. Measure it with a ruler: if it is exactly 1 inch, your parts are the right size.</p></div>
+  <div class="cta-row" style="margin-bottom:22px"><a class="btn dl" href="templates/all-templates.pdf" target="_blank" rel="noopener">All 10 templates in one PDF <small>36 pages · 2.2 MB</small></a></div>
+  <div class="grid">
+<article class="card" style="--s:#1F63D8;--sl:#E8F0FD">
+  <img src="img/p01.jpg" alt="Hydraulic Elevator built from cardboard" width="640" height="427" loading="lazy">
+  <div class="card-b">
+    <div class="meta"><span class="num">1</span><span class="sec">Lift &amp; Grab Machines</span></div>
+    <h3>Hydraulic Elevator</h3>
+    <p class="facts"><span>45–60 min</span><span>Easy</span><span>Book page 8</span></p>
+    <p class="parts"><b>Templates:</b> A Base ×2 · B Post strip with slot ×4 · B Post strip ×4 · C Platform ×1 · D Square ×8</p>
+    <a class="btn-s" href="templates/01-hydraulic-elevator.pdf" target="_blank" rel="noopener">Print template <small>PDF · 4 pages</small></a>
+  </div>
+</article>
+<article class="card" style="--s:#1F63D8;--sl:#E8F0FD">
+  <img src="img/p02.jpg" alt="Hydraulic Crane built from cardboard" width="640" height="427" loading="lazy">
+  <div class="card-b">
+    <div class="meta"><span class="num">2</span><span class="sec">Lift &amp; Grab Machines</span></div>
+    <h3>Hydraulic Crane</h3>
+    <p class="facts"><span>60–90 min</span><span>Medium</span><span>Book page 15</span></p>
+    <p class="parts"><b>Templates:</b> A Base ×2 · B Tower side ×2 · C Brace ×4 · D Boom strip ×2 · E Square ×4</p>
+    <a class="btn-s" href="templates/02-hydraulic-crane.pdf" target="_blank" rel="noopener">Print template <small>PDF · 5 pages</small></a>
+  </div>
+</article>
+<article class="card" style="--s:#1F63D8;--sl:#E8F0FD">
+  <img src="img/p03.jpg" alt="Robotic Hand built from cardboard" width="640" height="427" loading="lazy">
+  <div class="card-b">
+    <div class="meta"><span class="num">3</span><span class="sec">Lift &amp; Grab Machines</span></div>
+    <h3>Robotic Hand</h3>
+    <p class="facts"><span>60–75 min</span><span>Medium</span><span>Book page 22</span></p>
+    <p class="parts"><b>Templates:</b> A Big hand ×1 · B Wrist strap ×1</p>
+    <a class="btn-s" href="templates/03-robotic-hand.pdf" target="_blank" rel="noopener">Print template <small>PDF · 4 pages</small></a>
+  </div>
+</article>
+<article class="card" style="--s:#1F63D8;--sl:#E8F0FD">
+  <img src="img/p04.jpg" alt="Dump Truck built from cardboard" width="640" height="427" loading="lazy">
+  <div class="card-b">
+    <div class="meta"><span class="num">4</span><span class="sec">Lift &amp; Grab Machines</span></div>
+    <h3>Dump Truck</h3>
+    <p class="facts"><span>60–75 min</span><span>Medium</span><span>Book page 29</span></p>
+    <p class="parts"><b>Templates:</b> A Chassis ×2 · E Ramp strip ×1</p>
+    <a class="btn-s" href="templates/04-dump-truck.pdf" target="_blank" rel="noopener">Print template <small>PDF · 2 pages</small></a>
+  </div>
+</article>
+<article class="card" style="--s:#1F63D8;--sl:#E8F0FD">
+  <img src="img/p05.jpg" alt="Drawbridge built from cardboard" width="640" height="427" loading="lazy">
+  <div class="card-b">
+    <div class="meta"><span class="num">5</span><span class="sec">Lift &amp; Grab Machines</span></div>
+    <h3>Drawbridge</h3>
+    <p class="facts"><span>45–60 min</span><span>Easy</span><span>Book page 36</span></p>
+    <p class="parts"><b>Templates:</b> A Base ×2 · B Bridge deck ×2 · C Crank handle ×1 · D Tower box, opened flat ×1 · E River ×1</p>
+    <a class="btn-s" href="templates/05-drawbridge.pdf" target="_blank" rel="noopener">Print template <small>PDF · 7 pages</small></a>
+  </div>
+</article>
+<article class="card" style="--s:#1F63D8;--sl:#E8F0FD">
+  <img src="img/p06.jpg" alt="Prize Claw Machine built from cardboard" width="640" height="427" loading="lazy">
+  <div class="card-b">
+    <div class="meta"><span class="num">6</span><span class="sec">Lift &amp; Grab Machines</span></div>
+    <h3>Prize Claw Machine</h3>
+    <p class="facts"><span>75–90 min</span><span>Medium</span><span>Book page 43</span></p>
+    <p class="parts"><b>Templates:</b> C Claw finger ×3</p>
+    <a class="btn-s" href="templates/06-prize-claw-machine.pdf" target="_blank" rel="noopener">Print template <small>PDF · 2 pages</small></a>
+  </div>
+</article>
+<article class="card" style="--s:#13926A;--sl:#E3F5EE">
+  <img src="img/p07.jpg" alt="Rubber Band Racer built from cardboard" width="640" height="427" loading="lazy">
+  <div class="card-b">
+    <div class="meta"><span class="num">7</span><span class="sec">Things That Move</span></div>
+    <h3>Rubber Band Racer</h3>
+    <p class="facts"><span>45–60 min</span><span>Easy</span><span>Book page 50</span></p>
+    <p class="parts"><b>Templates:</b> A Chassis ×2 · B Big wheel ×4</p>
+    <a class="btn-s" href="templates/07-rubber-band-racer.pdf" target="_blank" rel="noopener">Print template <small>PDF · 3 pages</small></a>
+  </div>
+</article>
+<article class="card" style="--s:#13926A;--sl:#E3F5EE">
+  <img src="img/p08.jpg" alt="Balloon Rocket Car built from cardboard" width="640" height="427" loading="lazy">
+  <div class="card-b">
+    <div class="meta"><span class="num">8</span><span class="sec">Things That Move</span></div>
+    <h3>Balloon Rocket Car</h3>
+    <p class="facts"><span>30–45 min</span><span>Easy</span><span>Book page 57</span></p>
+    <p class="parts"><b>Templates:</b> A Chassis ×1</p>
+    <a class="btn-s" href="templates/08-balloon-rocket-car.pdf" target="_blank" rel="noopener">Print template <small>PDF · 2 pages</small></a>
+  </div>
+</article>
+<article class="card" style="--s:#13926A;--sl:#E3F5EE">
+  <img src="img/p09.jpg" alt="CD Hovercraft built from cardboard" width="640" height="427" loading="lazy">
+  <div class="card-b">
+    <div class="meta"><span class="num">9</span><span class="sec">Things That Move</span></div>
+    <h3>CD Hovercraft</h3>
+    <p class="facts"><span>30–45 min</span><span>Medium</span><span>Book page 64</span></p>
+    <p class="parts"><b>Templates:</b> A Deck ring ×1</p>
+    <a class="btn-s" href="templates/09-cd-hovercraft.pdf" target="_blank" rel="noopener">Print template <small>PDF · 2 pages</small></a>
+  </div>
+</article>
+<article class="card" style="--s:#D9343A;--sl:#FDECEC">
+  <img src="img/p10.jpg" alt="Fire Truck with Hydraulic Ladder built from cardboard" width="640" height="427" loading="lazy">
+  <div class="card-b">
+    <div class="meta"><span class="num">10</span><span class="sec">Grand Finale</span></div>
+    <h3>Fire Truck with Hydraulic Ladder</h3>
+    <p class="facts"><span>2 hours</span><span>Hard</span><span>Book page 71</span></p>
+    <p class="parts"><b>Templates:</b> A Chassis ×2 · C Ladder strip ×2 · D Hinge triangle ×2 · F Red panel ×2 · G Ramp strip ×1</p>
+    <a class="btn-s" href="templates/10-fire-truck-with-hydraulic-ladder.pdf" target="_blank" rel="noopener">Print template <small>PDF · 5 pages</small></a>
+  </div>
+</article>
+  </div>
+</div></section>
+
+<section class="kit" id="kit"><div class="wrap">
+  <div class="sh"><span class="eyebrow">For our readers</span><h2>Unlock the Bonus Inventor Kit</h2><p>More to build after the last page. Follow the 3 steps below and we email the full kit to you.</p></div>
+  <div class="kit-grid">
+    <div class="inside">
+      <div><b>Extra projects</b><p>New machines that use the skills from the book.</p></div>
+      <div><b>Challenge cards</b><p>Make it faster, stronger, smarter. Race the family.</p></div>
+      <div><b>Engineer's Log</b><p>A printable journal to sketch, measure and record every test.</p></div>
+      <div><b>Badges &amp; certificate</b><p>Cut-out badges for every machine and a printable Inventor's Certificate.</p></div>
+    </div>
+    <div class="steps">
+      <div class="step"><i>1</i><div><h3>Take a photo of your book</h3><p>The Bonus Kit is only for readers of the book, so we ask for a photo of your copy to confirm you really have it. Your first finished machine can be in the picture too!</p></div></div>
+      <div class="step"><i>2</i><div><h3>Leave a review on Amazon</h3><p>Tell other families what you built and add your photo to the review.</p><a class="btn" href="https://www.amazon.com/review/create-review/?asin=B0HRMQS8FR" target="_blank" rel="noopener">Write my review</a></div></div>
+      <div class="step"><i>3</i><div><h3>Email us the screenshot</h3><p>Take a screenshot of your published review and send only that. We reply with the Bonus Kit within a few hours.</p>
+        <a class="btn" href="mailto:info@neurosciencepress.com?subject=CARDBOARD%20Bonus%20Kit">Send my screenshot</a>
+        <div class="or">OR</div>
+        <div class="manual"><span>To: <code id="m-to">info@neurosciencepress.com</code><button class="copy" type="button" data-c="m-to">Copy</button></span><span>Subject: <code id="m-sub">CARDBOARD Bonus Kit</code><button class="copy" type="button" data-c="m-sub">Copy</button></span><span>Attach: the screenshot of your review</span></div>
+      </div></div>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="share"><svg class="bx" viewBox="0 0 90 110" aria-hidden="true">
+      <line x1="45" y1="4" x2="45" y2="18" stroke="#1C2433" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="45" cy="6" r="5.5" fill="#FF7A1A" stroke="#1C2433" stroke-width="2.5"/>
+      <rect x="14" y="17" width="62" height="40" rx="8" fill="#D9B88A" stroke="#1C2433" stroke-width="3"/>
+      <path d="M20 23 h50" stroke="#9C7443" stroke-width="2" stroke-dasharray="3 4"/>
+      <circle cx="33" cy="36" r="7" fill="#fff" stroke="#1C2433" stroke-width="2.5"/>
+      <circle cx="57" cy="36" r="7" fill="#fff" stroke="#1C2433" stroke-width="2.5"/>
+      <circle cx="34.5" cy="37" r="3" fill="#1C2433"/><circle cx="58.5" cy="37" r="3" fill="#1C2433"/>
+      <path d="M36 47 q9 7 18 0" fill="none" stroke="#1C2433" stroke-width="3" stroke-linecap="round"/>
+      <rect x="22" y="60" width="46" height="34" rx="6" fill="#D9B88A" stroke="#1C2433" stroke-width="3"/>
+      <path d="M47 66 l-7 12 h7 l-3 10 l10 -14 h-7 l3 -8z" fill="#FF7A1A" stroke="#1C2433" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M22 70 q-12 2 -14 14" fill="none" stroke="#1C2433" stroke-width="3" stroke-linecap="round"/>
+      <path d="M68 70 q12 -4 16 -14" fill="none" stroke="#1C2433" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="8" cy="86" r="4" fill="#1F63D8" stroke="#1C2433" stroke-width="2"/>
+      <circle cx="84" cy="55" r="4" fill="#1F63D8" stroke="#1C2433" stroke-width="2"/>
+      <rect x="28" y="94" width="10" height="12" rx="2" fill="#9C7443" stroke="#1C2433" stroke-width="2.5"/>
+      <rect x="52" y="94" width="10" height="12" rx="2" fill="#9C7443" stroke="#1C2433" stroke-width="2.5"/>
+    </svg><div><h2>Show us your machine!</h2><p>Send a photo of your build to <b>info@neurosciencepress.com</b> with the subject <b>My Cardboard Machine</b>. The best builds appear on our page.</p></div></div>
+</div></section>
+</main>
+
+<div class="safety"><div class="wrap"><b>Safety first.</b> Syringes are always needle-free. Steps marked in yellow in the book need a grown-up, and only grown-ups use the craft knife and the glue gun.</div></div>
+<footer><div class="wrap">© 2026 Creative Academy · Templates may be printed for personal, non-commercial use.</div></footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){b.addEventListener('click',function(){
+  var t=document.getElementById(b.dataset.c).textContent;
+  try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copied'},function(){})}catch(e){}
+})});
+</script>
+</body></html>
