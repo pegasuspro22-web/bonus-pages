@@ -11,12 +11,12 @@
 .cmp{font:600 13px var(--f-label);text-transform:uppercase;letter-spacing:.06em;display:flex;gap:6px;align-items:center;cursor:pointer;border:2px solid var(--ink);padding:5px 10px;border-radius:3px}
 .layers{display:flex;flex-wrap:wrap;gap:6px 14px}.layers label{font:600 13px var(--f-label);letter-spacing:.04em;text-transform:uppercase;display:flex;gap:6px;align-items:center;cursor:pointer}
 .layers label.off{opacity:.4}
-.vgrid{display:grid;gap:10px}.vgrid.two{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.vbox{min-width:0;display:grid;gap:6px}
+.vgrid{display:grid;gap:10px}.vgrid.two{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.vbox{min-width:0;display:grid;gap:6px}.vbox[hidden],.legend[hidden]{display:none}
 .vbox select{font:600 14px var(--f-body);padding:6px 8px;border:2px solid var(--ink);border-radius:3px;background:#fff;color:var(--ink)}
 .svgwrap{border:1px solid var(--line);background:#fff;touch-action:none;overflow:auto;max-height:80vh}
 .svgwrap svg{display:block;width:100%;height:auto}.svgwrap.zoom svg{width:200%}
 .svgwrap svg text{font-family:'Avenir Next Condensed','Roboto Condensed','Arial Narrow',sans-serif}
-#svg-a .L-furn{cursor:grab}#svg-a .L-furn:hover>*{stroke:#CB2A21}#svg-a .L-furn.sel>*{stroke:#CB2A21;stroke-width:3}
+#svg-a .mv{cursor:grab;touch-action:none}#svg-a .mv:hover>*:not(.grab){stroke:#CB2A21}#svg-a .mv.sel>*:not(.grab){stroke:#CB2A21;stroke-width:3}#svg-a .mv.sel>.grab{fill:rgba(246,194,28,.22);stroke:#CB2A21;stroke-width:1.5;stroke-dasharray:6 4}
 #svg-a .hit rect{cursor:pointer}#svg-a .hit rect.on{fill:rgba(246,194,28,.28);stroke:#DB9C0A;stroke-width:3}
 .vtools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .roominfo{background:var(--stone);border-left:4px solid var(--gold);padding:10px 12px;display:grid;gap:3px;font-size:15px}
@@ -35,9 +35,9 @@
       <label><input type="checkbox" data-l="L-furn" checked> Furniture</label><label><input type="checkbox" data-l="L-dims" checked> Dimensions</label>
       <label><input type="checkbox" data-l="L-lab" checked> Room names</label><label><input type="checkbox" data-l="L-zones"> Zones</label>
       <label id="lab-routes"><input type="checkbox" data-l="L-routes"> Daily routes</label></div>
+    <div class="vtools"><button class="btn mini" type="button" id="b-rot" disabled>↻ Rotate piece</button><button class="btn mini" type="button" id="b-reset">Reset furniture</button><button class="btn mini" type="button" id="b-zoom">Zoom</button><span class="note" id="v-hint">Drag any piece to move it · double-tap it to rotate · tap a room for advice</span></div>
     <div class="vgrid" id="vgrid"><div class="vbox"><div class="svgwrap" id="svg-a"></div></div>
       <div class="vbox" id="vbox-b" hidden><select id="cmp-sel" aria-label="Plan to compare"></select><div class="svgwrap" id="svg-b"></div></div></div>
-    <div class="vtools"><button class="btn mini" type="button" id="b-rot" disabled>Rotate piece</button><button class="btn mini" type="button" id="b-reset">Reset furniture</button><button class="btn mini" type="button" id="b-zoom">Zoom</button><span class="note">Tap a room · drag a piece of furniture</span></div>
     <div class="roominfo" id="roominfo" aria-live="polite"><b>Tap a room</b><span>Its size and the book's advice for that space appear here.</span></div>
     <div class="legend" id="legend" hidden><span><i style="background:#F6D77A"></i>Public</span><span><i style="background:#BFD5E6"></i>Private</span><span><i style="background:#D7D0C9"></i>Service</span></div>
   </div></main><div class="foot"><div class="wrap">© 2025–2026 Gilbert Bond. Educational guides and planning tools, not construction documents. Costs are planning ranges, not quotes.</div></div><script>function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}fetch('../../assets/plans.json').then(function(r){return r.json()}).then(function(PL){
@@ -51,13 +51,16 @@
   chips('f-beds','beds');chips('f-size','size');chips('f-shop','shop');
   document.getElementById('plist').addEventListener('click',function(e){var b=e.target.closest('.pc');if(!b)return;cur=b.dataset.id;sel=null;list();show()});
   function el(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);return e}
-  function tf(g,q){g.dataset.dx=q[0];g.dataset.dy=q[1];g.dataset.r=q[2]||0;var bb=g.getBBox(),cx=bb.x+bb.width/2,cy=bb.y+bb.height/2;g.setAttribute('transform','translate('+q[0]+' '+q[1]+') rotate('+(q[2]||0)+' '+cx+' '+cy+')')}
+  function tf(g,q){g.dataset.dx=q[0];g.dataset.dy=q[1];g.dataset.r=q[2]||0;var gr=g.querySelector('.grab'),bb=gr?{x:+gr.getAttribute('x'),y:+gr.getAttribute('y'),width:+gr.getAttribute('width'),height:+gr.getAttribute('height')}:g.getBBox(),cx=bb.x+bb.width/2,cy=bb.y+bb.height/2;g.setAttribute('transform','translate('+q[0]+' '+q[1]+') rotate('+(q[2]||0)+' '+cx+' '+cy+')')}
   function render(host,id,interactive){var p=PL[id],S=p.S;host.innerHTML=p.svg;var svg=host.querySelector('svg');var base=svg.querySelector('rect');
     var zg=el('g',{'class':'L-zones'});p.rooms.forEach(function(r){zg.appendChild(el('rect',{x:r[1]*S,y:r[2]*S,width:r[3]*S,height:r[4]*S,fill:ZC[r[5]]}))});base.after(zg);
     var rg=el('g',{'class':'L-routes'});p.routes.forEach(function(pts){rg.appendChild(el('polyline',{points:pts.map(function(q){return q[0]*S+','+q[1]*S}).join(' '),fill:'none',stroke:'#CB2A21','stroke-width':4,'stroke-linejoin':'round','stroke-dasharray':'10 6'}));
       var a=pts[pts.length-2],b=pts[pts.length-1],g=Math.atan2(b[1]-a[1],b[0]-a[0]),c=Math.cos(g),s=Math.sin(g),x=b[0]*S,y=b[1]*S;rg.appendChild(el('polygon',{points:[[7,0],[-9,-7],[-9,7]].map(function(q){return (x+q[0]*c-q[1]*s)+','+(y+q[0]*s+q[1]*c)}).join(' '),fill:'#CB2A21'}))});svg.appendChild(rg);
     if(interactive){var hg=el('g',{'class':'hit'});p.rooms.forEach(function(r,i){hg.appendChild(el('rect',{x:r[1]*S,y:r[2]*S,width:r[3]*S,height:r[4]*S,fill:'transparent','data-r':i}))});svg.appendChild(hg);
-      var pos=lay[id]||{};svg.querySelectorAll('.L-furn').forEach(function(g){svg.appendChild(g);var q=pos[g.dataset.id];if(q)tf(g,q)})}
+      var pos=lay[id]||{};[].slice.call(svg.querySelectorAll('.L-fix')).concat([].slice.call(svg.querySelectorAll('.L-furn'))).forEach(function(g,i){
+        if(!g.dataset.id)g.dataset.id='x'+i;g.classList.add('mv');var bb=g.getBBox();
+        g.insertBefore(el('rect',{'class':'grab',x:bb.x-3,y:bb.y-3,width:bb.width+6,height:bb.height+6,fill:'transparent'}),g.firstChild);
+        svg.appendChild(g);var q=pos[g.dataset.id];if(q)tf(g,q)})}
     apply(svg);return svg}
   function apply(svg){document.querySelectorAll('.layers input').forEach(function(i){svg.querySelectorAll('.'+i.dataset.l).forEach(function(g){g.style.display=i.checked?'':'none'})});document.getElementById('legend').hidden=!document.querySelector('.layers input[data-l="L-zones"]').checked}
   document.querySelectorAll('.layers input').forEach(function(i){i.addEventListener('change',function(){document.querySelectorAll('.svgwrap svg').forEach(apply)})});
@@ -71,13 +74,16 @@
   document.getElementById('v-cmp').addEventListener('change',function(e){document.getElementById('vbox-b').hidden=!e.target.checked;document.getElementById('vgrid').classList.toggle('two',e.target.checked);if(e.target.checked)render(document.getElementById('svg-b'),cmp,false)});
   var drag=null,host=document.getElementById('svg-a');
   function pt(svg,ev){var m=svg.getScreenCTM().inverse(),p=svg.createSVGPoint();p.x=ev.clientX;p.y=ev.clientY;return p.matrixTransform(m)}
-  host.addEventListener('pointerdown',function(ev){var g=ev.target.closest('.L-furn'),svg=host.querySelector('svg');
+  host.addEventListener('pointerdown',function(ev){var g=ev.target.closest('.mv'),svg=host.querySelector('svg');
     if(g&&g.style.display!=='none'){ev.preventDefault();if(sel)sel.classList.remove('sel');sel=g;g.classList.add('sel');document.getElementById('b-rot').disabled=false;var p=pt(svg,ev);drag={g:g,x:p.x,y:p.y,dx:+(g.dataset.dx||0),dy:+(g.dataset.dy||0),moved:false};host.setPointerCapture(ev.pointerId);return}
     var r=ev.target.closest('.hit rect');if(r){var R=PL[cur].rooms[+r.dataset.r];document.getElementById('roominfo').innerHTML='<b>'+R[0]+'</b><span class="sz">'+R[6]+'</span><span>'+R[7]+'</span>';host.querySelectorAll('.hit rect').forEach(function(x){x.classList.toggle('on',x===r)})}});
-  host.addEventListener('pointermove',function(ev){if(!drag)return;var svg=host.querySelector('svg'),p=pt(svg,ev),S=PL[cur].S;drag.moved=true;tf(drag.g,[drag.dx+Math.round((p.x-drag.x)/(S/4))*(S/4),drag.dy+Math.round((p.y-drag.y)/(S/4))*(S/4),+(drag.g.dataset.r||0)])});
-  function end(){if(!drag)return;if(drag.moved){lay[cur]=lay[cur]||{};lay[cur][drag.g.dataset.id]=[+drag.g.dataset.dx,+drag.g.dataset.dy,+(drag.g.dataset.r||0)];sv('barndo-pos',lay)}drag=null}
+  host.addEventListener('pointermove',function(ev){if(!drag)return;var svg=host.querySelector('svg'),p=pt(svg,ev),S=PL[cur].S;if(!drag.moved&&Math.abs(p.x-drag.x)+Math.abs(p.y-drag.y)<S/3)return;drag.moved=true;tf(drag.g,[drag.dx+Math.round((p.x-drag.x)/(S/4))*(S/4),drag.dy+Math.round((p.y-drag.y)/(S/4))*(S/4),+(drag.g.dataset.r||0)])});
+  var lastTap={g:null,t:0};
+  function rotate(g){var q=[+(g.dataset.dx||0),+(g.dataset.dy||0),((+(g.dataset.r||0))+90)%360];tf(g,q);lay[cur]=lay[cur]||{};lay[cur][g.dataset.id]=q;sv('barndo-pos',lay)}
+  function end(){if(!drag)return;if(!drag.moved){var now=Date.now();if(lastTap.g===drag.g&&now-lastTap.t<400){rotate(drag.g);lastTap={g:null,t:0}}else lastTap={g:drag.g,t:now}}
+    if(drag.moved){lay[cur]=lay[cur]||{};lay[cur][drag.g.dataset.id]=[+drag.g.dataset.dx,+drag.g.dataset.dy,+(drag.g.dataset.r||0)];sv('barndo-pos',lay)}drag=null}
   host.addEventListener('pointerup',end);host.addEventListener('pointercancel',end);
-  document.getElementById('b-rot').addEventListener('click',function(){if(!sel)return;var q=[+(sel.dataset.dx||0),+(sel.dataset.dy||0),((+(sel.dataset.r||0))+90)%360];tf(sel,q);lay[cur]=lay[cur]||{};lay[cur][sel.dataset.id]=q;sv('barndo-pos',lay)});
+  document.getElementById('b-rot').addEventListener('click',function(){if(sel)rotate(sel)});
   document.getElementById('b-reset').addEventListener('click',function(){delete lay[cur];sv('barndo-pos',lay);sel=null;show()});
   document.getElementById('b-zoom').addEventListener('click',function(){var z=host.classList.toggle('zoom');this.textContent=z?'Fit to screen':'Zoom'});
   list();show();
