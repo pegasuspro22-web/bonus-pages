@@ -1,0 +1,84 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><title>Floor Plan Explorer · Barndominium Pro Toolkit</title><meta name="description" content="Builder&#x27;s Toolkit for The Smart Barndominium Guide by Gilbert Bond."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 fill=%22%231D120C%22/%3E%3Cpath d=%22M5 15 16 6l11 9v12H5z%22 fill=%22%23F6C21C%22/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Roboto+Condensed:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../assets/site.css"><style>.fx{padding-block:16px 22px;display:grid;gap:14px}
+.filters{display:flex;flex-wrap:wrap;gap:12px 20px}.fgrp{display:grid;gap:5px}.fl{font:600 12px var(--f-label);letter-spacing:.1em;text-transform:uppercase}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chips button{font:600 13px var(--f-label);letter-spacing:.03em;padding:6px 11px;border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:20px;cursor:pointer}
+.chips button[aria-pressed=true]{background:var(--ink);color:#fff}
+.plist{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.pc{display:flex;gap:10px;align-items:center;text-align:left;background:#fff;border:1px solid var(--line);padding:8px 10px;cursor:pointer;font:inherit;color:var(--ink);min-width:0}
+.pc b{font:400 26px/1 var(--f-display);color:var(--gold-deep);flex:none}.pc span{font:600 14px/1.15 var(--f-label);text-transform:uppercase;min-width:0}
+.pc small{display:block;font:400 12.5px var(--f-body);text-transform:none;color:var(--muted);margin-top:2px}.pc.on{border:2px solid var(--ink);background:#FFF8DD}
+.viewer{background:#fff;border:1px solid var(--line);padding:12px;display:grid;gap:10px;min-width:0}
+.vhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.vtitle{font:400 26px/1.05 var(--f-display);text-transform:uppercase}
+.cmp{font:600 13px var(--f-label);text-transform:uppercase;letter-spacing:.06em;display:flex;gap:6px;align-items:center;cursor:pointer;border:2px solid var(--ink);padding:5px 10px;border-radius:3px}
+.layers{display:flex;flex-wrap:wrap;gap:6px 14px}.layers label{font:600 13px var(--f-label);letter-spacing:.04em;text-transform:uppercase;display:flex;gap:6px;align-items:center;cursor:pointer}
+.layers label.off{opacity:.4}
+.vgrid{display:grid;gap:10px}.vgrid.two{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.vbox{min-width:0;display:grid;gap:6px}
+.vbox select{font:600 14px var(--f-body);padding:6px 8px;border:2px solid var(--ink);border-radius:3px;background:#fff;color:var(--ink)}
+.svgwrap{border:1px solid var(--line);background:#fff;touch-action:none;overflow:auto;max-height:80vh}
+.svgwrap svg{display:block;width:100%;height:auto}.svgwrap.zoom svg{width:200%}
+.svgwrap svg text{font-family:'Avenir Next Condensed','Roboto Condensed','Arial Narrow',sans-serif}
+#svg-a .L-furn{cursor:grab}#svg-a .L-furn:hover>*{stroke:#CB2A21}#svg-a .L-furn.sel>*{stroke:#CB2A21;stroke-width:3}
+#svg-a .hit rect{cursor:pointer}#svg-a .hit rect.on{fill:rgba(246,194,28,.28);stroke:#DB9C0A;stroke-width:3}
+.vtools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.roominfo{background:var(--stone);border-left:4px solid var(--gold);padding:10px 12px;display:grid;gap:3px;font-size:15px}
+.roominfo b{font:600 17px var(--f-label);text-transform:uppercase}.roominfo .sz{font:600 13px var(--f-label);color:var(--red);letter-spacing:.04em}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font:600 12.5px var(--f-label);text-transform:uppercase}.legend i{display:inline-block;width:14px;height:14px;border:1px solid #999;margin-right:5px;vertical-align:-2px}</style></head><body><div class="top noprint"><div class="wrap"><span>The Smart Barndominium Guide</span><a href="../">← Toolkit</a></div></div><header class="phead" style="background-image:linear-gradient(90deg,rgba(29,18,12,.95) 35%,rgba(29,18,12,.55)),url(../../assets/img/plans.jpg)"><div class="wrap"><div class="eyebrow">Pro Toolkit · Floor Plan Explorer</div><h1 class="h-sec">Walk through every plan</h1><p>Filter the plans, tap a room for its size and the book's advice, switch layers on and off, and drag the furniture to try your own layout. Your layouts stay saved on this device.</p></div></header><main class="wrap fx">
+  <div class="filters" role="group" aria-label="Filter plans">
+    <div class="fgrp"><span class="fl">Bedrooms</span><div class="chips" id="f-beds"><button type="button" data-v="0" aria-pressed="true">Any</button><button type="button" data-v="1">1</button><button type="button" data-v="2">2</button><button type="button" data-v="3">3</button><button type="button" data-v="4">4</button></div></div>
+    <div class="fgrp"><span class="fl">Living area</span><div class="chips" id="f-size"><button type="button" data-v="0" aria-pressed="true">Any</button><button type="button" data-v="1">Under 1,500</button><button type="button" data-v="2">1,500–2,200</button><button type="button" data-v="3">Over 2,200</button></div></div>
+    <div class="fgrp"><span class="fl">Shop</span><div class="chips" id="f-shop"><button type="button" data-v="0" aria-pressed="true">Any</button><button type="button" data-v="1">With shop</button></div></div>
+  </div>
+  <div class="plist" id="plist"><p class="note">Loading plans…</p></div>
+  <div class="viewer">
+    <div class="vhead"><div><div class="eyebrow" id="v-n"></div><div class="vtitle" id="v-title"></div><div class="note" id="v-meta"></div></div>
+      <label class="cmp"><input type="checkbox" id="v-cmp"> Compare</label></div>
+    <div class="layers" role="group" aria-label="Layers">
+      <label><input type="checkbox" data-l="L-furn" checked> Furniture</label><label><input type="checkbox" data-l="L-dims" checked> Dimensions</label>
+      <label><input type="checkbox" data-l="L-lab" checked> Room names</label><label><input type="checkbox" data-l="L-zones"> Zones</label>
+      <label id="lab-routes"><input type="checkbox" data-l="L-routes"> Daily routes</label></div>
+    <div class="vgrid" id="vgrid"><div class="vbox"><div class="svgwrap" id="svg-a"></div></div>
+      <div class="vbox" id="vbox-b" hidden><select id="cmp-sel" aria-label="Plan to compare"></select><div class="svgwrap" id="svg-b"></div></div></div>
+    <div class="vtools"><button class="btn mini" type="button" id="b-rot" disabled>Rotate piece</button><button class="btn mini" type="button" id="b-reset">Reset furniture</button><button class="btn mini" type="button" id="b-zoom">Zoom</button><span class="note">Tap a room · drag a piece of furniture</span></div>
+    <div class="roominfo" id="roominfo" aria-live="polite"><b>Tap a room</b><span>Its size and the book's advice for that space appear here.</span></div>
+    <div class="legend" id="legend" hidden><span><i style="background:#F6D77A"></i>Public</span><span><i style="background:#BFD5E6"></i>Private</span><span><i style="background:#D7D0C9"></i>Service</span></div>
+  </div></main><div class="foot"><div class="wrap">© 2025–2026 Gilbert Bond. Educational guides and planning tools, not construction documents. Costs are planning ranges, not quotes.</div></div><script>function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}fetch('../../assets/plans.json').then(function(r){return r.json()}).then(function(PL){
+  var ids=Object.keys(PL),cur=ids[0],cmp=ids[4],sel=null,NS='http://www.w3.org/2000/svg',ZC={public:'#F6D77A',private:'#BFD5E6',service:'#D7D0C9'};
+  var lay=ld('barndo-pos',{}),filt={beds:0,size:0,shop:0};
+  function pass(p){if(filt.beds&&p.beds!==filt.beds)return false;if(filt.size===1&&p.area>=1500)return false;if(filt.size===2&&(p.area<1500||p.area>2200))return false;if(filt.size===3&&p.area<=2200)return false;if(filt.shop&&!p.shop)return false;return true}
+  function list(){var h='',n=0;ids.forEach(function(id){var p=PL[id];if(!pass(p))return;n++;h+='<button type="button" class="pc'+(id===cur?' on':'')+'" data-id="'+id+'"><b>'+p.n+'</b><span>'+p.title.replace(/^The /,'')+'<small>'+p.area.toLocaleString('en-US')+' sq ft · '+p.beds+' bed'+(p.shop?' · shop':'')+'</small></span></button>'});
+    document.getElementById('plist').innerHTML=n?h:'<p class="note">No plan matches these filters. Try "Any" on one of them.</p>'}
+  function relist(){list();var vis=ids.filter(function(id){return pass(PL[id])});if(vis.length&&vis.indexOf(cur)<0){cur=vis[0];sel=null;list();show()}}
+  function chips(id,key){var b=document.querySelectorAll('#'+id+' button');b.forEach(function(x){x.addEventListener('click',function(){b.forEach(function(y){y.setAttribute('aria-pressed','false')});x.setAttribute('aria-pressed','true');filt[key]=+x.dataset.v;relist()})})}
+  chips('f-beds','beds');chips('f-size','size');chips('f-shop','shop');
+  document.getElementById('plist').addEventListener('click',function(e){var b=e.target.closest('.pc');if(!b)return;cur=b.dataset.id;sel=null;list();show()});
+  function el(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);return e}
+  function tf(g,q){g.dataset.dx=q[0];g.dataset.dy=q[1];g.dataset.r=q[2]||0;var bb=g.getBBox(),cx=bb.x+bb.width/2,cy=bb.y+bb.height/2;g.setAttribute('transform','translate('+q[0]+' '+q[1]+') rotate('+(q[2]||0)+' '+cx+' '+cy+')')}
+  function render(host,id,interactive){var p=PL[id],S=p.S;host.innerHTML=p.svg;var svg=host.querySelector('svg');var base=svg.querySelector('rect');
+    var zg=el('g',{'class':'L-zones'});p.rooms.forEach(function(r){zg.appendChild(el('rect',{x:r[1]*S,y:r[2]*S,width:r[3]*S,height:r[4]*S,fill:ZC[r[5]]}))});base.after(zg);
+    var rg=el('g',{'class':'L-routes'});p.routes.forEach(function(pts){rg.appendChild(el('polyline',{points:pts.map(function(q){return q[0]*S+','+q[1]*S}).join(' '),fill:'none',stroke:'#CB2A21','stroke-width':4,'stroke-linejoin':'round','stroke-dasharray':'10 6'}));
+      var a=pts[pts.length-2],b=pts[pts.length-1],g=Math.atan2(b[1]-a[1],b[0]-a[0]),c=Math.cos(g),s=Math.sin(g),x=b[0]*S,y=b[1]*S;rg.appendChild(el('polygon',{points:[[7,0],[-9,-7],[-9,7]].map(function(q){return (x+q[0]*c-q[1]*s)+','+(y+q[0]*s+q[1]*c)}).join(' '),fill:'#CB2A21'}))});svg.appendChild(rg);
+    if(interactive){var hg=el('g',{'class':'hit'});p.rooms.forEach(function(r,i){hg.appendChild(el('rect',{x:r[1]*S,y:r[2]*S,width:r[3]*S,height:r[4]*S,fill:'transparent','data-r':i}))});svg.appendChild(hg);
+      var pos=lay[id]||{};svg.querySelectorAll('.L-furn').forEach(function(g){svg.appendChild(g);var q=pos[g.dataset.id];if(q)tf(g,q)})}
+    apply(svg);return svg}
+  function apply(svg){document.querySelectorAll('.layers input').forEach(function(i){svg.querySelectorAll('.'+i.dataset.l).forEach(function(g){g.style.display=i.checked?'':'none'})});document.getElementById('legend').hidden=!document.querySelector('.layers input[data-l="L-zones"]').checked}
+  document.querySelectorAll('.layers input').forEach(function(i){i.addEventListener('change',function(){document.querySelectorAll('.svgwrap svg').forEach(apply)})});
+  function info(){var p=PL[cur];document.getElementById('v-n').textContent='Plan '+p.n;document.getElementById('v-title').textContent=p.title;
+    document.getElementById('v-meta').textContent=p.footprint+' · '+p.area.toLocaleString('en-US')+' sq ft · '+p.beds+' bed · '+p.baths+' · '+p.best;
+    document.getElementById('roominfo').innerHTML='<b>Tap a room</b><span>Its size and the book\u2019s advice for that space appear here.</span>';
+    var lr=document.getElementById('lab-routes');lr.classList.toggle('off',!p.routes.length);lr.title=p.routes.length?'':'Daily routes are drawn for Plan 01, the book\u2019s worked example';}
+  function show(){info();render(document.getElementById('svg-a'),cur,true);document.getElementById('b-rot').disabled=true;if(document.getElementById('v-cmp').checked)render(document.getElementById('svg-b'),cmp,false)}
+  var cs=document.getElementById('cmp-sel');cs.innerHTML=ids.map(function(id){return '<option value="'+id+'">Plan '+PL[id].n+' · '+PL[id].title.replace(/^The /,'')+'</option>'}).join('');cs.value=cmp;
+  cs.addEventListener('change',function(){cmp=cs.value;render(document.getElementById('svg-b'),cmp,false)});
+  document.getElementById('v-cmp').addEventListener('change',function(e){document.getElementById('vbox-b').hidden=!e.target.checked;document.getElementById('vgrid').classList.toggle('two',e.target.checked);if(e.target.checked)render(document.getElementById('svg-b'),cmp,false)});
+  var drag=null,host=document.getElementById('svg-a');
+  function pt(svg,ev){var m=svg.getScreenCTM().inverse(),p=svg.createSVGPoint();p.x=ev.clientX;p.y=ev.clientY;return p.matrixTransform(m)}
+  host.addEventListener('pointerdown',function(ev){var g=ev.target.closest('.L-furn'),svg=host.querySelector('svg');
+    if(g&&g.style.display!=='none'){ev.preventDefault();if(sel)sel.classList.remove('sel');sel=g;g.classList.add('sel');document.getElementById('b-rot').disabled=false;var p=pt(svg,ev);drag={g:g,x:p.x,y:p.y,dx:+(g.dataset.dx||0),dy:+(g.dataset.dy||0),moved:false};host.setPointerCapture(ev.pointerId);return}
+    var r=ev.target.closest('.hit rect');if(r){var R=PL[cur].rooms[+r.dataset.r];document.getElementById('roominfo').innerHTML='<b>'+R[0]+'</b><span class="sz">'+R[6]+'</span><span>'+R[7]+'</span>';host.querySelectorAll('.hit rect').forEach(function(x){x.classList.toggle('on',x===r)})}});
+  host.addEventListener('pointermove',function(ev){if(!drag)return;var svg=host.querySelector('svg'),p=pt(svg,ev),S=PL[cur].S;drag.moved=true;tf(drag.g,[drag.dx+Math.round((p.x-drag.x)/(S/4))*(S/4),drag.dy+Math.round((p.y-drag.y)/(S/4))*(S/4),+(drag.g.dataset.r||0)])});
+  function end(){if(!drag)return;if(drag.moved){lay[cur]=lay[cur]||{};lay[cur][drag.g.dataset.id]=[+drag.g.dataset.dx,+drag.g.dataset.dy,+(drag.g.dataset.r||0)];sv('barndo-pos',lay)}drag=null}
+  host.addEventListener('pointerup',end);host.addEventListener('pointercancel',end);
+  document.getElementById('b-rot').addEventListener('click',function(){if(!sel)return;var q=[+(sel.dataset.dx||0),+(sel.dataset.dy||0),((+(sel.dataset.r||0))+90)%360];tf(sel,q);lay[cur]=lay[cur]||{};lay[cur][sel.dataset.id]=q;sv('barndo-pos',lay)});
+  document.getElementById('b-reset').addEventListener('click',function(){delete lay[cur];sv('barndo-pos',lay);sel=null;show()});
+  document.getElementById('b-zoom').addEventListener('click',function(){var z=host.classList.toggle('zoom');this.textContent=z?'Fit to screen':'Zoom'});
+  list();show();
+}).catch(function(){document.getElementById('plist').innerHTML='<p class="note">The plans could not load. Check your connection and reload the page.</p>'});</script></body></html>

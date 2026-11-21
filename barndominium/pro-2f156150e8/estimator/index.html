@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><title>Cost Estimator · Barndominium Pro Toolkit</title><meta name="description" content="Builder&#x27;s Toolkit for The Smart Barndominium Guide by Gilbert Bond."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 fill=%22%231D120C%22/%3E%3Cpath d=%22M5 15 16 6l11 9v12H5z%22 fill=%22%23F6C21C%22/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Roboto+Condensed:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../assets/site.css"></head><body><div class="top noprint"><div class="wrap"><span>The Smart Barndominium Guide</span><a href="../">← Toolkit</a></div></div><header class="phead" style="background-image:linear-gradient(90deg,rgba(29,18,12,.95) 35%,rgba(29,18,12,.55)),url(../../assets/img/kitchen.jpg)"><div class="wrap"><div class="eyebrow">Pro Toolkit · Cost Estimator</div><h1 class="h-sec">What will it cost, all in?</h1><p>Built on the book's six budget layers. Change the inputs and the range updates. A planning range to test your brief, not a quote.</p></div></header><main class="wrap"><div class="est" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));align-items:start;padding-block:18px">
+  <div class="panel noprint">
+    <div class="field"><label for="e-area">Living area (sq ft)</label><input type="number" id="e-area" value="1800" min="400" max="6000" step="50"></div>
+    <div class="field"><label for="e-shop">Attached shop or garage (sq ft)</label><input type="number" id="e-shop" value="1200" min="0" max="6000" step="50"></div>
+    <div class="field"><label for="e-porch">Covered porch (sq ft)</label><input type="number" id="e-porch" value="300" min="0" max="3000" step="25"></div>
+    <div class="field"><span class="fl">Finish level</span><div class="seg" id="e-finish"><button type="button" data-v="0.15">Basic</button><button type="button" data-v="0.5" aria-pressed="true">Mid-range</button><button type="button" data-v="0.85">High</button></div></div>
+    <div class="field"><span class="fl">Site</span><div class="seg" id="e-site"><button type="button" data-v="0.1">Utilities at road</button><button type="button" data-v="0.45" aria-pressed="true">Typical</button><button type="button" data-v="0.9">Well + septic</button></div></div>
+    <div class="field"><label for="e-cont">Contingency</label><select id="e-cont"><option value="0.10">10%</option><option value="0.15" selected>15%</option><option value="0.20">20% (owner-builder)</option></select></div>
+  </div>
+  <div class="panel" aria-live="polite">
+    <div class="big-out"><small>Planning range, all in</small><span id="e-total">–</span></div>
+    <div class="note" id="e-psf"></div><div class="note" id="e-in" style="margin-top:4px"></div>
+    <div class="tbl"><table class="t" id="e-table" style="min-width:0"></table></div>
+    <p class="note">How it works: each layer uses the per-square-foot range from the book's budget table (Chapter 1), placed within the range by your finish and site choices. Shop: slab, shell and basic electrical at $41–77 per sq ft. Porch: slab and roof extension at $18–35 per sq ft. Land, permits and design fees are not included. Local bids decide the real number.</p>
+    <div class="toolbar noprint"><button class="btn mini" type="button" onclick="window.print()">Print my estimate</button></div>
+  </div></div></main><div class="foot"><div class="wrap">© 2025–2026 Gilbert Bond. Educational guides and planning tools, not construction documents. Costs are planning ranges, not quotes.</div></div><script>function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}(function(){
+ var L=[['Site work',10,40,'site'],['Slab foundation',8,16,'f'],['Shell, erected',30,55,'f'],['Insulation & air sealing',5,12,'f'],['Systems',20,40,'f'],['Interior finishes',30,70,'f']];
+ var st=ld('barndo-est',{a:1800,s:1200,p:300,f:0.5,site:0.45,c:'0.15'});
+ function $(i){return document.getElementById(i)}
+ $('e-area').value=st.a;$('e-shop').value=st.s;$('e-porch').value=st.p;$('e-cont').value=st.c;
+ function seg(id,key){var b=document.querySelectorAll('#'+id+' button');b.forEach(function(x){x.setAttribute('aria-pressed',String(+x.dataset.v===st[key]));x.addEventListener('click',function(){st[key]=+x.dataset.v;b.forEach(function(y){y.setAttribute('aria-pressed',String(y===x))});calc()})})}
+ seg('e-finish','f');seg('e-site','site');
+ function money(x){return '$'+Math.round(x/1000).toLocaleString('en-US')+'k'}
+ function num(id){var v=parseFloat($(id).value);return isFinite(v)&&v>0?v:0}
+ function calc(){var A=num('e-area'),S=num('e-shop'),P=num('e-porch'),c=parseFloat($('e-cont').value);st.a=A;st.s=S;st.p=P;st.c=$('e-cont').value;sv('barndo-est',st);
+  var rows=[],lo=0,hi=0;
+  L.forEach(function(l){var t=l[3]==='site'?st.site:st.f,mid=l[1]+(l[2]-l[1])*t,a=Math.max(l[1],mid-(l[2]-l[1])*0.15)*A,b=Math.min(l[2],mid+(l[2]-l[1])*0.15)*A;rows.push([l[0],a,b]);lo+=a;hi+=b});
+  if(S){rows.push(['Shop / garage shell',S*41,S*77]);lo+=S*41;hi+=S*77}
+  if(P){rows.push(['Covered porch',P*18,P*35]);lo+=P*18;hi+=P*35}
+  rows.push(['Contingency '+Math.round(c*100)+'%',lo*c,hi*c]);var tl=lo*(1+c),th=hi*(1+c);
+  $('e-total').textContent=A?money(tl)+' – '+money(th):'Enter a living area';
+  $('e-psf').textContent=A?'About $'+Math.round(tl/A)+'–'+Math.round(th/A)+' per sq ft of living space, shop and porch included.':'';
+  $('e-in').textContent=A?(A.toLocaleString('en-US')+' sq ft home'+(S?' · '+S.toLocaleString('en-US')+' sq ft shop':'')+(P?' · '+P+' sq ft porch':'')):'';
+  var mx=Math.max.apply(null,rows.map(function(r){return r[2]}))||1,h='<thead><tr><th>Budget layer</th><th style="width:30%">Range</th><th style="text-align:right">Low – high</th></tr></thead><tbody>';
+  rows.forEach(function(r){h+='<tr><td>'+r[0].replace('&','&amp;')+'</td><td><div style="position:relative;height:9px;background:#EDE8E3;border-radius:2px;margin-top:6px"><i style="position:absolute;top:0;bottom:0;border-radius:2px;background:#DB9C0A;left:'+(r[1]/mx*100).toFixed(1)+'%;width:'+Math.max(1.5,(r[2]-r[1])/mx*100).toFixed(1)+'%"></i></div></td><td style="text-align:right;white-space:nowrap">'+money(r[1])+' – '+money(r[2])+'</td></tr>'});
+  h+='<tr><td><b>Total</b></td><td></td><td style="text-align:right;white-space:nowrap"><b>'+money(tl)+' – '+money(th)+'</b></td></tr></tbody>';$('e-table').innerHTML=h}
+ ['e-area','e-shop','e-porch','e-cont'].forEach(function(i){$(i).addEventListener('input',calc)});calc();
+})();</script></body></html>

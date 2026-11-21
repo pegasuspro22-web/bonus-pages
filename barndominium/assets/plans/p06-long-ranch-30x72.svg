@@ -1,0 +1,267 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-66 -78 996 618" width="996" height="618">
+<rect x="-66" y="-78" width="996" height="618" fill="#fff"/>
+<rect x="66.0" y="7.2" width="60.0" height="80.4" rx="1.8" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<rect x="70.2" y="11.4" width="23.4" height="12.0" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="98.4" y="11.4" width="23.4" height="12.0" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<line x1="66.0" y1="33.6" x2="126.0" y2="33.6" stroke="#111" stroke-width="1.58"/>
+<rect x="43.2" y="7.2" width="19.2" height="19.2" rx="0.0" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="129.6" y="7.2" width="19.2" height="19.2" rx="0.0" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="4.8" y="139.2" width="66.0" height="22.8" rx="0.0" fill="#f1f1f1" stroke="#111" stroke-width="1.58"/>
+<rect x="3.6" y="198.6" width="7.2" height="20.4" rx="1.2" fill="none" stroke="#111" stroke-width="1.58"/>
+<ellipse cx="21.0" cy="208.8" rx="10.8" ry="8.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="3.6" y="235.2" width="60.0" height="37.2" rx="0.0" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="3.6" y1="235.2" x2="63.6" y2="272.4" stroke="#111" stroke-width="1.58"/>
+<line x1="63.6" y1="235.2" x2="3.6" y2="272.4" stroke="#111" stroke-width="1.58"/>
+<circle cx="33.6" cy="253.8" r="3.0" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="82.8" y="172.8" width="21.6" height="60.0" rx="0.0" fill="#f1f1f1" stroke="#111" stroke-width="1.58"/>
+<ellipse cx="93.6" cy="187.8" rx="5.4" ry="7.2" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<ellipse cx="93.6" cy="217.8" rx="5.4" ry="7.2" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="134.4" y1="184.8" x2="134.4" y2="273.6" stroke="#111" stroke-width="1.58"/>
+<line x1="122.4" y1="184.8" x2="122.4" y2="273.6" stroke="#111" stroke-width="1.58" stroke-dasharray="4 3"/>
+<line x1="165.6" y1="184.8" x2="165.6" y2="273.6" stroke="#111" stroke-width="1.58"/>
+<line x1="177.6" y1="184.8" x2="177.6" y2="273.6" stroke="#111" stroke-width="1.58" stroke-dasharray="4 3"/>
+<rect x="24.0" y="279.6" width="72.0" height="26.4" rx="0.0" fill="#f1f1f1" stroke="#111" stroke-width="1.58"/>
+<rect x="49.2" y="308.4" width="21.6" height="19.2" rx="3.6" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="124.8" y="339.6" width="62.4" height="16.8" rx="0.0" fill="#f1f1f1" stroke="#111" stroke-width="1.58"/>
+<rect x="195.6" y="54.0" width="30.0" height="30.0" rx="0.0" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<circle cx="210.6" cy="69.0" r="9.6" fill="none" stroke="#111" stroke-width="1.58"/>
+<text x="210.6" y="72.6" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="0" text-anchor="middle" fill="#111">W</text>
+<rect x="195.6" y="85.2" width="30.0" height="30.0" rx="0.0" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<circle cx="210.6" cy="100.2" r="9.6" fill="none" stroke="#111" stroke-width="1.58"/>
+<text x="210.6" y="103.8" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="0" text-anchor="middle" fill="#111">D</text>
+<rect x="259.2" y="42.0" width="25.2" height="48.0" rx="0.0" fill="#f1f1f1" stroke="#111" stroke-width="1.58"/>
+<rect x="196.8" y="147.6" width="28.8" height="19.2" rx="0.0" fill="#f1f1f1" stroke="#111" stroke-width="1.58"/>
+<ellipse cx="211.2" cy="157.2" rx="7.2" ry="5.4" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<rect x="195.6" y="186.6" width="7.2" height="20.4" rx="1.2" fill="none" stroke="#111" stroke-width="1.58"/>
+<ellipse cx="213.0" cy="196.8" rx="10.8" ry="8.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="291.6" y="3.6" width="36.0" height="30.0" rx="0.0" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="291.6" y1="3.6" x2="327.6" y2="33.6" stroke="#111" stroke-width="1.58"/>
+<text x="309.6" y="22.2" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="0.6" text-anchor="middle" fill="#111">REF</text>
+<rect x="328.8" y="3.6" width="267.6" height="26.4" rx="0.0" fill="#f1f1f1" stroke="#111" stroke-width="1.58"/>
+<rect x="428.4" y="6.6" width="15.0" height="19.2" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="444.6" y="6.6" width="15.0" height="19.2" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="510.0" y="3.6" width="30.0" height="30.0" rx="0.0" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<circle cx="517.8" cy="11.4" r="4.6" fill="none" stroke="#111" stroke-width="1.58"/>
+<circle cx="517.8" cy="25.8" r="4.6" fill="none" stroke="#111" stroke-width="1.58"/>
+<circle cx="532.2" cy="11.4" r="4.6" fill="none" stroke="#111" stroke-width="1.58"/>
+<circle cx="532.2" cy="25.8" r="4.6" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="372.0" y="78.0" width="120.0" height="43.2" rx="0.0" fill="#f1f1f1" stroke="#111" stroke-width="1.58"/>
+<circle cx="387.0" cy="132.0" r="7.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<circle cx="417.0" cy="132.0" r="7.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<circle cx="447.0" cy="132.0" r="7.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<circle cx="477.0" cy="132.0" r="7.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="378.0" y="175.2" width="108.0" height="43.2" rx="1.2" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="383.1" y="157.2" width="16.8" height="14.4" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="383.1" y="222.0" width="16.8" height="14.4" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="410.1" y="157.2" width="16.8" height="14.4" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="410.1" y="222.0" width="16.8" height="14.4" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="437.1" y="157.2" width="16.8" height="14.4" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="437.1" y="222.0" width="16.8" height="14.4" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="464.1" y="157.2" width="16.8" height="14.4" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="464.1" y="222.0" width="16.8" height="14.4" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="580.8" y="268.8" width="16.8" height="76.8" rx="0.0" fill="#d9d9d9" stroke="#111" stroke-width="1.58"/>
+<rect x="420.0" y="246.0" width="148.8" height="103.2" rx="0.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="3 3"/>
+<rect x="432.0" y="254.4" width="36.0" height="96.0" rx="3.6" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="441.6" y="261.6" width="26.4" height="81.6" rx="1.8" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="494.4" y="274.8" width="28.8" height="55.2" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="642.0" y="7.2" width="60.0" height="80.4" rx="1.8" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<rect x="646.2" y="11.4" width="23.4" height="12.0" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="674.4" y="11.4" width="23.4" height="12.0" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<line x1="642.0" y1="33.6" x2="702.0" y2="33.6" stroke="#111" stroke-width="1.58"/>
+<rect x="619.2" y="7.2" width="19.2" height="19.2" rx="0.0" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="705.6" y="7.2" width="19.2" height="19.2" rx="0.0" fill="none" stroke="#111" stroke-width="1.58"/>
+<line x1="603.6" y1="180.0" x2="740.4" y2="180.0" stroke="#111" stroke-width="1.58"/>
+<rect x="663.6" y="252.0" width="80.4" height="60.0" rx="1.8" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<rect x="727.8" y="256.2" width="12.0" height="23.4" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="727.8" y="284.4" width="12.0" height="23.4" rx="2.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<line x1="717.6" y1="252.0" x2="717.6" y2="312.0" stroke="#111" stroke-width="1.58"/>
+<rect x="721.2" y="229.2" width="19.2" height="19.2" rx="0.0" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="721.2" y="315.6" width="19.2" height="19.2" rx="0.0" fill="none" stroke="#111" stroke-width="1.58"/>
+<line x1="786.0" y1="26.4" x2="861.6" y2="26.4" stroke="#111" stroke-width="1.58"/>
+<line x1="786.0" y1="14.4" x2="861.6" y2="14.4" stroke="#111" stroke-width="1.58" stroke-dasharray="4 3"/>
+<line x1="837.6" y1="31.2" x2="837.6" y2="93.6" stroke="#111" stroke-width="1.58"/>
+<line x1="849.6" y1="31.2" x2="849.6" y2="93.6" stroke="#111" stroke-width="1.58" stroke-dasharray="4 3"/>
+<rect x="838.8" y="117.6" width="21.6" height="60.0" rx="0.0" fill="#f1f1f1" stroke="#111" stroke-width="1.58"/>
+<ellipse cx="849.6" cy="132.6" rx="5.4" ry="7.2" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<ellipse cx="849.6" cy="162.6" rx="5.4" ry="7.2" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<rect x="853.2" y="189.0" width="7.2" height="20.4" rx="1.2" fill="none" stroke="#111" stroke-width="1.58"/>
+<ellipse cx="843.0" cy="199.2" rx="10.8" ry="8.4" fill="none" stroke="#111" stroke-width="1.58"/>
+<rect x="799.2" y="229.2" width="60.0" height="31.2" rx="2.4" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<rect x="802.8" y="232.8" width="52.8" height="24.0" rx="7.2" fill="none" stroke="#111" stroke-width="1.58"/>
+<line x1="751.2" y1="333.6" x2="861.6" y2="333.6" stroke="#111" stroke-width="1.58"/>
+<line x1="751.2" y1="345.6" x2="861.6" y2="345.6" stroke="#111" stroke-width="1.58" stroke-dasharray="4 3"/>
+<text x="96.0" y="109.2" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="16.59" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">PRIMARY SUITE</text>
+<text x="96.0" y="127.2" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="400" letter-spacing="0.4" text-anchor="middle" fill="#111">16'-0" × 14'-0"</text>
+<text x="51.6" y="229.2" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1" text-anchor="middle" fill="#111">BATH</text>
+<text x="150.0" y="232.8" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">W.I.C.</text>
+<text x="74.4" y="346.8" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">STUDY</text>
+<text x="244.8" y="129.6" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">MUDROOM</text>
+<text x="256.8" y="196.8" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">PWD.</text>
+<text x="240.0" y="247.2" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">COATS</text>
+<text x="240.0" y="319.2" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">FOYER</text>
+<text x="444.0" y="58.8" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">KITCHEN</text>
+<text x="355.2" y="307.2" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="16.59" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">GREAT ROOM</text>
+<text x="355.2" y="325.2" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="400" letter-spacing="0.4" text-anchor="middle" fill="#111">26' × 30'</text>
+<text x="672.0" y="108.0" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="16.59" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">BEDROOM 2</text>
+<text x="672.0" y="126.0" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="400" letter-spacing="0.4" text-anchor="middle" fill="#111">12'-0" × 13'-0"</text>
+<text x="672.0" y="187.2" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">LINEN</text>
+<text x="676.8" y="342.0" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">BEDROOM 3</text>
+<text x="794.4" y="184.8" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">JACK &amp; JILL</text>
+<text x="794.4" y="202.8" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="400" letter-spacing="0.4" text-anchor="middle" fill="#111">Bath</text>
+<text x="804.0" y="57.6" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">WIC</text>
+<text x="804.0" y="314.4" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">CL.</text>
+<rect x="0.0" y="363.6" width="864.0" height="96.0" rx="0.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="7 4"/>
+<rect x="0.0" y="450.0" width="9.6" height="9.6" rx="0.0" fill="#111" stroke="#111" stroke-width="0"/>
+<rect x="854.4" y="450.0" width="9.6" height="9.6" rx="0.0" fill="#111" stroke="#111" stroke-width="0"/>
+<text x="432.0" y="414.0" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="16.59" font-weight="600" letter-spacing="1.2" text-anchor="middle" fill="#111">FULL-LENGTH PORCH</text>
+<text x="432.0" y="432.0" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="400" letter-spacing="0.4" text-anchor="middle" fill="#111">72' × 8'</text>
+<line x1="0.0" y1="-27.6" x2="192.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="0.0" y1="0.0" x2="0.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="-4.2" y1="-23.4" x2="4.2" y2="-31.8" stroke="#111" stroke-width="1.58"/>
+<line x1="192.0" y1="0.0" x2="192.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="187.8" y1="-23.4" x2="196.2" y2="-31.8" stroke="#111" stroke-width="1.58"/>
+<text x="96.0" y="-33.0" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="500" letter-spacing="0.3" text-anchor="middle" fill="#111">16'-0"</text>
+<line x1="192.0" y1="-27.6" x2="288.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="192.0" y1="0.0" x2="192.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="187.8" y1="-23.4" x2="196.2" y2="-31.8" stroke="#111" stroke-width="1.58"/>
+<line x1="288.0" y1="0.0" x2="288.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="283.8" y1="-23.4" x2="292.2" y2="-31.8" stroke="#111" stroke-width="1.58"/>
+<text x="240.0" y="-33.0" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="500" letter-spacing="0.3" text-anchor="middle" fill="#111">8'-0"</text>
+<line x1="288.0" y1="-27.6" x2="600.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="288.0" y1="0.0" x2="288.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="283.8" y1="-23.4" x2="292.2" y2="-31.8" stroke="#111" stroke-width="1.58"/>
+<line x1="600.0" y1="0.0" x2="600.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="595.8" y1="-23.4" x2="604.2" y2="-31.8" stroke="#111" stroke-width="1.58"/>
+<text x="444.0" y="-33.0" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="500" letter-spacing="0.3" text-anchor="middle" fill="#111">26'-0"</text>
+<line x1="600.0" y1="-27.6" x2="744.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="600.0" y1="0.0" x2="600.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="595.8" y1="-23.4" x2="604.2" y2="-31.8" stroke="#111" stroke-width="1.58"/>
+<line x1="744.0" y1="0.0" x2="744.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="739.8" y1="-23.4" x2="748.2" y2="-31.8" stroke="#111" stroke-width="1.58"/>
+<text x="672.0" y="-33.0" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="500" letter-spacing="0.3" text-anchor="middle" fill="#111">12'-0"</text>
+<line x1="744.0" y1="-27.6" x2="864.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="744.0" y1="0.0" x2="744.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="739.8" y1="-23.4" x2="748.2" y2="-31.8" stroke="#111" stroke-width="1.58"/>
+<line x1="864.0" y1="0.0" x2="864.0" y2="-27.6" stroke="#111" stroke-width="1.58"/>
+<line x1="859.8" y1="-23.4" x2="868.2" y2="-31.8" stroke="#111" stroke-width="1.58"/>
+<text x="804.0" y="-33.0" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="500" letter-spacing="0.3" text-anchor="middle" fill="#111">10'-0"</text>
+<line x1="0.0" y1="-55.2" x2="864.0" y2="-55.2" stroke="#111" stroke-width="1.58"/>
+<line x1="0.0" y1="0.0" x2="0.0" y2="-55.2" stroke="#111" stroke-width="1.58"/>
+<line x1="-4.2" y1="-51.0" x2="4.2" y2="-59.4" stroke="#111" stroke-width="1.58"/>
+<line x1="864.0" y1="0.0" x2="864.0" y2="-55.2" stroke="#111" stroke-width="1.58"/>
+<line x1="859.8" y1="-51.0" x2="868.2" y2="-59.4" stroke="#111" stroke-width="1.58"/>
+<text x="432.0" y="-60.6" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="500" letter-spacing="0.3" text-anchor="middle" fill="#111">72'-0"</text>
+<line x1="-45.6" y1="0.0" x2="-45.6" y2="360.0" stroke="#111" stroke-width="1.58"/>
+<line x1="0.0" y1="0.0" x2="-45.6" y2="0.0" stroke="#111" stroke-width="1.58"/>
+<line x1="-49.8" y1="4.2" x2="-41.4" y2="-4.2" stroke="#111" stroke-width="1.58"/>
+<line x1="0.0" y1="360.0" x2="-45.6" y2="360.0" stroke="#111" stroke-width="1.58"/>
+<line x1="-49.8" y1="364.2" x2="-41.4" y2="355.8" stroke="#111" stroke-width="1.58"/>
+<text x="-51.0" y="180.0" transform="rotate(-90 -51.0 180.0)" font-family="'Avenir Next Condensed',sans-serif" font-size="14.43" font-weight="500" letter-spacing="0.3" text-anchor="middle" fill="#111">30'-0"</text>
+<rect x="0.0" y="494.4" width="60.0" height="6.0" rx="0.0" fill="#111" stroke="#111" stroke-width="1.58"/>
+<rect x="60.0" y="494.4" width="60.0" height="6.0" rx="0.0" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<rect x="120.0" y="494.4" width="120.0" height="6.0" rx="0.0" fill="#111" stroke="#111" stroke-width="1.58"/>
+<text x="0.0" y="513.6" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="500" letter-spacing="0" text-anchor="middle" fill="#111">0</text>
+<text x="60.0" y="513.6" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="500" letter-spacing="0" text-anchor="middle" fill="#111">5</text>
+<text x="120.0" y="513.6" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="500" letter-spacing="0" text-anchor="middle" fill="#111">10</text>
+<text x="240.0" y="513.6" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="500" letter-spacing="0" text-anchor="middle" fill="#111">20</text>
+<text x="254.4" y="513.6" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="600" letter-spacing="0.5" text-anchor="start" fill="#111">FT</text>
+<circle cx="330.0" cy="495.6" r="15.0" fill="none" stroke="#111" stroke-width="1.58"/>
+<path d="M330.0,481.8 L336.6,505.2 L330.0,499.8 L323.4,505.2 Z" fill="#111"/>
+<text x="330.0" y="477.0" font-family="'Avenir Next Condensed','Avenir Next',sans-serif" font-size="14.43" font-weight="700" letter-spacing="0" text-anchor="middle" fill="#111">N</text>
+<rect x="-3.3" y="-3.3" width="39.3" height="6.6" fill="#111"/>
+<rect x="108.0" y="-3.3" width="108.0" height="6.6" fill="#111"/>
+<rect x="252.0" y="-3.3" width="132.0" height="6.6" fill="#111"/>
+<rect x="504.0" y="-3.3" width="132.0" height="6.6" fill="#111"/>
+<rect x="708.0" y="-3.3" width="159.3" height="6.6" fill="#111"/>
+<rect x="860.7" y="-3.3" width="6.6" height="171.3" fill="#111"/>
+<rect x="860.7" y="204.0" width="6.6" height="159.3" fill="#111"/>
+<rect x="-3.3" y="356.7" width="39.3" height="6.6" fill="#111"/>
+<rect x="108.0" y="356.7" width="120.0" height="6.6" fill="#111"/>
+<rect x="264.0" y="356.7" width="48.0" height="6.6" fill="#111"/>
+<rect x="384.0" y="356.7" width="72.0" height="6.6" fill="#111"/>
+<rect x="552.0" y="356.7" width="72.0" height="6.6" fill="#111"/>
+<rect x="720.0" y="356.7" width="147.3" height="6.6" fill="#111"/>
+<rect x="-3.3" y="-3.3" width="6.6" height="51.3" fill="#111"/>
+<rect x="-3.3" y="120.0" width="6.6" height="84.0" fill="#111"/>
+<rect x="-3.3" y="240.0" width="6.6" height="123.3" fill="#111"/>
+<rect x="189.7" y="-2.3" width="4.6" height="122.3" fill="#111"/>
+<rect x="189.7" y="156.0" width="4.6" height="132.0" fill="#111"/>
+<rect x="189.7" y="324.0" width="4.6" height="38.3" fill="#111"/>
+<rect x="285.7" y="-2.3" width="4.6" height="98.3" fill="#111"/>
+<rect x="285.7" y="132.0" width="4.6" height="24.0" fill="#111"/>
+<rect x="285.7" y="186.0" width="4.6" height="80.3" fill="#111"/>
+<rect x="-2.3" y="165.7" width="26.3" height="4.6" fill="#111"/>
+<rect x="60.0" y="165.7" width="66.0" height="4.6" fill="#111"/>
+<rect x="162.0" y="165.7" width="32.3" height="4.6" fill="#111"/>
+<rect x="105.7" y="165.7" width="4.6" height="112.6" fill="#111"/>
+<rect x="-2.3" y="273.7" width="196.6" height="4.6" fill="#111"/>
+<rect x="189.7" y="141.7" width="100.6" height="4.6" fill="#111"/>
+<rect x="189.7" y="213.7" width="100.6" height="4.6" fill="#111"/>
+<rect x="189.7" y="261.7" width="14.3" height="4.6" fill="#111"/>
+<rect x="276.0" y="261.7" width="14.3" height="4.6" fill="#111"/>
+<rect x="597.7" y="-2.3" width="4.6" height="110.3" fill="#111"/>
+<rect x="597.7" y="144.0" width="4.6" height="18.0" fill="#111"/>
+<rect x="597.7" y="198.0" width="4.6" height="18.0" fill="#111"/>
+<rect x="597.7" y="252.0" width="4.6" height="110.3" fill="#111"/>
+<rect x="741.7" y="-2.3" width="4.6" height="26.3" fill="#111"/>
+<rect x="741.7" y="60.0" width="4.6" height="54.0" fill="#111"/>
+<rect x="741.7" y="144.0" width="4.6" height="72.0" fill="#111"/>
+<rect x="741.7" y="246.0" width="4.6" height="54.0" fill="#111"/>
+<rect x="741.7" y="336.0" width="4.6" height="26.3" fill="#111"/>
+<rect x="597.7" y="153.7" width="148.6" height="4.6" fill="#111"/>
+<rect x="597.7" y="201.7" width="148.6" height="4.6" fill="#111"/>
+<rect x="741.7" y="93.7" width="124.6" height="4.6" fill="#111"/>
+<rect x="741.7" y="261.7" width="124.6" height="4.6" fill="#111"/>
+<line x1="192.0" y1="156.0" x2="156.0" y2="156.0" stroke="#111" stroke-width="1.58"/>
+<path d="M156.0,156.0 A36.0,36.0 0 0 1 192.0,120.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<line x1="60.0" y1="168.0" x2="60.0" y2="204.0" stroke="#111" stroke-width="1.58"/>
+<path d="M60.0,204.0 A36.0,36.0 0 0 1 24.0,168.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<line x1="162.0" y1="168.0" x2="162.0" y2="204.0" stroke="#111" stroke-width="1.58"/>
+<path d="M162.0,204.0 A36.0,36.0 0 0 1 126.0,168.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<line x1="192.0" y1="288.0" x2="156.0" y2="288.0" stroke="#111" stroke-width="1.58"/>
+<path d="M156.0,288.0 A36.0,36.0 0 0 0 192.0,324.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<line x1="216.0" y1="0.0" x2="216.0" y2="36.0" stroke="#111" stroke-width="1.58"/>
+<path d="M216.0,36.0 A36.0,36.0 0 0 0 252.0,0.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<line x1="288.0" y1="132.0" x2="252.0" y2="132.0" stroke="#111" stroke-width="1.58"/>
+<path d="M252.0,132.0 A36.0,36.0 0 0 1 288.0,96.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<line x1="288.0" y1="156.0" x2="258.0" y2="156.0" stroke="#111" stroke-width="1.58"/>
+<path d="M258.0,156.0 A30.0,30.0 0 0 0 288.0,186.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<rect x="204.0" y="261.8" width="39.6" height="1.9" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<rect x="236.4" y="264.2" width="39.6" height="1.9" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="264.0" y1="360.0" x2="264.0" y2="324.0" stroke="#111" stroke-width="1.58"/>
+<path d="M264.0,324.0 A36.0,36.0 0 0 0 228.0,360.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<line x1="600.0" y1="144.0" x2="636.0" y2="144.0" stroke="#111" stroke-width="1.58"/>
+<path d="M636.0,144.0 A36.0,36.0 0 0 0 600.0,108.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<rect x="597.8" y="162.0" width="1.9" height="21.6" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<rect x="600.2" y="176.4" width="1.9" height="21.6" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="600.0" y1="216.0" x2="636.0" y2="216.0" stroke="#111" stroke-width="1.58"/>
+<path d="M636.0,216.0 A36.0,36.0 0 0 1 600.0,252.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<line x1="744.0" y1="24.0" x2="780.0" y2="24.0" stroke="#111" stroke-width="1.58"/>
+<path d="M780.0,24.0 A36.0,36.0 0 0 1 744.0,60.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<line x1="744.0" y1="114.0" x2="774.0" y2="114.0" stroke="#111" stroke-width="1.58"/>
+<path d="M774.0,114.0 A30.0,30.0 0 0 1 744.0,144.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<line x1="744.0" y1="246.0" x2="774.0" y2="246.0" stroke="#111" stroke-width="1.58"/>
+<path d="M774.0,246.0 A30.0,30.0 0 0 0 744.0,216.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<line x1="744.0" y1="336.0" x2="780.0" y2="336.0" stroke="#111" stroke-width="1.58"/>
+<path d="M780.0,336.0 A36.0,36.0 0 0 0 744.0,300.0" fill="none" stroke="#111" stroke-width="1.58" stroke-dasharray="2.5 2"/>
+<rect x="36.0" y="-3.3" width="72.0" height="6.6" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="36.0" y1="0.0" x2="108.0" y2="0.0" stroke="#111" stroke-width="1.58"/>
+<rect x="384.0" y="-3.3" width="120.0" height="6.6" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="384.0" y1="0.0" x2="504.0" y2="0.0" stroke="#111" stroke-width="1.58"/>
+<rect x="636.0" y="-3.3" width="72.0" height="6.6" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="636.0" y1="0.0" x2="708.0" y2="0.0" stroke="#111" stroke-width="1.58"/>
+<rect x="36.0" y="356.7" width="72.0" height="6.6" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="36.0" y1="360.0" x2="108.0" y2="360.0" stroke="#111" stroke-width="1.58"/>
+<rect x="312.0" y="356.7" width="72.0" height="6.6" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="312.0" y1="360.0" x2="384.0" y2="360.0" stroke="#111" stroke-width="1.58"/>
+<rect x="456.0" y="356.7" width="96.0" height="6.6" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="456.0" y1="360.0" x2="552.0" y2="360.0" stroke="#111" stroke-width="1.58"/>
+<rect x="624.0" y="356.7" width="96.0" height="6.6" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="624.0" y1="360.0" x2="720.0" y2="360.0" stroke="#111" stroke-width="1.58"/>
+<rect x="-3.3" y="48.0" width="6.6" height="72.0" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="0.0" y1="48.0" x2="0.0" y2="120.0" stroke="#111" stroke-width="1.58"/>
+<rect x="-3.3" y="204.0" width="6.6" height="36.0" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="0.0" y1="204.0" x2="0.0" y2="240.0" stroke="#111" stroke-width="1.58"/>
+<rect x="860.7" y="168.0" width="6.6" height="36.0" fill="#fff" stroke="#111" stroke-width="1.58"/>
+<line x1="864.0" y1="168.0" x2="864.0" y2="204.0" stroke="#111" stroke-width="1.58"/>
+</svg>
